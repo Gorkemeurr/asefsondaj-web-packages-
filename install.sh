@@ -75,8 +75,45 @@ $COMPOSER_BIN dump-autoload -o --no-scripts
 echo "==> 4/5 Cache clear"
 $PHP_BIN artisan optimize:clear
 
-# ---------- 5) Config cache ----------
-echo "==> 5/5 Config cache"
+# ---------- 5) Copy logo + favicon to public/ ----------
+echo "==> 5/7 Publishing logo + favicon"
+PKG_ASSETS="$PWD/packages/AsefSondaj/AdaptationLayer/src/Resources/assets"
+if [ -f "$PKG_ASSETS/images/logo.png" ]; then
+    cp -f "$PKG_ASSETS/images/logo.png" "$BAGISTO_ROOT/public/asef-logo.png"
+    echo "    asef-logo.png -> public/"
+fi
+if [ -f "$PKG_ASSETS/images/favicon.ico" ]; then
+    cp -f "$PKG_ASSETS/images/favicon.ico" "$BAGISTO_ROOT/public/favicon.ico"
+    echo "    favicon.ico -> public/"
+fi
+
+# ---------- 6) Inject storefront CSS into Bagisto core_config ----------
+echo "==> 6/7 Injecting storefront CSS via core_config"
+CSS_FILE="$PKG_ASSETS/css/asef-storefront.css"
+if [ -f "$CSS_FILE" ]; then
+    $PHP_BIN "$BAGISTO_ROOT/artisan" tinker --execute "
+        \$css = file_get_contents('$CSS_FILE');
+        \$now = now();
+        // General storefront custom CSS (global, all channels/locales)
+        \$exists = DB::table('core_config')->where('code', 'general.content.custom_css')->first();
+        if (\$exists) {
+            DB::table('core_config')->where('code', 'general.content.custom_css')->update(['value' => \$css, 'updated_at' => \$now]);
+        } else {
+            DB::table('core_config')->insert([
+                'code' => 'general.content.custom_css',
+                'value' => \$css,
+                'channel_code' => null,
+                'locale_code' => null,
+                'created_at' => \$now,
+                'updated_at' => \$now,
+            ]);
+        }
+        echo 'Custom CSS injected (' . strlen(\$css) . ' bytes)';
+    " 2>&1 || echo "    (config injection skipped - manual admin fallback OK)"
+fi
+
+# ---------- 7) Config cache ----------
+echo "==> 7/7 Config cache"
 $PHP_BIN artisan config:cache
 
 echo ""

@@ -1,0 +1,120 @@
+/* ============================================================
+ * Asef Sondaj — Storefront overrides (Faz 2A)
+ * Injected via core_config.general.content.custom_css
+ * ============================================================ */
+
+/* --- Header logo sizing (Asef mavi A, kare + yuvarlak) ------- */
+header img[alt*="Asef" i],
+header img[src*="logo"],
+header .header-logo img,
+header a[href="/"] img:not([alt*="cart"]):not([alt*="menu"]),
+[class*="header"] img[alt*="logo" i] {
+    max-height: 44px !important;
+    width: auto !important;
+    max-width: 160px !important;
+    object-fit: contain !important;
+    border-radius: 12px !important;
+}
+
+/* --- Mobile logo (biraz daha küçük) ------------------------- */
+@media (max-width: 768px) {
+    header img[alt*="Asef" i],
+    header img[src*="logo"],
+    header .header-logo img,
+    [class*="header"] img[alt*="logo" i] {
+        max-height: 38px !important;
+        max-width: 140px !important;
+    }
+}
+
+/* --- Bagisto default sample banner + demo content GİZLE ----- */
+[class*="hero-slider"],
+.theme-slider,
+.slider-container,
+[class*="promotion-banner"],
+[class*="recent-products"],
+[class*="new-products"],
+[class*="featured-products"],
+[class*="best-selling"],
+section:has(> h2:contains("Yeni ekleme")),
+[class*="carousel"],
+[class*="banner"] {
+    display: none !important;
+}
+
+/* --- E-ticaret CTAs: sepet, wishlist, checkout, kayıt GİZLE - */
+a[href$="/cart"],
+a[href$="/checkout"],
+a[href*="/cart/"],
+a[href*="/checkout/"],
+[class*="cart-icon"],
+[class*="mini-cart"],
+[class*="wishlist"],
+button.add-to-cart,
+button[class*="add-to-cart"],
+a[href*="/customer/login"],
+a[href*="/customer/register"],
+a[href*="/customer/forgot-password"],
+a[href*="/account"],
+a[href*="/orders"],
+[class*="account-icon"],
+[class*="user-icon"],
+[class*="my-account"],
+button[class*="compare"] {
+    display: none !important;
+}
+
+/* --- Fiyat gösterimini gizle ---------------------------------- */
+.product-price,
+.final-price,
+.old-price,
+[class*="price"] .amount,
+span.formatted-price,
+.price,
+[class*="price-html"] {
+    display: none !important;
+}
+
+/* Fiyat yerine "Teklif için iletişime geçin" göster (JS ile eklenecek) */
+
+/* --- Product card & detail: sepet buton yerine boşluk -------- */
+.product-actions button:not([class*="quote"]):not([class*="whatsapp"]) {
+    display: none !important;
+}
+
+/* --- Footer'daki e-ticaret bilgileri gizle ------------------- */
+footer a[href*="/customer"],
+footer a[href*="/cart"],
+footer a[href*="/orders"],
+footer a[href*="/wishlist"] {
+    display: none !important;
+}
+
+/* --- Renk: Asef brand primary ------------------------------- */
+:root {
+    --asef-primary: #0071E3;
+    --asef-splash: #0047FF;
+    --asef-whatsapp: #25D366;
+    --asef-canvas: #F5F5F7;
+    --asef-ink: #1D1D1F;
+}
+
+/* --- WhatsApp floating button (opsiyonel, sağ alt) ---------- */
+body::after {
+    content: "";
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    background: #25D366 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20.52 3.449C12.831-3.984.106 1.407.101 11.893c0 1.677.44 3.313 1.279 4.755L.02 22.999l6.483-1.703c6.335 3.421 14.482-1.117 14.485-8.552 0-3.144-1.226-6.104-3.463-8.339zM11.895 22.079c-3.75 0-6.55-1.939-8.001-3.007l-.559-.331-3.847 1.011 1.025-3.753-.336-.599c-.997-1.591-1.518-3.42-1.522-5.293C-.353 1.786 12.618-3.535 20.514 4.35c2.113 2.128 3.283 4.951 3.282 7.939 0 5.464-4.442 9.79-11.901 9.79zm5.421-7.403c-.299-.15-1.767-.87-2.04-.969-.273-.099-.472-.148-.671.15-.199.297-.769.968-.943 1.167-.173.198-.347.223-.646.074-.297-.149-1.258-.462-2.396-1.478-.886-.79-1.485-1.767-1.658-2.064-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.671-1.617-.919-2.213-.242-.579-.487-.501-.671-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z'/%3E%3C/svg%3E") no-repeat center / 32px 32px;
+    border-radius: 50%;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    cursor: pointer;
+    z-index: 9999;
+    transition: transform 0.15s ease-out;
+    pointer-events: auto;
+}
+body::after:hover {
+    transform: scale(1.08);
+}
