@@ -40,12 +40,28 @@ class AdaptationServiceProvider extends ServiceProvider
             $this->app['view']->prependNamespace('shop', $shopOverrides);
         }
 
-        // 3) Push our middleware into the "web" group so all storefront
-        //    requests pass through it. Admin/API paths are skipped inside
-        //    the middleware itself.
+        // 3) Register the middleware GLOBALLY via HTTP Kernel so every
+        //    request runs it (Bagisto shop routes don't consistently use
+        //    the 'web' group, so pushMiddlewareToGroup misses them).
+        //    Admin/API paths are skipped inside the middleware itself.
+        try {
+            $kernel = $this->app->make(Kernel::class);
+            $kernel->pushMiddleware(BlockDisabledRoutes::class);
+        } catch (\Throwable $e) {
+            // kernel not accessible in this context (rare) — fall back to group registration below
+        }
+
+        // 3b) Also push to the router's web + shop groups as a belt-and-braces
+        //     — some setups use these groups for storefront routes.
         /** @var Router $router */
         $router = $this->app->make(Router::class);
-        $router->pushMiddlewareToGroup('web', BlockDisabledRoutes::class);
+        foreach (['web', 'shop'] as $group) {
+            try {
+                $router->pushMiddlewareToGroup($group, BlockDisabledRoutes::class);
+            } catch (\Throwable $e) {
+                // group may not exist — safe to ignore
+            }
+        }
 
         // 4) Publishable config (optional — lets ops override values).
         $this->publishes([
