@@ -1,0 +1,20 @@
+{
+    "name": "asefsondaj/adaptation-layer",
+    "description": "Asef Sondaj Bagisto adaptation - disables e-commerce checkout, enables quote-request flow via WhatsApp.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "AsefSondaj\\AdaptationLayer\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AsefSondaj\\AdaptationLayer\\Providers\\AdaptationServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

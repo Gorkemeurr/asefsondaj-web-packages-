@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/ase3c7ndajcom/bagisto/packages/AsefSondaj
+    - /bin/rsync -av --exclude '.git' --exclude '.cpanel.yml' --exclude 'README.md' $PWD/ $DEPLOYPATH/
+    - cd /home/ase3c7ndajcom/bagisto && /home/ase3c7ndajcom/bin/composer dump-autoload -o
+    - cd /home/ase3c7ndajcom/bagisto && /opt/alt/php83/usr/bin/php artisan optimize:clear
+    - cd /home/ase3c7ndajcom/bagisto && /opt/alt/php83/usr/bin/php artisan config:cache
