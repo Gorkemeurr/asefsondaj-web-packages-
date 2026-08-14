@@ -35,14 +35,9 @@ class AdaptationServiceProvider extends ServiceProvider
         $shopOverrides = $this->getPath('Resources/views/shop');
 
         if (is_dir($shopOverrides)) {
-            $finder = $this->app['view']->getFinder();
-
-            // Prepend so our override wins over Webkul\Shop's registered path.
-            $existing = $finder->getHints()['shop'] ?? [];
-            $finder->setHints(array_merge(
-                ['shop' => array_merge([$shopOverrides], $existing)],
-                array_diff_key($finder->getHints(), ['shop' => true])
-            ));
+            // Bagisto uses Webkul\Theme\ThemeViewFinder which lacks setHints/getHints.
+            // Use Laravel's View facade prependNamespace() which is finder-agnostic.
+            $this->app['view']->prependNamespace('shop', $shopOverrides);
         }
 
         // 3) Push our middleware into the "web" group so all storefront
