@@ -84,3 +84,4 @@ Storefront kullanıcı deneyimi (App ile birebir)
 Bagisto'nun tam feature seti gelecek genişleme için korunur; Asef'e özel her şey bu katmanda kalır.
 
 <!-- webhook test 20260814T235347Z -->
+<!-- webhook retest 235843 -->
