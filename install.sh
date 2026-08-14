@@ -20,14 +20,25 @@ fi
 
 cd "$BAGISTO_ROOT"
 
-# ---------- 1) Ensure PSR-4 autoload entry in root composer.json ----------
-echo "==> 1/5 Patching composer.json autoload"
+# ---------- 1) Ensure package is required in root composer.json ----------
+# Bagisto uses path repository (packages/*/*), so we require our package to
+# trigger composer's path-repo mechanism. Do NOT duplicate PSR-4 in root —
+# the package's own composer.json handles autoloading via the path repo.
+echo "==> 1/5 Patching composer.json require"
 $PHP_BIN -r '
 $file = "composer.json";
 $data = json_decode(file_get_contents($file), true);
-$data["autoload"]["psr-4"] = ["AsefSondaj\\\\AdaptationLayer\\\\" => "packages/AsefSondaj/AdaptationLayer/src/"] + ($data["autoload"]["psr-4"] ?? []);
+
+// Clean any accidental duplicate PSR-4 entry from earlier install attempts
+if (isset($data["autoload"]["psr-4"]["AsefSondaj\\\\AdaptationLayer\\\\"])) {
+    unset($data["autoload"]["psr-4"]["AsefSondaj\\\\AdaptationLayer\\\\"]);
+}
+
+// Ensure the require entry exists (path repo will resolve it from packages/)
+$data["require"]["asefsondaj/adaptation-layer"] = "@dev";
+
 file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n");
-echo "    autoload PSR-4 ensured\n";
+echo "    require asefsondaj/adaptation-layer ensured\n";
 '
 
 # ---------- 2) Ensure provider registered in bootstrap/providers.php ----------
@@ -55,8 +66,9 @@ else
     "
 fi
 
-# ---------- 3) Composer dump-autoload ----------
-echo "==> 3/5 Composer dump-autoload"
+# ---------- 3) Composer install/update for the package + dump-autoload ----------
+echo "==> 3/5 Composer update asefsondaj/adaptation-layer + dump-autoload"
+$COMPOSER_BIN update asefsondaj/adaptation-layer --no-scripts --no-interaction 2>&1 || $COMPOSER_BIN require asefsondaj/adaptation-layer:@dev --no-scripts --no-interaction
 $COMPOSER_BIN dump-autoload -o --no-scripts
 
 # ---------- 4) Cache clear ----------
