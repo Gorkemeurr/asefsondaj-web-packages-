@@ -74,8 +74,15 @@ if ($ref !== 'refs/heads/main') {
 log_line('==> Deploy triggered from push to main');
 
 // -------- 5) Run deploy --------
+// HOME + COMPOSER_HOME must be set explicitly — Apache/nginx-launched PHP
+// has no HOME by default and composer fails "The HOME or COMPOSER_HOME env..."
+$homeDir = '/home/ase3c7ndajcom';
+
 $cmd = sprintf(
-    'cd %s && git pull -q 2>&1 && cd %s && %s dump-autoload -o -q --no-scripts 2>&1 && %s artisan optimize:clear 2>&1 && %s artisan config:cache 2>&1',
+    'export HOME=%s COMPOSER_HOME=%s/.composer PATH=%s/bin:/usr/local/bin:/usr/bin:/bin && cd %s && git pull -q 2>&1 && cd %s && %s dump-autoload -o -q --no-scripts 2>&1 && %s artisan optimize:clear 2>&1 && %s artisan config:cache 2>&1',
+    escapeshellarg($homeDir),
+    escapeshellarg($homeDir),
+    escapeshellarg($homeDir),
     escapeshellarg(REPO_DIR),
     escapeshellarg(BAGISTO_ROOT),
     escapeshellarg(COMPOSER_BIN),
