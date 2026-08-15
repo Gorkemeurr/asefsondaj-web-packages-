@@ -264,18 +264,13 @@
 }
 
 .asef-hero-media {
-  margin: 0 auto;
-  max-width: 720px;
+  margin: 0;
   border-radius: var(--asef-radius-lg);
   overflow: hidden;
   background: var(--asef-panel);
-  aspect-ratio: 4 / 5;
-  max-height: 760px;
+  aspect-ratio: 16 / 9;
 }
-@media (min-width: 768px) {
-  .asef-hero-media { aspect-ratio: 5 / 6; max-height: 780px; }
-}
-.asef-hero-media img { width: 100%; height: 100%; object-fit: contain; }
+.asef-hero-media img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ============================================================
    BENTO — categories
