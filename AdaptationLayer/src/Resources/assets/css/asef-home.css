@@ -49,15 +49,23 @@
   padding: 0 clamp(20px, 4vw, 40px);
 }
 
-/* ---------- Scroll reveal ---------- */
+/* ---------- Scroll reveal ----------
+   Progressive enhancement: content is VISIBLE by default. The hidden
+   pre-reveal state applies only after asef-home.js confirms it is in
+   control (html.asef-anim, added AFTER Vue mounts — Bagisto's Vue app
+   re-renders #app on mount and wipes any earlier JS-added classes,
+   which left sections stuck invisible on the first deploy). */
 .asef-reveal {
-  opacity: 0;
-  transform: translateY(24px);
   transition: opacity 0.7s var(--asef-ease), transform 0.7s var(--asef-ease);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
-.asef-reveal.is-visible {
+html.asef-anim .asef-reveal:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+html.asef-anim .asef-reveal.is-visible {
   opacity: 1;
   transform: none;
 }

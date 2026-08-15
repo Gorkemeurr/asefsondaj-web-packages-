@@ -5,12 +5,19 @@
 
     var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    /* ---------- Scroll reveal ---------- */
-    var revealEls = document.querySelectorAll('.asef-reveal:not(.is-visible)');
+    /* Bagisto mounts a Vue app on #app and re-renders its DOM, wiping any
+       classes added before mount and orphaning earlier observers. All init
+       therefore runs AFTER window load (mount happens on DOMContentLoaded),
+       on freshly queried nodes. Until then content is simply visible. */
+    function initReveal() {
+        if (reducedMotion || !('IntersectionObserver' in window)) return;
 
-    if (reducedMotion || !('IntersectionObserver' in window)) {
-        revealEls.forEach(function (el) { el.classList.add('is-visible'); });
-    } else {
+        var revealEls = document.querySelectorAll('.asef-reveal:not(.is-visible)');
+        if (!revealEls.length) return;
+
+        // Opt in to the hidden pre-reveal state only now that we own it.
+        document.documentElement.classList.add('asef-anim');
+
         var revealObserver = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
@@ -22,9 +29,6 @@
 
         revealEls.forEach(function (el) { revealObserver.observe(el); });
     }
-
-    /* ---------- Stat count-up ---------- */
-    var statEls = document.querySelectorAll('.asef-stat-num[data-count]');
 
     function animateCount(el) {
         var target = parseInt(el.getAttribute('data-count'), 10);
@@ -43,7 +47,10 @@
         requestAnimationFrame(step);
     }
 
-    if (!reducedMotion && 'IntersectionObserver' in window && statEls.length) {
+    function initStats() {
+        var statEls = document.querySelectorAll('.asef-stat-num[data-count]');
+        if (reducedMotion || !('IntersectionObserver' in window) || !statEls.length) return;
+
         var statObserver = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
@@ -57,15 +64,32 @@
     }
 
     /* ---------- Smooth anchor scroll (header offset) ---------- */
-    document.querySelectorAll('.asef-home a[href^="#"]').forEach(function (link) {
-        link.addEventListener('click', function (e) {
-            var id = link.getAttribute('href').slice(1);
-            var target = document.getElementById(id);
-            if (!target) return;
-            e.preventDefault();
-            var headerOffset = 80;
-            var top = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-            window.scrollTo({ top: top, behavior: reducedMotion ? 'auto' : 'smooth' });
+    function initAnchors() {
+        document.querySelectorAll('.asef-home a[href^="#"]').forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                var id = link.getAttribute('href').slice(1);
+                var target = document.getElementById(id);
+                if (!target) return;
+                e.preventDefault();
+                var headerOffset = 80;
+                var top = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                window.scrollTo({ top: top, behavior: reducedMotion ? 'auto' : 'smooth' });
+            });
         });
-    });
+    }
+
+    function init() {
+        // Extra frame so Vue's mount render has settled before we touch DOM.
+        requestAnimationFrame(function () {
+            initReveal();
+            initStats();
+            initAnchors();
+        });
+    }
+
+    if (document.readyState === 'complete') {
+        init();
+    } else {
+        window.addEventListener('load', init);
+    }
 })();

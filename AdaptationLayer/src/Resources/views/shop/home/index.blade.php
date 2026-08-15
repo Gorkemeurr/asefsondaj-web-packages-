@@ -19,6 +19,13 @@
     <link rel="stylesheet" href="{{ url('asef/asef-home.css') }}" />
 @endpush
 
+{{-- MUST be pushed BEFORE <x-shop::layouts> renders — the layout's
+     @stack('scripts') is evaluated when the component tag closes, so a
+     push placed after it never reaches the page. --}}
+@push('scripts')
+    <script src="{{ url('asef/asef-home.js') }}" defer></script>
+@endpush
+
 <x-shop::layouts
     :has-header="false"
     :has-feature="false"
@@ -300,7 +307,3 @@
         </footer>
     </div>
 </x-shop::layouts>
-
-@push('scripts')
-    <script src="{{ url('asef/asef-home.js') }}" defer></script>
-@endpush
