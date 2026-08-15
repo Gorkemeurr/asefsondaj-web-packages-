@@ -239,8 +239,20 @@
 @media (min-width: 768px) {
   .asef-hero { padding: 140px var(--asef-gutter) 160px; }
 }
-.asef-hero-copy { max-width: 780px; margin: 0 auto; }
-.asef-home .asef-hero h1, .asef-home .asef-hero p { text-shadow: 0 1px 12px rgba(255,255,255,0.72); }
+.asef-hero-copy {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: saturate(160%) blur(14px);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  border-radius: var(--asef-radius-lg);
+  box-shadow: 0 0 60px rgba(255, 255, 255, 0.4);
+}
+@media (min-width: 768px) {
+  .asef-hero-copy { padding: 40px 48px; }
+}
+.asef-home .asef-hero h1, .asef-home .asef-hero p { text-shadow: 0 1px 24px rgba(255,255,255,0.8); }
 
 .asef-hero-copy { max-width: 780px; margin: 0 auto 56px; }
 .asef-hero-copy h1 {
@@ -553,15 +565,11 @@
 .asef-hero-bg::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 50% 42%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.55) 45%, rgba(255,255,255,0.82) 100%);
-  z-index: 2;
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
-}
-.asef-hero-bg::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.24) 60%, rgba(255,255,255,0.62) 100%);
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.06) 0%,
+    rgba(255,255,255,0.18) 45%,
+    rgba(255,255,255,0.55) 82%,
+    rgba(255,255,255,0.96) 100%);
   z-index: 2;
 }
 .asef-hero-slide {
@@ -569,7 +577,7 @@
   background-size: cover;
   background-position: center;
   opacity: 0;
-  filter: grayscale(0.85) contrast(0.95) brightness(1.08);
+  filter: grayscale(0.7) contrast(1.02) brightness(1.05);
   animation: asef-hero-slide 24s infinite;
   animation-fill-mode: both;
   will-change: opacity, transform;
