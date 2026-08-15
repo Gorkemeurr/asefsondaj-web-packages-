@@ -47,7 +47,7 @@
         <nav class="asef-nav" aria-label="Ana gezinme">
             <div class="asef-nav-inner">
                 <a href="{{ route('shop.home.index') }}" class="asef-brand" aria-label="asef sondaj ana sayfa">
-                    <img src="{{ url('asef/asef-logo-dark.jpg') }}" alt="asef sondaj" width="28" height="28" />
+                    <img src="{{ url('asef/asef-mark.png') }}" alt="asef sondaj" width="22" height="20" />
                 </a>
 
                 <div class="asef-nav-links" id="asef-nav-links">
@@ -63,7 +63,9 @@
                     <a href="{{ $catalogUrl }}" class="asef-nav-icon" aria-label="Ara">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
                     </a>
-                    <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-btn asef-btn-blue asef-btn-xs asef-nav-cta">Satın Al</a>
+                    <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-nav-icon asef-nav-cta" aria-label="WhatsApp ile iletişim">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+                    </a>
                     <button type="button" class="asef-nav-icon asef-nav-burger" id="asef-nav-burger" aria-label="Menü" aria-expanded="false" aria-controls="asef-nav-links">
                         <svg class="asef-ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
                         <svg class="asef-ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>

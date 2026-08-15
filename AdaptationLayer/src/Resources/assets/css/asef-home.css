@@ -118,7 +118,8 @@
 }
 
 /* ============================================================
-   TOP NAV — fixed, 48px, black glass
+   TOP NAV — fixed, apple.com-style: 44px black glass, ~1000px
+   centred strip, every item (mark, links, icons) evenly spread
    ============================================================ */
 .asef-nav {
   position: fixed;
@@ -126,17 +127,16 @@
   left: 0;
   right: 0;
   z-index: 60;
-  background: rgba(0, 0, 0, 0.6);
-  -webkit-backdrop-filter: blur(24px);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.8);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
   transition: background-color 0.3s var(--asef-ease);
 }
 
 .asef-nav-inner {
-  max-width: var(--asef-container);
+  max-width: 1024px;
   margin: 0 auto;
-  padding: 0 var(--asef-pad);
+  padding: 0 22px;
   height: 48px;
   display: flex;
   align-items: center;
@@ -148,26 +148,32 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  color: #f5f5f7;
+  opacity: 0.92;
+  transition: opacity 0.3s var(--asef-ease);
+}
+
+.asef-brand:hover {
+  opacity: 1;
 }
 
 .asef-brand img {
-  height: 28px;
+  height: 18px;
   width: auto;
   object-fit: contain;
 }
 
 .asef-nav-links {
   display: none;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
 }
 
 .asef-nav-links a {
   font-size: 12px;
-  letter-spacing: 0.05em;
-  color: var(--asef-gray-300);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.8);
   transition: color 0.3s var(--asef-ease);
 }
 
@@ -178,14 +184,14 @@
 .asef-nav-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
 
 .asef-nav-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--asef-gray-300);
+  color: rgba(255, 255, 255, 0.8);
   background: none;
   border: 0;
   padding: 0;
@@ -198,37 +204,33 @@
 }
 
 .asef-nav-icon svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
 .asef-nav-burger {
   color: #fff;
-  margin-left: 8px;
 }
 
 .asef-nav-burger svg {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
 }
 
 .asef-nav-burger .asef-ic-close { display: none; }
 .asef-nav.is-open .asef-nav-burger .asef-ic-menu { display: none; }
 .asef-nav.is-open .asef-nav-burger .asef-ic-close { display: block; }
 
-.asef-nav-cta {
-  display: none;
-}
-
-@media (min-width: 640px) {
-  .asef-nav-cta {
-    display: inline-flex;
-  }
-}
-
 @media (min-width: 768px) {
-  .asef-nav-links {
-    display: flex;
+  .asef-nav-inner {
+    height: 44px;
+  }
+  /* Flatten the link + action groups so the mark, every link and
+     both icons are direct flex children spread with space-between,
+     exactly like apple.com's global nav. */
+  .asef-nav-links,
+  .asef-nav-actions {
+    display: contents;
   }
   .asef-nav-burger {
     display: none;

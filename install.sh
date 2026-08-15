@@ -105,6 +105,7 @@ fi
 mkdir -p "$BAGISTO_ROOT/public/asef"
 if [ -d "$PKG_ASSETS/images/asef" ]; then
     cp -f "$PKG_ASSETS/images/asef/"*.jpg "$BAGISTO_ROOT/public/asef/" 2>/dev/null || true
+    cp -f "$PKG_ASSETS/images/asef/"*.png "$BAGISTO_ROOT/public/asef/" 2>/dev/null || true
     echo "    brand photos -> public/asef/"
 fi
 if [ -f "$PKG_ASSETS/css/asef-home.css" ]; then
