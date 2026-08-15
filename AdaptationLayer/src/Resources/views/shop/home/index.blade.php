@@ -11,6 +11,9 @@
     $waLink = 'https://wa.me/905320542975?text=' . rawurlencode('Merhaba, Asef Sondaj ürünleriniz hakkında bilgi ve teklif almak istiyorum.');
     $catalogUrl = route('shop.search.index');
     $instagramUrl = 'https://www.instagram.com/asefsondajj';
+    // Cache-buster for the page CSS/JS (Cloudflare + browsers cache static
+    // assets for a week) — file mtime changes on every deploy.
+    $assetVer = static fn (string $rel): string => (string) (@filemtime(public_path($rel)) ?: 1);
 @endphp
 
 @push('meta')
@@ -23,14 +26,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" />
-    <link rel="stylesheet" href="{{ url('asef/asef-home.css') }}" />
+    <link rel="stylesheet" href="{{ url('asef/asef-home.css') }}?v={{ $assetVer('asef/asef-home.css') }}" />
 @endpush
 
 {{-- MUST be pushed BEFORE <x-shop::layouts> renders — the layout's
      @stack('scripts') is evaluated when the component tag closes, so a
      push placed after it never reaches the page. --}}
 @push('scripts')
-    <script src="{{ url('asef/asef-home.js') }}" defer></script>
+    <script src="{{ url('asef/asef-home.js') }}?v={{ $assetVer('asef/asef-home.js') }}" defer></script>
 @endpush
 
 <x-shop::layouts
