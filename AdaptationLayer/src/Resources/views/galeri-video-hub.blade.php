@@ -10,7 +10,7 @@
             'label' => '01',
             'title' => 'Ürün Tanıtım Videoları',
             'desc'  => 'DTH çekiçler, matkap uçları, tijler ve pompaların yakın çekim tanıtımları.',
-            'count' => '40+ video',
+            'count' => 'Yakında',
             'img'   => 'asef-macro-diamond.jpg',
         ],
         [
@@ -18,7 +18,7 @@
             'label' => '02',
             'title' => 'Saha Uygulamaları',
             'desc'  => 'Gerçek operasyondan görüntüler — kuyu açımı, ekipman montajı, sahada işleyiş.',
-            'count' => '60+ video',
+            'count' => 'Yakında',
             'img'   => 'drilling-hero.jpg',
         ],
         [
@@ -26,7 +26,7 @@
             'label' => '03',
             'title' => 'Teknik Anlatımlar',
             'desc'  => 'Bakım prosedürleri, arıza teşhisi ve doğru kullanım için mühendis anlatımları.',
-            'count' => '25+ video',
+            'count' => 'Yakında',
             'img'   => 'asef-macro-thread.jpg',
         ],
     ];

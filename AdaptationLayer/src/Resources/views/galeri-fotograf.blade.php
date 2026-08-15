@@ -15,32 +15,31 @@
         'asef-rig-2-clean.jpg', 'asef-rig-4-clean.jpg',
     ];
 
-    // Slug metadata + curated selection.
+    // Slug metadata + gerçek benzersiz görsel seçimi (TEKRAR YOK).
     $galleries = [
         'saha-fotograflari' => [
             'title'    => 'Saha Fotoğrafları',
-            'lede'     => '20 yıllık saha tecrübemizden — kuyu başı, operasyon anı, ekip çalışması.',
+            'lede'     => 'Sahadan çekilen orijinal fotoğraflar. Yeni fotoğraflar ekledikçe burası genişler.',
             'crumb'    => 'Fotoğraf Galerisi',
             'crumbUrl' => url('blog/fotograf'),
             'hub'      => 'Fotoğraf',
-            // 24 order (curated) — repeats OK; production'da JSON'dan gelecek
-            'order'    => ['drilling-hero.jpg','asef-hero-rig.jpg','asef-rig-1.jpg','asef-rig-2.jpg','asef-rig-3.jpg','asef-rig-4.jpg','asef-rig-2-clean.jpg','asef-rig-4-clean.jpg','asef-hero-equipment.jpg','asef-innovation-render.jpg','drilling-hero.jpg','asef-rig-1.jpg','asef-rig-3.jpg','asef-hero-rig.jpg','asef-rig-2.jpg','asef-rig-4.jpg','asef-hero-equipment.jpg','asef-innovation-render.jpg','asef-rig-4-clean.jpg','asef-rig-2-clean.jpg','asef-hero-rig.jpg','drilling-hero.jpg','asef-rig-3.jpg','asef-rig-1.jpg'],
+            'order'    => ['drilling-hero.jpg','asef-hero-rig.jpg','asef-rig-1.jpg','asef-rig-2.jpg','asef-rig-3.jpg','asef-rig-4.jpg','asef-rig-2-clean.jpg','asef-rig-4-clean.jpg'],
         ],
         'ekipman-fotograflari' => [
             'title'    => 'Ekipman Fotoğrafları',
-            'lede'     => 'DTH çekiçler, tijler, karotierler, pompalar — detay çekimleriyle.',
+            'lede'     => 'DTH çekiçler, tijler, karotierler, pompalar — orijinal ekipman fotoğraflarımız.',
             'crumb'    => 'Fotoğraf Galerisi',
             'crumbUrl' => url('blog/fotograf'),
             'hub'      => 'Fotoğraf',
-            'order'    => ['dth-hammer.jpg','drill-rods.jpg','mud-pump.jpg','asef-diamond-bit.jpg','asef-macro-diamond.jpg','asef-macro-thread.jpg','asef-macro-valve.jpg','asef-cat-delici.jpg','asef-spare-parts.jpg','asef-yedek-parca-bar.jpg','dth-hammer.jpg','drill-rods.jpg','mud-pump.jpg','asef-diamond-bit.jpg','asef-macro-diamond.jpg','asef-macro-thread.jpg','asef-macro-valve.jpg','asef-cat-delici.jpg','asef-spare-parts.jpg','asef-yedek-parca-bar.jpg','dth-hammer.jpg','asef-macro-diamond.jpg','asef-macro-thread.jpg','asef-macro-valve.jpg'],
+            'order'    => ['dth-hammer.jpg','drill-rods.jpg','mud-pump.jpg','asef-diamond-bit.jpg','asef-macro-diamond.jpg','asef-macro-thread.jpg','asef-macro-valve.jpg','asef-cat-delici.jpg','asef-spare-parts.jpg','asef-yedek-parca-bar.jpg','asef-hero-equipment.jpg'],
         ],
         'proje-fotograflari' => [
             'title'    => 'Proje Fotoğrafları',
-            'lede'     => 'Türkiye\'nin dört bir yanında tamamladığımız projelerden kadrajlar.',
+            'lede'     => 'Tamamladığımız projelerden kadrajlar. Yeni projeler eklendikçe koleksiyon büyüyor.',
             'crumb'    => 'Fotoğraf Galerisi',
             'crumbUrl' => url('blog/fotograf'),
             'hub'      => 'Fotoğraf',
-            'order'    => ['asef-rig-1.jpg','drilling-hero.jpg','asef-hero-rig.jpg','asef-rig-3.jpg','asef-rig-2.jpg','asef-rig-4.jpg','asef-hero-equipment.jpg','asef-innovation-render.jpg','asef-rig-2-clean.jpg','asef-rig-4-clean.jpg','drilling-hero.jpg','asef-rig-1.jpg','asef-rig-3.jpg','asef-hero-rig.jpg','asef-rig-2.jpg','asef-rig-4.jpg','asef-hero-equipment.jpg','asef-innovation-render.jpg','asef-rig-4-clean.jpg','asef-rig-2-clean.jpg','asef-hero-rig.jpg','drilling-hero.jpg','asef-rig-3.jpg','asef-rig-1.jpg'],
+            'order'    => ['asef-innovation-render.jpg','asef-rig-1.jpg','asef-rig-3.jpg','asef-rig-2-clean.jpg','asef-rig-4-clean.jpg'],
         ],
     ];
 

@@ -25,7 +25,14 @@
         ['slug' => 'yerustu-yeralti',      'cat' => 'SEKTÖR ANALİZ',     'title' => 'Yerüstü vs yeraltı sondaj: proje bazlı karar',          'excerpt' => 'Formasyon derinliği, saha erişimi, maliyet — hangi tip operasyonunuza uygun?', 'date' => '14 Temmuz 2026', 'read' => '5 dk', 'img' => 'asef-hero-equipment.jpg'],
     ];
 
-    $categories = ['Tümü', 'Sondaj Sektörü', 'Ekipman Rehberi', 'Vaka Çalışmaları', 'Teknik İpuçları'];
+    // Chip → /tum-bloglar?kat=... (mevcut arşiv sayfasının filtresi çalışır).
+    $categoryLinks = [
+        ['label' => 'Tümü',            'url' => url('tum-bloglar')],
+        ['label' => 'Sondaj Sektörü',  'url' => url('tum-bloglar?kat=' . rawurlencode('Sondaj Sektörü'))],
+        ['label' => 'Ekipman Rehberi', 'url' => url('tum-bloglar?kat=' . rawurlencode('Ekipman Rehberi'))],
+        ['label' => 'Vaka Çalışması',  'url' => url('tum-bloglar?kat=' . rawurlencode('Vaka Çalışması'))],
+        ['label' => 'Teknik İpuçları', 'url' => url('tum-bloglar?kat=' . rawurlencode('Teknik İpuçları'))],
+    ];
 
     // Galleries preview cards
     $galleries = [
@@ -83,8 +90,11 @@
         border: 1px solid var(--outline);
         background: white; color: var(--on-surface);
         transition: all .2s; cursor: pointer;
+        text-decoration: none;
         box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset, 0 1px 2px rgba(0,0,0,0.03);
     }
+    .bg-chip:hover:not(.active) { transform: translateY(-1px); border-color: var(--primary); }
+    .bg-chip.active:hover { background: #333; }
     .bg-chip:hover { border-color: var(--primary); }
     .bg-chip.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 12px rgba(0,0,0,0.14); }
 
@@ -181,8 +191,8 @@
 
             {{-- CHIPS --}}
             <div class="bg-chips-row">
-                @foreach ($categories as $i => $c)
-                    <span class="bg-chip {{ $i === 0 ? 'active' : '' }}">{{ $c }}</span>
+                @foreach ($categoryLinks as $i => $c)
+                    <a href="{{ $c['url'] }}" class="bg-chip {{ $i === 0 ? 'active' : '' }}">{{ $c['label'] }}</a>
                 @endforeach
             </div>
 

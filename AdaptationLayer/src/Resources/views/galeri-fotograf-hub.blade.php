@@ -9,8 +9,8 @@
             'url'   => url('blog/saha-fotograflari'),
             'label' => '01',
             'title' => 'Saha Fotoğrafları',
-            'desc'  => '20 yıllık saha tecrübesinden — kuyu başı, operasyon anı, ekip çalışması.',
-            'count' => '120+ fotoğraf',
+            'desc'  => 'Kuyu başı, operasyon anı, ekip çalışması — sahadan orijinal kadrajlar.',
+            'count' => '8 fotoğraf',
             'img'   => 'drilling-hero.jpg',
         ],
         [
@@ -18,7 +18,7 @@
             'label' => '02',
             'title' => 'Ekipman Fotoğrafları',
             'desc'  => 'DTH çekiçler, tijler, karotierler, pompalar ve yedek parçalarımızın detay çekimleri.',
-            'count' => '95+ fotoğraf',
+            'count' => '11 fotoğraf',
             'img'   => 'asef-hero-equipment.jpg',
         ],
         [
@@ -26,7 +26,7 @@
             'label' => '03',
             'title' => 'Proje Fotoğrafları',
             'desc'  => 'Türkiye\'nin dört bir yanında tamamladığımız projelerden kadrajlar.',
-            'count' => '80+ fotoğraf',
+            'count' => '5 fotoğraf',
             'img'   => 'asef-hero-rig.jpg',
         ],
     ];
