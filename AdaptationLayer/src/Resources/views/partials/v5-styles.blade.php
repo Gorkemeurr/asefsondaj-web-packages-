@@ -479,15 +479,52 @@
         .asef-search-form {
             max-width: 640px; margin: 0 auto;
             position: relative;
+            padding: 2px;
+            border-radius: 999px;
+            overflow: hidden;
+            isolation: isolate;
+            background: #FFFFFF;
+        }
+        .asef-search-form::before {
+            content: "";
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 200%; aspect-ratio: 1;
+            transform: translate(-50%, -50%);
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                transparent 55%,
+                #000 68%,
+                transparent 82%,
+                transparent 100%
+            );
+            animation: asef-search-spin 3s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .asef-search-form::after {
+            content: "";
+            position: absolute; inset: 2px;
+            border-radius: 999px;
+            background: #FFFFFF;
+            z-index: 1;
+            pointer-events: none;
+        }
+        @keyframes asef-search-spin {
+            to { transform: translate(-50%, -50%) rotate(1turn); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .asef-search-form::before { animation: none; }
         }
         .asef-search-input {
-            width: 100%; height: 56px; padding: 0 56px 0 24px;
-            border-radius: 999px; border: 1px solid var(--outline);
-            background: var(--surface-alt);
+            position: relative; z-index: 2;
+            width: 100%; height: 54px; padding: 0 56px 0 24px;
+            border-radius: 999px; border: 0;
+            background: transparent;
             font-family: inherit; font-size: 17px; color: var(--primary);
-            outline: none; transition: border-color .15s, background .15s;
+            outline: none;
         }
-        .asef-search-input:focus { border-color: var(--link-blue); background: white; }
         .asef-search-input::placeholder { color: var(--gray-secondary); }
         .asef-search-btn {
             position: absolute; top: 50%; right: 8px;
@@ -496,8 +533,11 @@
             background: var(--link-blue); color: white;
             display: grid; place-items: center;
             cursor: pointer;
+            z-index: 3;
+            transition: opacity .15s, transform .15s;
         }
         .asef-search-btn:hover { opacity: 0.9; }
+        .asef-search-btn:active { transform: translateY(-50%) scale(0.96); }
 
         /* CATEGORY CHIPS (premium 3D) */
         .asef-chips-row {
