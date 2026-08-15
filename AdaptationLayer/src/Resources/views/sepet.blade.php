@@ -115,9 +115,33 @@
     {{-- Sepet renderer — reads localStorage via AsefCart, generates rows.
          Clicks on rows are handled by AsefCart delegation (v5-cart-js). --}}
     @push('scripts')
-    <script>window.ASEF_URUN_BASE = @json(url('urun'));</script>
+    <script>
+        window.ASEF_URUN_BASE = @json(url('urun'));
+        // Master catalog — used to enrich legacy cart rows that lack img/cat/name
+        window.ASEF_CATALOG = @json([
+            'AS-DTH-040' => ['name' => 'DTH Çekiç 4 İnç',             'cat' => 'Delici Ekipmanlar', 'img' => $asefUrl('dth-hammer.jpg')],
+            'AS-BIT-152' => ['name' => 'DTH Button Bit 6 İnç',        'cat' => 'Delici Ekipmanlar', 'img' => $asefUrl('asef-diamond-bit.jpg')],
+            'AS-TRI-215' => ['name' => 'Tricone Matkap 8 1/2 İnç',    'cat' => 'Delici Ekipmanlar', 'img' => $asefUrl('asef-macro-diamond.jpg')],
+            'AS-ROD-300' => ['name' => 'Sondaj Tiji 3 Metre',         'cat' => 'Tij ve Borular',    'img' => $asefUrl('drill-rods.jpg')],
+            'AS-CAS-168' => ['name' => 'Muhafaza Borusu 6 5/8 İnç',   'cat' => 'Tij ve Borular',    'img' => $asefUrl('asef-macro-thread.jpg')],
+            'AS-PMP-600' => ['name' => 'Triplex Çamur Pompası',       'cat' => 'Pompa Sistemleri',  'img' => $asefUrl('mud-pump.jpg')],
+            'AS-SWI-250' => ['name' => 'Yüksek Basınçlı Döner Başlık','cat' => 'Pompa Sistemleri',  'img' => $asefUrl('asef-macro-valve.jpg')],
+            'AS-SRV-001' => ['name' => 'DTH Bakım ve Sızdırmazlık Seti','cat' => 'Yedek Parça',    'img' => $asefUrl('asef-spare-parts.jpg')],
+        ]);
+    </script>
     <script>
     (function () {
+        // Enrich legacy items missing meta (img / cat / name)
+        function enrich(it) {
+            var cat = window.ASEF_CATALOG || {};
+            var master = cat[it.sku];
+            if (master) {
+                if (!it.img)  it.img  = master.img;
+                if (!it.cat)  it.cat  = master.cat;
+                if (!it.name) it.name = master.name;
+            }
+            return it;
+        }
         function esc(str) {
             return String(str == null ? '' : str)
                 .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -160,7 +184,7 @@
             var totalEl  = document.querySelector('[data-asef-cart-total]');
             if (!listEl || !window.AsefCart) return;
 
-            var items = window.AsefCart.get();
+            var items = window.AsefCart.get().map(enrich);
             var totalQty = items.reduce(function (s, i) { return s + (parseInt(i.qty, 10) || 0); }, 0);
 
             if (items.length === 0) {
