@@ -43,7 +43,6 @@
                             <a href="#">Sondaj Makinalarımız</a>
                             <a href="{{ url('/') }}#hizmetler">Hizmetlerimiz</a>
                             <a href="#">Referanslar</a>
-                            <a href="#">SSS</a>
                         </div>
                         <div class="asef-mega-col asef-mega-side">
                             <h5>Hızlı Bağlantılar</h5>
@@ -69,6 +68,18 @@
                             <a href="#">Fotoğraf Galerisi</a>
                             <a href="#">Video Galerisi</a>
                         </div>
+                        <div class="asef-mega-col asef-mega-side">
+                            <h5>Fotoğraf Galerisi</h5>
+                            <a href="#">Saha Fotoğrafları</a>
+                            <a href="#">Ekipman Fotoğrafları</a>
+                            <a href="#">Proje Fotoğrafları</a>
+                        </div>
+                        <div class="asef-mega-col asef-mega-side">
+                            <h5>Video Galerisi</h5>
+                            <a href="#">Ürün Tanıtım Videoları</a>
+                            <a href="#">Saha Uygulamaları</a>
+                            <a href="#">Teknik Anlatımlar</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,24 +88,26 @@
                 <div class="asef-mega" role="menu" aria-label="Destek menüsü">
                     <div class="asef-mega-grid">
                         <div class="asef-mega-col asef-mega-main">
-                            <h5>Nasıl Yardımcı Olabiliriz</h5>
+                            <h5>Destek Merkezi</h5>
                             <a href="{{ url('/') }}#iletisim">İletişim</a>
                             <a href="#">SSS</a>
-                            <a href="#">Teknik Servis</a>
-                            <a href="#">Garanti ve İade</a>
-                            <a href="#">Sipariş Takibi</a>
+                            <a href="#">KVKK Aydınlatma Metni</a>
+                            <a href="#">Gizlilik Politikası</a>
+                            <a href="#">Çerez Politikası</a>
+                            <a href="#">Kullanım Şartları</a>
                         </div>
                         <div class="asef-mega-col asef-mega-side">
-                            <h5>Hızlı İletişim</h5>
+                            <h5>İletişim Kanalları</h5>
                             <a href="{{ $waLink }}" target="_blank" rel="noopener">WhatsApp'a Yaz</a>
                             <a href="tel:+905320542975">+90 532 054 29 75</a>
+                            <a href="mailto:iletisim@asefsondaj.com">iletisim@asefsondaj.com</a>
                             <a href="mailto:destek@asefsondaj.com">destek@asefsondaj.com</a>
                         </div>
                         <div class="asef-mega-col asef-mega-side">
-                            <h5>Kaynaklar</h5>
-                            <a href="#">Kullanım Kılavuzları</a>
-                            <a href="#">Yedek Parça Kataloğu</a>
-                            <a href="{{ $catalogUrl }}">Ürün Ara</a>
+                            <h5>Yasal Bağlantılar</h5>
+                            <a href="#">KVKK Başvuru Formu</a>
+                            <a href="#">Çerez Ayarları</a>
+                            <a href="#">Veri İşleme Politikası</a>
                         </div>
                     </div>
                 </div>
