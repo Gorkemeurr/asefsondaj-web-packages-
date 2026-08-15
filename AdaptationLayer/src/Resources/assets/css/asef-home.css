@@ -553,15 +553,15 @@
 .asef-hero-bg::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.78) 50%, rgba(255,255,255,0.94) 100%);
+  background: radial-gradient(ellipse at 50% 42%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.55) 45%, rgba(255,255,255,0.82) 100%);
   z-index: 2;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
 }
 .asef-hero-bg::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.32) 60%, rgba(255,255,255,0.72) 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.24) 60%, rgba(255,255,255,0.62) 100%);
   z-index: 2;
 }
 .asef-hero-slide {
@@ -569,11 +569,16 @@
   background-size: cover;
   background-position: center;
   opacity: 0;
-  filter: grayscale(0.85) contrast(0.95) brightness(1.05);
+  filter: grayscale(0.85) contrast(0.95) brightness(1.08);
   animation: asef-hero-slide 24s infinite;
+  animation-fill-mode: both;
   will-change: opacity, transform;
 }
-.asef-hero-slide:first-child { opacity: 1; }
+/* Shift each slide's delay so slide 1 starts in the visible phase */
+.asef-hero-slide:nth-child(1) { animation-delay: -3s; }
+.asef-hero-slide:nth-child(2) { animation-delay:  3s; }
+.asef-hero-slide:nth-child(3) { animation-delay:  9s; }
+.asef-hero-slide:nth-child(4) { animation-delay: 15s; }
 .asef-hero-slide:nth-child(1) { animation-delay:  0s; }
 .asef-hero-slide:nth-child(2) { animation-delay:  6s; }
 .asef-hero-slide:nth-child(3) { animation-delay: 12s; }
