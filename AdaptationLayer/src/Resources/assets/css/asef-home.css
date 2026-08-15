@@ -205,6 +205,9 @@
   .asef-section { padding: var(--asef-section-gap) var(--asef-gutter); }
 }
 
+.asef-section--tight { padding-top: 0; padding-bottom: var(--asef-section-gap-sm); }
+@media (min-width: 768px) { .asef-section--tight { padding-bottom: 64px; } }
+
 .asef-section-head { margin-bottom: 40px; }
 .asef-section-head--center { text-align: center; }
 .asef-section-head h2 {
@@ -227,12 +230,12 @@
 .asef-hero {
   max-width: var(--asef-container);
   margin: 0 auto;
-  padding: 40px var(--asef-gutter) var(--asef-section-gap-sm);
+  padding: 40px var(--asef-gutter) 48px;
   text-align: center;
   background: var(--asef-surface);
 }
 @media (min-width: 768px) {
-  .asef-hero { padding: 56px var(--asef-gutter) var(--asef-section-gap); }
+  .asef-hero { padding: 56px var(--asef-gutter) 64px; }
 }
 
 .asef-hero-copy { max-width: 780px; margin: 0 auto 56px; }
@@ -419,6 +422,169 @@
   .asef-tile-media--right img { width: 100%; height: 100%; object-fit: contain; object-position: right center; }
 }
 .asef-tile-media--right { position: static; margin-top: 24px; height: 180px; }
+
+/* ============================================================
+   CHIP STRIP — "Kategorileri Keşfedin"
+   Apple app-row style: 8 small icon+label chips in a scroll rail
+   ============================================================ */
+.asef-chips-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+  margin-bottom: 24px;
+}
+.asef-chips-head h2 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.015em; color: var(--asef-ink); }
+
+.asef-chips {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(88px, 1fr);
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 4px 0 8px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.asef-chips::-webkit-scrollbar { display: none; }
+
+@media (min-width: 768px) {
+  .asef-chips {
+    grid-auto-columns: 1fr;
+    overflow: visible;
+  }
+}
+
+.asef-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 20px 12px 18px;
+  border-radius: var(--asef-radius-md);
+  background: var(--asef-panel);
+  color: var(--asef-ink);
+  text-align: center;
+  scroll-snap-align: start;
+  transition: background 0.24s var(--asef-ease), transform 0.24s var(--asef-ease);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+}
+.asef-chip:hover { background: #edeef0; transform: translateY(-2px); }
+.asef-chip-ic {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--asef-blue);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+}
+.asef-chip-ic svg { width: 22px; height: 22px; }
+.asef-chip-label { font-size: 12px; font-weight: 500; letter-spacing: -0.005em; color: var(--asef-ink); line-height: 1.25; }
+
+/* ============================================================
+   DUO — 2 çözüm kartı yan yana
+   ============================================================ */
+.asef-duo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 768px) {
+  .asef-duo { grid-template-columns: 1fr 1fr; gap: 24px; }
+}
+.asef-duo-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--asef-panel);
+  border-radius: var(--asef-radius-lg);
+  overflow: hidden;
+  padding: 32px;
+  min-height: 320px;
+  color: var(--asef-ink);
+  transition: transform 0.4s var(--asef-ease), box-shadow 0.4s var(--asef-ease);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+}
+.asef-duo-card:hover { transform: translateY(-2px); box-shadow: 0 24px 48px -28px rgba(0,0,0,0.22), inset 0 0 0 1px rgba(0,0,0,0.06); }
+.asef-home .asef-duo-card h3 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 600 !important;
+  letter-spacing: -0.015em;
+  color: var(--asef-ink);
+}
+.asef-home .asef-duo-card p {
+  margin: 0 0 14px;
+  font-size: 15px;
+  color: var(--asef-ink-soft);
+  line-height: 1.5;
+}
+.asef-duo-copy { position: relative; z-index: 2; max-width: 60%; }
+.asef-duo-media {
+  position: absolute;
+  right: -20px; bottom: -20px;
+  width: 60%; height: 65%;
+  z-index: 1;
+  pointer-events: none;
+}
+.asef-duo-media img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  border-radius: var(--asef-radius-md);
+  transition: transform 0.7s var(--asef-ease);
+}
+.asef-duo-card:hover .asef-duo-media img { transform: scale(1.04); }
+
+/* ============================================================
+   PRO — spotlight ekipman (product + 2 label + 3 spec)
+   ============================================================ */
+.asef-pro {
+  max-width: var(--asef-container);
+  margin: 0 auto;
+  padding: var(--asef-section-gap-sm) var(--asef-gutter);
+}
+@media (min-width: 768px) { .asef-pro { padding: var(--asef-section-gap) var(--asef-gutter); } }
+
+.asef-pro-stage {
+  position: relative;
+  margin: 32px 0 48px;
+  border-radius: var(--asef-radius-lg);
+  overflow: hidden;
+  background: var(--asef-panel);
+  aspect-ratio: 16 / 9;
+}
+.asef-pro-stage img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.asef-pro-label {
+  position: absolute;
+  z-index: 2;
+  display: flex; flex-direction: column;
+  padding: 12px 16px;
+  font-size: 13px;
+}
+.asef-pro-label-name { font-weight: 600; color: var(--asef-ink); font-size: 15px; letter-spacing: -0.01em; }
+.asef-pro-label-desc { color: var(--asef-ink-soft); font-size: 12px; margin-top: 2px; }
+.asef-pro-label--left  { top: 24px; left: 24px; }
+.asef-pro-label--right { bottom: 24px; right: 24px; text-align: right; align-items: flex-end; }
+
+.asef-pro-specs {
+  list-style: none; margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .asef-pro-specs { grid-template-columns: repeat(3, 1fr); gap: 48px; }
+}
+.asef-pro-specs li { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.asef-pro-spec-ic {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  color: var(--asef-ink);
+}
+.asef-pro-spec-ic svg { width: 26px; height: 26px; }
+.asef-home .asef-pro-specs h3 { margin: 8px 0 4px; font-size: 16px; font-weight: 600 !important; color: var(--asef-ink); letter-spacing: -0.01em; }
+.asef-home .asef-pro-specs p  { margin: 0; font-size: 13px; color: var(--asef-ink-soft); line-height: 1.5; max-width: 260px; }
 
 /* ============================================================
    MACRO GALLERY — "Detaylarda Gizli Mükemmellik"
