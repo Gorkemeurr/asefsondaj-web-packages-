@@ -181,34 +181,34 @@
                          width="1600" height="1200" loading="lazy" decoding="async" />
                 </figure>
                 <div class="asef-innov-copy">
-                    <h2 id="innov-heading">İnovasyonun Temeli.</h2>
+                    <h2 id="innov-heading">Sahada Kanıtlanmış.</h2>
 
                     <ul class="asef-feature-list">
                         <li>
                             <span class="asef-feature-ic" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9 18l-5-5"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
                             </span>
                             <div>
-                                <h3>API Standartları</h3>
-                                <p>Tüm ürünlerimiz uluslararası API normlarına tam uyumlu olarak üretilir.</p>
+                                <h3>20+ Yıl Saha Tecrübesi</h3>
+                                <p>Bursa merkezli operasyonumuz, karot ve su sondajından mineral aramaya kadar Türkiye’nin dört bir yanında iki on yılı aşkın süredir sahada.</p>
                             </div>
                         </li>
                         <li>
                             <span class="asef-feature-ic" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v6l-3 6a5 5 0 0 0 10 0l-3-6V3"/><path d="M8 3h8"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
                             </span>
                             <div>
-                                <h3>HSS-Co Alaşımlar</h3>
-                                <p>Kobalt katkılı yüksek hız çeliği ile aşınma direnci maksimize edilir.</p>
+                                <h3>Uluslararası Kalite Ekipman</h3>
+                                <p>Sondaj makineleri, tijler, karot sistemleri ve pompalar için özenle seçilmiş marka portföyü — her operasyonda güvenle çalışın.</p>
                             </div>
                         </li>
                         <li>
                             <span class="asef-feature-ic" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M4 9h1M4 15h1M19 9h1M19 15h1M9 4v1M15 4v1M9 19v1M15 19v1"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.66 5.66l-6.04 6.04 2.83 2.83 6.04-6.04a4 4 0 0 0 5.66-5.66l-2.24 2.24-1.83-1.83 2.24-2.24z"/></svg>
                             </span>
                             <div>
-                                <h3>7/24 Teknik Destek</h3>
-                                <p>Uzman mühendis kadromuz saha operasyonlarınızda her an yanınızda.</p>
+                                <h3>Türkiye Geneli Yedek Parça &amp; Servis</h3>
+                                <p>Nerede sondaj yaparsanız yapın, orijinal yedek parça temini ve teknik destek WhatsApp'ın bir mesajı kadar yakın.</p>
                             </div>
                         </li>
                     </ul>
