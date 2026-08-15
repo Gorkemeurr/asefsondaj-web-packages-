@@ -116,12 +116,12 @@ if [ -f "$CSS_FILE" ]; then
         \$css = file_get_contents('$CSS_FILE');
         \$now = now();
         // General storefront custom CSS (global, all channels/locales)
-        \$exists = DB::table('core_config')->where('code', 'general.content.custom_css')->first();
+        \$exists = DB::table('core_config')->where('code', 'general.content.custom_scripts.custom_css')->first();
         if (\$exists) {
-            DB::table('core_config')->where('code', 'general.content.custom_css')->update(['value' => \$css, 'updated_at' => \$now]);
+            DB::table('core_config')->where('code', 'general.content.custom_scripts.custom_css')->update(['value' => \$css, 'updated_at' => \$now]);
         } else {
             DB::table('core_config')->insert([
-                'code' => 'general.content.custom_css',
+                'code' => 'general.content.custom_scripts.custom_css',
                 'value' => \$css,
                 'channel_code' => null,
                 'locale_code' => null,
