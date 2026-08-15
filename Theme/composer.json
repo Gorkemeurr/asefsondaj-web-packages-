@@ -1,0 +1,20 @@
+{
+    "name": "asefsondaj/theme",
+    "description": "Asef Sondaj web theme — mobile-app-parity storefront over Bagisto.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "AsefSondaj\\Theme\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AsefSondaj\\Theme\\Providers\\AsefThemeServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
