@@ -602,7 +602,7 @@ img.asef-hero-slide:nth-child(1) { opacity: 1; }
   33%  { opacity: 0; transform: scale(1.10); }
   100% { opacity: 0; transform: scale(1.10); }
 }
-.asef-hero > * { position: relative; z-index: 3; }
+.asef-hero > *:not(.asef-hero-bg) { position: relative; z-index: 3; }
 @media (prefers-reduced-motion: reduce) {
   .asef-hero-slide { animation: none; opacity: 1; }
   .asef-hero-slide:nth-child(n+2) { opacity: 0; }
