@@ -93,8 +93,8 @@
                     </div>
                 </div>
                 <figure class="asef-hero-media">
-                    <img src="{{ url('asef/asef-rig-2.jpg') }}" alt="Asef Sondaj ERD serisi sondaj makinesi — gün batımında saha"
-                         width="1600" height="1000" loading="eager" fetchpriority="high" decoding="async" />
+                    <img src="{{ url('asef/asef-rig-2-clean.jpg') }}" alt="Asef Sondaj ERD serisi sondaj makinesi"
+                         width="970" height="1280" loading="eager" fetchpriority="high" decoding="async" />
                 </figure>
             </section>
 
@@ -183,7 +183,7 @@
             {{-- ================= İNOVASYONUN TEMELİ ================= --}}
             <section class="asef-innov" id="hakkimizda" aria-labelledby="innov-heading">
                 <figure class="asef-innov-media asef-innov-media--tall">
-                    <img src="{{ url('asef/asef-rig-4.jpg') }}" alt="Asef Sondaj ERD serisi tam donanımlı sondaj makinesi"
+                    <img src="{{ url('asef/asef-rig-4-clean.jpg') }}" alt="Asef Sondaj ERD serisi tam donanımlı sondaj makinesi"
                          width="970" height="1280" loading="lazy" decoding="async" />
                 </figure>
                 <div class="asef-innov-copy">
