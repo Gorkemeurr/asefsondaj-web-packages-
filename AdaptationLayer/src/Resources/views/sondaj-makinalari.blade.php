@@ -72,18 +72,6 @@
                 @endforeach
             </section>
 
-            <section class="asef-section-wide">
-                <div class="asef-machine-showcase">
-                    <div class="asef-machine-showcase-bg" style="background-image: url('{{ $asefUrl('drilling-hero.jpg') }}');"></div>
-                    <div class="asef-machine-content">
-                        <div class="asef-label-caps">YEDEK PARÇA + SERVİS</div>
-                        <h2>Ekipmanınızı çalışır tutuyoruz.</h2>
-                        <p>Orijinal yedek parça temini, teknik servis ve satış sonrası destek — 47 il, tek numara.</p>
-                        <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-cta-pill white-bg">WhatsApp'tan Yaz</a>
-                    </div>
-                </div>
-            </section>
-
             <section class="asef-section">
                 <div class="asef-cta-band">
                     <div class="asef-label-caps">EKİPMAN SEÇİMİ</div>
