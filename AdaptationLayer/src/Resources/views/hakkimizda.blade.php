@@ -147,11 +147,10 @@
 
     /* Timeline reuses global .asef-timeline-wrap */
 
-    /* Reveal animation */
-    .ab-reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform .8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .ab-reveal.visible { opacity: 1; transform: translateY(0); }
-    @media (prefers-reduced-motion: reduce) {
-        .ab-reveal { opacity: 1; transform: none; transition: none; }
+    /* Reveal animation — starts visible for safety; adds subtle in-motion only when JS says so */
+    .ab-reveal { transition: opacity .7s ease, transform .7s cubic-bezier(0.16, 1, 0.3, 1); }
+    @media (prefers-reduced-motion: no-preference) {
+        html.js-ready .ab-reveal:not(.visible) { opacity: 0; transform: translateY(18px); }
     }
 </style>
 @endpush
@@ -343,8 +342,18 @@
         // Reduced motion guard
         var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+        // Only opt into the "hide until visible" state when we know JS is ready.
+        if (!reduce) {
+            document.documentElement.classList.add('js-ready');
+        }
+
         // Reveal on scroll
         var reveals = document.querySelectorAll('.ab-reveal');
+        // Safety net: after 2s show everything unconditionally in case IO didn't fire.
+        setTimeout(function () {
+            reveals.forEach(function (el) { el.classList.add('visible'); });
+        }, 2000);
+
         if (reveals.length) {
             if (reduce || !('IntersectionObserver' in window)) {
                 reveals.forEach(function (el) { el.classList.add('visible'); });
