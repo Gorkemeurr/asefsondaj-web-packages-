@@ -59,8 +59,60 @@
                     </div>
                 </div>
             </div>
-            <a href="#">Blog</a>
-            <a href="#">Destek</a>
+            <div class="asef-nav-item">
+                <a href="#">Blog</a>
+                <div class="asef-mega" role="menu" aria-label="Blog menüsü">
+                    <div class="asef-mega-grid">
+                        <div class="asef-mega-col asef-mega-main">
+                            <h5>Blog'u Keşfedin</h5>
+                            <a href="#">Tüm Yazılar</a>
+                            <a href="#">Sondaj Sektörü</a>
+                            <a href="#">Ekipman Rehberi</a>
+                            <a href="#">Vaka Çalışmaları</a>
+                            <a href="#">Teknik İpuçları</a>
+                        </div>
+                        <div class="asef-mega-col asef-mega-side">
+                            <h5>Öne Çıkanlar</h5>
+                            <a href="#">Son Yazılar</a>
+                            <a href="#">En Popüler</a>
+                            <a href="#">Editörden</a>
+                        </div>
+                        <div class="asef-mega-col asef-mega-side">
+                            <h5>Kaynaklar</h5>
+                            <a href="#">Ürün İncelemeleri</a>
+                            <a href="#">Sahada Uygulamalar</a>
+                            <a href="{{ $waLink }}" target="_blank" rel="noopener">Uzmana Sor</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="asef-nav-item">
+                <a href="#">Destek</a>
+                <div class="asef-mega" role="menu" aria-label="Destek menüsü">
+                    <div class="asef-mega-grid">
+                        <div class="asef-mega-col asef-mega-main">
+                            <h5>Nasıl Yardımcı Olabiliriz</h5>
+                            <a href="{{ url('/') }}#iletisim">İletişim</a>
+                            <a href="#">SSS</a>
+                            <a href="#">Teknik Servis</a>
+                            <a href="#">Garanti ve İade</a>
+                            <a href="#">Sipariş Takibi</a>
+                        </div>
+                        <div class="asef-mega-col asef-mega-side">
+                            <h5>Hızlı İletişim</h5>
+                            <a href="{{ $waLink }}" target="_blank" rel="noopener">WhatsApp'a Yaz</a>
+                            <a href="tel:+905320542975">+90 532 054 29 75</a>
+                            <a href="mailto:destek@asefsondaj.com">destek@asefsondaj.com</a>
+                        </div>
+                        <div class="asef-mega-col asef-mega-side">
+                            <h5>Kaynaklar</h5>
+                            <a href="#">Kullanım Kılavuzları</a>
+                            <a href="#">Yedek Parça Kataloğu</a>
+                            <a href="{{ $catalogUrl }}">Ürün Ara</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="asef-nav-actions">
             <a href="{{ $catalogUrl }}" class="asef-nav-icon-btn" aria-label="Arama">
