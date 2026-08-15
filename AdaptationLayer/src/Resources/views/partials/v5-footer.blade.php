@@ -11,10 +11,10 @@
                 <h4>Kurumsal</h4>
                 <ul>
                     <li><a href="{{ url('hakkimizda') }}">Hakkımızda</a></li>
-                    <li><a href="#">Sondaj Makinalarımız</a></li>
+                    <li><a href="{{ url('sondaj-makinalarimiz') }}">Sondaj Makinalarımız</a></li>
                     <li><a href="{{ url('hizmetlerimiz') }}">Hizmetlerimiz</a></li>
-                    <li><a href="#">Referanslar</a></li>
-                    <li><a href="#">SSS</a></li>
+                    <li><a href="{{ url('referanslar') }}">Referanslar</a></li>
+                    <li><a href="{{ url('sss') }}">SSS</a></li>
                 </ul>
             </div>
             <div class="asef-footer-col">
@@ -24,7 +24,7 @@
                     <li><a href="{{ $catalogUrl }}?cat=delici">Delici Ekipmanlar</a></li>
                     <li><a href="{{ $catalogUrl }}?cat=tij">Tij ve Borular</a></li>
                     <li><a href="{{ $catalogUrl }}?cat=pompa">Pompa Sistemleri</a></li>
-                    <li><a href="{{ $catalogUrl }}">Teklif Sepetim</a></li>
+                    <li><a href="{{ url('sepet') }}">Teklif Sepetim</a></li>
                 </ul>
             </div>
             <div class="asef-footer-col">
@@ -40,10 +40,10 @@
         <div class="asef-footer-bottom">
             <div>© {{ date('Y') }} Asef Sondaj — Tüm hakları saklıdır.</div>
             <div class="asef-footer-legal">
-                <a href="#">KVKK</a>
-                <a href="#">Gizlilik</a>
-                <a href="#">Çerez</a>
-                <a href="#">Kullanım Şartları</a>
+                <a href="{{ url('kvkk') }}">KVKK</a>
+                <a href="{{ url('gizlilik-politikasi') }}">Gizlilik</a>
+                <a href="{{ url('cerez-politikasi') }}">Çerez</a>
+                <a href="{{ url('kullanim-sartlari') }}">Kullanım Şartları</a>
             </div>
         </div>
     </div>

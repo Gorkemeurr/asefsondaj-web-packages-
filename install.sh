@@ -88,6 +88,10 @@ $COMPOSER_BIN dump-autoload -o --no-scripts
 # ---------- 4) Cache clear ----------
 echo "==> 4/5 Cache clear"
 $PHP_BIN artisan optimize:clear
+# Explicit view compilation dir wipe — Bagisto sometimes leaves stale compiled Blade
+# files even after optimize:clear (e.g., adaptation views retain old $products/$filtered)
+rm -rf storage/framework/views/*.php 2>/dev/null || true
+$PHP_BIN artisan view:clear
 
 # ---------- 5) Copy logo + favicon + webhook to public/ ----------
 echo "==> 5/7 Publishing logo + favicon + webhook"
