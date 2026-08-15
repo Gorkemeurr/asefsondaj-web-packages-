@@ -9,6 +9,18 @@
     $waLink       = 'https://wa.me/905320542975?text=' . rawurlencode('Merhaba, Asef Sondaj ürünleriniz hakkında bilgi ve teklif almak istiyorum.');
     $catalogUrl   = route('shop.search.index');
     $asefUrl      = static fn (string $rel): string => url('asef/' . ltrim($rel, '/'));
+
+    // Master catalog used to enrich legacy cart rows that lack img/cat/name
+    $asefJsCatalog = [
+        'AS-DTH-040' => ['name' => 'DTH Çekiç 4 İnç',              'cat' => 'Delici Ekipmanlar', 'img' => $asefUrl('dth-hammer.jpg')],
+        'AS-BIT-152' => ['name' => 'DTH Button Bit 6 İnç',         'cat' => 'Delici Ekipmanlar', 'img' => $asefUrl('asef-diamond-bit.jpg')],
+        'AS-TRI-215' => ['name' => 'Tricone Matkap 8 1/2 İnç',     'cat' => 'Delici Ekipmanlar', 'img' => $asefUrl('asef-macro-diamond.jpg')],
+        'AS-ROD-300' => ['name' => 'Sondaj Tiji 3 Metre',          'cat' => 'Tij ve Borular',    'img' => $asefUrl('drill-rods.jpg')],
+        'AS-CAS-168' => ['name' => 'Muhafaza Borusu 6 5/8 İnç',    'cat' => 'Tij ve Borular',    'img' => $asefUrl('asef-macro-thread.jpg')],
+        'AS-PMP-600' => ['name' => 'Triplex Çamur Pompası',        'cat' => 'Pompa Sistemleri',  'img' => $asefUrl('mud-pump.jpg')],
+        'AS-SWI-250' => ['name' => 'Yüksek Basınçlı Döner Başlık', 'cat' => 'Pompa Sistemleri',  'img' => $asefUrl('asef-macro-valve.jpg')],
+        'AS-SRV-001' => ['name' => 'DTH Bakım ve Sızdırmazlık Seti','cat' => 'Yedek Parça',      'img' => $asefUrl('asef-spare-parts.jpg')],
+    ];
 @endphp
 
 @push('meta')
@@ -117,17 +129,7 @@
     @push('scripts')
     <script>
         window.ASEF_URUN_BASE = @json(url('urun'));
-        // Master catalog — used to enrich legacy cart rows that lack img/cat/name
-        window.ASEF_CATALOG = @json([
-            'AS-DTH-040' => ['name' => 'DTH Çekiç 4 İnç',             'cat' => 'Delici Ekipmanlar', 'img' => $asefUrl('dth-hammer.jpg')],
-            'AS-BIT-152' => ['name' => 'DTH Button Bit 6 İnç',        'cat' => 'Delici Ekipmanlar', 'img' => $asefUrl('asef-diamond-bit.jpg')],
-            'AS-TRI-215' => ['name' => 'Tricone Matkap 8 1/2 İnç',    'cat' => 'Delici Ekipmanlar', 'img' => $asefUrl('asef-macro-diamond.jpg')],
-            'AS-ROD-300' => ['name' => 'Sondaj Tiji 3 Metre',         'cat' => 'Tij ve Borular',    'img' => $asefUrl('drill-rods.jpg')],
-            'AS-CAS-168' => ['name' => 'Muhafaza Borusu 6 5/8 İnç',   'cat' => 'Tij ve Borular',    'img' => $asefUrl('asef-macro-thread.jpg')],
-            'AS-PMP-600' => ['name' => 'Triplex Çamur Pompası',       'cat' => 'Pompa Sistemleri',  'img' => $asefUrl('mud-pump.jpg')],
-            'AS-SWI-250' => ['name' => 'Yüksek Basınçlı Döner Başlık','cat' => 'Pompa Sistemleri',  'img' => $asefUrl('asef-macro-valve.jpg')],
-            'AS-SRV-001' => ['name' => 'DTH Bakım ve Sızdırmazlık Seti','cat' => 'Yedek Parça',    'img' => $asefUrl('asef-spare-parts.jpg')],
-        ]);
+        window.ASEF_CATALOG = @json($asefJsCatalog);
     </script>
     <script>
     (function () {
