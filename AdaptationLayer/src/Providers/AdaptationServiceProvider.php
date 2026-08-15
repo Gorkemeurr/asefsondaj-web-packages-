@@ -128,6 +128,39 @@ class AdaptationServiceProvider extends ServiceProvider
                 return view('asef-adaptation::blog');
             })->name('shop.asef.blog');
 
+            // Photo gallery hub + sub-galleries (registered BEFORE /blog/{slug}).
+            Route::get('/blog/fotograf', function () {
+                return view('asef-adaptation::galeri-fotograf-hub');
+            })->name('shop.asef.gallery.photo-hub');
+
+            Route::get('/blog/video', function () {
+                return view('asef-adaptation::galeri-video-hub');
+            })->name('shop.asef.gallery.video-hub');
+
+            Route::get('/blog/saha-fotograflari', function () {
+                return view('asef-adaptation::galeri-fotograf', ['slug' => 'saha-fotograflari']);
+            })->name('shop.asef.gallery.saha');
+
+            Route::get('/blog/ekipman-fotograflari', function () {
+                return view('asef-adaptation::galeri-fotograf', ['slug' => 'ekipman-fotograflari']);
+            })->name('shop.asef.gallery.ekipman');
+
+            Route::get('/blog/proje-fotograflari', function () {
+                return view('asef-adaptation::galeri-fotograf', ['slug' => 'proje-fotograflari']);
+            })->name('shop.asef.gallery.proje');
+
+            Route::get('/blog/urun-tanitim-videolari', function () {
+                return view('asef-adaptation::galeri-video', ['slug' => 'urun-tanitim-videolari']);
+            })->name('shop.asef.gallery.urun-video');
+
+            Route::get('/blog/saha-uygulamalari', function () {
+                return view('asef-adaptation::galeri-video', ['slug' => 'saha-uygulamalari']);
+            })->name('shop.asef.gallery.saha-video');
+
+            Route::get('/blog/teknik-anlatimlar', function () {
+                return view('asef-adaptation::galeri-video', ['slug' => 'teknik-anlatimlar']);
+            })->name('shop.asef.gallery.teknik-video');
+
             Route::get('/blog/{slug}', function (string $slug) {
                 return view('asef-adaptation::blog-detay', ['slug' => $slug]);
             })->name('shop.asef.blog-post')->where('slug', '[a-z0-9\-]+');
