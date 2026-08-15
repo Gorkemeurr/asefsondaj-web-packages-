@@ -172,7 +172,7 @@
             0 -1px 0 rgba(0,0,0,0.05) inset,
             0 16px 40px rgba(0,0,0,0.1);
     }
-    .ab-stat-num { display: block; font-size: clamp(30px, 3.4vw, 42px); font-weight: 700; letter-spacing: -0.02em; line-height: 1; color: var(--primary); margin-bottom: 8px; }
+    .ab-stat-num { display: block; font-size: clamp(24px, 2.6vw, 34px); font-weight: 600; letter-spacing: -0.02em; line-height: 1; color: var(--primary); margin-bottom: 8px; }
     .ab-stat-label { display: block; font-size: 13px; color: var(--gray-secondary); letter-spacing: 0.02em; line-height: 1.4; }
 
     /* ==================== VALUES ==================== */
