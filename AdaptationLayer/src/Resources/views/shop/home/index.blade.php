@@ -549,23 +549,9 @@
                             <div class="asef-mega-grid">
                                 <div class="asef-mega-col asef-mega-main">
                                     <h5>Blog'u Keşfedin</h5>
-                                    <a href="#">Tüm Yazılar</a>
-                                    <a href="#">Sondaj Sektörü</a>
-                                    <a href="#">Ekipman Rehberi</a>
-                                    <a href="#">Vaka Çalışmaları</a>
-                                    <a href="#">Teknik İpuçları</a>
-                                </div>
-                                <div class="asef-mega-col asef-mega-side">
-                                    <h5>Öne Çıkanlar</h5>
-                                    <a href="#">Son Yazılar</a>
-                                    <a href="#">En Popüler</a>
-                                    <a href="#">Editörden</a>
-                                </div>
-                                <div class="asef-mega-col asef-mega-side">
-                                    <h5>Kaynaklar</h5>
-                                    <a href="#">Ürün İncelemeleri</a>
-                                    <a href="#">Sahada Uygulamalar</a>
-                                    <a href="{{ $waLink }}" target="_blank" rel="noopener">Uzmana Sor</a>
+                                    <a href="#">Tüm Bloglar</a>
+                                    <a href="#">Fotoğraf Galerisi</a>
+                                    <a href="#">Video Galerisi</a>
                                 </div>
                             </div>
                         </div>
