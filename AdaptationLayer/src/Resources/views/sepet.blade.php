@@ -56,7 +56,10 @@
                             {{-- JS renders <div class="asef-cart-item"> here --}}
                         </div>
                         <div class="asef-cart-clear-row">
-                            <button type="button" class="asef-cart-clear" data-asef-cart-clear>Sepeti temizle</button>
+                            <button type="button" class="asef-cart-clear" data-asef-cart-clear>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+                                Sepeti temizle
+                            </button>
                         </div>
                     </div>
 
@@ -109,19 +112,11 @@
         @include('asef-adaptation::partials.v5-footer')
     </div>
 
-    {{-- Sepet-specific renderer --}}
+    {{-- Sepet renderer — reads localStorage via AsefCart, generates rows.
+         Clicks on rows are handled by AsefCart delegation (v5-cart-js). --}}
     @push('scripts')
     <script>
     (function () {
-        var listEl    = document.querySelector('[data-asef-cart-list]');
-        var emptyEl   = document.querySelector('[data-asef-cart-empty]');
-        var filledEl  = document.querySelector('[data-asef-cart-filled]');
-        var countEl   = document.querySelector('[data-asef-cart-count]');
-        var totalEl   = document.querySelector('[data-asef-cart-total]');
-        var clearBtn  = document.querySelector('[data-asef-cart-clear]');
-
-        if (!listEl) return;
-
         function esc(str) {
             return String(str == null ? '' : str)
                 .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -129,28 +124,38 @@
         }
 
         function itemHtml(it) {
-            var img = it.img ? '<img src="' + esc(it.img) + '" alt="' + esc(it.name) + '">' : '';
+            var img = it.img
+                ? '<img src="' + esc(it.img) + '" alt="' + esc(it.name) + '">'
+                : '';
+            var qty = parseInt(it.qty, 10) || 1;
             return ''
-                + '<div class="asef-cart-item">'
+                + '<div class="asef-cart-item" data-asef-cart-row data-sku="' + esc(it.sku) + '">'
                 +   '<div class="asef-cart-item-img">' + img + '</div>'
                 +   '<div class="asef-cart-item-body">'
                 +     '<div class="asef-cart-item-name">' + esc(it.name) + '</div>'
                 +     '<div class="asef-cart-item-sku">' + esc(it.sku) + (it.cat ? ' · ' + esc(it.cat) : '') + '</div>'
                 +     '<div class="asef-cart-item-qty-row">'
-                +       '<div class="asef-qty-picker">'
-                +         '<button class="asef-qty-btn" data-dec="' + esc(it.sku) + '" aria-label="Azalt"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14"/></svg></button>'
-                +         '<span class="asef-qty-value">' + (parseInt(it.qty, 10) || 1) + '</span>'
-                +         '<button class="asef-qty-btn" data-inc="' + esc(it.sku) + '" aria-label="Arttır"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button>'
+                +       '<div class="asef-qty-picker" data-asef-qty-picker>'
+                +         '<button type="button" class="asef-qty-btn" data-asef-qty-dec aria-label="Azalt"' + (qty <= 1 ? ' disabled' : '') + '><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14"/></svg></button>'
+                +         '<span class="asef-qty-value" data-asef-qty-value>' + qty + '</span>'
+                +         '<button type="button" class="asef-qty-btn" data-asef-qty-inc aria-label="Arttır"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button>'
                 +       '</div>'
                 +     '</div>'
                 +   '</div>'
-                +   '<button type="button" class="asef-cart-item-remove" data-remove="' + esc(it.sku) + '" aria-label="Kaldır">'
+                +   '<button type="button" class="asef-cart-item-remove" data-asef-cart-remove data-sku="' + esc(it.sku) + '" aria-label="Kaldır">'
                 +     '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>'
                 +   '</button>'
                 + '</div>';
         }
 
         function render() {
+            var listEl   = document.querySelector('[data-asef-cart-list]');
+            var emptyEl  = document.querySelector('[data-asef-cart-empty]');
+            var filledEl = document.querySelector('[data-asef-cart-filled]');
+            var countEl  = document.querySelector('[data-asef-cart-count]');
+            var totalEl  = document.querySelector('[data-asef-cart-total]');
+            if (!listEl || !window.AsefCart) return;
+
             var items = window.AsefCart.get();
             var totalQty = items.reduce(function (s, i) { return s + (parseInt(i.qty, 10) || 0); }, 0);
 
@@ -166,32 +171,18 @@
             listEl.innerHTML = items.map(itemHtml).join('');
         }
 
-        // Delegated handlers
-        listEl.addEventListener('click', function (ev) {
-            var t = ev.target.closest('button');
-            if (!t) return;
-            if (t.dataset.inc) {
-                var items = window.AsefCart.get();
-                var it = items.find(function (x) { return x.sku === t.dataset.inc; });
-                if (it) window.AsefCart.setQty(t.dataset.inc, (it.qty || 1) + 1);
-            } else if (t.dataset.dec) {
-                var items2 = window.AsefCart.get();
-                var it2 = items2.find(function (x) { return x.sku === t.dataset.dec; });
-                if (it2 && it2.qty > 1) window.AsefCart.setQty(t.dataset.dec, it2.qty - 1);
-            } else if (t.dataset.remove) {
-                window.AsefCart.remove(t.dataset.remove);
-            }
-        });
-
-        clearBtn.addEventListener('click', function () {
-            if (window.AsefCart.count() === 0) return;
-            if (confirm('Sepetteki tüm ürünler silinecek. Onaylıyor musun?')) {
-                window.AsefCart.clear();
-            }
-        });
-
+        // Re-render whenever cart changes (from any source)
         window.addEventListener('asef-cart:changed', render);
-        render();
+
+        function tryRender() { if (window.AsefCart) render(); else setTimeout(tryRender, 100); }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', tryRender);
+        } else {
+            tryRender();
+        }
+        // Second pass after Vue mount likely settled
+        setTimeout(tryRender, 300);
+        setTimeout(tryRender, 1000);
     })();
     </script>
     @endpush

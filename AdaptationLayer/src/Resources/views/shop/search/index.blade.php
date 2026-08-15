@@ -137,15 +137,18 @@
                                 <div class="asef-search-desc">{{ $product['desc'] }}</div>
                             </a>
                             <div class="asef-search-foot">
-                                <span class="asef-search-cta-text">Sepete ekle</span>
                                 <button type="button"
-                                        class="asef-search-cta-btn"
+                                        class="asef-search-add"
                                         data-asef-add-to-cart
                                         data-sku="{{ $product['sku'] }}"
                                         data-name="{{ $product['name'] }}"
-                                        aria-label="Sepete ekle">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+                                        aria-label="{{ $product['name'] }} sepete ekle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                                    Sepete Ekle
                                 </button>
+                                <a href="{{ route('shop.asef.product', ['sku' => $product['sku']]) }}" class="asef-search-detail" aria-label="{{ $product['name'] }} detay">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                                </a>
                             </div>
                         </div>
                     @endforeach

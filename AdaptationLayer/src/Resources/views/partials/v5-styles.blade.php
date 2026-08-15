@@ -166,24 +166,63 @@
         .asef-hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
         .asef-cta-pill {
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 11px 22px; border-radius: 999px;
-            font-size: 15px; font-weight: 500;
-            transition: opacity .15s;
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 13px 26px; border-radius: 999px;
+            font-size: 15px; font-weight: 600;
+            letter-spacing: -0.005em;
+            transition: transform .18s ease, box-shadow .2s ease, background .15s;
+            line-height: 1;
         }
-        .asef-cta-pill.primary { background: var(--link-blue); color: #FFFFFF !important; }
-        .asef-cta-pill.primary:hover { opacity: 0.92; background: #0077E0; }
-        .asef-cta-pill.black { background: var(--primary); color: #FFFFFF !important; }
-        .asef-cta-pill.black:hover { opacity: 0.9; background: #1a1a1a; }
+        .asef-cta-pill svg { flex-shrink: 0; }
+        .asef-cta-pill.primary {
+            background: linear-gradient(180deg, #0077E0 0%, #0066CC 100%);
+            color: #FFFFFF !important;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.16) inset, 0 4px 14px rgba(0, 102, 204, 0.28);
+        }
+        .asef-cta-pill.primary:hover {
+            background: linear-gradient(180deg, #0080ED 0%, #006EDA 100%);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 6px 20px rgba(0, 102, 204, 0.4);
+            transform: translateY(-1px);
+        }
+        .asef-cta-pill.primary:active { transform: translateY(0); }
+
+        .asef-cta-pill.black {
+            background: linear-gradient(180deg, #1c1c1e 0%, #000000 100%);
+            color: #FFFFFF !important;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.14) inset, 0 4px 14px rgba(0,0,0,0.28);
+        }
+        .asef-cta-pill.black:hover {
+            background: linear-gradient(180deg, #262629 0%, #0d0d0f 100%);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.18) inset, 0 6px 20px rgba(0,0,0,0.4);
+            transform: translateY(-1px);
+        }
+        .asef-cta-pill.black:active { transform: translateY(0); }
+
         .asef-cta-pill.outline {
             background: white; color: var(--primary);
             border: 1px solid var(--outline);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
         }
-        .asef-cta-pill.outline:hover { border-color: var(--primary); }
-        .asef-cta-pill.ghost { color: var(--link-blue); }
-        .asef-cta-pill.ghost:hover { opacity: 0.7; }
-        .asef-cta-pill.white-bg { background: white; color: var(--primary); }
-        .asef-cta-pill.white-bg:hover { opacity: 0.9; }
+        .asef-cta-pill.outline:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transform: translateY(-1px);
+        }
+        .asef-cta-pill.outline:active { transform: translateY(0); }
+
+        .asef-cta-pill.ghost {
+            color: var(--link-blue); font-weight: 500;
+            padding: 11px 18px;
+        }
+        .asef-cta-pill.ghost:hover { opacity: 0.7; transform: translateX(2px); }
+        .asef-cta-pill.white-bg {
+            background: white; color: var(--primary);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.14);
+        }
+        .asef-cta-pill.white-bg:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.22);
+            transform: translateY(-1px);
+        }
         .asef-cta-arrow { font-weight: 400; margin-left: 2px; transition: transform .2s; display: inline-block; }
         .asef-cta-pill:hover .asef-cta-arrow { transform: translateX(2px); }
 
@@ -517,17 +556,37 @@
         .asef-search-name { font-size: 15px; font-weight: 600; color: var(--primary); margin-bottom: 4px; line-height: 1.3; }
         .asef-search-desc { font-size: 13px; color: var(--secondary); line-height: 1.4; flex: 1; }
         .asef-search-foot {
-            border-top: 1px solid rgba(210,210,215,0.5);
-            padding: 10px 16px;
-            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 12px 12px;
+            display: flex; gap: 6px;
         }
-        .asef-search-cta-text { font-size: 12px; color: var(--secondary); font-weight: 500; }
-        .asef-search-cta-btn {
-            width: 28px; height: 28px; border-radius: 999px;
-            background: var(--link-blue); color: white;
-            display: grid; place-items: center;
+        .asef-search-add {
+            flex: 1;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 10px 14px;
+            background: linear-gradient(180deg, #1c1c1e 0%, #000 100%);
+            color: #fff !important;
+            border-radius: 999px;
+            font-size: 13px; font-weight: 600; letter-spacing: -0.005em;
+            transition: transform .15s ease, box-shadow .2s ease, background .15s;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.14) inset, 0 3px 10px rgba(0,0,0,0.18);
+            cursor: pointer; border: 0; font-family: inherit;
         }
-        .asef-search-cta-btn:hover { opacity: 0.9; }
+        .asef-search-add:hover {
+            background: linear-gradient(180deg, #262629 0%, #0d0d0f 100%);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.18) inset, 0 5px 14px rgba(0,0,0,0.26);
+            transform: translateY(-1px);
+        }
+        .asef-search-add:active { transform: translateY(0); }
+        .asef-search-add svg { width: 15px; height: 15px; flex-shrink: 0; }
+        .asef-search-detail {
+            width: 40px; padding: 10px;
+            display: inline-flex; align-items: center; justify-content: center;
+            background: white; color: var(--primary);
+            border: 1px solid var(--outline); border-radius: 999px;
+            transition: border-color .15s, transform .15s;
+        }
+        .asef-search-detail:hover { border-color: var(--primary); transform: translateY(-1px); }
+        .asef-search-detail svg { width: 15px; height: 15px; }
 
         .asef-search-count {
             max-width: 1024px; margin: 0 auto 20px; padding: 0 20px;
