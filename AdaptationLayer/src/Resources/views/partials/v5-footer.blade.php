@@ -10,7 +10,7 @@
             <div class="asef-footer-col">
                 <h4>Kurumsal</h4>
                 <ul>
-                    <li><a href="{{ url('/') }}#hakkimizda">Hakkımızda</a></li>
+                    <li><a href="{{ url('hakkimizda') }}">Hakkımızda</a></li>
                     <li><a href="#">Sondaj Makinalarımız</a></li>
                     <li><a href="{{ url('/') }}#hizmetler">Hizmetlerimiz</a></li>
                     <li><a href="#">Referanslar</a></li>

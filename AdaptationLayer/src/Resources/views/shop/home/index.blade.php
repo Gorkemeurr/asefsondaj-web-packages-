@@ -518,12 +518,12 @@
                         </div>
                     </div>
                     <div class="asef-nav-item">
-                        <a href="#hakkimizda">Kurumsal</a>
+                        <a href="{{ url('hakkimizda') }}">Kurumsal</a>
                         <div class="asef-mega" role="menu" aria-label="Kurumsal menüsü">
                             <div class="asef-mega-grid">
                                 <div class="asef-mega-col asef-mega-main">
                                     <h5>Kurumsalı Keşfedin</h5>
-                                    <a href="#hakkimizda">Hakkımızda</a>
+                                    <a href="{{ url('hakkimizda') }}">Hakkımızda</a>
                                     <a href="#">Sondaj Makinalarımız</a>
                                     <a href="#hizmetler">Hizmetlerimiz</a>
                                     <a href="#">Referanslar</a>
@@ -622,7 +622,7 @@
                 <p>Yirmi yılı aşkın saha tecrübemizle Türkiye'nin en zorlu projelerinde güvenle çalışan sondaj ekipmanlarını sizinle buluşturuyoruz.</p>
                 <div class="asef-hero-ctas">
                     <a href="{{ $catalogUrl }}" class="asef-cta-pill primary">Ürünleri Keşfet</a>
-                    <a href="#hakkimizda" class="asef-cta-pill ghost">Daha Fazla Bilgi <span class="asef-cta-arrow">›</span></a>
+                    <a href="{{ url('hakkimizda') }}" class="asef-cta-pill ghost">Daha Fazla Bilgi <span class="asef-cta-arrow">›</span></a>
                 </div>
             </section>
 
@@ -679,7 +679,7 @@
                 <div class="asef-label-caps">HAKKIMIZDA</div>
                 <h2>Yirmi yıllık saha, tek bir söz: güven.</h2>
                 <p>Bursa merkezimizden Türkiye'nin dört bir yanındaki sondaj operasyonlarına ekipman, yedek parça ve teknik danışmanlık sağlıyoruz. Her ürünün arkasında saha tecrübesi vardır.</p>
-                <a href="#" class="asef-cta-pill ghost">Firma hikayemiz <span class="asef-cta-arrow">›</span></a>
+                <a href="{{ url('hakkimizda') }}" class="asef-cta-pill ghost">Firma hikayemiz <span class="asef-cta-arrow">›</span></a>
             </section>
 
             {{-- ONE CIKAN EKIPMANLAR --}}
@@ -833,7 +833,7 @@
                     <div class="asef-footer-col">
                         <h4>Kurumsal</h4>
                         <ul>
-                            <li><a href="#hakkimizda">Hakkımızda</a></li>
+                            <li><a href="{{ url('hakkimizda') }}">Hakkımızda</a></li>
                             <li><a href="#">Sondaj Makinalarımız</a></li>
                             <li><a href="#hizmetler">Hizmetlerimiz</a></li>
                             <li><a href="#">Referanslar</a></li>

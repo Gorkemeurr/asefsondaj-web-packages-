@@ -34,12 +34,12 @@
                 </div>
             </div>
             <div class="asef-nav-item">
-                <a href="{{ url('/') }}#hakkimizda">Kurumsal</a>
+                <a href="{{ url('hakkimizda') }}">Kurumsal</a>
                 <div class="asef-mega" role="menu" aria-label="Kurumsal menüsü">
                     <div class="asef-mega-grid">
                         <div class="asef-mega-col asef-mega-main">
                             <h5>Kurumsalı Keşfedin</h5>
-                            <a href="{{ url('/') }}#hakkimizda">Hakkımızda</a>
+                            <a href="{{ url('hakkimizda') }}">Hakkımızda</a>
                             <a href="#">Sondaj Makinalarımız</a>
                             <a href="{{ url('/') }}#hizmetler">Hizmetlerimiz</a>
                             <a href="#">Referanslar</a>

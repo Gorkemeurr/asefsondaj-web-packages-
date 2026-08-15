@@ -81,6 +81,10 @@ class AdaptationServiceProvider extends ServiceProvider
             Route::get('/sepet', function () {
                 return view('asef-adaptation::sepet');
             })->name('shop.asef.cart');
+
+            Route::get('/hakkimizda', function () {
+                return view('asef-adaptation::hakkimizda');
+            })->name('shop.asef.about');
         });
     }
 
