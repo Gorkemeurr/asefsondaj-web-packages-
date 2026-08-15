@@ -177,8 +177,8 @@
             {{-- ================= İNOVASYONUN TEMELİ ================= --}}
             <section class="asef-innov" id="hakkimizda" aria-labelledby="innov-heading">
                 <figure class="asef-innov-media">
-                    <img src="{{ url('asef/asef-innovation-render.jpg') }}" alt="Sondaj ekipmanının teknik kesit görseli"
-                         width="1200" height="900" loading="lazy" decoding="async" />
+                    <img src="{{ url('asef/asef-hero-rig.jpg') }}" alt="Asef Sondaj saha operasyonu"
+                         width="1600" height="1200" loading="lazy" decoding="async" />
                 </figure>
                 <div class="asef-innov-copy">
                     <h2 id="innov-heading">İnovasyonun Temeli.</h2>
