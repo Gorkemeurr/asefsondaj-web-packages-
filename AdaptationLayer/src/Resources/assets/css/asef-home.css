@@ -1,143 +1,109 @@
 /* ============================================================
-   Asef Sondaj — Homepage (Stitch "Apple Style" dark design, 1:1)
-   Scope: .asef-home  — does not leak into Bagisto admin/shop
-   Palette: black #000 · slate #0A0A0B · deep-blue #0066CC ·
-            graphite border #333336 · steel #F5F5F7
-   Type: Inter (UI) · JetBrains Mono (footer legal)
+   Asef Sondaj — Homepage stylesheet (adaptation layer)
+   Scope:  .asef-home ...   (Bagisto core styles untouched)
+   Design: Stitch v3 asef sondaj, apple-quality light
    ============================================================ */
 
 .asef-home {
-  --asef-black: #000000;
-  --asef-slate: #0A0A0B;
-  --asef-blue: #0066CC;
-  --asef-blue-hover: #2563EB;   /* tailwind blue-600 (design hover) */
-  --asef-white: #FFFFFF;
-  --asef-gray-300: #D1D5DB;
-  --asef-gray-400: #9CA3AF;
-  --asef-gray-500: #6B7280;
-  --asef-graphite: #333336;
-  --asef-container: 1280px;
-  --asef-pad: 24px;
-  --asef-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --asef-surface:        #ffffff;
+  --asef-bg:             #f9f9fb;
+  --asef-panel:          #f5f5f7;
+  --asef-panel-deep:     #eeeef0;
+  --asef-ink:            #1d1d1f;
+  --asef-ink-soft:       #6e6e73;
+  --asef-line:           rgba(0, 0, 0, 0.08);
+  --asef-line-strong:    rgba(0, 0, 0, 0.12);
+  --asef-blue:           #0071e3;
+  --asef-blue-strong:    #0066cc;
+  --asef-dark:           #111112;
+  --asef-container:      1120px;
+  --asef-gutter:         24px;
+  --asef-radius-sm:      12px;
+  --asef-radius-md:      18px;
+  --asef-radius-lg:      28px;
+  --asef-ease:           cubic-bezier(0.28, 0.11, 0.32, 1);
+  --asef-nav-h:          64px;
+  --asef-section-gap:    112px;
+  --asef-section-gap-sm: 72px;
 
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  color: var(--asef-white);
-  background: var(--asef-black);
+  font-family: 'Inter', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  color: var(--asef-ink);
+  background: var(--asef-surface);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  line-height: 1.47;
+  letter-spacing: -0.008em;
 }
 
-.asef-home *,
-.asef-home *::before,
-.asef-home *::after {
+.asef-home,
+.asef-home * {
+  /* Bagisto shop theme forces Poppins on every element; scope-hijack it. */
+  font-family: 'Inter', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
   box-sizing: border-box;
 }
 
-/* Bagisto's shop theme sets `* { font-family: Poppins }` — beat it
-   (class + universal selector > bare universal) so the design's Inter wins. */
-.asef-home,
-.asef-home * {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
-
-.asef-home img {
-  max-width: 100%;
-  display: block;
-}
-
-.asef-home a {
-  text-decoration: none;
-}
-
-.asef-home ::selection {
-  background: var(--asef-blue);
-  color: #fff;
-}
-
-@media (min-width: 768px) {
-  .asef-home {
-    --asef-pad: 64px;
-  }
-}
+.asef-home img { max-width: 100%; height: auto; display: block; }
+.asef-home a  { color: inherit; text-decoration: none; }
+.asef-home button { font: inherit; color: inherit; }
 
 /* ============================================================
-   BUTTONS — pill, no shadow (Apple style)
+   Buttons + links
    ============================================================ */
 .asef-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  border-radius: 9999px;
+  padding: 12px 22px;
+  border-radius: 980px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 1.25;
-  white-space: nowrap;
+  letter-spacing: -0.005em;
+  line-height: 1;
+  border: 0;
   cursor: pointer;
-  transition: background-color 0.3s var(--asef-ease), color 0.3s var(--asef-ease), border-color 0.3s var(--asef-ease);
+  transition: opacity 0.24s var(--asef-ease), background-color 0.24s var(--asef-ease), transform 0.24s var(--asef-ease);
+  will-change: transform;
 }
+.asef-btn:hover { opacity: 0.88; }
+.asef-btn:active { transform: translateY(1px); }
 
-.asef-btn svg {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-}
+.asef-btn-sm { padding: 8px 16px; font-size: 13px; }
 
-.asef-btn-xs { font-size: 12px; padding: 6px 16px; }
-.asef-btn-sm { font-size: 14px; padding: 8px 20px; }
-.asef-btn-md { font-size: 15px; padding: 10px 24px; }
+.asef-btn-blue { background: var(--asef-blue); color: #fff; }
+.asef-btn-blue:hover { background: #007af0; opacity: 1; }
 
-.asef-btn-blue {
-  background: var(--asef-blue);
-  color: #fff;
-}
-.asef-btn-blue:hover {
-  background: var(--asef-blue-hover);
-  color: #fff;
-}
+.asef-btn-white { background: #fff; color: var(--asef-ink); }
+.asef-btn-white:hover { background: #f5f5f7; opacity: 1; }
 
-.asef-btn-outline {
-  background: transparent;
-  color: #fff;
-  border: 1px solid #fff;
+.asef-link {
+  color: var(--asef-blue);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.24s var(--asef-ease);
 }
-.asef-btn-outline:hover {
-  background: #fff;
-  color: #000;
-}
+.asef-link:hover { color: var(--asef-blue-strong); }
 
-.asef-btn-ghost {
-  background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-.asef-btn-ghost:hover {
-  background: #fff;
-  color: #000;
-  border-color: #fff;
-}
+.asef-link-arrow { display: inline-flex; align-items: center; gap: 4px; }
+.asef-link-arrow span { display: inline-block; transform: translateY(-1px); }
 
 /* ============================================================
-   TOP NAV — fixed, apple.com-style: 44px black glass, ~1000px
-   centred strip, every item (mark, links, icons) evenly spread
+   TOP NAV — apple.com light glass, 64px, 1024px centre strip
    ============================================================ */
 .asef-nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 60;
-  background: rgba(251, 251, 253, 0.8);
+  background: rgba(255, 255, 255, 0.82);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
-  transition: background-color 0.3s var(--asef-ease);
+  border-bottom: 1px solid var(--asef-line);
 }
 
 .asef-nav-inner {
   max-width: 1024px;
   margin: 0 auto;
-  padding: 0 22px;
-  height: 48px;
+  padding: 0 var(--asef-gutter);
+  height: var(--asef-nav-h);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -145,46 +111,38 @@
 }
 
 .asef-brand {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  gap: 10px;
   flex-shrink: 0;
-  color: #1d1d1f;
-  opacity: 0.8;
-  transition: opacity 0.3s var(--asef-ease);
+  color: var(--asef-ink);
+  transition: opacity 0.24s var(--asef-ease);
 }
-
-.asef-brand:hover {
-  opacity: 1;
-}
-
-.asef-brand img {
-  height: 18px;
-  width: auto;
-  object-fit: contain;
-}
-
-.asef-nav-links {
-  display: none;
-}
-
-.asef-nav-links a {
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+.asef-brand:hover { opacity: 0.72; }
+.asef-brand img { height: 20px; width: auto; object-fit: contain; }
+.asef-brand-name {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.022em;
   line-height: 1;
-  white-space: nowrap;
-  color: rgba(29, 29, 31, 0.8);
-  transition: color 0.3s var(--asef-ease);
+  color: var(--asef-ink);
 }
 
-.asef-nav-links a:hover {
-  color: #1d1d1f;
+.asef-nav-links { display: none; }
+.asef-nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  color: rgba(29, 29, 31, 0.8);
+  transition: color 0.24s var(--asef-ease);
+  white-space: nowrap;
 }
+.asef-nav-links a:hover { color: var(--asef-ink); }
 
 .asef-nav-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
 }
 
 .asef-nav-icon {
@@ -192,404 +150,439 @@
   align-items: center;
   justify-content: center;
   color: rgba(29, 29, 31, 0.8);
-  background: none;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  transition: color 0.3s var(--asef-ease);
+  background: none; border: 0; padding: 0; cursor: pointer;
+  transition: color 0.24s var(--asef-ease);
 }
+.asef-nav-icon:hover { color: var(--asef-ink); }
+.asef-nav-icon svg { width: 17px; height: 17px; }
 
-.asef-nav-icon:hover {
-  color: #1d1d1f;
-}
-
-.asef-nav-icon svg {
-  width: 16px;
-  height: 16px;
-}
-
-.asef-nav-burger {
-  color: #1d1d1f;
-}
-
-.asef-nav-burger svg {
-  width: 22px;
-  height: 22px;
-}
-
+.asef-nav-burger { color: var(--asef-ink); }
+.asef-nav-burger svg { width: 22px; height: 22px; }
 .asef-nav-burger .asef-ic-close { display: none; }
 .asef-nav.is-open .asef-nav-burger .asef-ic-menu { display: none; }
 .asef-nav.is-open .asef-nav-burger .asef-ic-close { display: block; }
 
 @media (min-width: 768px) {
-  .asef-nav-inner {
-    height: 44px;
-  }
-  /* Flatten the link + action groups so the mark, every link and
-     both icons are direct flex children spread with space-between,
-     exactly like apple.com's global nav. */
-  .asef-nav-links,
-  .asef-nav-actions {
-    display: contents;
-  }
-  .asef-nav-burger {
-    display: none;
-  }
+  .asef-nav-links { display: flex; align-items: center; gap: 30px; }
+  .asef-nav-burger { display: none; }
 }
 
-/* Mobile dropdown menu (JS toggles .is-open on .asef-nav) */
 @media (max-width: 767.98px) {
   .asef-nav.is-open .asef-nav-links {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0;
     position: absolute;
-    top: 48px;
-    left: 0;
-    right: 0;
-    padding: 8px var(--asef-pad) 16px;
-    background: rgba(251, 251, 253, 0.96);
-    -webkit-backdrop-filter: blur(24px);
-    backdrop-filter: blur(24px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    top: var(--asef-nav-h); left: 0; right: 0;
+    padding: 8px var(--asef-gutter) 20px;
+    background: rgba(255, 255, 255, 0.96);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    backdrop-filter: saturate(180%) blur(24px);
+    border-bottom: 1px solid var(--asef-line);
   }
-
   .asef-nav.is-open .asef-nav-links a {
-    font-size: 15px;
-    padding: 12px 0;
     width: 100%;
-    color: #1d1d1f;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 14px 0;
+    font-size: 15px;
+    color: var(--asef-ink);
+    border-bottom: 1px solid var(--asef-line);
   }
-
-  .asef-nav.is-open .asef-nav-links a:last-child {
-    border-bottom: 0;
-  }
+  .asef-nav.is-open .asef-nav-links a:last-child { border-bottom: 0; }
 }
 
 /* ============================================================
-   HERO — full viewport, image + shade + fade to black
+   LAYOUT
    ============================================================ */
-.asef-main {
-  background: var(--asef-black);
-}
-
-.asef-hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  min-height: 800px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.asef-hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.asef-hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.asef-hero-shade {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.asef-hero-fade {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 33.333%;
-  background: linear-gradient(to top, #000 0%, transparent 100%);
-}
-
-.asef-hero-content {
-  position: relative;
-  z-index: 10;
-  text-align: center;
-  max-width: 896px;
+.asef-main { padding-top: var(--asef-nav-h); background: var(--asef-surface); }
+.asef-section {
+  max-width: var(--asef-container);
   margin: 0 auto;
-  padding: 96px var(--asef-pad) 0;
+  padding: var(--asef-section-gap-sm) var(--asef-gutter);
+}
+@media (min-width: 768px) {
+  .asef-section { padding: var(--asef-section-gap) var(--asef-gutter); }
 }
 
-.asef-hero h1 {
-  margin: 0 0 16px;
-  font-size: 48px;
+.asef-section-head { margin-bottom: 40px; }
+.asef-section-head--center { text-align: center; }
+.asef-section-head h2 {
+  font-size: clamp(30px, 4.2vw, 44px);
   line-height: 1.1;
-  font-weight: 700;
   letter-spacing: -0.02em;
-  color: #fff;
+  font-weight: 600;
+  color: var(--asef-ink);
+  margin: 0;
+}
+.asef-section-head p {
+  margin: 12px 0 0;
+  font-size: 17px;
+  color: var(--asef-ink-soft);
 }
 
-.asef-hero-sub {
-  margin: 0 auto 32px;
-  max-width: 672px;
-  font-size: 21px;
+/* ============================================================
+   HERO — centred, huge headline + full-bleed product photo
+   ============================================================ */
+.asef-hero {
+  max-width: var(--asef-container);
+  margin: 0 auto;
+  padding: 96px var(--asef-gutter) var(--asef-section-gap-sm);
+  text-align: center;
+  background: var(--asef-surface);
+}
+@media (min-width: 768px) {
+  .asef-hero { padding: 128px var(--asef-gutter) var(--asef-section-gap); }
+}
+
+.asef-hero-copy { max-width: 780px; margin: 0 auto 56px; }
+.asef-hero-copy h1 {
+  margin: 0 0 18px;
+  font-size: clamp(40px, 6.4vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -0.028em;
+  font-weight: 600;
+  color: var(--asef-ink);
+}
+.asef-hero-copy p {
+  margin: 0 auto;
+  max-width: 620px;
+  font-size: clamp(17px, 1.6vw, 21px);
   line-height: 1.5;
-  font-weight: 500;
-  color: var(--asef-gray-300);
+  color: var(--asef-ink-soft);
 }
 
 .asef-hero-actions {
+  margin-top: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 16px;
 }
-
-.asef-hero-actions .asef-btn {
-  width: 100%;
+@media (min-width: 480px) {
+  .asef-hero-actions { flex-direction: row; justify-content: center; }
 }
 
-@media (min-width: 640px) {
-  .asef-hero-actions {
-    flex-direction: row;
-  }
-  .asef-hero-actions .asef-btn {
-    width: auto;
-  }
+.asef-hero-media {
+  margin: 0;
+  border-radius: var(--asef-radius-lg);
+  overflow: hidden;
+  background: var(--asef-panel);
+  aspect-ratio: 16 / 9;
 }
-
-@media (min-width: 768px) {
-  .asef-hero h1 {
-    font-size: 80px;
-  }
-}
+.asef-hero-media img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ============================================================
-   TWO CARDS — 600px, rounded-3xl, graphite border
+   BENTO — categories
+   Grid: 2 cols mobile shrunk, 3 cols desktop.
+   Feature tile spans 2×2, two stack tiles fill right column,
+   wide dark bar spans all 3 cols on desktop.
    ============================================================ */
-.asef-cards {
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 16px;
-  background: var(--asef-black);
-}
-
-.asef-cards-grid {
+.asef-bento {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
 }
-
 @media (min-width: 768px) {
-  .asef-cards-grid {
-    grid-template-columns: 1fr 1fr;
+  .asef-bento {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 260px;
+    gap: 20px;
   }
 }
 
-.asef-card {
+.asef-tile {
   position: relative;
-  height: 600px;
-  overflow: hidden;
-  border-radius: 24px;
-  border: 1px solid var(--asef-graphite);
-  background: var(--asef-black);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding-top: 64px;
+  background: var(--asef-panel);
+  border-radius: var(--asef-radius-lg);
+  overflow: hidden;
+  padding: 32px;
+  color: var(--asef-ink);
+  transition: transform 0.4s var(--asef-ease), box-shadow 0.4s var(--asef-ease);
+  min-height: 260px;
 }
-
-.asef-card-head {
-  position: relative;
-  z-index: 20;
-  text-align: center;
-  padding: 0 24px;
-}
-
-.asef-card h2 {
-  margin: 0 0 12px;
-  font-size: 32px;
+.asef-tile:hover { transform: translateY(-2px); box-shadow: 0 20px 40px -24px rgba(0,0,0,0.18); }
+.asef-home .asef-tile h3 {
+  margin: 0 0 8px;
+  font-size: 24px;
   line-height: 1.2;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #fff;
+  font-weight: 600 !important;
+  letter-spacing: -0.015em;
+  color: inherit !important;
 }
+.asef-home .asef-tile p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--asef-ink-soft);
+  line-height: 1.5;
+}
+.asef-home .asef-tile--dark p { color: rgba(245, 245, 247, 0.72); }
+.asef-tile-copy { position: relative; z-index: 2; max-width: 320px; }
+
+.asef-tile-media {
+  position: absolute;
+  inset: 40% 0 0 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.asef-tile-media img { width: 100%; height: 100%; object-fit: contain; object-position: bottom center; transition: transform 0.7s var(--asef-ease); }
+.asef-tile:hover .asef-tile-media img { transform: scale(1.04); }
+
+/* Feature (large) tile 2×2 */
+@media (min-width: 768px) {
+  .asef-tile--feature { grid-column: span 2; grid-row: span 2; min-height: 0; padding: 40px; }
+  .asef-tile--feature h3 { font-size: 32px; }
+}
+
+/* Stack (small square) tiles */
+.asef-tile--stack {
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 32px 28px;
+}
+.asef-tile--stack .asef-tile-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--asef-blue);
+  box-shadow: inset 0 0 0 1px var(--asef-line);
+}
+.asef-tile--stack .asef-tile-icon svg { width: 22px; height: 22px; }
+.asef-tile--stack h3 { margin: 0; font-size: 22px; }
+
+/* Wide dark bar for spare parts */
+.asef-tile--wide {
+  padding: 36px 32px;
+  min-height: 240px;
+  overflow: hidden;
+}
+.asef-tile--dark { background: var(--asef-dark); color: #f5f5f7; }
+.asef-tile--dark p { color: rgba(245, 245, 247, 0.72); }
 
 @media (min-width: 768px) {
-  .asef-card h2 {
-    font-size: 40px;
+  .asef-tile--wide {
+    grid-column: span 3;
+    grid-row: auto;
+    min-height: 0;
+    height: 260px;
+    padding: 44px 56px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .asef-tile--wide .asef-tile-copy {
+    max-width: 480px;
+    display: flex; flex-direction: column; gap: 16px;
+    align-items: flex-start;
+  }
+  .asef-tile--wide h3 { font-size: 36px; }
+  .asef-tile-media--right {
+    position: static;
+    inset: auto;
+    height: 100%;
+    width: 44%;
+    display: flex; align-items: center; justify-content: flex-end;
+  }
+  .asef-tile-media--right img { width: 100%; height: 100%; object-fit: contain; object-position: right center; }
+}
+.asef-tile-media--right { position: static; margin-top: 24px; height: 180px; }
+
+/* ============================================================
+   MACRO GALLERY — "Detaylarda Gizli Mükemmellik"
+   ============================================================ */
+.asef-macro {
+  background: var(--asef-panel-deep);
+  padding: var(--asef-section-gap-sm) 0;
+}
+@media (min-width: 768px) {
+  .asef-macro { padding: var(--asef-section-gap) 0; }
+}
+.asef-macro .asef-section-head { max-width: var(--asef-container); margin: 0 auto 40px; padding: 0 var(--asef-gutter); }
+
+.asef-macro-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0 var(--asef-gutter) 20px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.asef-macro-track::-webkit-scrollbar { display: none; }
+
+.asef-macro-item {
+  flex: 0 0 auto;
+  width: 82vw;
+  max-width: 640px;
+  height: 60vw;
+  max-height: 480px;
+  margin: 0;
+  border-radius: var(--asef-radius-md);
+  overflow: hidden;
+  scroll-snap-align: center;
+  background: #ddd;
+}
+.asef-macro-item img { width: 100%; height: 100%; object-fit: cover; }
+
+@media (min-width: 768px) {
+  .asef-macro-track {
+    justify-content: center;
+    padding: 0 var(--asef-gutter);
+    flex-wrap: wrap;
+  }
+  .asef-macro-item {
+    width: calc(50% - 10px);
+    max-width: 540px;
+    height: 400px;
+  }
+  .asef-macro-item:nth-child(3) { display: none; } /* keep tidy 2-up on desktop; still available on mobile */
+}
+@media (min-width: 1100px) {
+  .asef-macro-item:nth-child(3) { display: block; }
+  .asef-macro-item {
+    width: calc(33.333% - 14px);
+    max-width: 420px;
+    height: 320px;
   }
 }
 
-.asef-card-actions {
+/* ============================================================
+   INOVASYONUN TEMELİ — split
+   ============================================================ */
+.asef-innov {
+  max-width: var(--asef-container);
+  margin: 0 auto;
+  padding: var(--asef-section-gap-sm) var(--asef-gutter);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .asef-innov {
+    padding: var(--asef-section-gap) var(--asef-gutter);
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+}
+
+.asef-innov-media {
+  margin: 0;
+  border-radius: var(--asef-radius-lg);
+  overflow: hidden;
+  background: linear-gradient(180deg, #f0f0f2 0%, #e5e5e7 100%);
+  aspect-ratio: 4 / 3;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  margin-top: 24px;
 }
+.asef-innov-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.asef-card-media {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 75%;
-  display: flex;
+.asef-innov-copy h2 {
+  margin: 0 0 32px;
+  font-size: clamp(28px, 3.8vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+.asef-feature-list {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: grid;
+  gap: 28px;
+}
+.asef-feature-list li { display: flex; gap: 16px; align-items: flex-start; }
+.asef-feature-ic {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  align-items: flex-end;
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: rgba(0, 113, 227, 0.08);
+  color: var(--asef-blue);
 }
-
-.asef-card-vignette {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  pointer-events: none;
-  background: radial-gradient(circle at center, transparent 0%, #000 80%);
+.asef-feature-ic svg { width: 20px; height: 20px; }
+.asef-feature-list h3 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  color: var(--asef-ink);
 }
-
-.asef-card-media img {
-  position: relative;
-  z-index: 0;
-  height: 100%;
-  object-position: bottom;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.asef-card-media img.is-contain {
-  width: auto;
-  object-fit: contain;
-}
-
-.asef-card-media img.is-cover {
-  width: 100%;
-  object-fit: cover;
-  opacity: 0.8;
-}
-
-.asef-card:hover .asef-card-media img {
-  transform: scale(1.05);
+.asef-feature-list p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--asef-ink-soft);
 }
 
 /* ============================================================
    FOOTER
    ============================================================ */
 .asef-footer {
-  width: 100%;
-  margin-top: 48px;
-  padding: 48px 0;
-  background: var(--asef-black);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--asef-bg);
+  border-top: 1px solid var(--asef-line);
+  padding: 44px 0;
 }
-
 .asef-footer-inner {
   max-width: var(--asef-container);
   margin: 0 auto;
-  padding: 0 var(--asef-pad);
+  padding: 0 var(--asef-gutter);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 24px;
   justify-content: space-between;
-  gap: 32px;
-}
-
-@media (min-width: 768px) {
-  .asef-footer-inner {
-    flex-direction: row;
-  }
-}
-
-.asef-footer-name {
-  margin: 0 0 8px;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--asef-gray-400);
-}
-
-.asef-footer-copy {
-  margin: 0;
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 11px;
-  color: var(--asef-gray-500);
-}
-
-.asef-footer-cols {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-@media (min-width: 640px) {
-  .asef-footer-cols {
-    flex-direction: row;
-    gap: 64px;
-  }
-}
-
-.asef-footer-col {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.asef-footer-col a {
+  color: var(--asef-ink-soft);
   font-size: 12px;
-  color: var(--asef-gray-400);
-  transition: color 0.2s var(--asef-ease);
+  line-height: 1.5;
 }
-
-.asef-footer-col a:hover {
-  color: #fff;
+@media (min-width: 640px) { .asef-footer-inner { flex-direction: row; align-items: center; } }
+.asef-footer-brand { display: flex; flex-direction: column; gap: 4px; }
+.asef-footer-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--asef-ink);
+  letter-spacing: -0.01em;
 }
+.asef-footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+.asef-footer-links a { transition: color 0.24s var(--asef-ease); }
+.asef-footer-links a:hover { color: var(--asef-ink); }
 
 /* ============================================================
-   Reduced motion
+   MOTION-REDUCE
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
-  .asef-home * {
-    transition-duration: 0.01ms !important;
-    animation: none !important;
+  .asef-tile, .asef-tile-media img, .asef-btn, .asef-nav-icon, .asef-nav-links a {
+    transition: none !important;
   }
+  .asef-tile:hover { transform: none; box-shadow: none; }
 }
 
 /* ============================================================
-   Live-site global overrides (asef-storefront.css is injected on
-   every page and hides header logos / pads the body for the
-   floating pill nav). The homepage owns its layout — win back here.
+   Live-site global overrides — asef-storefront.css is injected
+   on every page and hides header logos / pads body for the
+   floating pill nav. The homepage owns its layout, so win it
+   back here.
    ============================================================ */
-.asef-home .asef-brand img[src][alt] {
-  display: block !important;
-}
-
+.asef-home .asef-brand img[src][alt] { display: inline-block !important; }
 body:has(.asef-home) {
-  background: #000 !important;
+  background: #fff !important;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
+html:has(.asef-home) { background: #fff; }
 
-/* Bagisto's Vue root / layout wrappers may paint white — keep the
-   whole page black behind the homepage. */
-html:has(.asef-home) {
-  background: #000;
-}
-
-/* Injected app-style bottom pill nav (asef-storefront.js):
-   hide on desktop — the fixed glass nav owns navigation there.
-   Keep it on mobile, where the header links collapse into a menu. */
+/* App-style bottom pill nav (asef-storefront.js): hide on desktop,
+   keep on mobile where our nav collapses into a menu. */
 @media (min-width: 768px) {
-  body:has(.asef-home) #asef-bottom-nav {
-    display: none;
-  }
+  body:has(.asef-home) #asef-bottom-nav { display: none; }
 }
-
 @media (max-width: 767.98px) {
-  .asef-footer {
-    padding-bottom: 120px; /* clearance for floating bottom pill nav */
-  }
+  .asef-footer { padding-bottom: 120px; } /* clearance for floating pill nav */
 }
