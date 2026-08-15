@@ -42,26 +42,83 @@ section:has(> h2:contains("Yeni ekleme")),
     display: none !important;
 }
 
-/* --- E-ticaret CTAs: sepet, wishlist, checkout, kayıt GİZLE - */
-a[href$="/cart"],
-a[href$="/checkout"],
-a[href*="/cart/"],
-a[href*="/checkout/"],
-[class*="cart-icon"],
-[class*="mini-cart"],
-[class*="wishlist"],
-button.add-to-cart,
-button[class*="add-to-cart"],
-a[href*="/customer/login"],
-a[href*="/customer/register"],
-a[href*="/customer/forgot-password"],
-a[href*="/account"],
-a[href*="/orders"],
-[class*="account-icon"],
-[class*="user-icon"],
-[class*="my-account"],
-button[class*="compare"] {
+/* --- E-ticaret CTAs: sepet, wishlist, checkout, kayıt, compare GİZLE --- */
+/* Very aggressive — cover many Bagisto/Blade component class variations */
+
+/* Cart / checkout links */
+a[href$="/cart"], a[href$="/checkout"],
+a[href*="/cart/"], a[href*="/checkout/"],
+a[href*="/cart?"], a[href*="/checkout?"],
+[class*="cart-icon"], [class*="mini-cart"],
+[class*="mini_cart"], [class*="minicart"],
+button[class*="cart"], span[class*="cart-count"],
+[class*="header-cart"] {
     display: none !important;
+}
+
+/* Wishlist */
+[class*="wishlist"], a[href*="/wishlist"] {
+    display: none !important;
+}
+
+/* Compare */
+[class*="compare"], a[href*="/compare"], button[class*="compare"] {
+    display: none !important;
+}
+
+/* Add to cart */
+button.add-to-cart, button[class*="add-to-cart"],
+[class*="add-to-cart"] {
+    display: none !important;
+}
+
+/* Account / login / register */
+a[href*="/customer/login"], a[href*="/customer/register"],
+a[href*="/customer/forgot-password"], a[href*="/customer/reset-password"],
+a[href*="/customer/session"], a[href*="/customer/account"],
+a[href*="/account"], a[href*="/orders"], a[href*="/my-account"],
+[class*="account-icon"], [class*="user-icon"],
+[class*="my-account"], [class*="header-account"],
+[class*="account-menu"] {
+    display: none !important;
+}
+
+/* Icon-only header buttons (typical Bagisto svg-in-anchor pattern) */
+header a > svg[class*="cart"],
+header a > svg[class*="user"],
+header a > svg[class*="wishlist"],
+header a > svg[class*="compare"] {
+    display: none !important;
+}
+header a:has(> svg[class*="cart"]),
+header a:has(> svg[class*="user"]),
+header a:has(> svg[class*="wishlist"]),
+header a:has(> svg[class*="compare"]),
+header a:has(> [class*="cart-icon"]),
+header a:has(> [class*="user-icon"]) {
+    display: none !important;
+}
+
+/* --- Bagisto promotional top bar (İlk siparişinizde... vb) --- */
+.top-header,
+[class*="announcement"],
+[class*="promo-banner"],
+.header-notice,
+div:has(> a[href*="explore"]):first-child + div,
+p:contains("İlk siparişinizde"),
+p:contains("HEMEN ALIŞVERİŞ") {
+    display: none !important;
+}
+
+/* --- Mobile hamburger menu: gizle (app'te yok) --- */
+@media (max-width: 1023px) {
+    header button.hamburger,
+    header .mobile-menu-toggle,
+    header [class*="menu-toggle"],
+    header button[aria-label*="menu" i],
+    header button[aria-label*="Menu"] {
+        display: none !important;
+    }
 }
 
 /* --- Fiyat gösterimini gizle ---------------------------------- */
