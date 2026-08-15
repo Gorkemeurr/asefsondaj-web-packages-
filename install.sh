@@ -75,8 +75,8 @@ $COMPOSER_BIN dump-autoload -o --no-scripts
 echo "==> 4/5 Cache clear"
 $PHP_BIN artisan optimize:clear
 
-# ---------- 5) Copy logo + favicon to public/ ----------
-echo "==> 5/7 Publishing logo + favicon"
+# ---------- 5) Copy logo + favicon + webhook to public/ ----------
+echo "==> 5/7 Publishing logo + favicon + webhook"
 PKG_ASSETS="$PWD/packages/AsefSondaj/AdaptationLayer/src/Resources/assets"
 if [ -f "$PKG_ASSETS/images/logo.png" ]; then
     cp -f "$PKG_ASSETS/images/logo.png" "$BAGISTO_ROOT/public/asef-logo.png"
@@ -85,6 +85,27 @@ fi
 if [ -f "$PKG_ASSETS/images/favicon.ico" ]; then
     cp -f "$PKG_ASSETS/images/favicon.ico" "$BAGISTO_ROOT/public/favicon.ico"
     echo "    favicon.ico -> public/"
+fi
+
+# Self-update webhook.php in public/ (keeps webhook code fresh w/o manual copy)
+# Preserves the SECRET line from the existing installed webhook.
+WEBHOOK_SRC="$PWD/packages/AsefSondaj/deploy-webhook.php"
+WEBHOOK_DST="$BAGISTO_ROOT/public/asef-deploy-webhook.php"
+if [ -f "$WEBHOOK_SRC" ]; then
+    if [ -f "$WEBHOOK_DST" ]; then
+        # Extract current SECRET from installed webhook, apply to new one
+        CURRENT_SECRET=$(grep -oP "SECRET\s*=\s*'\K[^']+" "$WEBHOOK_DST" | head -1)
+        cp -f "$WEBHOOK_SRC" "$WEBHOOK_DST"
+        if [ -n "$CURRENT_SECRET" ] && [ "$CURRENT_SECRET" != "asef-deploy-2026-token" ]; then
+            sed -i "s|asef-deploy-2026-token|$CURRENT_SECRET|" "$WEBHOOK_DST"
+            echo "    webhook self-updated (secret preserved)"
+        else
+            echo "    webhook self-updated (no custom secret yet — set one from cPanel)"
+        fi
+    else
+        cp -f "$WEBHOOK_SRC" "$WEBHOOK_DST"
+        echo "    webhook installed at public/asef-deploy-webhook.php (default token — CHANGE IT)"
+    fi
 fi
 
 # ---------- 6) Inject storefront CSS into Bagisto core_config ----------
