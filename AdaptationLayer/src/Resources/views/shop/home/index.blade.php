@@ -101,8 +101,10 @@
                 <div class="asef-bento">
                     <a class="asef-tile asef-tile--feature" href="{{ $catalogUrl }}">
                         <div class="asef-tile-copy">
+                            <span class="asef-eyebrow">Öne Çıkan</span>
                             <h3>Delici Ekipmanlar</h3>
-                            <p>Zorlu zeminler için üstün performans.</p>
+                            <p>Zorlu zeminler için mikron hassasiyetle üretilen elmas uçlar ve kesim başlıkları.</p>
+                            <span class="asef-link asef-link-arrow asef-link-blue">Koleksiyonu Gör<span aria-hidden="true">›</span></span>
                         </div>
                         <div class="asef-tile-media" aria-hidden="true">
                             <img src="{{ url('asef/asef-cat-delici.jpg') }}" alt=""
@@ -111,19 +113,29 @@
                     </a>
 
                     <a class="asef-tile asef-tile--stack" href="{{ $catalogUrl }}">
-                        <span class="asef-tile-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M8 5h8"/><path d="M8 19h8"/><path d="M9 8h6"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
-                        </span>
-                        <h3>Tij ve Borular</h3>
-                        <span class="asef-link asef-link-arrow asef-link-blue">İncele<span aria-hidden="true">›</span></span>
+                        <div class="asef-tile-copy">
+                            <span class="asef-eyebrow">Sondaj Sistemleri</span>
+                            <h3>Tij ve Borular</h3>
+                            <p>Yüksek mukavemetli çelik.</p>
+                            <span class="asef-link asef-link-arrow asef-link-blue">İncele<span aria-hidden="true">›</span></span>
+                        </div>
+                        <div class="asef-tile-media asef-tile-media--stack" aria-hidden="true">
+                            <img src="{{ url('asef/drill-rods.jpg') }}" alt=""
+                                 width="800" height="600" loading="lazy" decoding="async" />
+                        </div>
                     </a>
 
                     <a class="asef-tile asef-tile--stack" href="{{ $catalogUrl }}">
-                        <span class="asef-tile-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6"/><path d="M12 2v3"/><path d="M12 19v3"/><path d="M2 12h3"/><path d="M19 12h3"/><path d="M5 5l2 2"/><path d="M17 17l2 2"/><path d="M5 19l2-2"/><path d="M17 7l2-2"/></svg>
-                        </span>
-                        <h3>Pompa Sistemleri</h3>
-                        <span class="asef-link asef-link-arrow asef-link-blue">İncele<span aria-hidden="true">›</span></span>
+                        <div class="asef-tile-copy">
+                            <span class="asef-eyebrow">Hidrolik</span>
+                            <h3>Pompa Sistemleri</h3>
+                            <p>Kesintisiz akış, yüksek basınç.</p>
+                            <span class="asef-link asef-link-arrow asef-link-blue">İncele<span aria-hidden="true">›</span></span>
+                        </div>
+                        <div class="asef-tile-media asef-tile-media--stack" aria-hidden="true">
+                            <img src="{{ url('asef/mud-pump.jpg') }}" alt=""
+                                 width="800" height="600" loading="lazy" decoding="async" />
+                        </div>
                     </a>
 
                     <a class="asef-tile asef-tile--wide asef-tile--dark" id="yedek-parca" href="{{ $waLink }}" target="_blank" rel="noopener">

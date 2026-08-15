@@ -183,7 +183,10 @@
     // 5) Boot on DOMContentLoaded
     // -------------------------------------------------------------
     function boot() {
-        injectBottomNav();
+        // Bottom pill nav removed from web (mobile + desktop) per CEO request 2026-08-15.
+        // If a stale bottom nav is already in the DOM (e.g. from cached JS), strip it.
+        const stale = document.getElementById('asef-bottom-nav');
+        if (stale && stale.parentNode) stale.parentNode.removeChild(stale);
         updateQuoteBadge();
         replaceAddToCart();
 

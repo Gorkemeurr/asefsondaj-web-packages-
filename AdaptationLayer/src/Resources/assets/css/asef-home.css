@@ -298,10 +298,22 @@
   overflow: hidden;
   padding: 32px;
   color: var(--asef-ink);
-  transition: transform 0.4s var(--asef-ease), box-shadow 0.4s var(--asef-ease);
-  min-height: 260px;
+  transition: transform 0.4s var(--asef-ease), box-shadow 0.4s var(--asef-ease), background-color 0.4s var(--asef-ease);
+  min-height: 300px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
-.asef-tile:hover { transform: translateY(-2px); box-shadow: 0 20px 40px -24px rgba(0,0,0,0.18); }
+.asef-tile:hover { transform: translateY(-2px); box-shadow: 0 24px 48px -28px rgba(0,0,0,0.22), inset 0 0 0 1px rgba(0,0,0,0.06); }
+
+.asef-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--asef-blue);
+  margin-bottom: 12px;
+}
+.asef-tile--dark .asef-eyebrow { color: rgba(255,255,255,0.7); }
 .asef-home .asef-tile h3 {
   margin: 0 0 8px;
   font-size: 24px;
@@ -334,25 +346,37 @@
   .asef-tile--feature h3 { font-size: 32px; }
 }
 
-/* Stack (small square) tiles */
+/* Stack (small) tiles — hero photo on the right, copy on the left */
 .asef-tile--stack {
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 32px 28px;
+  padding: 32px;
+  min-height: 260px;
+  overflow: hidden;
 }
-.asef-tile--stack .asef-tile-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px; height: 44px;
-  border-radius: 12px;
-  background: #fff;
-  color: var(--asef-blue);
-  box-shadow: inset 0 0 0 1px var(--asef-line);
+.asef-tile--stack .asef-tile-copy { max-width: 100%; z-index: 2; }
+.asef-tile--stack .asef-tile-copy h3 { font-size: 22px; margin: 0 0 6px; }
+.asef-tile--stack .asef-tile-copy p  { margin: 0 0 16px; font-size: 14px; }
+
+.asef-tile-media--stack {
+  position: absolute;
+  right: -40px;
+  bottom: -30px;
+  width: 55%;
+  height: 65%;
+  inset: auto -40px -30px auto;
+  z-index: 1;
+  pointer-events: none;
 }
-.asef-tile--stack .asef-tile-icon svg { width: 22px; height: 22px; }
-.asef-tile--stack h3 { margin: 0; font-size: 22px; }
+.asef-tile-media--stack img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right bottom;
+  transition: transform 0.7s var(--asef-ease);
+}
+.asef-tile:hover .asef-tile-media--stack img { transform: scale(1.06); }
+@media (min-width: 768px) {
+  .asef-tile--stack { min-height: 0; }
+}
 
 /* Wide dark bar for spare parts */
 .asef-tile--wide {
@@ -360,8 +384,10 @@
   min-height: 240px;
   overflow: hidden;
 }
-.asef-tile--dark { background: var(--asef-dark); color: #f5f5f7; }
+.asef-tile--dark { background: var(--asef-dark); color: #f5f5f7; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06); }
 .asef-tile--dark p { color: rgba(245, 245, 247, 0.72); }
+.asef-home .asef-tile--dark h3 { color: #ffffff !important; }
+.asef-home .asef-tile--dark p  { color: rgba(245, 245, 247, 0.72) !important; }
 
 @media (min-width: 768px) {
   .asef-tile--wide {
