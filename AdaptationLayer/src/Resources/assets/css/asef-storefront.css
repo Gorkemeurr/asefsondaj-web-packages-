@@ -144,22 +144,134 @@ footer a[href*="/wishlist"] {
     --asef-ink: #1D1D1F;
 }
 
-/* --- WhatsApp floating button (opsiyonel, sağ alt) ---------- */
-body::after {
-    content: "";
+/* --- Bottom pill nav (JS-injected #asef-bottom-nav) ------- */
+#asef-bottom-nav {
     position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 56px;
-    height: 56px;
-    background: #25D366 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20.52 3.449C12.831-3.984.106 1.407.101 11.893c0 1.677.44 3.313 1.279 4.755L.02 22.999l6.483-1.703c6.335 3.421 14.482-1.117 14.485-8.552 0-3.144-1.226-6.104-3.463-8.339zM11.895 22.079c-3.75 0-6.55-1.939-8.001-3.007l-.559-.331-3.847 1.011 1.025-3.753-.336-.599c-.997-1.591-1.518-3.42-1.522-5.293C-.353 1.786 12.618-3.535 20.514 4.35c2.113 2.128 3.283 4.951 3.282 7.939 0 5.464-4.442 9.79-11.901 9.79zm5.421-7.403c-.299-.15-1.767-.87-2.04-.969-.273-.099-.472-.148-.671.15-.199.297-.769.968-.943 1.167-.173.198-.347.223-.646.074-.297-.149-1.258-.462-2.396-1.478-.886-.79-1.485-1.767-1.658-2.064-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.671-1.617-.919-2.213-.242-.579-.487-.501-.671-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z'/%3E%3C/svg%3E") no-repeat center / 32px 32px;
-    border-radius: 50%;
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-    cursor: pointer;
-    z-index: 9999;
-    transition: transform 0.15s ease-out;
-    pointer-events: auto;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    z-index: 9998;
+    padding: 0;
 }
-body::after:hover {
-    transform: scale(1.08);
+#asef-bottom-nav .asef-nav-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid #D2D2D7;
+    border-radius: 999px;
+    padding: 8px 12px;
+    box-shadow: 0 8px 32px -12px rgba(0, 0, 0, 0.18);
+}
+#asef-bottom-nav .asef-nav-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 14px;
+    min-width: 48px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    color: #86868B;
+    text-decoration: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s ease-out, color 0.15s ease-out;
+}
+#asef-bottom-nav .asef-nav-item:hover {
+    color: #1D1D1F;
+    background: rgba(0, 113, 227, 0.06);
+}
+#asef-bottom-nav .asef-nav-item.active {
+    color: #FFFFFF;
+    background: #0071E3;
+}
+#asef-bottom-nav .asef-nav-item.active svg {
+    stroke: #FFFFFF;
+}
+#asef-bottom-nav .asef-nav-item svg {
+    stroke: currentColor;
+    flex-shrink: 0;
+}
+#asef-bottom-nav .asef-nav-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: #DC2626;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+/* Push page content up so bottom nav doesn't overlap */
+body {
+    padding-bottom: 96px !important;
+}
+
+/* --- Teklif Listesine Ekle button (JS-inserted) ------------ */
+.asef-teklif-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    background: #0071E3;
+    color: #FFFFFF;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s ease-out, transform 0.15s ease-out;
+    box-shadow: 0 4px 14px -4px rgba(0, 113, 227, 0.5);
+    width: 100%;
+    max-width: 320px;
+}
+.asef-teklif-btn:hover {
+    background: #005BB5;
+    transform: translateY(-1px);
+}
+
+/* --- Toast notification ------------------------------------ */
+#asef-toast {
+    position: fixed;
+    bottom: 110px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #1D1D1F;
+    color: #FFFFFF;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    pointer-events: none;
+    box-shadow: 0 6px 20px -6px rgba(0, 0, 0, 0.3);
+}
+#asef-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* --- Inter font (system fallback) --------------------------- */
+body, button, input, select, textarea {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Display", "Segoe UI", Arial, sans-serif !important;
 }

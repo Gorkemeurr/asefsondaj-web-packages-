@@ -122,16 +122,19 @@ if [ -f "$WEBHOOK_SRC" ]; then
     fi
 fi
 
-# ---------- 6) Inject storefront CSS into Bagisto core_config ----------
-echo "==> 6/7 Injecting storefront CSS via core_config"
+# ---------- 6) Inject storefront CSS + JS into Bagisto core_config ----------
+echo "==> 6/7 Injecting storefront CSS + JS via core_config"
 CSS_FILE="$PKG_ASSETS/css/asef-storefront.css"
-if [ -f "$CSS_FILE" ]; then
-    $PHP_BIN "$BAGISTO_ROOT/artisan" tinker --execute "
+JS_FILE="$PKG_ASSETS/js/asef-storefront.js"
+
+$PHP_BIN "$BAGISTO_ROOT/artisan" tinker --execute "
+    \$now = now();
+
+    // CSS injection
+    if (file_exists('$CSS_FILE')) {
         \$css = file_get_contents('$CSS_FILE');
-        \$now = now();
-        // General storefront custom CSS (global, all channels/locales)
-        \$exists = DB::table('core_config')->where('code', 'general.content.custom_scripts.custom_css')->first();
-        if (\$exists) {
+        \$existsCss = DB::table('core_config')->where('code', 'general.content.custom_scripts.custom_css')->first();
+        if (\$existsCss) {
             DB::table('core_config')->where('code', 'general.content.custom_scripts.custom_css')->update(['value' => \$css, 'updated_at' => \$now]);
         } else {
             DB::table('core_config')->insert([
@@ -143,9 +146,28 @@ if [ -f "$CSS_FILE" ]; then
                 'updated_at' => \$now,
             ]);
         }
-        echo 'Custom CSS injected (' . strlen(\$css) . ' bytes)';
-    " 2>&1 || echo "    (config injection skipped - manual admin fallback OK)"
-fi
+        echo 'CSS injected (' . strlen(\$css) . ' bytes)' . PHP_EOL;
+    }
+
+    // JS injection
+    if (file_exists('$JS_FILE')) {
+        \$js = file_get_contents('$JS_FILE');
+        \$existsJs = DB::table('core_config')->where('code', 'general.content.custom_scripts.custom_javascript')->first();
+        if (\$existsJs) {
+            DB::table('core_config')->where('code', 'general.content.custom_scripts.custom_javascript')->update(['value' => \$js, 'updated_at' => \$now]);
+        } else {
+            DB::table('core_config')->insert([
+                'code' => 'general.content.custom_scripts.custom_javascript',
+                'value' => \$js,
+                'channel_code' => null,
+                'locale_code' => null,
+                'created_at' => \$now,
+                'updated_at' => \$now,
+            ]);
+        }
+        echo 'JS injected (' . strlen(\$js) . ' bytes)' . PHP_EOL;
+    }
+" 2>&1 || echo "    (config injection skipped)"
 
 # ---------- 7) Config cache ----------
 echo "==> 7/7 Config cache"
