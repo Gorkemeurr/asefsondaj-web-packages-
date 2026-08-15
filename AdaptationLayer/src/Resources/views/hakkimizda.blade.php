@@ -337,11 +337,8 @@
         .ab-tl-content, .ab-tl-item.l .ab-tl-content, .ab-tl-item.r .ab-tl-content { grid-column: 2; }
     }
 
-    /* Reveal — safe (default visible; opts into hidden only if JS ready + no reduced motion) */
-    .ab-reveal { transition: opacity .7s ease, transform .7s cubic-bezier(0.16, 1, 0.3, 1); }
-    @media (prefers-reduced-motion: no-preference) {
-        html.js-ready .ab-reveal:not(.visible) { opacity: 0; transform: translateY(18px); }
-    }
+    /* Reveal — content is ALWAYS visible; no opacity trick. Guaranteed to render even without JS. */
+    .ab-reveal { }
 </style>
 @endpush
 
