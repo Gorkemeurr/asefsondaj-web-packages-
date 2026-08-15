@@ -1,24 +1,19 @@
 {{-- ============================================================
-     Asef Sondaj — Custom Homepage (Adaptation Layer override)
-     Design source: Stitch v3 "asef sondaj" — apple-quality light
-     (fixed glass nav, centred hero, bento categories with a
-     full-width dark spare-parts bar, macro gallery, feature list).
-     Overrides shop::home.index via prependNamespace — Bagisto
-     core untouched.
+     Asef Sondaj — Ana Sayfa (Adaptation Layer override)
+     Design v5: Apple-esque minimalist, kompakt kategoriler, marka
+     tanıtımı ağırlıklı, tarihçe timeline dahil. Bagisto core
+     untouched, inline CSS, external images from public/asef.
      ============================================================ --}}
 @php
     $channel      = core()->getCurrentChannel();
     $waLink       = 'https://wa.me/905320542975?text=' . rawurlencode('Merhaba, Asef Sondaj ürünleriniz hakkında bilgi ve teklif almak istiyorum.');
     $catalogUrl   = route('shop.search.index');
-    $instagramUrl = 'https://www.instagram.com/asefsondajj';
-
-    // Cache-buster for CSS/JS — file mtime changes on every deploy.
-    $assetVer = static fn (string $rel): string => (string) (@filemtime(public_path($rel)) ?: 1);
+    $asefUrl      = static fn (string $rel): string => url('asef/' . ltrim($rel, '/'));
 @endphp
 
 @push('meta')
-    <meta name="title" content="{{ $channel->home_seo['meta_title'] ?? 'Asef Sondaj — Endüstriyel Hassasiyet. Teknolojiyle Yeniden Tanımlandı.' }}" />
-    <meta name="description" content="{{ $channel->home_seo['meta_description'] ?? 'Türkiye’nin en gelişmiş sondaj ekipmanları. Mikron hassasiyetiyle üretilen sondaj makineleri, tijler, çamur pompaları ve orijinal yedek parçalar.' }}" />
+    <meta name="title" content="{{ $channel->home_seo['meta_title'] ?? 'Asef Sondaj — Sondaj Teknolojisinde Geleceğe Ortak' }}" />
+    <meta name="description" content="{{ $channel->home_seo['meta_description'] ?? '20 yıllık saha tecrübesiyle sondaj ekipmanları, yedek parça ve teknik çözüm ortağınız.' }}" />
     <meta name="theme-color" content="#ffffff" />
 @endpush
 
@@ -26,13 +21,399 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
-    <link rel="stylesheet" href="{{ url('asef/asef-home.css') }}?v={{ $assetVer('asef/asef-home.css') }}" />
-@endpush
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+            background: #FFFFFF;
+            color: #1a1c1d;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            line-height: 1.5;
+        }
+        img { max-width: 100%; display: block; }
 
-{{-- Layout's @stack('scripts') is evaluated when the component tag
-     closes, so a push placed after it never reaches the page. --}}
-@push('scripts')
-    <script src="{{ url('asef/asef-home.js') }}?v={{ $assetVer('asef/asef-home.js') }}" defer></script>
+        .asef-root a { color: inherit; text-decoration: none; }
+        .asef-root button { font-family: inherit; cursor: pointer; border: 0; background: none; }
+
+        :root {
+            --primary: #000000;
+            --on-surface: #1a1c1d;
+            --secondary: #5f5e60;
+            --gray-secondary: #86868B;
+            --outline: #D2D2D7;
+            --surface-alt: #F5F5F7;
+            --link-blue: #0066CC;
+        }
+
+        .asef-container { max-width: 1024px; margin: 0 auto; padding: 0 20px; }
+        .asef-container-wide { max-width: 1440px; margin: 0 auto; padding: 0 20px; }
+        @media (min-width: 768px) { .asef-container-wide { padding: 0 32px; } }
+
+        /* NAV */
+        .asef-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255,255,255,0.82);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(210,210,215,0.5);
+        }
+        .asef-nav-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            height: 56px;
+            max-width: 1024px; margin: 0 auto; padding: 0 20px;
+        }
+        .asef-brand {
+            font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: var(--primary);
+        }
+        .asef-nav-menu { display: none; align-items: center; gap: 32px; }
+        @media (min-width: 900px) { .asef-nav-menu { display: flex; } }
+        .asef-nav-menu a {
+            font-size: 13px; color: var(--secondary); font-weight: 500;
+            transition: color .15s;
+        }
+        .asef-nav-menu a:hover { color: var(--primary); }
+        .asef-nav-actions { display: none; align-items: center; gap: 8px; }
+        @media (min-width: 900px) { .asef-nav-actions { display: flex; } }
+        .asef-nav-icon-btn {
+            width: 34px; height: 34px; display: grid; place-items: center;
+            color: var(--secondary); transition: color .15s; position: relative;
+        }
+        .asef-nav-icon-btn:hover { color: var(--primary); }
+        .asef-nav-icon-btn .asef-badge {
+            position: absolute; top: -1px; right: -3px;
+            background: var(--link-blue); color: white;
+            font-size: 9px; font-weight: 700;
+            min-width: 15px; height: 15px; padding: 0 4px; border-radius: 999px;
+            display: grid; place-items: center;
+        }
+        .asef-nav-cta {
+            background: var(--link-blue); color: white;
+            padding: 6px 14px; border-radius: 999px;
+            font-size: 12px; font-weight: 600;
+            margin-left: 8px;
+        }
+        .asef-nav-cta:hover { opacity: 0.9; }
+        .asef-nav-mobile-btn {
+            display: grid; place-items: center; width: 34px; height: 34px; color: var(--primary);
+        }
+        @media (min-width: 900px) { .asef-nav-mobile-btn { display: none; } }
+
+        .asef-main { padding-top: 56px; }
+
+        .asef-label-caps {
+            font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--gray-secondary);
+        }
+
+        /* HERO */
+        .asef-hero {
+            max-width: 1024px; margin: 0 auto;
+            padding: 88px 20px 64px;
+            text-align: center;
+        }
+        @media (min-width: 768px) { .asef-hero { padding: 120px 20px 96px; } }
+        .asef-hero h1 {
+            font-size: clamp(36px, 5.8vw, 56px);
+            font-weight: 600; letter-spacing: -0.02em; line-height: 1.08;
+            color: var(--primary); margin: 24px auto;
+            max-width: 780px;
+        }
+        .asef-hero p {
+            font-size: clamp(17px, 1.8vw, 21px);
+            color: var(--gray-secondary);
+            max-width: 620px; margin: 0 auto 32px;
+            line-height: 1.5;
+        }
+        .asef-hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+        .asef-cta-pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 11px 22px; border-radius: 999px;
+            font-size: 15px; font-weight: 500;
+            transition: opacity .15s;
+        }
+        .asef-cta-pill.primary { background: var(--link-blue); color: white; }
+        .asef-cta-pill.primary:hover { opacity: 0.9; }
+        .asef-cta-pill.ghost { color: var(--link-blue); }
+        .asef-cta-pill.ghost:hover { opacity: 0.7; }
+        .asef-cta-pill.white-bg { background: white; color: var(--primary); }
+        .asef-cta-pill.white-bg:hover { opacity: 0.9; }
+        .asef-cta-arrow { font-weight: 400; margin-left: 2px; transition: transform .2s; display: inline-block; }
+        .asef-cta-pill:hover .asef-cta-arrow { transform: translateX(2px); }
+
+        /* HERO IMAGE */
+        .asef-hero-image-wrap {
+            max-width: 1440px; margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+        @media (min-width: 768px) {
+            .asef-hero-image-wrap { padding: 0 32px; margin-bottom: 120px; }
+        }
+        .asef-hero-image {
+            width: 100%;
+            height: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #14161a;
+        }
+        @media (min-width: 768px) { .asef-hero-image { height: 560px; } }
+        .asef-hero-image img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* SECTION SPACING */
+        .asef-section { max-width: 1024px; margin: 0 auto 80px; padding: 0 20px; }
+        @media (min-width: 768px) { .asef-section { margin-bottom: 120px; } }
+        .asef-section-wide { max-width: 1440px; margin: 0 auto 80px; padding: 0 20px; }
+        @media (min-width: 768px) { .asef-section-wide { margin-bottom: 120px; padding: 0 32px; } }
+
+        .asef-section-head {
+            display: flex; align-items: flex-end; justify-content: space-between;
+            margin-bottom: 32px;
+        }
+        .asef-section-head-left { display: flex; flex-direction: column; gap: 6px; }
+        .asef-section-head h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 600; letter-spacing: -0.01em; line-height: 1.1;
+            color: var(--primary);
+        }
+        .asef-section-head-center {
+            text-align: center; margin-bottom: 40px;
+        }
+        .asef-section-head-center .asef-label-caps { margin-bottom: 8px; }
+        .asef-section-head-center h2 { margin: 0 auto; max-width: 700px; }
+        .asef-section-link {
+            color: var(--link-blue); font-size: 14px; font-weight: 500;
+            display: none; align-items: center; gap: 4px;
+        }
+        @media (min-width: 768px) { .asef-section-link { display: inline-flex; } }
+        .asef-section-link:hover { opacity: 0.7; }
+
+        /* CATEGORY GRID (kompakt) */
+        .asef-cat-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+        }
+        @media (min-width: 768px) { .asef-cat-grid { grid-template-columns: repeat(4, 1fr); } }
+        .asef-cat-card {
+            background: var(--surface-alt); border-radius: 20px; overflow: hidden;
+            transition: transform .25s ease, background .2s;
+            display: flex; flex-direction: column;
+        }
+        .asef-cat-card:hover { transform: translateY(-2px); background: #EEEEF0; }
+        .asef-cat-media {
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background: #14161a;
+        }
+        .asef-cat-media img { width: 100%; height: 100%; object-fit: cover; }
+        .asef-cat-body {
+            padding: 14px 16px 16px;
+        }
+        .asef-cat-title { font-size: 15px; font-weight: 600; color: var(--primary); }
+        .asef-cat-meta { font-size: 12px; color: var(--gray-secondary); margin-top: 2px; }
+
+        /* PRODUCT BENTO */
+        .asef-prod-grid {
+            display: grid; grid-template-columns: 1fr; gap: 16px;
+        }
+        @media (min-width: 768px) { .asef-prod-grid { grid-template-columns: 1fr 1fr; } }
+        .asef-prod-card {
+            background: var(--surface-alt); border-radius: 20px; overflow: hidden;
+            display: flex; flex-direction: column;
+            transition: transform .25s ease, background .2s;
+        }
+        .asef-prod-card:hover { transform: translateY(-2px); background: #EEEEF0; }
+        .asef-prod-media {
+            aspect-ratio: 16/10;
+            background: #14161a;
+            overflow: hidden;
+        }
+        .asef-prod-media img { width: 100%; height: 100%; object-fit: cover; }
+        .asef-prod-body { padding: 24px; }
+        .asef-prod-sku {
+            font-family: "SF Mono", ui-monospace, Menlo, monospace;
+            font-size: 11px; letter-spacing: 0.1em;
+            color: var(--gray-secondary); margin-bottom: 6px;
+        }
+        .asef-prod-title {
+            font-size: 22px; font-weight: 600; letter-spacing: -0.005em;
+            color: var(--primary); margin-bottom: 8px;
+        }
+        .asef-prod-desc {
+            font-size: 15px; color: var(--secondary);
+            line-height: 1.5; margin-bottom: 16px;
+        }
+        .asef-prod-link {
+            color: var(--link-blue); font-size: 14px; font-weight: 500;
+        }
+
+        /* MARKA TANITIMI */
+        .asef-brand-block { text-align: center; }
+        .asef-brand-block h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 600; letter-spacing: -0.02em; line-height: 1.1;
+            color: var(--primary); max-width: 720px; margin: 20px auto 20px;
+        }
+        .asef-brand-block p {
+            font-size: clamp(17px, 1.6vw, 19px);
+            color: var(--gray-secondary); max-width: 620px; margin: 0 auto 24px;
+            line-height: 1.55;
+        }
+
+        /* HIZMETLER */
+        .asef-services-grid {
+            display: grid; grid-template-columns: 1fr; gap: 16px;
+        }
+        @media (min-width: 768px) { .asef-services-grid { grid-template-columns: repeat(3, 1fr); } }
+        .asef-service-card {
+            background: var(--surface-alt); border-radius: 20px; padding: 32px;
+        }
+        .asef-service-icon {
+            width: 40px; height: 40px; color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .asef-service-title {
+            font-size: 22px; font-weight: 600; color: var(--primary);
+            margin-bottom: 10px; letter-spacing: -0.005em;
+        }
+        .asef-service-desc {
+            font-size: 15px; color: var(--secondary); line-height: 1.55;
+        }
+
+        /* MAKINE VITRIN */
+        .asef-machine-showcase {
+            position: relative; border-radius: 20px; overflow: hidden;
+            height: 420px;
+        }
+        @media (min-width: 768px) { .asef-machine-showcase { height: 560px; } }
+        .asef-machine-showcase-bg {
+            position: absolute; inset: 0;
+            background-size: cover; background-position: center;
+        }
+        .asef-machine-showcase::after {
+            content: "";
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+        }
+        .asef-machine-content {
+            position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+            padding: 32px;
+            color: white;
+        }
+        @media (min-width: 768px) { .asef-machine-content { padding: 56px; } }
+        .asef-machine-content .asef-label-caps { color: rgba(255,255,255,0.7); margin-bottom: 12px; }
+        .asef-machine-content h2 {
+            font-size: clamp(32px, 4.5vw, 48px);
+            font-weight: 600; letter-spacing: -0.02em; line-height: 1.1;
+            color: white; margin-bottom: 16px; max-width: 600px;
+        }
+        .asef-machine-content p {
+            font-size: clamp(15px, 1.6vw, 19px);
+            color: rgba(255,255,255,0.85);
+            max-width: 500px; margin-bottom: 24px;
+            line-height: 1.55;
+        }
+
+        /* TIMELINE */
+        .asef-timeline-wrap { max-width: 720px; margin: 0 auto; padding: 20px 0; position: relative; }
+        .asef-timeline-wrap::before {
+            content: "";
+            position: absolute; top: 20px; bottom: 20px;
+            left: 50%; transform: translateX(-50%);
+            width: 2px; background: #E5E5EA;
+        }
+        @media (max-width: 767px) {
+            .asef-timeline-wrap::before { left: 12px; transform: none; }
+        }
+        .asef-timeline-item {
+            position: relative;
+            display: grid; grid-template-columns: 1fr 40px 1fr;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+        .asef-timeline-item:last-child { margin-bottom: 0; }
+        .asef-timeline-dot {
+            position: relative; z-index: 2;
+            width: 12px; height: 12px; border-radius: 999px; background: var(--primary);
+            justify-self: center;
+            box-shadow: 0 0 0 4px white;
+        }
+        .asef-timeline-content {
+            background: var(--surface-alt); border-radius: 16px; padding: 20px 24px;
+        }
+        .asef-timeline-year {
+            font-size: 24px; font-weight: 600; color: var(--primary); margin-bottom: 4px;
+            letter-spacing: -0.01em;
+        }
+        .asef-timeline-text {
+            font-size: 15px; color: var(--secondary); line-height: 1.5;
+        }
+        .asef-timeline-item.left .asef-timeline-content { grid-column: 1; }
+        .asef-timeline-item.right .asef-timeline-content { grid-column: 3; }
+        @media (max-width: 767px) {
+            .asef-timeline-item { grid-template-columns: 40px 1fr; }
+            .asef-timeline-dot { grid-column: 1; }
+            .asef-timeline-content,
+            .asef-timeline-item.left .asef-timeline-content,
+            .asef-timeline-item.right .asef-timeline-content {
+                grid-column: 2;
+            }
+        }
+
+        /* CTA BAND */
+        .asef-cta-band {
+            background: var(--surface-alt); border-radius: 20px;
+            padding: 48px 32px; text-align: center;
+        }
+        @media (min-width: 768px) { .asef-cta-band { padding: 64px 48px; } }
+        .asef-cta-band .asef-label-caps { margin-bottom: 16px; }
+        .asef-cta-band h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 600; letter-spacing: -0.02em;
+            color: var(--primary); margin-bottom: 12px; max-width: 640px;
+            margin-left: auto; margin-right: auto;
+        }
+        .asef-cta-band p {
+            font-size: 15px; color: var(--gray-secondary);
+            max-width: 500px; margin: 0 auto 24px; line-height: 1.55;
+        }
+        .asef-cta-band-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+        /* FOOTER */
+        .asef-footer {
+            border-top: 1px solid rgba(210,210,215,0.5);
+            padding: 60px 0 24px;
+        }
+        .asef-footer-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px 24px;
+            margin-bottom: 40px;
+        }
+        @media (min-width: 768px) {
+            .asef-footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; }
+        }
+        .asef-footer-brand { grid-column: 1 / -1; }
+        @media (min-width: 768px) { .asef-footer-brand { grid-column: auto; max-width: 300px; } }
+        .asef-footer-brand .asef-brand { display: block; margin-bottom: 12px; }
+        .asef-footer-brand p { font-size: 13px; color: var(--gray-secondary); line-height: 1.55; }
+        .asef-footer-col h4 {
+            font-size: 11px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--gray-secondary); margin-bottom: 16px;
+        }
+        .asef-footer-col ul { list-style: none; }
+        .asef-footer-col li { margin-bottom: 12px; font-size: 13px; color: var(--secondary); line-height: 1.55; }
+        .asef-footer-col a { font-size: 13px; color: var(--secondary); }
+        .asef-footer-col a:hover { color: var(--primary); }
+        .asef-footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid rgba(210,210,215,0.5);
+            display: flex; flex-direction: column; gap: 12px;
+            justify-content: space-between; align-items: center;
+            font-size: 12px; color: var(--gray-secondary);
+        }
+        @media (min-width: 768px) { .asef-footer-bottom { flex-direction: row; } }
+        .asef-footer-legal { display: flex; gap: 20px; }
+        .asef-footer-legal a:hover { color: var(--primary); }
+    </style>
 @endpush
 
 <x-shop::layouts
@@ -41,269 +422,291 @@
     :has-footer="false"
 >
     <x-slot:title>
-        {{ $channel->home_seo['meta_title'] ?? 'asef sondaj — Endüstriyel Hassasiyet. Teknolojiyle Yeniden Tanımlandı.' }}
+        {{ $channel->home_seo['meta_title'] ?? 'Asef Sondaj — Sondaj Teknolojisinde Geleceğe Ortak' }}
     </x-slot>
 
-    <div class="asef-home">
-        {{-- ================= TOP NAV ================= --}}
+    <div class="asef-root">
+
+        {{-- ============= NAV ============= --}}
         <nav class="asef-nav" aria-label="Ana gezinme">
             <div class="asef-nav-inner">
-                <a href="{{ route('shop.home.index') }}" class="asef-brand" aria-label="asef sondaj ana sayfa">
-                    <img src="{{ url('asef/asef-mark-dark.png') }}" alt="" width="20" height="18" aria-hidden="true" />
-                    <span class="asef-brand-name">asef sondaj</span>
-                </a>
-
-                <div class="asef-nav-links" id="asef-nav-links">
+                <a href="{{ url('/') }}" class="asef-brand">Asef Sondaj</a>
+                <div class="asef-nav-menu">
                     <a href="{{ $catalogUrl }}">Ürünler</a>
+                    <a href="#">Sondaj Makinaları</a>
                     <a href="#hizmetler">Hizmetler</a>
-                    <a href="#yedek-parca">Yedek Parça</a>
-                    <a href="#destek">Destek</a>
                     <a href="#hakkimizda">Hakkımızda</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Destek</a>
                 </div>
-
                 <div class="asef-nav-actions">
-                    <a href="{{ $catalogUrl }}" class="asef-nav-icon" aria-label="Ara">
-                        <svg viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="7.2" cy="7.2" r="5.2"/><path d="m11 11 4.3 4.3"/></svg>
+                    <a href="{{ $catalogUrl }}" class="asef-nav-icon-btn" aria-label="Arama">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
                     </a>
-                    <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-nav-icon" aria-label="Teklif iste">
-                        <svg viewBox="0 0 14 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M2.4 4.2h9.2L12.5 15c.03.37-.26.7-.62.7H2.12c-.36 0-.65-.33-.62-.7L2.4 4.2Z"/>
-                            <path d="M4.6 4.2v-.8a2.4 2.4 0 0 1 4.8 0v.8"/>
-                        </svg>
-                    </a>
-                    <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-btn asef-btn-blue asef-btn-sm asef-nav-cta">İletişim</a>
-                    <button type="button" class="asef-nav-icon asef-nav-burger" id="asef-nav-burger" aria-label="Menü" aria-expanded="false" aria-controls="asef-nav-links">
-                        <svg class="asef-ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
-                        <svg class="asef-ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
-                    </button>
+                    <a href="{{ $waLink }}" class="asef-nav-cta" target="_blank" rel="noopener">İletişim</a>
                 </div>
+                <button class="asef-nav-mobile-btn" aria-label="Menü">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+                </button>
             </div>
         </nav>
 
         <main class="asef-main">
 
-            {{-- ================= HERO ================= --}}
-            <section class="asef-hero" aria-labelledby="hero-heading">
-                <div class="asef-hero-bg" aria-hidden="true">
-                    <img class="asef-hero-slide" src="{{ url('asef/asef-rig-2.jpg') }}" alt="" loading="eager" decoding="async" fetchpriority="high" />
-                    <img class="asef-hero-slide" src="{{ url('asef/asef-rig-3.jpg') }}" alt="" loading="eager" decoding="async" />
-                    <img class="asef-hero-slide" src="{{ url('asef/asef-rig-4.jpg') }}" alt="" loading="lazy" decoding="async" />
-                    <img class="asef-hero-slide" src="{{ url('asef/asef-rig-1.jpg') }}" alt="" loading="lazy" decoding="async" />
-                </div>
-                <div class="asef-hero-copy">
-                    <h1 id="hero-heading">Sondaj Teknolojisinde Geleceğe Ortak.</h1>
-                    <p>Yirmi yılı aşkın saha tecrübemizle Türkiye’nin en zorlu projelerinde güvenle çalışan sondaj ekipmanlarını sizinle buluşturuyoruz.</p>
-                    <div class="asef-hero-actions">
-                        <a href="{{ $catalogUrl }}" class="asef-btn asef-btn-blue">Ürünleri Keşfet</a>
-                        <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-link asef-link-arrow">Daha Fazla Bilgi<span aria-hidden="true">›</span></a>
-                    </div>
+            {{-- HERO --}}
+            <section class="asef-hero">
+                <div class="asef-label-caps">SAHAYA HAZIR EKİPMAN · 20 YILLIK TECRÜBE</div>
+                <h1>Sondaj Teknolojisinde<br>Geleceğe Ortak.</h1>
+                <p>Yirmi yılı aşkın saha tecrübemizle Türkiye'nin en zorlu projelerinde güvenle çalışan sondaj ekipmanlarını sizinle buluşturuyoruz.</p>
+                <div class="asef-hero-ctas">
+                    <a href="{{ $catalogUrl }}" class="asef-cta-pill primary">Ürünleri Keşfet</a>
+                    <a href="#hakkimizda" class="asef-cta-pill ghost">Daha Fazla Bilgi <span class="asef-cta-arrow">›</span></a>
                 </div>
             </section>
 
-            {{-- ================= ÜRÜNLER (PREMIUM BENTO) ================= --}}
-            <section class="asef-section asef-section--tight" id="hizmetler" aria-labelledby="prod-heading">
-                <header class="asef-chips-head">
-                    <div>
-                        <span class="asef-eyebrow asef-eyebrow--dark">Öne Çıkan Portföy</span>
-                        <h2 id="prod-heading">Ürünler.</h2>
-                    </div>
-                    <a href="{{ $catalogUrl }}" class="asef-link asef-link-arrow asef-link-blue">Tüm Ürünlere Bak<span aria-hidden="true">→</span></a>
-                </header>
+            {{-- HERO IMAGE --}}
+            <div class="asef-hero-image-wrap">
+                <div class="asef-hero-image">
+                    <img src="{{ $asefUrl('asef-hero-rig.jpg') }}" alt="Asef Sondaj sahada" loading="eager" />
+                </div>
+            </div>
 
-                @php
-                    $products = [
-                        [
-                            'name'  => 'ERD Sondaj Makinesi',
-                            'eyebrow' => 'Karot · Su · Mineral',
-                            'spec'  => 'Paletli şasi · 200 m derinlik kapasitesi',
-                            'image' => 'asef/asef-rig-2.jpg',
-                            'span'  => 'feature',
-                        ],
-                        [
-                            'name'  => 'Elmas Uçlu Matkap',
-                            'eyebrow' => 'PCD Kesici',
-                            'spec'  => 'Sert kayaç formasyonları için',
-                            'image' => 'asef/asef-macro-diamond.jpg',
-                            'span'  => 'tall',
-                        ],
-                        [
-                            'name'  => 'Karot Uçları',
-                            'eyebrow' => 'HQ · NQ · BQ',
-                            'spec'  => 'Yüksek geri kazanım oranı',
-                            'image' => 'asef/asef-diamond-bit.jpg',
-                            'span'  => 'std',
-                        ],
-                        [
-                            'name'  => 'Sondaj Tijleri',
-                            'eyebrow' => 'Yüksek Mukavemet',
-                            'spec'  => 'API standartlarına uygun çelik',
-                            'image' => 'asef/drill-rods.jpg',
-                            'span'  => 'std',
-                        ],
-                        [
-                            'name'  => 'Çamur Pompası',
-                            'eyebrow' => 'Yüksek Basınç',
-                            'spec'  => 'Kesintisiz akış, endüstriyel',
-                            'image' => 'asef/mud-pump.jpg',
-                            'span'  => 'std',
-                        ],
-                        [
-                            'name'  => 'Orijinal Yedek Parça',
-                            'eyebrow' => 'Sistem Güvenliği',
-                            'spec'  => 'Sistem ömrünü uzatan orijinal parçalar',
-                            'image' => 'asef/asef-yedek-parca-bar.jpg',
-                            'span'  => 'wide',
-                        ],
-                    ];
-                @endphp
+            {{-- URUN GRUPLARI --}}
+            <section id="urunler" class="asef-section">
+                <div class="asef-section-head">
+                    <div class="asef-section-head-left">
+                        <span class="asef-label-caps">ÜRÜN GRUPLARI</span>
+                        <h2>Kataloğu keşfet.</h2>
+                    </div>
+                    <a href="{{ $catalogUrl }}" class="asef-section-link">Tümünü gör <span>›</span></a>
+                </div>
+                <div class="asef-cat-grid">
+                    <a href="{{ $catalogUrl }}" class="asef-cat-card">
+                        <div class="asef-cat-media"><img src="{{ $asefUrl('dth-hammer.jpg') }}" alt="Delici Ekipmanlar" loading="lazy" /></div>
+                        <div class="asef-cat-body">
+                            <div class="asef-cat-title">Delici Ekipmanlar</div>
+                            <div class="asef-cat-meta">3 ürün</div>
+                        </div>
+                    </a>
+                    <a href="{{ $catalogUrl }}" class="asef-cat-card">
+                        <div class="asef-cat-media"><img src="{{ $asefUrl('drill-rods.jpg') }}" alt="Tij ve Borular" loading="lazy" /></div>
+                        <div class="asef-cat-body">
+                            <div class="asef-cat-title">Tij ve Borular</div>
+                            <div class="asef-cat-meta">2 ürün</div>
+                        </div>
+                    </a>
+                    <a href="{{ $catalogUrl }}" class="asef-cat-card">
+                        <div class="asef-cat-media"><img src="{{ $asefUrl('mud-pump.jpg') }}" alt="Pompa Sistemleri" loading="lazy" /></div>
+                        <div class="asef-cat-body">
+                            <div class="asef-cat-title">Pompa Sistemleri</div>
+                            <div class="asef-cat-meta">2 ürün</div>
+                        </div>
+                    </a>
+                    <a href="{{ $catalogUrl }}" class="asef-cat-card">
+                        <div class="asef-cat-media"><img src="{{ $asefUrl('asef-diamond-bit.jpg') }}" alt="Karot Ürünleri" loading="lazy" /></div>
+                        <div class="asef-cat-body">
+                            <div class="asef-cat-title">Karot Ürünleri</div>
+                            <div class="asef-cat-meta">1 ürün</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            {{-- MARKA TANITIMI --}}
+            <section id="hakkimizda" class="asef-section asef-brand-block">
+                <div class="asef-label-caps">HAKKIMIZDA</div>
+                <h2>Yirmi yıllık saha, tek bir söz: güven.</h2>
+                <p>Bursa merkezimizden Türkiye'nin dört bir yanındaki sondaj operasyonlarına ekipman, yedek parça ve teknik danışmanlık sağlıyoruz. Her ürünün arkasında saha tecrübesi vardır.</p>
+                <a href="#" class="asef-cta-pill ghost">Firma hikayemiz <span class="asef-cta-arrow">›</span></a>
+            </section>
+
+            {{-- ONE CIKAN EKIPMANLAR --}}
+            <section class="asef-section">
+                <div class="asef-section-head">
+                    <div class="asef-section-head-left">
+                        <span class="asef-label-caps">ÖNE ÇIKAN</span>
+                        <h2>Ekipmanlar.</h2>
+                    </div>
+                    <a href="{{ $catalogUrl }}" class="asef-section-link">Tüm ürünlere bak <span>›</span></a>
+                </div>
                 <div class="asef-prod-grid">
-                    @foreach ($products as $p)
-                        <a href="{{ $catalogUrl }}" class="asef-prod asef-prod--{{ $p['span'] }}">
-                            <div class="asef-prod-media" aria-hidden="true">
-                                <img src="{{ url($p['image']) }}" alt="" loading="lazy" decoding="async" />
-                            </div>
-                            <div class="asef-prod-copy">
-                                <span class="asef-prod-eyebrow">{{ $p['eyebrow'] }}</span>
-                                <h3>{{ $p['name'] }}</h3>
-                                <p>{{ $p['spec'] }}</p>
-                                <span class="asef-prod-cta" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-                                </span>
-                            </div>
-                        </a>
-                    @endforeach
-                </div>
-            </section>
-
-            {{-- ================= 2 ÇÖZÜM KARTI ================= --}}
-            <section class="asef-section" aria-label="Çözümler">
-                <div class="asef-duo">
-                    <a class="asef-duo-card" href="{{ $catalogUrl }}">
-                        <div class="asef-duo-copy">
-                            <h3>Maden Arama Çözümleri</h3>
-                            <p>Derinlere inen güç, kusursuz analiz.</p>
-                            <span class="asef-link asef-link-arrow asef-link-blue">İnceleyin<span aria-hidden="true">›</span></span>
-                        </div>
-                        <div class="asef-duo-media" aria-hidden="true">
-                            <img src="{{ url('asef/asef-macro-diamond.jpg') }}" alt=""
-                                 width="1200" height="900" loading="lazy" decoding="async" />
+                    <a href="{{ $catalogUrl }}" class="asef-prod-card">
+                        <div class="asef-prod-media"><img src="{{ $asefUrl('dth-hammer.jpg') }}" alt="DTH Çekiç 4 İnç" loading="lazy" /></div>
+                        <div class="asef-prod-body">
+                            <div class="asef-prod-sku">AS-DTH-040</div>
+                            <div class="asef-prod-title">DTH Çekiç 4 İnç</div>
+                            <div class="asef-prod-desc">Yüksek darbe enerjili profesyonel kuyu delme çekici.</div>
+                            <span class="asef-prod-link">Detay <span>›</span></span>
                         </div>
                     </a>
-
-                    <a class="asef-duo-card" href="{{ $waLink }}" target="_blank" rel="noopener">
-                        <div class="asef-duo-copy">
-                            <h3>Su Sondajı Paketi</h3>
-                            <p>Kesintisiz akış için entegre ekipman.</p>
-                            <span class="asef-link asef-link-arrow asef-link-blue">Teklif Alın<span aria-hidden="true">›</span></span>
-                        </div>
-                        <div class="asef-duo-media" aria-hidden="true">
-                            <img src="{{ url('asef/drill-rods.jpg') }}" alt=""
-                                 width="1200" height="900" loading="lazy" decoding="async" />
+                    <a href="{{ $catalogUrl }}" class="asef-prod-card">
+                        <div class="asef-prod-media"><img src="{{ $asefUrl('drill-rods.jpg') }}" alt="Sondaj Tiji 3 Metre" loading="lazy" /></div>
+                        <div class="asef-prod-body">
+                            <div class="asef-prod-sku">AS-ROD-300</div>
+                            <div class="asef-prod-title">Sondaj Tiji 3 Metre</div>
+                            <div class="asef-prod-desc">Yüksek tork aktarımı için hassas dişli sondaj tiji.</div>
+                            <span class="asef-prod-link">Detay <span>›</span></span>
                         </div>
                     </a>
                 </div>
             </section>
 
-            @php /* Detaylarda Gizli Mükemmellik makro galerisi kaldırıldı — CEO 2026-08-15: site daha temiz olsun. */ @endphp
-
-            {{-- ================= PRO SEVİYE EKİPMAN (SPOTLIGHT) ================= --}}
-            <section class="asef-pro" id="destek" aria-labelledby="pro-heading">
-                <header class="asef-section-head asef-section-head--center">
-                    <h2 id="pro-heading">Pro Seviye Ekipman.</h2>
-                    <p>API standartlarına uygun, her detayı özenle seçilmiş özel alaşımlı ekipman portföyü.</p>
-                </header>
-                <figure class="asef-pro-stage" aria-hidden="true">
-                    <span class="asef-pro-label asef-pro-label--left">
-                        <span class="asef-pro-label-name">Titanyum</span>
-                        <span class="asef-pro-label-desc">Özel çelik alaşım gövde.</span>
-                    </span>
-                    <img src="{{ url('asef/asef-macro-diamond.jpg') }}" alt=""
-                         width="1200" height="900" loading="lazy" decoding="async" />
-                    <span class="asef-pro-label asef-pro-label--right">
-                        <span class="asef-pro-label-name">Elmas</span>
-                        <span class="asef-pro-label-desc">PCD kesici uçlar.</span>
-                    </span>
-                </figure>
-                <ul class="asef-pro-specs">
-                    <li>
-                        <span class="asef-pro-spec-ic" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/></svg>
-                        </span>
-                        <h3>Küresel Portföy</h3>
-                        <p>50+ ülkede kanıtlanmış endüstri standardında ekipman.</p>
-                    </li>
-                    <li>
-                        <span class="asef-pro-spec-ic" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5c0 3 2 4 2 6h6c0-2 2-3 2-6a5 5 0 0 0-5-5zM9 17h6M10 20h4"/></svg>
-                        </span>
-                        <h3>Uzman Desteği</h3>
-                        <p>Saha operasyonlarınız için 7/24 profesyonel danışmanlık.</p>
-                    </li>
-                    <li>
-                        <span class="asef-pro-spec-ic" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V8l6-4 6 4v12M4 20h16M10 20v-6h4v6"/></svg>
-                        </span>
-                        <h3>Hassas Tedarik</h3>
-                        <p>Mikron düzeyinde toleransları karşılayan özenle seçilmiş marka portföyü.</p>
-                    </li>
-                </ul>
-            </section>
-
-            {{-- ================= İNOVASYONUN TEMELİ ================= --}}
-            <section class="asef-innov" id="hakkimizda" aria-labelledby="innov-heading">
-                <figure class="asef-innov-media">
-                    <img src="{{ url('asef/asef-hero-rig.jpg') }}" alt="Asef Sondaj saha operasyonu"
-                         width="1600" height="1200" loading="lazy" decoding="async" />
-                </figure>
-                <div class="asef-innov-copy">
-                    <h2 id="innov-heading">Sahada Kanıtlanmış.</h2>
-
-                    <ul class="asef-feature-list">
-                        <li>
-                            <span class="asef-feature-ic" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-                            </span>
-                            <div>
-                                <h3>20+ Yıl Saha Tecrübesi</h3>
-                                <p>Bursa merkezli operasyonumuz, karot ve su sondajından mineral aramaya kadar Türkiye’nin dört bir yanında iki on yılı aşkın süredir sahada.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="asef-feature-ic" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
-                            </span>
-                            <div>
-                                <h3>Uluslararası Kalite Ekipman</h3>
-                                <p>Sondaj makineleri, tijler, karot sistemleri ve pompalar için özenle seçilmiş marka portföyü — her operasyonda güvenle çalışın.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="asef-feature-ic" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.66 5.66l-6.04 6.04 2.83 2.83 6.04-6.04a4 4 0 0 0 5.66-5.66l-2.24 2.24-1.83-1.83 2.24-2.24z"/></svg>
-                            </span>
-                            <div>
-                                <h3>Türkiye Geneli Yedek Parça &amp; Servis</h3>
-                                <p>Nerede sondaj yaparsanız yapın, orijinal yedek parça temini ve teknik destek WhatsApp'ın bir mesajı kadar yakın.</p>
-                            </div>
-                        </li>
-                    </ul>
+            {{-- HIZMETLER --}}
+            <section id="hizmetler" class="asef-section">
+                <div class="asef-section-head-center">
+                    <div class="asef-label-caps">HİZMETLERİMİZ</div>
+                    <h2>Ekipmandan öte, çözüm.</h2>
+                </div>
+                <div class="asef-services-grid">
+                    <div class="asef-service-card">
+                        <svg class="asef-service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>
+                        </svg>
+                        <div class="asef-service-title">Teknik Danışmanlık</div>
+                        <div class="asef-service-desc">Delik çapı, formasyon ve basınç bilgilerinize göre doğru ekipmanı birlikte seçeriz.</div>
+                    </div>
+                    <div class="asef-service-card">
+                        <svg class="asef-service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4" y="7" width="16" height="13" rx="2"/><path d="M4 11h16"/><path d="M9 3h6v4"/>
+                        </svg>
+                        <div class="asef-service-title">Proje Bazlı Tedarik</div>
+                        <div class="asef-service-desc">Sahaya özel çözüm ve zamanında teslimatla operasyonunuzu aksatmayız.</div>
+                    </div>
+                    <div class="asef-service-card">
+                        <svg class="asef-service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                        <div class="asef-service-title">Satış Sonrası Destek</div>
+                        <div class="asef-service-desc">Kurulum, servis ve yedek parça garantisi ile ekipmanlarınızı çalışır tutarız.</div>
+                    </div>
                 </div>
             </section>
+
+            {{-- SONDAJ MAKINALARIMIZ --}}
+            <section class="asef-section-wide">
+                <div class="asef-machine-showcase">
+                    <div class="asef-machine-showcase-bg" style="background-image: url('{{ $asefUrl('asef-rig-2-clean.jpg') }}');"></div>
+                    <div class="asef-machine-content">
+                        <div class="asef-label-caps">SONDAJ MAKİNALARIMIZ</div>
+                        <h2>Sahada denendi. Kanıtlandı.</h2>
+                        <p>Yerüstü, yeraltı ve su sondaj makineleri — tüm operasyon türleri için hazır çözümler.</p>
+                        <a href="#" class="asef-cta-pill white-bg">Makineleri İncele</a>
+                    </div>
+                </div>
+            </section>
+
+            {{-- TARIHCE --}}
+            <section class="asef-section">
+                <div class="asef-section-head-center">
+                    <div class="asef-label-caps">TARİHÇE</div>
+                    <h2>Yirmi yılın izleri.</h2>
+                </div>
+                <div class="asef-timeline-wrap">
+                    <div class="asef-timeline-item left">
+                        <div class="asef-timeline-content">
+                            <div class="asef-timeline-year">2005</div>
+                            <div class="asef-timeline-text">Asef Sondaj kuruldu. Bursa merkezli ilk ekipman tedarik faaliyeti başladı.</div>
+                        </div>
+                        <span class="asef-timeline-dot"></span>
+                        <div></div>
+                    </div>
+                    <div class="asef-timeline-item right">
+                        <div></div>
+                        <span class="asef-timeline-dot"></span>
+                        <div class="asef-timeline-content">
+                            <div class="asef-timeline-year">2010</div>
+                            <div class="asef-timeline-text">Türkiye genelinde saha operasyonları — 15 il, 60+ proje.</div>
+                        </div>
+                    </div>
+                    <div class="asef-timeline-item left">
+                        <div class="asef-timeline-content">
+                            <div class="asef-timeline-year">2016</div>
+                            <div class="asef-timeline-text">Yedek parça deposu ve teknik servis birimi kuruldu.</div>
+                        </div>
+                        <span class="asef-timeline-dot"></span>
+                        <div></div>
+                    </div>
+                    <div class="asef-timeline-item right">
+                        <div></div>
+                        <span class="asef-timeline-dot"></span>
+                        <div class="asef-timeline-content">
+                            <div class="asef-timeline-year">2022</div>
+                            <div class="asef-timeline-text">Dijital katalog ve mobil uygulama — sahaya anında erişim.</div>
+                        </div>
+                    </div>
+                    <div class="asef-timeline-item left">
+                        <div class="asef-timeline-content">
+                            <div class="asef-timeline-year">2026</div>
+                            <div class="asef-timeline-text">Yeni nesil web platformu — tüm katalog ve teknik desteğe tek noktadan erişim.</div>
+                        </div>
+                        <span class="asef-timeline-dot"></span>
+                        <div></div>
+                    </div>
+                </div>
+            </section>
+
+            {{-- ILETISIM CTA --}}
+            <section id="iletisim" class="asef-section">
+                <div class="asef-cta-band">
+                    <div class="asef-label-caps">İLETİŞİM</div>
+                    <h2>Projenizi birlikte planlayalım.</h2>
+                    <p>Delik çapı, formasyon ve bağlantı bilgilerinizi paylaşın; doğru ekipman seçimini birlikte yapalım.</p>
+                    <div class="asef-cta-band-actions">
+                        <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-cta-pill primary">WhatsApp'tan Yaz</a>
+                        <a href="tel:+905320542975" class="asef-cta-pill ghost">+90 532 054 29 75</a>
+                    </div>
+                </div>
+            </section>
+
         </main>
 
-        {{-- ================= FOOTER ================= --}}
+        {{-- FOOTER --}}
         <footer class="asef-footer">
-            <div class="asef-footer-inner">
-                <div class="asef-footer-brand">
-                    <span class="asef-footer-name">asef sondaj</span>
-                    <p>© {{ date('Y') }} asef sondaj. Tüm hakları saklıdır.</p>
+            <div class="asef-container">
+                <div class="asef-footer-grid">
+                    <div class="asef-footer-brand">
+                        <span class="asef-brand">Asef Sondaj</span>
+                        <p>20 yıllık saha tecrübesiyle sondaj ekipmanları, yedek parça ve teknik çözüm ortağınız.</p>
+                    </div>
+                    <div class="asef-footer-col">
+                        <h4>Kurumsal</h4>
+                        <ul>
+                            <li><a href="#hakkimizda">Hakkımızda</a></li>
+                            <li><a href="#">Sondaj Makinalarımız</a></li>
+                            <li><a href="#hizmetler">Hizmetlerimiz</a></li>
+                            <li><a href="#">Referanslar</a></li>
+                            <li><a href="#">SSS</a></li>
+                        </ul>
+                    </div>
+                    <div class="asef-footer-col">
+                        <h4>Katalog</h4>
+                        <ul>
+                            <li><a href="{{ $catalogUrl }}">Ürünler</a></li>
+                            <li><a href="{{ $catalogUrl }}">Delici Ekipmanlar</a></li>
+                            <li><a href="{{ $catalogUrl }}">Tij ve Borular</a></li>
+                            <li><a href="{{ $catalogUrl }}">Pompa Sistemleri</a></li>
+                            <li><a href="{{ $catalogUrl }}">Teklif Sepetim</a></li>
+                        </ul>
+                    </div>
+                    <div class="asef-footer-col">
+                        <h4>İletişim</h4>
+                        <ul>
+                            <li><a href="{{ $waLink }}" target="_blank" rel="noopener">+90 532 054 29 75</a></li>
+                            <li><a href="mailto:iletisim@asefsondaj.com">iletisim@asefsondaj.com</a></li>
+                            <li><a href="mailto:destek@asefsondaj.com">destek@asefsondaj.com</a></li>
+                            <li>Duaçınarı Mah. 1. Özgünay Sk<br>No:10, Yıldırım / Bursa</li>
+                        </ul>
+                    </div>
                 </div>
-                <nav class="asef-footer-links" aria-label="Yasal">
-                    <a href="#">Gizlilik Politikası</a>
-                    <a href="#">Kullanım Şartları</a>
-                    <a href="#">Çerez Ayarları</a>
-                    <a href="{{ $waLink }}" target="_blank" rel="noopener">İletişim</a>
-                </nav>
+                <div class="asef-footer-bottom">
+                    <div>© {{ date('Y') }} Asef Sondaj — Tüm hakları saklıdır.</div>
+                    <div class="asef-footer-legal">
+                        <a href="#">KVKK</a>
+                        <a href="#">Gizlilik</a>
+                        <a href="#">Çerez</a>
+                        <a href="#">Kullanım Şartları</a>
+                    </div>
+                </div>
             </div>
         </footer>
     </div>
