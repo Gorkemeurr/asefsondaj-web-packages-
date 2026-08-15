@@ -85,6 +85,54 @@ class AdaptationServiceProvider extends ServiceProvider
             Route::get('/hakkimizda', function () {
                 return view('asef-adaptation::hakkimizda');
             })->name('shop.asef.about');
+
+            Route::get('/sondaj-makinalarimiz', function () {
+                return view('asef-adaptation::sondaj-makinalari');
+            })->name('shop.asef.machines');
+
+            Route::get('/hizmetlerimiz', function () {
+                return view('asef-adaptation::hizmetlerimiz');
+            })->name('shop.asef.services');
+
+            Route::get('/referanslar', function () {
+                return view('asef-adaptation::referanslar');
+            })->name('shop.asef.references');
+
+            Route::get('/sss', function () {
+                return view('asef-adaptation::sss');
+            })->name('shop.asef.faq');
+
+            Route::get('/blog', function () {
+                return view('asef-adaptation::blog');
+            })->name('shop.asef.blog');
+
+            Route::get('/blog/{slug}', function (string $slug) {
+                return view('asef-adaptation::blog-detay', ['slug' => $slug]);
+            })->name('shop.asef.blog-post')->where('slug', '[a-z0-9\-]+');
+
+            Route::get('/iletisim', function () {
+                return view('asef-adaptation::iletisim');
+            })->name('shop.asef.contact');
+
+            Route::get('/destek', function () {
+                return view('asef-adaptation::destek');
+            })->name('shop.asef.support');
+
+            Route::get('/kvkk', function () {
+                return view('asef-adaptation::legal.kvkk');
+            })->name('shop.asef.kvkk');
+
+            Route::get('/gizlilik-politikasi', function () {
+                return view('asef-adaptation::legal.gizlilik');
+            })->name('shop.asef.privacy');
+
+            Route::get('/cerez-politikasi', function () {
+                return view('asef-adaptation::legal.cerez');
+            })->name('shop.asef.cookies');
+
+            Route::get('/kullanim-sartlari', function () {
+                return view('asef-adaptation::legal.kullanim-sartlari');
+            })->name('shop.asef.terms');
         });
     }
 

@@ -40,19 +40,19 @@
                         <div class="asef-mega-col asef-mega-main">
                             <h5>Kurumsalı Keşfedin</h5>
                             <a href="{{ url('hakkimizda') }}">Hakkımızda</a>
-                            <a href="#">Sondaj Makinalarımız</a>
-                            <a href="{{ url('/') }}#hizmetler">Hizmetlerimiz</a>
-                            <a href="#">Referanslar</a>
+                            <a href="{{ url('sondaj-makinalarimiz') }}">Sondaj Makinalarımız</a>
+                            <a href="{{ url('hizmetlerimiz') }}">Hizmetlerimiz</a>
+                            <a href="{{ url('referanslar') }}">Referanslar</a>
                         </div>
                         <div class="asef-mega-col asef-mega-side">
                             <h5>Hızlı Bağlantılar</h5>
-                            <a href="{{ url('/') }}#iletisim">İletişim</a>
+                            <a href="{{ url('iletisim') }}">İletişim</a>
                             <a href="{{ $waLink }}" target="_blank" rel="noopener">WhatsApp'a Yaz</a>
                         </div>
                         <div class="asef-mega-col asef-mega-side">
                             <h5>Daha Fazla</h5>
-                            <a href="#">Blog</a>
-                            <a href="#">Destek</a>
+                            <a href="{{ url('blog') }}">Blog</a>
+                            <a href="{{ url('destek') }}">Destek</a>
                             <a href="tel:+905320542975">Hemen Ara</a>
                         </div>
                     </div>
