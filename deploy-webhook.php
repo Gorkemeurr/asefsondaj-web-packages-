@@ -76,18 +76,18 @@ log_line('==> Deploy triggered from push to main');
 // -------- 5) Run deploy --------
 // HOME + COMPOSER_HOME must be set explicitly — Apache/nginx-launched PHP
 // has no HOME by default and composer fails "The HOME or COMPOSER_HOME env..."
+// PATH must include composer + php bins.
+// We run install.sh so ALL deploy steps happen (logo copy + CSS DB inject
+// + composer + cache) — not just cache clear.
 $homeDir = '/home/ase3c7ndajcom';
 
 $cmd = sprintf(
-    'export HOME=%s COMPOSER_HOME=%s/.composer PATH=%s/bin:/usr/local/bin:/usr/bin:/bin && cd %s && git pull -q 2>&1 && cd %s && %s dump-autoload -o -q --no-scripts 2>&1 && %s artisan optimize:clear 2>&1 && %s artisan config:cache 2>&1',
+    'export HOME=%s COMPOSER_HOME=%s/.composer PATH=%s/bin:/opt/alt/php83/usr/bin:/usr/local/bin:/usr/bin:/bin && cd %s && git pull -q 2>&1 && bash %s/install.sh 2>&1',
     escapeshellarg($homeDir),
     escapeshellarg($homeDir),
     escapeshellarg($homeDir),
     escapeshellarg(REPO_DIR),
-    escapeshellarg(BAGISTO_ROOT),
-    escapeshellarg(COMPOSER_BIN),
-    escapeshellarg(PHP_BIN),
-    escapeshellarg(PHP_BIN)
+    escapeshellarg(REPO_DIR)
 );
 
 exec($cmd . ' 2>&1', $output, $status);
