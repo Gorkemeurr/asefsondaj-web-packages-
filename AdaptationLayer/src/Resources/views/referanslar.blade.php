@@ -25,14 +25,29 @@
     .rf-stats { max-width: 1024px; margin: 0 auto 80px; padding: 0 20px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
     @media (min-width: 768px) { .rf-stats { grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 120px; } }
     .rf-stat {
-        background: var(--surface-alt); border-radius: 22px; padding: 32px 24px;
-        text-align: center;
-        transition: transform .28s cubic-bezier(0.16,1,0.3,1);
-        box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset, 0 4px 12px rgba(0,0,0,0.03);
+        position: relative; overflow: hidden;
+        background: var(--surface-alt); border-radius: 24px;
+        padding: 36px 26px 30px;
+        transition: transform .32s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow:
+            0 1px 0 rgba(255,255,255,0.95) inset,
+            0 -1px 0 rgba(0,0,0,0.04) inset,
+            0 4px 14px rgba(0,0,0,0.04);
     }
-    .rf-stat:hover { transform: translateY(-2px); box-shadow: 0 1px 0 rgba(255,255,255,1) inset, 0 12px 30px rgba(0,0,0,0.08); }
-    .rf-stat-n { display: block; font-size: clamp(38px, 5vw, 56px); font-weight: 700; letter-spacing: -0.03em; color: var(--primary); line-height: 1; margin-bottom: 8px; }
-    .rf-stat-l { display: block; font-size: 13px; color: var(--gray-secondary); letter-spacing: 0.02em; }
+    .rf-stat::before {
+        content: ""; position: absolute; top: 0; right: 0; width: 60%; height: 60%;
+        background: radial-gradient(circle at top right, rgba(0,102,204,0.12), transparent 60%);
+        pointer-events: none;
+    }
+    .rf-stat:hover {
+        transform: translateY(-4px);
+        box-shadow:
+            0 1px 0 rgba(255,255,255,1) inset,
+            0 -1px 0 rgba(0,0,0,0.05) inset,
+            0 16px 40px rgba(0,0,0,0.1);
+    }
+    .rf-stat-n { display: block; font-size: clamp(24px, 2.6vw, 34px); font-weight: 600; letter-spacing: -0.02em; line-height: 1; color: var(--primary); margin-bottom: 8px; }
+    .rf-stat-l { display: block; font-size: 13px; color: var(--gray-secondary); letter-spacing: 0.02em; line-height: 1.4; }
 
     .rf-placeholder {
         max-width: 1024px; margin: 0 auto 80px; padding: 40px 24px;
