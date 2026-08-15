@@ -499,7 +499,7 @@
         }
         .asef-search-btn:hover { opacity: 0.9; }
 
-        /* CATEGORY CHIPS (premium) */
+        /* CATEGORY CHIPS (premium 3D) */
         .asef-chips-row {
             max-width: 1024px; margin: 0 auto 40px;
             padding: 0 20px;
@@ -507,23 +507,54 @@
             justify-content: center;
         }
         .asef-chip {
+            position: relative;
             display: inline-flex; align-items: center; gap: 6px;
             padding: 11px 22px; border-radius: 999px;
-            font-size: 14px; font-weight: 500;
-            border: 1px solid var(--outline);
-            background: white; color: var(--on-surface);
-            transition: transform .18s ease, border-color .15s, color .15s, background .15s, box-shadow .18s;
+            font-size: 14px; font-weight: 600; letter-spacing: -0.005em;
+            border: 1px solid #E5E5EA;
+            background: #FFFFFF;
+            color: var(--on-surface);
+            transition: transform .2s cubic-bezier(0.16, 1, 0.3, 1), border-color .2s, color .2s, background .2s, box-shadow .22s;
             cursor: pointer; user-select: none;
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.9) inset,
+                0 1px 2px rgba(0,0,0,0.04),
+                0 2px 6px rgba(0,0,0,0.03);
         }
         .asef-chip:hover {
-            border-color: var(--on-surface);
+            border-color: #C6C6C8;
             transform: translateY(-1px);
+            box-shadow:
+                0 1px 0 rgba(255,255,255,1) inset,
+                0 3px 6px rgba(0,0,0,0.05),
+                0 6px 16px rgba(0,0,0,0.06);
         }
+        .asef-chip:active { transform: translateY(0); box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
         .asef-chip.active {
-            background: var(--primary); color: #FFFFFF; border-color: var(--primary);
-            box-shadow: 0 4px 14px rgba(0,0,0,0.14);
+            background: linear-gradient(180deg, #262629 0%, #000 100%);
+            color: #FFFFFF;
+            border-color: #000;
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.16) inset,
+                0 -1px 0 rgba(0,0,0,0.4) inset,
+                0 6px 16px rgba(0,0,0,0.22),
+                0 2px 4px rgba(0,0,0,0.12);
         }
-        .asef-chip.active:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
+        .asef-chip.active:hover {
+            background: linear-gradient(180deg, #313134 0%, #0a0a0c 100%);
+            transform: translateY(-1px);
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.2) inset,
+                0 -1px 0 rgba(0,0,0,0.4) inset,
+                0 8px 22px rgba(0,0,0,0.3),
+                0 3px 6px rgba(0,0,0,0.14);
+        }
+        .asef-chip.active:active {
+            transform: translateY(0);
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.12) inset,
+                0 2px 6px rgba(0,0,0,0.28);
+        }
 
         /* PRODUCT GRID (search results) */
         .asef-search-grid {
