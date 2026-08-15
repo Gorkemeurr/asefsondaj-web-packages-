@@ -15,7 +15,7 @@
             'label' => '02',
             'title' => 'Proje Bazlı Tedarik',
             'desc' => 'Küçük yedek parça siparişinden çok kalemli proje tedariğine kadar, sahaya özel çözüm ve zamanında teslimatla operasyonunuzu aksatmayız.',
-            'bullets' => ['47 il genelinde sevkiyat', 'Proje bazlı bütçe planlama', 'Tek noktadan çoklu marka tedarik', 'Şeffaf fiyat ve teslim süreleri'],
+            'bullets' => ['Türkiye geneli sevkiyat', 'Proje bazlı bütçe planlama', 'Tek noktadan çoklu marka tedarik', 'Şeffaf fiyat ve teslim süreleri'],
         ],
         [
             'label' => '03',

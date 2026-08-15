@@ -10,7 +10,7 @@
     $stats = [
         ['n' => 20,   'suf' => '+', 'l' => 'Yıl Saha Tecrübesi'],
         ['n' => 500,  'suf' => '+', 'l' => 'Tamamlanan Proje'],
-        ['n' => 47,   'suf' => '',  'l' => 'İl Hizmet Alanı'],
+        ['n' => 81,   'suf' => '',  'l' => 'İl Hizmet Kapsamı'],
         ['n' => 150,  'suf' => '+', 'l' => 'Çözüm Ortağı Firma'],
     ];
 
@@ -33,7 +33,7 @@
     $process = [
         ['n' => '01', 'title' => 'Danışma',  'desc' => 'Delik çapı, formasyon ve operasyon bilgilerinizi WhatsApp\'tan paylaşıyorsunuz.'],
         ['n' => '02', 'title' => 'Teklif',   'desc' => 'Teknik ekibimiz ihtiyaca en uygun ekipmanı fiyat ve teslim süresiyle sunuyor.'],
-        ['n' => '03', 'title' => 'Tedarik',  'desc' => 'Stoktan veya özel siparişle, 47 il genelinde hızlı sevkiyat.'],
+        ['n' => '03', 'title' => 'Tedarik',  'desc' => 'Stoktan veya özel siparişle, Türkiye geneli hızlı sevkiyat.'],
         ['n' => '04', 'title' => 'Servis',   'desc' => 'Kurulum, yedek parça ve teknik destek — ekipman çalıştığı sürece yanınızdayız.'],
     ];
 

@@ -15,7 +15,7 @@
         ],
         [
             'q' => 'Türkiye\'nin her yerine gönderim yapıyor musunuz?',
-            'a' => 'Evet. 20 yılı aşkın süredir 47 ile ekipman ve yedek parça sevkiyatı sağlıyoruz. Bulunduğunuz ile göre teslim süresi ve kargo bilgilerini teklifle birlikte paylaşıyoruz.',
+            'a' => 'Evet. 20 yılı aşkın süredir Türkiye geneline ekipman ve yedek parça sevkiyatı sağlıyoruz. Bulunduğunuz ile göre teslim süresi ve kargo bilgilerini teklifle birlikte paylaşıyoruz.',
         ],
         [
             'q' => 'Yedek parça bulabilir miyim?',

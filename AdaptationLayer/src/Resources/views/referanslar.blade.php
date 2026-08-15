@@ -6,7 +6,7 @@
 
     $stats = [
         ['n' => '500+', 'l' => 'Tamamlanan Proje'],
-        ['n' => '47',   'l' => 'İl Hizmet Alanı'],
+        ['n' => '81',   'l' => 'İl Hizmet Kapsamı'],
         ['n' => '20+',  'l' => 'Yıl Tecrübe'],
         ['n' => '150+', 'l' => 'Çözüm Ortağı Firma'],
     ];
