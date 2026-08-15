@@ -3,28 +3,16 @@
  * Injected via core_config.general.content.custom_css
  * ============================================================ */
 
-/* --- Header logo sizing (Asef mavi A, kare + yuvarlak) ------- */
+/* --- Header logo: geçici olarak GİZLE (Faz 3'te doğru yere eklenecek) --- */
 header img[alt*="Asef" i],
 header img[src*="logo"],
+header .header-logo,
 header .header-logo img,
 header a[href="/"] img:not([alt*="cart"]):not([alt*="menu"]),
-[class*="header"] img[alt*="logo" i] {
-    max-height: 44px !important;
-    width: auto !important;
-    max-width: 160px !important;
-    object-fit: contain !important;
-    border-radius: 12px !important;
-}
-
-/* --- Mobile logo (biraz daha küçük) ------------------------- */
-@media (max-width: 768px) {
-    header img[alt*="Asef" i],
-    header img[src*="logo"],
-    header .header-logo img,
-    [class*="header"] img[alt*="logo" i] {
-        max-height: 38px !important;
-        max-width: 140px !important;
-    }
+[class*="header"] img[alt*="logo" i],
+[class*="brand-logo"],
+[class*="site-logo"] {
+    display: none !important;
 }
 
 /* --- Bagisto default sample banner + demo content GİZLE ----- */
