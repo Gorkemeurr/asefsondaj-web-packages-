@@ -524,9 +524,9 @@
                                 <div class="asef-mega-col asef-mega-main">
                                     <h5>Kurumsalı Keşfedin</h5>
                                     <a href="{{ url('hakkimizda') }}">Hakkımızda</a>
-                                    <a href="#">Sondaj Makinalarımız</a>
+                                    <a href="{{ url('sondaj-makinalarimiz') }}">Sondaj Makinalarımız</a>
                                     <a href="{{ url('hizmetlerimiz') }}">Hizmetlerimiz</a>
-                                    <a href="#">Referanslar</a>
+                                    <a href="{{ url('referanslar') }}">Referanslar</a>
                                 </div>
                                 <div class="asef-mega-col asef-mega-side">
                                     <h5>Hızlı Bağlantılar</h5>
@@ -535,15 +535,15 @@
                                 </div>
                                 <div class="asef-mega-col asef-mega-side">
                                     <h5>Daha Fazla</h5>
-                                    <a href="#">Blog</a>
-                                    <a href="#">Destek</a>
+                                    <a href="{{ url('blog') }}">Blog</a>
+                                    <a href="{{ url('destek') }}">Destek</a>
                                     <a href="tel:+905320542975">Hemen Ara</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="asef-nav-item">
-                        <a href="#">Blog</a>
+                        <a href="{{ url('blog') }}">Blog</a>
                         <div class="asef-mega" role="menu" aria-label="Blog menüsü">
                             <div class="asef-mega-grid">
                                 <div class="asef-mega-col asef-mega-main">
@@ -554,31 +554,31 @@
                                 </div>
                                 <div class="asef-mega-col asef-mega-side">
                                     <h5>Fotoğraf Galerisi</h5>
-                                    <a href="#">Saha Fotoğrafları</a>
-                                    <a href="#">Ekipman Fotoğrafları</a>
-                                    <a href="#">Proje Fotoğrafları</a>
+                                    <a href="{{ url('blog/saha-fotograflari') }}">Saha Fotoğrafları</a>
+                                    <a href="{{ url('blog/ekipman-fotograflari') }}">Ekipman Fotoğrafları</a>
+                                    <a href="{{ url('blog/proje-fotograflari') }}">Proje Fotoğrafları</a>
                                 </div>
                                 <div class="asef-mega-col asef-mega-side">
                                     <h5>Video Galerisi</h5>
-                                    <a href="#">Ürün Tanıtım Videoları</a>
-                                    <a href="#">Saha Uygulamaları</a>
-                                    <a href="#">Teknik Anlatımlar</a>
+                                    <a href="{{ url('blog/urun-tanitim-videolari') }}">Ürün Tanıtım Videoları</a>
+                                    <a href="{{ url('blog/saha-uygulamalari') }}">Saha Uygulamaları</a>
+                                    <a href="{{ url('blog/teknik-anlatimlar') }}">Teknik Anlatımlar</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="asef-nav-item">
-                        <a href="#">Destek</a>
+                        <a href="{{ url('destek') }}">Destek</a>
                         <div class="asef-mega" role="menu" aria-label="Destek menüsü">
                             <div class="asef-mega-grid">
                                 <div class="asef-mega-col asef-mega-main">
                                     <h5>Destek Merkezi</h5>
                                     <a href="{{ url('iletisim') }}">İletişim</a>
-                                    <a href="#">SSS</a>
-                                    <a href="#">KVKK Aydınlatma Metni</a>
-                                    <a href="#">Gizlilik Politikası</a>
-                                    <a href="#">Çerez Politikası</a>
-                                    <a href="#">Kullanım Şartları</a>
+                                    <a href="{{ url('sss') }}">SSS</a>
+                                    <a href="{{ url('kvkk') }}">KVKK Aydınlatma Metni</a>
+                                    <a href="{{ url('gizlilik-politikasi') }}">Gizlilik Politikası</a>
+                                    <a href="{{ url('cerez-politikasi') }}">Çerez Politikası</a>
+                                    <a href="{{ url('kullanim-sartlari') }}">Kullanım Şartları</a>
                                 </div>
                                 <div class="asef-mega-col asef-mega-side">
                                     <h5>İletişim Kanalları</h5>
@@ -589,9 +589,9 @@
                                 </div>
                                 <div class="asef-mega-col asef-mega-side">
                                     <h5>Yasal Bağlantılar</h5>
-                                    <a href="#">KVKK Başvuru Formu</a>
-                                    <a href="#">Çerez Ayarları</a>
-                                    <a href="#">Veri İşleme Politikası</a>
+                                    <a href="{{ url('kvkk') }}">KVKK Aydınlatma</a>
+                                    <a href="{{ url('cerez-politikasi') }}">Çerez Ayarları</a>
+                                    <a href="{{ url('gizlilik-politikasi') }}">Veri İşleme Politikası</a>
                                 </div>
                             </div>
                         </div>
@@ -752,7 +752,7 @@
                         <div class="asef-label-caps">SONDAJ MAKİNALARIMIZ</div>
                         <h2>Sahada denendi. Kanıtlandı.</h2>
                         <p>Yerüstü, yeraltı ve su sondaj makineleri — tüm operasyon türleri için hazır çözümler.</p>
-                        <a href="#" class="asef-cta-pill white-bg">Makineleri İncele</a>
+                        <a href="{{ url('sondaj-makinalarimiz') }}" class="asef-cta-pill white-bg">Makineleri İncele</a>
                     </div>
                 </div>
             </section>
@@ -834,20 +834,20 @@
                         <h4>Kurumsal</h4>
                         <ul>
                             <li><a href="{{ url('hakkimizda') }}">Hakkımızda</a></li>
-                            <li><a href="#">Sondaj Makinalarımız</a></li>
+                            <li><a href="{{ url('sondaj-makinalarimiz') }}">Sondaj Makinalarımız</a></li>
                             <li><a href="{{ url('hizmetlerimiz') }}">Hizmetlerimiz</a></li>
-                            <li><a href="#">Referanslar</a></li>
-                            <li><a href="#">SSS</a></li>
+                            <li><a href="{{ url('referanslar') }}">Referanslar</a></li>
+                            <li><a href="{{ url('sss') }}">SSS</a></li>
                         </ul>
                     </div>
                     <div class="asef-footer-col">
                         <h4>Katalog</h4>
                         <ul>
                             <li><a href="{{ $catalogUrl }}">Ürünler</a></li>
-                            <li><a href="{{ $catalogUrl }}">Delici Ekipmanlar</a></li>
-                            <li><a href="{{ $catalogUrl }}">Tij ve Borular</a></li>
-                            <li><a href="{{ $catalogUrl }}">Pompa Sistemleri</a></li>
-                            <li><a href="{{ $catalogUrl }}">Teklif Sepetim</a></li>
+                            <li><a href="{{ $catalogUrl }}?cat=delici">Delici Ekipmanlar</a></li>
+                            <li><a href="{{ $catalogUrl }}?cat=tij">Tij ve Borular</a></li>
+                            <li><a href="{{ $catalogUrl }}?cat=pompa">Pompa Sistemleri</a></li>
+                            <li><a href="{{ url('sepet') }}">Teklif Sepetim</a></li>
                         </ul>
                     </div>
                     <div class="asef-footer-col">
@@ -863,10 +863,10 @@
                 <div class="asef-footer-bottom">
                     <div>© {{ date('Y') }} Asef Sondaj — Tüm hakları saklıdır.</div>
                     <div class="asef-footer-legal">
-                        <a href="#">KVKK</a>
-                        <a href="#">Gizlilik</a>
-                        <a href="#">Çerez</a>
-                        <a href="#">Kullanım Şartları</a>
+                        <a href="{{ url('kvkk') }}">KVKK</a>
+                        <a href="{{ url('gizlilik-politikasi') }}">Gizlilik</a>
+                        <a href="{{ url('cerez-politikasi') }}">Çerez</a>
+                        <a href="{{ url('kullanim-sartlari') }}">Kullanım Şartları</a>
                     </div>
                 </div>
             </div>

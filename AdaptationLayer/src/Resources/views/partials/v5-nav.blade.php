@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="asef-nav-item">
-                <a href="#">Blog</a>
+                <a href="{{ url('blog') }}">Blog</a>
                 <div class="asef-mega" role="menu" aria-label="Blog menüsü">
                     <div class="asef-mega-grid">
                         <div class="asef-mega-col asef-mega-main">
@@ -70,31 +70,31 @@
                         </div>
                         <div class="asef-mega-col asef-mega-side">
                             <h5>Fotoğraf Galerisi</h5>
-                            <a href="#">Saha Fotoğrafları</a>
-                            <a href="#">Ekipman Fotoğrafları</a>
-                            <a href="#">Proje Fotoğrafları</a>
+                            <a href="{{ url('blog/saha-fotograflari') }}">Saha Fotoğrafları</a>
+                            <a href="{{ url('blog/ekipman-fotograflari') }}">Ekipman Fotoğrafları</a>
+                            <a href="{{ url('blog/proje-fotograflari') }}">Proje Fotoğrafları</a>
                         </div>
                         <div class="asef-mega-col asef-mega-side">
                             <h5>Video Galerisi</h5>
-                            <a href="#">Ürün Tanıtım Videoları</a>
-                            <a href="#">Saha Uygulamaları</a>
-                            <a href="#">Teknik Anlatımlar</a>
+                            <a href="{{ url('blog/urun-tanitim-videolari') }}">Ürün Tanıtım Videoları</a>
+                            <a href="{{ url('blog/saha-uygulamalari') }}">Saha Uygulamaları</a>
+                            <a href="{{ url('blog/teknik-anlatimlar') }}">Teknik Anlatımlar</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="asef-nav-item">
-                <a href="#">Destek</a>
+                <a href="{{ url('destek') }}">Destek</a>
                 <div class="asef-mega" role="menu" aria-label="Destek menüsü">
                     <div class="asef-mega-grid">
                         <div class="asef-mega-col asef-mega-main">
                             <h5>Destek Merkezi</h5>
                             <a href="{{ url('iletisim') }}">İletişim</a>
-                            <a href="#">SSS</a>
-                            <a href="#">KVKK Aydınlatma Metni</a>
-                            <a href="#">Gizlilik Politikası</a>
-                            <a href="#">Çerez Politikası</a>
-                            <a href="#">Kullanım Şartları</a>
+                            <a href="{{ url('sss') }}">SSS</a>
+                            <a href="{{ url('kvkk') }}">KVKK Aydınlatma Metni</a>
+                            <a href="{{ url('gizlilik-politikasi') }}">Gizlilik Politikası</a>
+                            <a href="{{ url('cerez-politikasi') }}">Çerez Politikası</a>
+                            <a href="{{ url('kullanim-sartlari') }}">Kullanım Şartları</a>
                         </div>
                         <div class="asef-mega-col asef-mega-side">
                             <h5>İletişim Kanalları</h5>
@@ -105,9 +105,9 @@
                         </div>
                         <div class="asef-mega-col asef-mega-side">
                             <h5>Yasal Bağlantılar</h5>
-                            <a href="#">KVKK Başvuru Formu</a>
-                            <a href="#">Çerez Ayarları</a>
-                            <a href="#">Veri İşleme Politikası</a>
+                            <a href="{{ url('kvkk') }}">KVKK Aydınlatma</a>
+                            <a href="{{ url('cerez-politikasi') }}">Çerez Ayarları</a>
+                            <a href="{{ url('gizlilik-politikasi') }}">Veri İşleme Politikası</a>
                         </div>
                     </div>
                 </div>
