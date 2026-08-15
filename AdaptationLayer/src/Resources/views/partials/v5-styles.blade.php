@@ -931,10 +931,24 @@
         .asef-cart-item-img {
             width: 88px; height: 88px; border-radius: 14px; overflow: hidden;
             background: var(--surface-alt);
+            display: grid; place-items: center;
+            transition: transform .18s ease;
+            flex-shrink: 0;
         }
+        .asef-cart-item-img:hover { transform: scale(1.02); }
         .asef-cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+        .asef-cart-item-img-fallback {
+            width: 100%; height: 100%;
+            display: grid; place-items: center;
+            color: var(--gray-secondary);
+        }
+        .asef-cart-item-img-fallback svg { width: 34px; height: 34px; opacity: 0.6; }
         .asef-cart-item-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-        .asef-cart-item-name { font-size: 16px; font-weight: 600; color: var(--primary); line-height: 1.3; }
+        .asef-cart-item-name {
+            font-size: 16px; font-weight: 600; color: var(--primary); line-height: 1.3;
+            transition: color .15s;
+        }
+        .asef-cart-item-name:hover { color: var(--link-blue); }
         .asef-cart-item-sku {
             font-family: "SF Mono", ui-monospace, Menlo, monospace;
             font-size: 11px; letter-spacing: 0.08em; color: var(--gray-secondary);

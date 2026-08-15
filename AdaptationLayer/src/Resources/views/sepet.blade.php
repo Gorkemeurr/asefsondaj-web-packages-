@@ -115,6 +115,7 @@
     {{-- Sepet renderer — reads localStorage via AsefCart, generates rows.
          Clicks on rows are handled by AsefCart delegation (v5-cart-js). --}}
     @push('scripts')
+    <script>window.ASEF_URUN_BASE = @json(url('urun'));</script>
     <script>
     (function () {
         function esc(str) {
@@ -124,15 +125,18 @@
         }
 
         function itemHtml(it) {
-            var img = it.img
-                ? '<img src="' + esc(it.img) + '" alt="' + esc(it.name) + '">'
-                : '';
             var qty = parseInt(it.qty, 10) || 1;
+            var url = (window.ASEF_URUN_BASE || '/urun') + '/' + encodeURIComponent(it.sku);
+            var img = it.img
+                ? '<img src="' + esc(it.img) + '" alt="' + esc(it.name) + '" loading="lazy">'
+                : '<div class="asef-cart-item-img-fallback" aria-hidden="true">'
+                +   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>'
+                + '</div>';
             return ''
                 + '<div class="asef-cart-item" data-asef-cart-row data-sku="' + esc(it.sku) + '">'
-                +   '<div class="asef-cart-item-img">' + img + '</div>'
+                +   '<a href="' + url + '" class="asef-cart-item-img">' + img + '</a>'
                 +   '<div class="asef-cart-item-body">'
-                +     '<div class="asef-cart-item-name">' + esc(it.name) + '</div>'
+                +     '<a href="' + url + '" class="asef-cart-item-name">' + esc(it.name) + '</a>'
                 +     '<div class="asef-cart-item-sku">' + esc(it.sku) + (it.cat ? ' · ' + esc(it.cat) : '') + '</div>'
                 +     '<div class="asef-cart-item-qty-row">'
                 +       '<div class="asef-qty-picker" data-asef-qty-picker>'
