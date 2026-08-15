@@ -85,10 +85,10 @@
             {{-- ================= HERO ================= --}}
             <section class="asef-hero" aria-labelledby="hero-heading">
                 <div class="asef-hero-bg" aria-hidden="true">
-                    <div class="asef-hero-slide" style="background-image: url('{{ url('asef/asef-rig-2.jpg') }}');"></div>
-                    <div class="asef-hero-slide" style="background-image: url('{{ url('asef/asef-rig-3.jpg') }}');"></div>
-                    <div class="asef-hero-slide" style="background-image: url('{{ url('asef/asef-rig-4.jpg') }}');"></div>
-                    <div class="asef-hero-slide" style="background-image: url('{{ url('asef/asef-rig-1.jpg') }}');"></div>
+                    <img class="asef-hero-slide" src="{{ url('asef/asef-rig-2.jpg') }}" alt="" loading="eager" decoding="async" fetchpriority="high" />
+                    <img class="asef-hero-slide" src="{{ url('asef/asef-rig-3.jpg') }}" alt="" loading="eager" decoding="async" />
+                    <img class="asef-hero-slide" src="{{ url('asef/asef-rig-4.jpg') }}" alt="" loading="lazy" decoding="async" />
+                    <img class="asef-hero-slide" src="{{ url('asef/asef-rig-1.jpg') }}" alt="" loading="lazy" decoding="async" />
                 </div>
                 <div class="asef-hero-copy">
                     <h1 id="hero-heading">Sondaj Teknolojisinde Geleceğe Ortak.</h1>
