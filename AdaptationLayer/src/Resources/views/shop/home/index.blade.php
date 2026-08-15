@@ -84,6 +84,12 @@
 
             {{-- ================= HERO ================= --}}
             <section class="asef-hero" aria-labelledby="hero-heading">
+                <div class="asef-hero-bg" aria-hidden="true">
+                    <div class="asef-hero-slide" style="background-image: url('{{ url('asef/asef-rig-2.jpg') }}');"></div>
+                    <div class="asef-hero-slide" style="background-image: url('{{ url('asef/asef-rig-3.jpg') }}');"></div>
+                    <div class="asef-hero-slide" style="background-image: url('{{ url('asef/asef-rig-4.jpg') }}');"></div>
+                    <div class="asef-hero-slide" style="background-image: url('{{ url('asef/asef-rig-1.jpg') }}');"></div>
+                </div>
                 <div class="asef-hero-copy">
                     <h1 id="hero-heading">Sondaj Teknolojisinde Geleceğe Ortak.</h1>
                     <p>Yirmi yılı aşkın saha tecrübemizle Türkiye’nin en zorlu projelerinde güvenle çalışan sondaj ekipmanlarını sizinle buluşturuyoruz.</p>
@@ -94,34 +100,76 @@
                 </div>
             </section>
 
-            {{-- ================= KATEGORİ ŞERİDİ ================= --}}
-            <section class="asef-section asef-section--tight" id="hizmetler" aria-labelledby="cat-heading">
+            {{-- ================= ÜRÜNLER (PREMIUM BENTO) ================= --}}
+            <section class="asef-section asef-section--tight" id="hizmetler" aria-labelledby="prod-heading">
                 <header class="asef-chips-head">
-                    <h2 id="cat-heading">Kategorileri Keşfedin</h2>
-                    <a href="{{ $catalogUrl }}" class="asef-link asef-link-arrow asef-link-blue">Tümünü Gör<span aria-hidden="true">→</span></a>
+                    <div>
+                        <span class="asef-eyebrow asef-eyebrow--dark">Öne Çıkan Portföy</span>
+                        <h2 id="prod-heading">Ürünler.</h2>
+                    </div>
+                    <a href="{{ $catalogUrl }}" class="asef-link asef-link-arrow asef-link-blue">Tüm Ürünlere Bak<span aria-hidden="true">→</span></a>
                 </header>
 
-                <div class="asef-chips" role="list">
-                    @php
-                        // Asef Sondaj kategorileri — üretmiyor, tedarik ediyor.
-                        // Icons rendered as inline SVG groups (multi-path allowed).
-                        $chips = [
-                            ['label' => 'Sondaj Makineleri', 'svg' => '<path d="M6 21V9l6-5 6 5v12"/><path d="M4 21h16"/><path d="M10 21v-5h4v5"/><path d="M12 4v3"/>'],
-                            ['label' => 'Matkap Uçları',     'svg' => '<path d="M12 3l1.5 3H10.5L12 3z"/><path d="M9.5 6h5v3l-2.5 2-2.5-2V6z"/><path d="M11 11h2v9a1 1 0 1 1-2 0v-9z"/><path d="M8 21h8"/>'],
-                            ['label' => 'Karot Sistemleri',  'svg' => '<rect x="7" y="3" width="10" height="18" rx="1"/><path d="M7 8h10"/><path d="M7 14h10"/><path d="M10 3l1 2h2l1-2"/>'],
-                            ['label' => 'Tij &amp; Borular', 'svg' => '<path d="M6 3v18"/><path d="M10 3v18"/><path d="M14 3v18"/><path d="M18 3v18"/>'],
-                            ['label' => 'Pompalar',          'svg' => '<circle cx="9" cy="14" r="5"/><path d="M14 9V4h6v5"/><path d="M14 14h6v5"/><path d="M9 12v4"/><path d="M7 14h4"/>'],
-                            ['label' => 'Kompresörler',      'svg' => '<rect x="3" y="10" width="14" height="10" rx="2"/><path d="M17 13h4v4h-4"/><circle cx="10" cy="15" r="2"/><path d="M6 10V6h8v4"/>'],
-                            ['label' => 'Yedek Parça',       'svg' => '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>'],
-                            ['label' => 'Danışmanlık',       'svg' => '<path d="M4 20a8 8 0 1 1 16 0"/><circle cx="12" cy="8" r="4"/>'],
-                        ];
-                    @endphp
-                    @foreach ($chips as $c)
-                        <a href="{{ $catalogUrl }}" class="asef-chip" role="listitem">
-                            <span class="asef-chip-ic" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">{!! $c['svg'] !!}</svg>
-                            </span>
-                            <span class="asef-chip-label">{!! $c['label'] !!}</span>
+                @php
+                    $products = [
+                        [
+                            'name'  => 'ERD Sondaj Makinesi',
+                            'eyebrow' => 'Karot · Su · Mineral',
+                            'spec'  => 'Paletli şasi · 200 m derinlik kapasitesi',
+                            'image' => 'asef/asef-rig-2.jpg',
+                            'span'  => 'feature',
+                        ],
+                        [
+                            'name'  => 'Elmas Uçlu Matkap',
+                            'eyebrow' => 'PCD Kesici',
+                            'spec'  => 'Sert kayaç formasyonları için',
+                            'image' => 'asef/asef-macro-diamond.jpg',
+                            'span'  => 'tall',
+                        ],
+                        [
+                            'name'  => 'Karot Uçları',
+                            'eyebrow' => 'HQ · NQ · BQ',
+                            'spec'  => 'Yüksek geri kazanım oranı',
+                            'image' => 'asef/asef-diamond-bit.jpg',
+                            'span'  => 'std',
+                        ],
+                        [
+                            'name'  => 'Sondaj Tijleri',
+                            'eyebrow' => 'Yüksek Mukavemet',
+                            'spec'  => 'API standartlarına uygun çelik',
+                            'image' => 'asef/drill-rods.jpg',
+                            'span'  => 'std',
+                        ],
+                        [
+                            'name'  => 'Çamur Pompası',
+                            'eyebrow' => 'Yüksek Basınç',
+                            'spec'  => 'Kesintisiz akış, endüstriyel',
+                            'image' => 'asef/mud-pump.jpg',
+                            'span'  => 'std',
+                        ],
+                        [
+                            'name'  => 'Orijinal Yedek Parça',
+                            'eyebrow' => 'Sistem Güvenliği',
+                            'spec'  => 'Sistem ömrünü uzatan orijinal parçalar',
+                            'image' => 'asef/asef-yedek-parca-bar.jpg',
+                            'span'  => 'wide',
+                        ],
+                    ];
+                @endphp
+                <div class="asef-prod-grid">
+                    @foreach ($products as $p)
+                        <a href="{{ $catalogUrl }}" class="asef-prod asef-prod--{{ $p['span'] }}">
+                            <div class="asef-prod-media" aria-hidden="true">
+                                <img src="{{ url($p['image']) }}" alt="" loading="lazy" decoding="async" />
+                            </div>
+                            <div class="asef-prod-copy">
+                                <span class="asef-prod-eyebrow">{{ $p['eyebrow'] }}</span>
+                                <h3>{{ $p['name'] }}</h3>
+                                <p>{{ $p['spec'] }}</p>
+                                <span class="asef-prod-cta" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                                </span>
+                            </div>
                         </a>
                     @endforeach
                 </div>

@@ -228,15 +228,19 @@
    HERO — centred, huge headline + full-bleed product photo
    ============================================================ */
 .asef-hero {
-  max-width: var(--asef-container);
-  margin: 0 auto;
-  padding: 40px var(--asef-gutter) 48px;
+  position: relative;
+  max-width: none;
+  margin: 0;
+  padding: 96px var(--asef-gutter) 112px;
   text-align: center;
   background: var(--asef-surface);
+  overflow: hidden;
 }
 @media (min-width: 768px) {
-  .asef-hero { padding: 56px var(--asef-gutter) 64px; }
+  .asef-hero { padding: 140px var(--asef-gutter) 160px; }
 }
+.asef-hero-copy { max-width: 780px; margin: 0 auto; }
+.asef-home .asef-hero h1, .asef-home .asef-hero p { text-shadow: 0 1px 12px rgba(255,255,255,0.72); }
 
 .asef-hero-copy { max-width: 780px; margin: 0 auto 56px; }
 .asef-hero-copy h1 {
@@ -422,6 +426,170 @@
   .asef-tile-media--right img { width: 100%; height: 100%; object-fit: contain; object-position: right center; }
 }
 .asef-tile-media--right { position: static; margin-top: 24px; height: 180px; }
+
+/* ============================================================
+   PRODUCTS BENTO — "Ürünler."
+   Premium tactile grid: real product photography, gradient overlay,
+   soft ambient shadows, 3D hover tilt.
+   ============================================================ */
+.asef-eyebrow--dark { color: var(--asef-ink-soft); }
+
+.asef-prod-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 768px) {
+  .asef-prod-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 280px;
+    gap: 20px;
+  }
+}
+
+.asef-prod {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 320px;
+  overflow: hidden;
+  border-radius: var(--asef-radius-lg);
+  color: #fff;
+  background: #1a1a1c;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 8px 24px -12px rgba(0,0,0,0.15);
+  transition: transform 0.5s var(--asef-ease), box-shadow 0.5s var(--asef-ease);
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+.asef-prod:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.06), 0 32px 60px -20px rgba(0,0,0,0.28);
+}
+
+.asef-prod-media {
+  position: absolute; inset: 0; z-index: 1;
+  overflow: hidden;
+}
+.asef-prod-media img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transition: transform 1.2s var(--asef-ease);
+  will-change: transform;
+}
+.asef-prod:hover .asef-prod-media img { transform: scale(1.06); }
+.asef-prod-media::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.75) 100%);
+  z-index: 1;
+  transition: opacity 0.5s var(--asef-ease);
+}
+.asef-prod:hover .asef-prod-media::after { opacity: 0.85; }
+
+.asef-prod-copy {
+  position: relative; z-index: 2;
+  padding: 28px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.asef-prod-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.72);
+}
+.asef-home .asef-prod h3 {
+  margin: 4px 0 4px;
+  font-size: 22px;
+  font-weight: 600 !important;
+  letter-spacing: -0.015em;
+  color: #ffffff !important;
+  line-height: 1.15;
+}
+.asef-home .asef-prod p {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(255,255,255,0.78) !important;
+  line-height: 1.4;
+}
+.asef-prod-cta {
+  position: absolute; top: 20px; right: 20px;
+  width: 40px; height: 40px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.14);
+  color: #fff;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.24s var(--asef-ease), transform 0.24s var(--asef-ease);
+  z-index: 3;
+}
+.asef-prod-cta svg { width: 18px; height: 18px; }
+.asef-prod:hover .asef-prod-cta { background: var(--asef-blue); transform: translate(-2px, 2px) scale(1.06); }
+
+@media (min-width: 768px) {
+  .asef-prod              { height: auto; }
+  .asef-prod--feature     { grid-column: span 2; grid-row: span 2; }
+  .asef-prod--feature h3  { font-size: 32px; }
+  .asef-prod--tall        { grid-column: span 1; grid-row: span 2; }
+  .asef-prod--wide        { grid-column: span 3; }
+  .asef-prod--wide h3     { font-size: 26px; }
+  .asef-prod--wide        { height: 280px; }
+}
+
+/* ============================================================
+   HERO CINEMATIC BG — sondaj slayt (Ken Burns)
+   ============================================================ */
+.asef-hero { position: relative; }
+.asef-hero-bg {
+  position: absolute; inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 0 0 var(--asef-radius-lg) var(--asef-radius-lg);
+  pointer-events: none;
+}
+.asef-hero-bg::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.78) 50%, rgba(255,255,255,0.94) 100%);
+  z-index: 2;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.asef-hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.32) 60%, rgba(255,255,255,0.72) 100%);
+  z-index: 2;
+}
+.asef-hero-slide {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  filter: grayscale(0.85) contrast(0.95) brightness(1.05);
+  animation: asef-hero-slide 24s infinite;
+  will-change: opacity, transform;
+}
+.asef-hero-slide:first-child { opacity: 1; }
+.asef-hero-slide:nth-child(1) { animation-delay:  0s; }
+.asef-hero-slide:nth-child(2) { animation-delay:  6s; }
+.asef-hero-slide:nth-child(3) { animation-delay: 12s; }
+.asef-hero-slide:nth-child(4) { animation-delay: 18s; }
+@keyframes asef-hero-slide {
+  0%   { opacity: 0; transform: scale(1.02); }
+  8%   { opacity: 1; }
+  25%  { opacity: 1; transform: scale(1.10); }
+  33%  { opacity: 0; transform: scale(1.10); }
+  100% { opacity: 0; transform: scale(1.10); }
+}
+.asef-hero > * { position: relative; z-index: 3; }
+@media (prefers-reduced-motion: reduce) {
+  .asef-hero-slide { animation: none; opacity: 1; }
+  .asef-hero-slide:nth-child(n+2) { opacity: 0; }
+}
 
 /* ============================================================
    CHIP STRIP — "Kategorileri Keşfedin"
