@@ -51,7 +51,6 @@
                 <p>Delik çapı, formasyon, çalışma basıncı — projeniz için doğru ekipmanı birlikte belirleyelim. WhatsApp en hızlı yol.</p>
                 <div class="asef-hero-ctas">
                     <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-cta-pill primary">WhatsApp'tan Yaz</a>
-                    <a href="tel:+905320542975" class="asef-cta-pill ghost">+90 532 054 29 75</a>
                 </div>
             </section>
 
