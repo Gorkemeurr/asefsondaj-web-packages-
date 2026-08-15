@@ -187,31 +187,11 @@
     }
     .ab-value:hover { transform: translateY(-3px) rotate(-0.3deg); background: #EEEEF0; box-shadow: 0 1px 0 rgba(255,255,255,1) inset, 0 14px 30px rgba(0,0,0,0.08); }
     .ab-value-icon {
-        position: relative;
-        width: 56px; height: 56px; border-radius: 18px;
-        background: linear-gradient(140deg, #E8F1FE 0%, #DCEBFF 60%, #F5F8FF 100%);
+        width: 44px; height: 44px; border-radius: 12px;
+        background: #EAF1F8;
         display: grid; place-items: center; color: var(--link-blue);
-        box-shadow:
-            0 1px 0 rgba(255,255,255,1) inset,
-            0 -1px 0 rgba(0,102,204,0.1) inset,
-            0 6px 16px rgba(0,102,204,0.15),
-            0 2px 4px rgba(0,102,204,0.08);
-        transition: transform .35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .3s;
     }
-    .ab-value-icon::after {
-        content: ""; position: absolute; inset: 0; border-radius: 18px;
-        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), transparent 50%);
-        pointer-events: none;
-    }
-    .ab-value:hover .ab-value-icon {
-        transform: translateY(-2px) scale(1.05);
-        box-shadow:
-            0 1px 0 rgba(255,255,255,1) inset,
-            0 -1px 0 rgba(0,102,204,0.12) inset,
-            0 10px 22px rgba(0,102,204,0.22),
-            0 3px 6px rgba(0,102,204,0.12);
-    }
-    .ab-value-icon svg { width: 26px; height: 26px; position: relative; z-index: 2; filter: drop-shadow(0 1px 1px rgba(0,102,204,0.2)); }
+    .ab-value-icon svg { width: 22px; height: 22px; stroke-width: 1.9; }
     .ab-value-title { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: var(--primary); }
     .ab-value-desc { font-size: 14px; color: var(--secondary); line-height: 1.55; }
 
@@ -238,36 +218,12 @@
     }
     .ab-sector:hover::before { opacity: 1; }
     .ab-sector-icon-wrap {
-        position: relative;
-        width: 56px; height: 56px; border-radius: 18px;
-        background: linear-gradient(140deg, #E8F1FE 0%, #DCEBFF 60%, #F5F8FF 100%);
+        width: 44px; height: 44px; border-radius: 12px;
+        background: #EAF1F8;
         display: grid; place-items: center;
         margin-bottom: 4px;
-        box-shadow:
-            0 1px 0 rgba(255,255,255,1) inset,
-            0 -1px 0 rgba(0,102,204,0.1) inset,
-            0 6px 16px rgba(0,102,204,0.15),
-            0 2px 4px rgba(0,102,204,0.08);
-        transition: transform .35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .3s;
     }
-    .ab-sector:hover .ab-sector-icon-wrap {
-        transform: translateY(-2px) scale(1.05);
-        box-shadow:
-            0 1px 0 rgba(255,255,255,1) inset,
-            0 -1px 0 rgba(0,102,204,0.12) inset,
-            0 10px 22px rgba(0,102,204,0.22),
-            0 3px 6px rgba(0,102,204,0.12);
-    }
-    .ab-sector-icon-wrap::after {
-        content: ""; position: absolute; inset: 0; border-radius: 18px;
-        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), transparent 50%);
-        pointer-events: none;
-    }
-    .ab-sector-icon {
-        width: 28px; height: 28px; color: var(--link-blue);
-        position: relative; z-index: 2;
-        filter: drop-shadow(0 1px 1px rgba(0,102,204,0.2));
-    }
+    .ab-sector-icon { width: 22px; height: 22px; color: var(--link-blue); stroke-width: 1.9; }
     .ab-sector h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; color: var(--primary); }
     .ab-sector p { font-size: 14px; color: var(--secondary); line-height: 1.55; }
 
