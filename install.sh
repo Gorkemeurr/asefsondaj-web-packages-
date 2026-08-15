@@ -92,6 +92,10 @@ $PHP_BIN artisan optimize:clear
 # files even after optimize:clear (e.g., adaptation views retain old $products/$filtered)
 rm -rf storage/framework/views/*.php 2>/dev/null || true
 $PHP_BIN artisan view:clear
+# Spatie Response Cache — Bagisto caches entire HTML responses per URL. If we
+# do not clear this, /search?cat=* returns the FIRST cached variant regardless
+# of the query string, and users see wrong products / stale filter results.
+$PHP_BIN artisan responsecache:clear 2>/dev/null || true
 
 # ---------- 5) Copy logo + favicon + webhook to public/ ----------
 echo "==> 5/7 Publishing logo + favicon + webhook"

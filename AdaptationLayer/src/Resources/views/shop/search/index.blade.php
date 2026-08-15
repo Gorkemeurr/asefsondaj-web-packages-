@@ -35,17 +35,18 @@
     $activeCat   = request()->query('cat');
     $queryText   = trim((string) request()->query('query', ''));
 
-    $filtered = collect($products)
-        ->when($activeCat, fn ($c) => $c->where('cat', $activeCat))
-        ->when($queryText, function ($c) use ($queryText) {
+    // Explicit filter loop (no ->when arrow-function scoping surprises)
+    $filtered = [];
+    foreach ($products as $p) {
+        if ($activeCat && $p['cat'] !== $activeCat) continue;
+        if ($queryText) {
             $needle = mb_strtolower($queryText);
-            return $c->filter(fn ($p) =>
-                str_contains(mb_strtolower($p['name']), $needle) ||
-                str_contains(mb_strtolower($p['sku']), $needle) ||
-                str_contains(mb_strtolower($p['desc']), $needle)
-            );
-        })
-        ->values();
+            $hay = mb_strtolower($p['name'] . ' ' . $p['sku'] . ' ' . $p['desc']);
+            if (! str_contains($hay, $needle)) continue;
+        }
+        $filtered[] = $p;
+    }
+    $filtered = collect($filtered);
 @endphp
 
 @push('meta')

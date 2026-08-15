@@ -23,6 +23,15 @@ class AdaptationServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom($this->getPath('Config/asef.php'), 'asef');
+
+        // Bagisto's FPC (Spatie Response Cache) hasher strips all query
+        // parameters except "query" from the /search cache key, so
+        // /search?cat=delici and /search?cat=tij collide onto the same
+        // cached HTML. Our filter and product-detail flows are dynamic
+        // (query params, per-visitor cart state) — full-page cache does
+        // more harm than good for a low-traffic B2B storefront. Force it
+        // off here so we never re-introduce this class of bug.
+        config(['responsecache.enabled' => false]);
     }
 
     public function boot(): void
@@ -71,7 +80,12 @@ class AdaptationServiceProvider extends ServiceProvider
 
         // 5) Asef-specific storefront routes (product detail + sepet).
         //    Uses "web" middleware so it participates in Bagisto session/CSRF.
-        Route::middleware('web')->group(function () {
+        //    /sepet must NEVER response-cache (localStorage-driven content
+        //    depends on the visiting user); /urun/{sku} may be cached (URL
+        //    identifies the unique variant).
+        $noCache = \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class;
+
+        Route::middleware('web')->group(function () use ($noCache) {
             Route::get('/urun/{sku}', function (string $sku) {
                 return view('asef-adaptation::product-detail', [
                     'sku' => strtoupper($sku),
@@ -80,7 +94,7 @@ class AdaptationServiceProvider extends ServiceProvider
 
             Route::get('/sepet', function () {
                 return view('asef-adaptation::sepet');
-            })->name('shop.asef.cart');
+            })->name('shop.asef.cart')->middleware($noCache);
 
             Route::get('/hakkimizda', function () {
                 return view('asef-adaptation::hakkimizda');
