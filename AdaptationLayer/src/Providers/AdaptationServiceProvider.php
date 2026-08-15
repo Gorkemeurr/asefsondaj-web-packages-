@@ -100,6 +100,14 @@ class AdaptationServiceProvider extends ServiceProvider
                 return view('asef-adaptation::hakkimizda');
             })->name('shop.asef.about');
 
+            Route::get('/kurumsal', function () {
+                return view('asef-adaptation::kurumsal');
+            })->name('shop.asef.corporate');
+
+            Route::get('/tum-bloglar', function () {
+                return view('asef-adaptation::tum-bloglar');
+            })->name('shop.asef.all-blogs');
+
             Route::get('/sondaj-makinalarimiz', function () {
                 return view('asef-adaptation::sondaj-makinalari');
             })->name('shop.asef.machines');

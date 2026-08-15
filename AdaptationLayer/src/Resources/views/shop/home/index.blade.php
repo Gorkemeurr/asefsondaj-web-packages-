@@ -518,7 +518,7 @@
                         </div>
                     </div>
                     <div class="asef-nav-item">
-                        <a href="{{ url('hakkimizda') }}">Kurumsal</a>
+                        <a href="{{ url('kurumsal') }}">Kurumsal</a>
                         <div class="asef-mega" role="menu" aria-label="Kurumsal menüsü">
                             <div class="asef-mega-grid">
                                 <div class="asef-mega-col asef-mega-main">
@@ -548,9 +548,9 @@
                             <div class="asef-mega-grid">
                                 <div class="asef-mega-col asef-mega-main">
                                     <h5>Blog'u Keşfedin</h5>
-                                    <a href="#">Tüm Bloglar</a>
-                                    <a href="#">Fotoğraf Galerisi</a>
-                                    <a href="#">Video Galerisi</a>
+                                    <a href="{{ url('tum-bloglar') }}">Tüm Bloglar</a>
+                                    <a href="{{ url('blog/fotograf') }}">Fotoğraf Galerisi</a>
+                                    <a href="{{ url('blog/video') }}">Video Galerisi</a>
                                 </div>
                                 <div class="asef-mega-col asef-mega-side">
                                     <h5>Fotoğraf Galerisi</h5>
