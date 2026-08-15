@@ -172,7 +172,7 @@
             0 -1px 0 rgba(0,0,0,0.05) inset,
             0 16px 40px rgba(0,0,0,0.1);
     }
-    .ab-stat-num { display: block; font-size: clamp(38px, 5vw, 60px); font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--primary); margin-bottom: 10px; }
+    .ab-stat-num { display: block; font-size: clamp(30px, 3.4vw, 42px); font-weight: 700; letter-spacing: -0.02em; line-height: 1; color: var(--primary); margin-bottom: 8px; }
     .ab-stat-label { display: block; font-size: 13px; color: var(--gray-secondary); letter-spacing: 0.02em; line-height: 1.4; }
 
     /* ==================== VALUES ==================== */
@@ -187,11 +187,31 @@
     }
     .ab-value:hover { transform: translateY(-3px) rotate(-0.3deg); background: #EEEEF0; box-shadow: 0 1px 0 rgba(255,255,255,1) inset, 0 14px 30px rgba(0,0,0,0.08); }
     .ab-value-icon {
-        width: 46px; height: 46px; border-radius: 14px; background: white;
+        position: relative;
+        width: 56px; height: 56px; border-radius: 18px;
+        background: linear-gradient(140deg, #E8F1FE 0%, #DCEBFF 60%, #F5F8FF 100%);
         display: grid; place-items: center; color: var(--link-blue);
-        box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset, 0 6px 14px rgba(0,102,204,0.10);
+        box-shadow:
+            0 1px 0 rgba(255,255,255,1) inset,
+            0 -1px 0 rgba(0,102,204,0.1) inset,
+            0 6px 16px rgba(0,102,204,0.15),
+            0 2px 4px rgba(0,102,204,0.08);
+        transition: transform .35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .3s;
     }
-    .ab-value-icon svg { width: 22px; height: 22px; }
+    .ab-value-icon::after {
+        content: ""; position: absolute; inset: 0; border-radius: 18px;
+        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), transparent 50%);
+        pointer-events: none;
+    }
+    .ab-value:hover .ab-value-icon {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow:
+            0 1px 0 rgba(255,255,255,1) inset,
+            0 -1px 0 rgba(0,102,204,0.12) inset,
+            0 10px 22px rgba(0,102,204,0.22),
+            0 3px 6px rgba(0,102,204,0.12);
+    }
+    .ab-value-icon svg { width: 26px; height: 26px; position: relative; z-index: 2; filter: drop-shadow(0 1px 1px rgba(0,102,204,0.2)); }
     .ab-value-title { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: var(--primary); }
     .ab-value-desc { font-size: 14px; color: var(--secondary); line-height: 1.55; }
 
@@ -217,7 +237,37 @@
         opacity: 0; transition: opacity .3s;
     }
     .ab-sector:hover::before { opacity: 1; }
-    .ab-sector-icon { width: 40px; height: 40px; color: var(--link-blue); }
+    .ab-sector-icon-wrap {
+        position: relative;
+        width: 56px; height: 56px; border-radius: 18px;
+        background: linear-gradient(140deg, #E8F1FE 0%, #DCEBFF 60%, #F5F8FF 100%);
+        display: grid; place-items: center;
+        margin-bottom: 4px;
+        box-shadow:
+            0 1px 0 rgba(255,255,255,1) inset,
+            0 -1px 0 rgba(0,102,204,0.1) inset,
+            0 6px 16px rgba(0,102,204,0.15),
+            0 2px 4px rgba(0,102,204,0.08);
+        transition: transform .35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .3s;
+    }
+    .ab-sector:hover .ab-sector-icon-wrap {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow:
+            0 1px 0 rgba(255,255,255,1) inset,
+            0 -1px 0 rgba(0,102,204,0.12) inset,
+            0 10px 22px rgba(0,102,204,0.22),
+            0 3px 6px rgba(0,102,204,0.12);
+    }
+    .ab-sector-icon-wrap::after {
+        content: ""; position: absolute; inset: 0; border-radius: 18px;
+        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), transparent 50%);
+        pointer-events: none;
+    }
+    .ab-sector-icon {
+        width: 28px; height: 28px; color: var(--link-blue);
+        position: relative; z-index: 2;
+        filter: drop-shadow(0 1px 1px rgba(0,102,204,0.2));
+    }
     .ab-sector h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; color: var(--primary); }
     .ab-sector p { font-size: 14px; color: var(--secondary); line-height: 1.55; }
 
@@ -499,25 +549,6 @@
                         <p>Yerüstü, yeraltı ve su sondaj makineleri — tüm operasyon türleri için hazır çözümler.</p>
                         <a href="{{ url('sondaj-makinalarimiz') }}" class="asef-cta-pill white-bg">Makineleri İncele</a>
                     </div>
-                </div>
-            </section>
-
-            {{-- SERTIFIKALAR --}}
-            <section class="ab-sec ab-reveal">
-                <div class="ab-head">
-                    <div class="asef-label-caps">STANDARTLAR + BELGELER</div>
-                    <h2>Uluslararası kalite standartlarında.</h2>
-                    <p>Katalogumuzdaki ürünler API, DIN, ISO ve TSE gibi uluslararası standartlarla uyumlu.</p>
-                </div>
-                <div class="ab-certs">
-                    @foreach ($certs as $c)
-                        <div class="ab-cert">
-                            <svg class="ab-cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 15 8 11l1.4-1.4L12 12.2l4.6-4.6L18 9z"/><path d="M20 12c0 4-3 8-8 9-5-1-8-5-8-9V5l8-3 8 3v7z"/>
-                            </svg>
-                            <span class="ab-cert-label">{{ $c }}</span>
-                        </div>
-                    @endforeach
                 </div>
             </section>
 
