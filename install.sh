@@ -101,6 +101,21 @@ if [ -f "$PKG_ASSETS/images/favicon.ico" ]; then
     echo "    favicon.ico -> public/"
 fi
 
+# Homepage assets: brand photos + page CSS/JS -> public/asef/
+mkdir -p "$BAGISTO_ROOT/public/asef"
+if [ -d "$PKG_ASSETS/images/asef" ]; then
+    cp -f "$PKG_ASSETS/images/asef/"*.jpg "$BAGISTO_ROOT/public/asef/" 2>/dev/null || true
+    echo "    brand photos -> public/asef/"
+fi
+if [ -f "$PKG_ASSETS/css/asef-home.css" ]; then
+    cp -f "$PKG_ASSETS/css/asef-home.css" "$BAGISTO_ROOT/public/asef/asef-home.css"
+    echo "    asef-home.css -> public/asef/"
+fi
+if [ -f "$PKG_ASSETS/js/asef-home.js" ]; then
+    cp -f "$PKG_ASSETS/js/asef-home.js" "$BAGISTO_ROOT/public/asef/asef-home.js"
+    echo "    asef-home.js -> public/asef/"
+fi
+
 # Self-update webhook.php in public/ (keeps webhook code fresh w/o manual copy)
 # Preserves the SECRET line from the existing installed webhook.
 WEBHOOK_SRC="$PWD/packages/AsefSondaj/deploy-webhook.php"
@@ -137,10 +152,12 @@ $PHP_BIN "$BAGISTO_ROOT/artisan" tinker --execute "
         if (\$existsCss) {
             DB::table('core_config')->where('code', 'general.content.custom_scripts.custom_css')->update(['value' => \$css, 'updated_at' => \$now]);
         } else {
+            // channel_code MUST match the current channel — a NULL row is
+            // ignored by core()->getConfigData() (verified in local test).
             DB::table('core_config')->insert([
                 'code' => 'general.content.custom_scripts.custom_css',
                 'value' => \$css,
-                'channel_code' => null,
+                'channel_code' => 'default',
                 'locale_code' => null,
                 'created_at' => \$now,
                 'updated_at' => \$now,
@@ -159,7 +176,7 @@ $PHP_BIN "$BAGISTO_ROOT/artisan" tinker --execute "
             DB::table('core_config')->insert([
                 'code' => 'general.content.custom_scripts.custom_javascript',
                 'value' => \$js,
-                'channel_code' => null,
+                'channel_code' => 'default',
                 'locale_code' => null,
                 'created_at' => \$now,
                 'updated_at' => \$now,
