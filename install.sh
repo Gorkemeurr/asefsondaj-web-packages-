@@ -29,12 +29,18 @@ $PHP_BIN -r '
 $file = "composer.json";
 $data = json_decode(file_get_contents($file), true);
 
-// Clean any accidental duplicate PSR-4 entry from earlier install attempts
-if (isset($data["autoload"]["psr-4"]["AsefSondaj\\\\AdaptationLayer\\\\"])) {
-    unset($data["autoload"]["psr-4"]["AsefSondaj\\\\AdaptationLayer\\\\"]);
+// Clean any accidental duplicate PSR-4 entries from earlier install attempts
+foreach (["AsefSondaj\\\\AdaptationLayer\\\\", "AsefSondaj\\\\Theme\\\\"] as $ns) {
+    if (isset($data["autoload"]["psr-4"][$ns])) unset($data["autoload"]["psr-4"][$ns]);
 }
 
-// Ensure the require entry exists (path repo will resolve it from packages/)
+// Remove Theme require (reverted — Faz 3 rollback)
+if (isset($data["require"]["asefsondaj/theme"])) {
+    unset($data["require"]["asefsondaj/theme"]);
+    echo "    removed require asefsondaj/theme (reverted)\n";
+}
+
+// Ensure Adaptation Layer require (path repo will resolve it from packages/)
 $data["require"]["asefsondaj/adaptation-layer"] = "@dev";
 
 file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n");
@@ -49,20 +55,28 @@ if [ ! -f "$PROVIDERS" ]; then
     exit 1
 fi
 
+# Clean up: remove AsefThemeServiceProvider (reverted Faz 3) if present
+$PHP_BIN -r "
+    \$file = 'bootstrap/providers.php';
+    \$c = file_get_contents(\$file);
+    // Strip Faz 3 Theme references (rollback cleanup)
+    \$c = preg_replace('/\\n?use AsefSondaj\\\\\\\\Theme\\\\\\\\Providers\\\\\\\\AsefThemeServiceProvider;.*?\\n/', \"\\n\", \$c);
+    \$c = preg_replace('/\\s*AsefThemeServiceProvider::class,\\s*\\n/', \"\\n\", \$c);
+    file_put_contents(\$file, \$c);
+"
+
 if grep -q "AdaptationServiceProvider" "$PROVIDERS"; then
-    echo "    provider already registered — skipped"
+    echo "    Adaptation provider already registered — skipped"
 else
     $PHP_BIN -r "
         \$file = 'bootstrap/providers.php';
         \$c = file_get_contents(\$file);
-        // add use statement after opening <?php if not present
         if (strpos(\$c, 'AsefSondaj\\\\AdaptationLayer\\\\Providers\\\\AdaptationServiceProvider') === false) {
             \$c = preg_replace('/(<\\?php\\s*)/', \"\$1\\nuse AsefSondaj\\\\AdaptationLayer\\\\Providers\\\\AdaptationServiceProvider;\\n\", \$c, 1);
         }
-        // add class to returned array
         \$c = preg_replace('/return\\s*\\[/', \"return [\\n    AdaptationServiceProvider::class,\", \$c, 1);
         file_put_contents(\$file, \$c);
-        echo '    provider registered' . PHP_EOL;
+        echo '    Adaptation provider registered' . PHP_EOL;
     "
 fi
 
