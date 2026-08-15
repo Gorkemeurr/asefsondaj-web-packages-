@@ -144,28 +144,34 @@ footer a[href*="/wishlist"] {
     --asef-ink: #1D1D1F;
 }
 
-/* --- Asef Nav (itemsatis.com style — always-visible labels) --- */
+/* --- Asef Nav (app kopyası: WHITE PILL FLOATING) --- */
+/* App shell: SafeArea + EdgeInsets.fromLTRB(16, 0, 16, 12) + h=70 + radius=30 + surface 98% + border=#D2D2D7 + shadow black 12% blur 20 offset (0,8) */
+
 #asef-bottom-nav {
     position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    left: 16px;
+    right: 16px;
+    bottom: max(12px, env(safe-area-inset-bottom));
     z-index: 9998;
-    background: rgba(29, 29, 31, 0.92);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 -4px 24px -8px rgba(0, 0, 0, 0.3);
-    padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+    height: 70px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid #D2D2D7;
+    border-radius: 30px;
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.12);
+    max-width: 640px;
+    margin: 0 auto;
 }
 
 #asef-bottom-nav .asef-nav-container {
     display: flex;
     align-items: stretch;
     justify-content: space-around;
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 0 8px;
+    height: 100%;
+    width: 100%;
+    gap: 0;
 }
 
 #asef-bottom-nav .asef-nav-item {
@@ -176,11 +182,10 @@ footer a[href*="/wishlist"] {
     align-items: center;
     justify-content: center;
     gap: 4px;
-    padding: 6px 4px;
-    min-height: 56px;
+    padding: 4px 6px;
     border: 0;
     background: transparent;
-    color: rgba(255, 255, 255, 0.7);
+    color: #86868B;
     text-decoration: none;
     font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
     font-size: 11px;
@@ -188,13 +193,15 @@ footer a[href*="/wishlist"] {
     letter-spacing: -0.01em;
     cursor: pointer;
     transition: color 0.15s ease-out;
+    border-radius: 22px;
 }
 
 #asef-bottom-nav .asef-nav-item span {
     display: block !important;
     white-space: nowrap;
     font-size: 11px;
-    line-height: 1.2;
+    line-height: 1.1;
+    font-weight: 500;
 }
 
 #asef-bottom-nav .asef-nav-item svg {
@@ -202,22 +209,26 @@ footer a[href*="/wishlist"] {
     height: 22px;
     stroke: currentColor;
     stroke-width: 1.8;
+    flex-shrink: 0;
 }
 
-#asef-bottom-nav .asef-nav-item:hover,
+#asef-bottom-nav .asef-nav-item:hover {
+    color: #1D1D1F;
+}
+
 #asef-bottom-nav .asef-nav-item.active {
-    color: #FFFFFF;
+    color: #0071E3;
 }
 
 #asef-bottom-nav .asef-nav-item.active svg {
-    stroke: #FFFFFF;
+    stroke: #0071E3;
     stroke-width: 2.2;
 }
 
 #asef-bottom-nav .asef-nav-badge {
     position: absolute;
-    top: 2px;
-    right: calc(50% - 20px);
+    top: 4px;
+    right: calc(50% - 22px);
     min-width: 18px;
     height: 18px;
     padding: 0 5px;
@@ -232,31 +243,29 @@ footer a[href*="/wishlist"] {
     line-height: 1;
 }
 
-/* Push page content up so bottom nav doesn't overlap */
+/* Push page content up so floating nav doesn't overlap */
 body {
-    padding-bottom: 84px !important;
+    padding-bottom: 94px !important;
 }
 
-/* --- Desktop: nav at TOP instead of bottom --- */
+/* --- Desktop: nav at TOP (same white pill style, floating from top) --- */
 @media (min-width: 1024px) {
     #asef-bottom-nav {
-        top: 0;
+        top: 16px;
         bottom: auto;
-        border-top: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 4px 24px -8px rgba(0, 0, 0, 0.3);
-        padding: 8px 0;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: min(720px, calc(100% - 32px));
+        height: 60px;
+        padding: 6px 8px;
     }
 
     #asef-bottom-nav .asef-nav-container {
-        max-width: 1200px;
-        justify-content: center;
-        gap: 24px;
+        gap: 12px;
     }
 
     #asef-bottom-nav .asef-nav-item {
-        flex: 0 0 auto;
-        min-width: 120px;
         flex-direction: row;
         gap: 8px;
         min-height: 44px;
@@ -268,12 +277,12 @@ body {
     }
 
     #asef-bottom-nav .asef-nav-badge {
-        top: 2px;
-        right: -8px;
+        top: 4px;
+        right: 12px;
     }
 
     body {
-        padding-top: 64px !important;
+        padding-top: 96px !important;
         padding-bottom: 32px !important;
     }
 }
