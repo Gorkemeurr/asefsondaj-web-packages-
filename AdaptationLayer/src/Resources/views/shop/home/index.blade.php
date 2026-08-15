@@ -19,7 +19,7 @@
 @push('meta')
     <meta name="title" content="{{ $channel->home_seo['meta_title'] ?? 'Asef Sondaj — Gücün ve Hassasiyetin Zirvesi' }}" />
     <meta name="description" content="{{ $channel->home_seo['meta_description'] ?? 'Endüstriyel sondajda yeni bir çağ başlıyor. Sondaj makineleri, elmas kesim teknolojisi ve yedek parça servisi.' }}" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#fbfbfd" />
 @endpush
 
 @push('styles')
@@ -50,7 +50,7 @@
         <nav class="asef-nav" aria-label="Ana gezinme">
             <div class="asef-nav-inner">
                 <a href="{{ route('shop.home.index') }}" class="asef-brand" aria-label="asef sondaj ana sayfa">
-                    <img src="{{ url('asef/asef-mark.png') }}" alt="asef sondaj" width="22" height="20" />
+                    <img src="{{ url('asef/asef-mark-dark.png') }}" alt="asef sondaj" width="20" height="18" />
                 </a>
 
                 <div class="asef-nav-links" id="asef-nav-links">
@@ -64,10 +64,10 @@
 
                 <div class="asef-nav-actions">
                     <a href="{{ $catalogUrl }}" class="asef-nav-icon" aria-label="Ara">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                        <svg viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="7.2" cy="7.2" r="5.2"/><path d="m11 11 4.3 4.3"/></svg>
                     </a>
-                    <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-nav-icon asef-nav-cta" aria-label="WhatsApp ile iletişim">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+                    <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-nav-icon asef-nav-cta" aria-label="Teklif iste (WhatsApp)">
+                        <svg viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 5.6h10.6l.7 8.4a1.4 1.4 0 0 1-1.4 1.5H3.9a1.4 1.4 0 0 1-1.4-1.5l.7-8.4Z"/><path d="M5.7 5.6V4.9a2.8 2.8 0 0 1 5.6 0v.7"/></svg>
                     </a>
                     <button type="button" class="asef-nav-icon asef-nav-burger" id="asef-nav-burger" aria-label="Menü" aria-expanded="false" aria-controls="asef-nav-links">
                         <svg class="asef-ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
