@@ -525,12 +525,12 @@
                                     <h5>Kurumsalı Keşfedin</h5>
                                     <a href="{{ url('hakkimizda') }}">Hakkımızda</a>
                                     <a href="#">Sondaj Makinalarımız</a>
-                                    <a href="#hizmetler">Hizmetlerimiz</a>
+                                    <a href="{{ url('hizmetlerimiz') }}">Hizmetlerimiz</a>
                                     <a href="#">Referanslar</a>
                                 </div>
                                 <div class="asef-mega-col asef-mega-side">
                                     <h5>Hızlı Bağlantılar</h5>
-                                    <a href="#iletisim">İletişim</a>
+                                    <a href="{{ url('iletisim') }}">İletişim</a>
                                     <a href="{{ $waLink }}" target="_blank" rel="noopener">WhatsApp'a Yaz</a>
                                 </div>
                                 <div class="asef-mega-col asef-mega-side">
@@ -573,7 +573,7 @@
                             <div class="asef-mega-grid">
                                 <div class="asef-mega-col asef-mega-main">
                                     <h5>Destek Merkezi</h5>
-                                    <a href="#iletisim">İletişim</a>
+                                    <a href="{{ url('iletisim') }}">İletişim</a>
                                     <a href="#">SSS</a>
                                     <a href="#">KVKK Aydınlatma Metni</a>
                                     <a href="#">Gizlilik Politikası</a>
@@ -835,7 +835,7 @@
                         <ul>
                             <li><a href="{{ url('hakkimizda') }}">Hakkımızda</a></li>
                             <li><a href="#">Sondaj Makinalarımız</a></li>
-                            <li><a href="#hizmetler">Hizmetlerimiz</a></li>
+                            <li><a href="{{ url('hizmetlerimiz') }}">Hizmetlerimiz</a></li>
                             <li><a href="#">Referanslar</a></li>
                             <li><a href="#">SSS</a></li>
                         </ul>

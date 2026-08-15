@@ -89,7 +89,7 @@
                     <div class="asef-mega-grid">
                         <div class="asef-mega-col asef-mega-main">
                             <h5>Destek Merkezi</h5>
-                            <a href="{{ url('/') }}#iletisim">İletişim</a>
+                            <a href="{{ url('iletisim') }}">İletişim</a>
                             <a href="#">SSS</a>
                             <a href="#">KVKK Aydınlatma Metni</a>
                             <a href="#">Gizlilik Politikası</a>

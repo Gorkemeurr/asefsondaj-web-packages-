@@ -12,7 +12,7 @@
                 <ul>
                     <li><a href="{{ url('hakkimizda') }}">Hakkımızda</a></li>
                     <li><a href="#">Sondaj Makinalarımız</a></li>
-                    <li><a href="{{ url('/') }}#hizmetler">Hizmetlerimiz</a></li>
+                    <li><a href="{{ url('hizmetlerimiz') }}">Hizmetlerimiz</a></li>
                     <li><a href="#">Referanslar</a></li>
                     <li><a href="#">SSS</a></li>
                 </ul>
