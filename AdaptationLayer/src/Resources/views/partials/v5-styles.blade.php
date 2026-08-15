@@ -507,7 +507,8 @@
             content: "";
             position: absolute; inset: 2px;
             border-radius: 999px;
-            background: #FFFFFF;
+            background: #F5F5F7;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 2px rgba(0,0,0,0.03);
             z-index: 1;
             pointer-events: none;
         }
