@@ -504,15 +504,15 @@
                                 <div class="asef-mega-col asef-mega-side">
                                     <h5>Hızlı Bağlantılar</h5>
                                     <a href="{{ $catalogUrl }}">Ürün Arama</a>
-                                    <a href="{{ $catalogUrl }}">Teklif Sepetim</a>
+                                    <a href="{{ url('sepet') }}">Teklif Sepetim</a>
                                     <a href="{{ $waLink }}" target="_blank" rel="noopener">WhatsApp'tan Yaz</a>
                                 </div>
                                 <div class="asef-mega-col asef-mega-side">
                                     <h5>Popüler Ürünler</h5>
-                                    <a href="{{ $catalogUrl }}">DTH Çekiç 4 İnç</a>
-                                    <a href="{{ $catalogUrl }}">DTH Button Bit 6 İnç</a>
-                                    <a href="{{ $catalogUrl }}">Sondaj Tiji 3 Metre</a>
-                                    <a href="{{ $catalogUrl }}">Triplex Çamur Pompası</a>
+                                    <a href="{{ route('shop.asef.product', ['sku' => 'AS-DTH-040']) }}">DTH Çekiç 4 İnç</a>
+                                    <a href="{{ route('shop.asef.product', ['sku' => 'AS-BIT-152']) }}">DTH Button Bit 6 İnç</a>
+                                    <a href="{{ route('shop.asef.product', ['sku' => 'AS-ROD-300']) }}">Sondaj Tiji 3 Metre</a>
+                                    <a href="{{ route('shop.asef.product', ['sku' => 'AS-PMP-600']) }}">Triplex Çamur Pompası</a>
                                 </div>
                             </div>
                         </div>
