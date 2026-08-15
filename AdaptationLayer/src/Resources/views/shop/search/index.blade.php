@@ -3,6 +3,7 @@
      Design v5 uses shared partials for styles/nav/footer.
      Products hardcoded (mobile app catalog) until Bagisto backend
      is wired up (Faz 2).
+     force-recompile: 20260816-a
      ============================================================ --}}
 @php
     $channel      = core()->getCurrentChannel();
