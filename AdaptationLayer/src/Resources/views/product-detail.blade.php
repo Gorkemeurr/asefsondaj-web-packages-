@@ -212,15 +212,19 @@
                             </div>
                         @endif
 
-                        <div class="asef-pd-spec-title">Teknik özellikler</div>
-                        <ul class="asef-pd-spec-list">
-                            @foreach ($product['specs'] as $spec)
-                                <li>
-                                    <span class="asef-pd-spec-label">{{ $spec['label'] }}</span>
-                                    <span class="asef-pd-spec-value">{{ $spec['value'] }}</span>
-                                </li>
+                        <div class="asef-pd-spec-head">
+                            <div class="asef-pd-spec-title">Teknik özellikler</div>
+                            <div class="asef-pd-spec-sub">{{ count($product['specs']) }} DEĞER</div>
+                        </div>
+                        <div class="asef-pd-spec-grid">
+                            @foreach ($product['specs'] as $i => $spec)
+                                <div class="asef-pd-spec-card">
+                                    <span class="asef-pd-spec-num">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                                    <span class="asef-pd-spec-label-new">{{ $spec['label'] }}</span>
+                                    <span class="asef-pd-spec-value-new">{{ $spec['value'] }}</span>
+                                </div>
                             @endforeach
-                        </ul>
+                        </div>
 
                         {{-- ADD TO CART CARD --}}
                         <div class="asef-pd-card">

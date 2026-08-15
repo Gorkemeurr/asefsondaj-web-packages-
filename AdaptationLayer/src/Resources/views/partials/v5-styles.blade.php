@@ -559,34 +559,52 @@
             padding: 10px 12px 12px;
             display: flex; gap: 6px;
         }
-        .asef-search-add {
-            flex: 1;
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 10px 14px;
-            background: linear-gradient(180deg, #1c1c1e 0%, #000 100%);
-            color: #fff !important;
-            border-radius: 999px;
-            font-size: 13px; font-weight: 600; letter-spacing: -0.005em;
-            transition: transform .15s ease, box-shadow .2s ease, background .15s;
-            box-shadow: 0 1px 0 rgba(255,255,255,0.14) inset, 0 3px 10px rgba(0,0,0,0.18);
-            cursor: pointer; border: 0; font-family: inherit;
+        .asef-root .asef-search-add,
+        button.asef-search-add {
+            flex: 1 1 auto !important;
+            display: inline-flex !important;
+            align-items: center !important; justify-content: center !important; gap: 8px !important;
+            padding: 11px 16px !important;
+            background-color: #0066CC !important;
+            background-image: none !important;
+            color: #FFFFFF !important;
+            border-radius: 999px !important;
+            border: 0 !important;
+            font-size: 13px !important; font-weight: 600 !important; letter-spacing: -0.005em !important;
+            transition: transform .15s ease, box-shadow .2s ease, background-color .15s !important;
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.28) !important;
+            cursor: pointer !important; font-family: inherit !important;
+            opacity: 1 !important;
+            line-height: 1 !important;
         }
-        .asef-search-add:hover {
-            background: linear-gradient(180deg, #262629 0%, #0d0d0f 100%);
-            box-shadow: 0 1px 0 rgba(255,255,255,0.18) inset, 0 5px 14px rgba(0,0,0,0.26);
-            transform: translateY(-1px);
+        .asef-root .asef-search-add:hover,
+        button.asef-search-add:hover {
+            background-color: #0077E0 !important;
+            box-shadow: 0 6px 18px rgba(0, 102, 204, 0.4) !important;
+            transform: translateY(-1px) !important;
         }
-        .asef-search-add:active { transform: translateY(0); }
-        .asef-search-add svg { width: 15px; height: 15px; flex-shrink: 0; }
+        .asef-root .asef-search-add:active,
+        button.asef-search-add:active { transform: translateY(0) !important; }
+        .asef-root .asef-search-add svg,
+        button.asef-search-add svg { width: 16px !important; height: 16px !important; flex-shrink: 0; color: #FFFFFF !important; }
+
         .asef-search-detail {
-            width: 40px; padding: 10px;
-            display: inline-flex; align-items: center; justify-content: center;
-            background: white; color: var(--primary);
-            border: 1px solid var(--outline); border-radius: 999px;
-            transition: border-color .15s, transform .15s;
+            width: 44px !important; padding: 10px !important;
+            display: inline-flex !important; align-items: center !important; justify-content: center !important;
+            background-color: #FFFFFF !important;
+            background-image: none !important;
+            color: var(--primary) !important;
+            border: 1px solid var(--outline) !important;
+            border-radius: 999px !important;
+            transition: border-color .15s, transform .15s, box-shadow .2s;
+            flex-shrink: 0;
         }
-        .asef-search-detail:hover { border-color: var(--primary); transform: translateY(-1px); }
-        .asef-search-detail svg { width: 15px; height: 15px; }
+        .asef-search-detail:hover {
+            border-color: var(--primary) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .asef-search-detail svg { width: 16px !important; height: 16px !important; }
 
         .asef-search-count {
             max-width: 1024px; margin: 0 auto 20px; padding: 0 20px;
@@ -712,22 +730,59 @@
         }
         .asef-pd-usecase svg { width: 14px; height: 14px; color: var(--link-blue); }
 
+        .asef-pd-spec-head {
+            padding-top: 32px; margin-bottom: 20px;
+            display: flex; align-items: baseline; justify-content: space-between;
+            border-top: 1px solid var(--outline);
+        }
         .asef-pd-spec-title {
-            font-size: 20px; font-weight: 600; color: var(--primary);
-            padding-top: 24px; border-top: 1px solid var(--outline);
-            margin-bottom: 16px;
+            font-size: 22px; font-weight: 600; letter-spacing: -0.01em;
+            color: var(--primary);
         }
-        .asef-pd-spec-list {
-            list-style: none;
+        .asef-pd-spec-sub {
+            font-size: 12px; color: var(--gray-secondary);
+            letter-spacing: 0.06em; text-transform: uppercase;
         }
-        .asef-pd-spec-list li {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 14px 0;
-            border-bottom: 1px solid var(--outline);
-            font-size: 15px;
+        .asef-pd-spec-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
         }
-        .asef-pd-spec-label { color: var(--gray-secondary); }
-        .asef-pd-spec-value { color: var(--primary); font-weight: 500; text-align: right; }
+        .asef-pd-spec-card {
+            background: var(--surface-alt);
+            border-radius: 18px;
+            padding: 20px 22px 22px;
+            position: relative;
+            overflow: hidden;
+            transition: transform .2s ease, background .2s;
+        }
+        .asef-pd-spec-card::before {
+            content: "";
+            position: absolute; inset: 0;
+            background: radial-gradient(circle at 100% 0%, rgba(0,102,204,0.06), transparent 55%);
+            pointer-events: none;
+        }
+        .asef-pd-spec-card:hover { transform: translateY(-1px); background: #EEEEF0; }
+        .asef-pd-spec-num {
+            display: block;
+            font-family: "SF Mono", ui-monospace, Menlo, monospace;
+            font-size: 11px; letter-spacing: 0.08em;
+            color: var(--gray-secondary);
+            margin-bottom: 8px;
+        }
+        .asef-pd-spec-label-new {
+            display: block;
+            font-size: 13px; color: var(--secondary); font-weight: 500;
+            margin-bottom: 10px;
+            letter-spacing: -0.005em;
+        }
+        .asef-pd-spec-value-new {
+            display: block;
+            font-size: 20px; font-weight: 600; letter-spacing: -0.01em;
+            color: var(--primary);
+            line-height: 1.15;
+        }
+        @media (max-width: 500px) {
+            .asef-pd-spec-grid { grid-template-columns: 1fr; }
+        }
 
         .asef-pd-card {
             background: var(--surface-alt); border-radius: 20px;
