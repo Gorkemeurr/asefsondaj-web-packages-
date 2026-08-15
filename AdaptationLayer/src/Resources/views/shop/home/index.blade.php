@@ -65,6 +65,12 @@
                     <a href="{{ $catalogUrl }}" class="asef-nav-icon" aria-label="Ara">
                         <svg viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="7.2" cy="7.2" r="5.2"/><path d="m11 11 4.3 4.3"/></svg>
                     </a>
+                    <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-nav-icon" aria-label="Teklif iste">
+                        <svg viewBox="0 0 14 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M2.4 4.2h9.2L12.5 15c.03.37-.26.7-.62.7H2.12c-.36 0-.65-.33-.62-.7L2.4 4.2Z"/>
+                            <path d="M4.6 4.2v-.8a2.4 2.4 0 0 1 4.8 0v.8"/>
+                        </svg>
+                    </a>
                     <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-btn asef-btn-blue asef-btn-sm asef-nav-cta">İletişim</a>
                     <button type="button" class="asef-nav-icon asef-nav-burger" id="asef-nav-burger" aria-label="Menü" aria-expanded="false" aria-controls="asef-nav-links">
                         <svg class="asef-ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
