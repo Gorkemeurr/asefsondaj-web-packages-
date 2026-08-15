@@ -69,11 +69,65 @@
         }
         .asef-nav-menu { display: none; align-items: center; gap: 32px; }
         @media (min-width: 900px) { .asef-nav-menu { display: flex; } }
-        .asef-nav-menu a {
+        .asef-nav-menu > a,
+        .asef-nav-item > a {
             font-size: 13px; color: var(--secondary); font-weight: 500;
-            transition: color .15s;
+            transition: color .15s; cursor: pointer;
         }
-        .asef-nav-menu a:hover { color: var(--primary); }
+        .asef-nav-menu > a:hover,
+        .asef-nav-item:hover > a,
+        .asef-nav-item:focus-within > a { color: var(--primary); }
+        .asef-nav-item { position: static; }
+
+        /* MEGA MENU */
+        .asef-mega {
+            position: absolute; top: 100%; left: 0; right: 0;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(210,210,215,0.5);
+            padding: 36px 0 40px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: opacity .22s ease, transform .28s ease, visibility 0s linear .22s;
+            z-index: 99;
+        }
+        .asef-nav-item:hover .asef-mega,
+        .asef-nav-item:focus-within .asef-mega,
+        .asef-mega:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            transition: opacity .22s ease, transform .28s ease, visibility 0s linear 0s;
+        }
+        .asef-mega-grid {
+            display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px;
+            max-width: 1024px; margin: 0 auto; padding: 0 20px;
+        }
+        .asef-mega-col h5 {
+            font-size: 12px; font-weight: 400; color: var(--gray-secondary);
+            margin-bottom: 14px; letter-spacing: 0;
+        }
+        .asef-mega-main a {
+            display: block; padding: 4px 0;
+            font-size: 22px; font-weight: 600; letter-spacing: -0.01em;
+            color: var(--primary); line-height: 1.3;
+        }
+        .asef-mega-main a:hover { color: var(--link-blue); }
+        .asef-mega-side a {
+            display: block; padding: 4px 0;
+            font-size: 12px; color: var(--on-surface);
+            font-weight: 400;
+        }
+        .asef-mega-side a:hover { color: var(--link-blue); }
+        .asef-mega-small { margin-top: 10px; }
+        .asef-mega-small a {
+            display: block; padding: 3px 0;
+            font-size: 12px; font-weight: 400; color: var(--secondary);
+            letter-spacing: 0;
+        }
+        .asef-mega-small a:hover { color: var(--link-blue); }
         .asef-nav-actions { display: none; align-items: center; gap: 8px; }
         @media (min-width: 900px) { .asef-nav-actions { display: flex; } }
         .asef-nav-icon-btn {
@@ -110,10 +164,10 @@
         /* HERO */
         .asef-hero {
             max-width: 1024px; margin: 0 auto;
-            padding: 88px 20px 64px;
+            padding: 40px 20px 48px;
             text-align: center;
         }
-        @media (min-width: 768px) { .asef-hero { padding: 120px 20px 96px; } }
+        @media (min-width: 768px) { .asef-hero { padding: 56px 20px 72px; } }
         .asef-hero h1 {
             font-size: clamp(36px, 5.8vw, 56px);
             font-weight: 600; letter-spacing: -0.02em; line-height: 1.08;
@@ -432,16 +486,70 @@
             <div class="asef-nav-inner">
                 <a href="{{ url('/') }}" class="asef-brand">Asef Sondaj</a>
                 <div class="asef-nav-menu">
-                    <a href="{{ $catalogUrl }}">Ürünler</a>
-                    <a href="#">Sondaj Makinaları</a>
-                    <a href="#hizmetler">Hizmetler</a>
-                    <a href="#hakkimizda">Hakkımızda</a>
+                    <div class="asef-nav-item">
+                        <a href="{{ $catalogUrl }}">Ürünler</a>
+                        <div class="asef-mega" role="menu" aria-label="Ürünler menüsü">
+                            <div class="asef-mega-grid">
+                                <div class="asef-mega-col asef-mega-main">
+                                    <h5>Ürün Gruplarını Keşfedin</h5>
+                                    <a href="{{ $catalogUrl }}">Tüm Ürünler</a>
+                                    <a href="{{ $catalogUrl }}">Delici Ekipmanlar</a>
+                                    <a href="{{ $catalogUrl }}">Tij ve Borular</a>
+                                    <a href="{{ $catalogUrl }}">Pompa Sistemleri</a>
+                                    <a href="{{ $catalogUrl }}">Karot Ürünleri</a>
+                                    <a href="{{ $catalogUrl }}">Yedek Parça</a>
+                                </div>
+                                <div class="asef-mega-col asef-mega-side">
+                                    <h5>Hızlı Bağlantılar</h5>
+                                    <a href="{{ $catalogUrl }}">Ürün Arama</a>
+                                    <a href="{{ $catalogUrl }}">Teklif Sepetim</a>
+                                    <a href="{{ $waLink }}" target="_blank" rel="noopener">WhatsApp'tan Yaz</a>
+                                </div>
+                                <div class="asef-mega-col asef-mega-side">
+                                    <h5>Popüler Ürünler</h5>
+                                    <a href="{{ $catalogUrl }}">DTH Çekiç 4 İnç</a>
+                                    <a href="{{ $catalogUrl }}">DTH Button Bit 6 İnç</a>
+                                    <a href="{{ $catalogUrl }}">Sondaj Tiji 3 Metre</a>
+                                    <a href="{{ $catalogUrl }}">Triplex Çamur Pompası</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="asef-nav-item">
+                        <a href="#hakkimizda">Kurumsal</a>
+                        <div class="asef-mega" role="menu" aria-label="Kurumsal menüsü">
+                            <div class="asef-mega-grid">
+                                <div class="asef-mega-col asef-mega-main">
+                                    <h5>Kurumsalı Keşfedin</h5>
+                                    <a href="#hakkimizda">Hakkımızda</a>
+                                    <a href="#">Sondaj Makinalarımız</a>
+                                    <a href="#hizmetler">Hizmetlerimiz</a>
+                                    <a href="#">Referanslar</a>
+                                    <a href="#">SSS</a>
+                                </div>
+                                <div class="asef-mega-col asef-mega-side">
+                                    <h5>Hızlı Bağlantılar</h5>
+                                    <a href="#iletisim">İletişim</a>
+                                    <a href="{{ $waLink }}" target="_blank" rel="noopener">WhatsApp'a Yaz</a>
+                                </div>
+                                <div class="asef-mega-col asef-mega-side">
+                                    <h5>Daha Fazla</h5>
+                                    <a href="#">Blog</a>
+                                    <a href="#">Destek</a>
+                                    <a href="tel:+905320542975">Hemen Ara</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <a href="#">Blog</a>
                     <a href="#">Destek</a>
                 </div>
                 <div class="asef-nav-actions">
                     <a href="{{ $catalogUrl }}" class="asef-nav-icon-btn" aria-label="Arama">
                         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                    </a>
+                    <a href="{{ $catalogUrl }}" class="asef-nav-icon-btn" aria-label="Teklif Sepetim">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                     </a>
                     <a href="{{ $waLink }}" class="asef-nav-cta" target="_blank" rel="noopener">İletişim</a>
                 </div>
@@ -585,7 +693,7 @@
             {{-- SONDAJ MAKINALARIMIZ --}}
             <section class="asef-section-wide">
                 <div class="asef-machine-showcase">
-                    <div class="asef-machine-showcase-bg" style="background-image: url('{{ $asefUrl('asef-rig-2-clean.jpg') }}');"></div>
+                    <div class="asef-machine-showcase-bg" style="background-image: url('{{ $asefUrl('drilling-hero.jpg') }}');"></div>
                     <div class="asef-machine-content">
                         <div class="asef-label-caps">SONDAJ MAKİNALARIMIZ</div>
                         <h2>Sahada denendi. Kanıtlandı.</h2>
