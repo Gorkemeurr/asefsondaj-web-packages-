@@ -91,22 +91,49 @@ header a:has(> [class*="user-icon"]) {
 .top-header,
 [class*="announcement"],
 [class*="promo-banner"],
-.header-notice,
-div:has(> a[href*="explore"]):first-child + div,
-p:contains("İlk siparişinizde"),
-p:contains("HEMEN ALIŞVERİŞ") {
+.header-notice {
+    display: none !important;
+}
+
+/* --- Sticky header duplicate on scroll — gizle --- */
+[class*="sticky-header"],
+[class*="fixed-header"],
+header.sticky,
+header.is-sticky,
+header[class*="scrolled"],
+header[data-scroll="true"] {
+    display: none !important;
+}
+
+/* --- Bagisto storefront home HERO SECTION (sample fashion) gizle --- */
+/* Fashion demo content — Bagisto sample seed data */
+[class*="hero-slider"],
+[class*="banner-slider"],
+.slider-container,
+[class*="carousel"],
+[class*="theme-slider"],
+[class*="promotion"] {
+    display: none !important;
+}
+
+/* --- Hide entire sample product carousels and demo sections --- */
+/* Any section with "Yeni ekleme" title in it */
+section:has(h2:contains("Yeni ekleme")),
+section:has(h2:contains("Fashion")),
+section:has(h2:contains("Yeni Koleksiyon")),
+section:has(h2:contains("Cesaretinizi")) {
     display: none !important;
 }
 
 /* --- Mobile hamburger menu: gizle (app'te yok) --- */
-@media (max-width: 1023px) {
-    header button.hamburger,
-    header .mobile-menu-toggle,
-    header [class*="menu-toggle"],
-    header button[aria-label*="menu" i],
-    header button[aria-label*="Menu"] {
-        display: none !important;
-    }
+header button.hamburger,
+header .mobile-menu-toggle,
+header [class*="menu-toggle"],
+header button[aria-label*="menu" i],
+header button[aria-label*="Menu"],
+header .hamburger-icon,
+[class*="mobile-menu"] {
+    display: none !important;
 }
 
 /* --- Fiyat gösterimini gizle ---------------------------------- */
