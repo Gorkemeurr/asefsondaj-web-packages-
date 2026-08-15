@@ -54,6 +54,7 @@
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')
+@include('asef-adaptation::partials.v5-cart-js')
 
 <x-shop::layouts
     :has-header="false"
@@ -121,28 +122,32 @@
             @if ($filtered->count() > 0)
                 <div class="asef-search-grid">
                     @foreach ($filtered as $product)
-                        <a href="#" class="asef-search-card" aria-label="{{ $product['name'] }} detay">
-                            <div class="asef-search-media">
+                        <div class="asef-search-card">
+                            <a href="{{ route('shop.asef.product', ['sku' => $product['sku']]) }}" class="asef-search-media" aria-label="{{ $product['name'] }} detay" style="display:block;">
                                 <img
                                     src="{{ $asefUrl($product['img']) }}"
                                     alt="{{ $product['name'] }}"
                                     loading="lazy"
-                                    onerror="this.style.background='#14161a'"
                                 />
                                 <span class="asef-search-sku">{{ $product['sku'] }}</span>
-                            </div>
-                            <div class="asef-search-body">
+                            </a>
+                            <a href="{{ route('shop.asef.product', ['sku' => $product['sku']]) }}" class="asef-search-body" style="color:inherit;">
                                 <div class="asef-search-cat">{{ $product['catLabel'] }}</div>
                                 <div class="asef-search-name">{{ $product['name'] }}</div>
                                 <div class="asef-search-desc">{{ $product['desc'] }}</div>
-                            </div>
+                            </a>
                             <div class="asef-search-foot">
-                                <span class="asef-search-cta-text">Teklif ile</span>
-                                <span class="asef-search-cta-btn" aria-hidden="true">
+                                <span class="asef-search-cta-text">Sepete ekle</span>
+                                <button type="button"
+                                        class="asef-search-cta-btn"
+                                        data-asef-add-to-cart
+                                        data-sku="{{ $product['sku'] }}"
+                                        data-name="{{ $product['name'] }}"
+                                        aria-label="Sepete ekle">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
-                                </span>
+                                </button>
                             </div>
-                        </a>
+                        </div>
                     @endforeach
                 </div>
             @else

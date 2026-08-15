@@ -470,6 +470,8 @@
     </style>
 @endpush
 
+@include('asef-adaptation::partials.v5-cart-js')
+
 <x-shop::layouts
     :has-header="false"
     :has-feature="false"
@@ -548,8 +550,9 @@
                     <a href="{{ $catalogUrl }}" class="asef-nav-icon-btn" aria-label="Arama">
                         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
                     </a>
-                    <a href="{{ $catalogUrl }}" class="asef-nav-icon-btn" aria-label="Teklif Sepetim">
+                    <a href="{{ url('sepet') }}" class="asef-nav-icon-btn" aria-label="Teklif Sepetim">
                         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        <span class="asef-badge" data-asef-cart-badge style="display: none;"></span>
                     </a>
                     <a href="{{ $waLink }}" class="asef-nav-cta" target="_blank" rel="noopener">İletişim</a>
                 </div>
@@ -638,7 +641,7 @@
                     <a href="{{ $catalogUrl }}" class="asef-section-link">Tüm ürünlere bak <span>›</span></a>
                 </div>
                 <div class="asef-prod-grid">
-                    <a href="{{ $catalogUrl }}" class="asef-prod-card">
+                    <a href="{{ route('shop.asef.product', ['sku' => 'AS-DTH-040']) }}" class="asef-prod-card">
                         <div class="asef-prod-media"><img src="{{ $asefUrl('dth-hammer.jpg') }}" alt="DTH Çekiç 4 İnç" loading="lazy" /></div>
                         <div class="asef-prod-body">
                             <div class="asef-prod-sku">AS-DTH-040</div>
@@ -647,7 +650,7 @@
                             <span class="asef-prod-link">Detay <span>›</span></span>
                         </div>
                     </a>
-                    <a href="{{ $catalogUrl }}" class="asef-prod-card">
+                    <a href="{{ route('shop.asef.product', ['sku' => 'AS-ROD-300']) }}" class="asef-prod-card">
                         <div class="asef-prod-media"><img src="{{ $asefUrl('drill-rods.jpg') }}" alt="Sondaj Tiji 3 Metre" loading="lazy" /></div>
                         <div class="asef-prod-body">
                             <div class="asef-prod-sku">AS-ROD-300</div>

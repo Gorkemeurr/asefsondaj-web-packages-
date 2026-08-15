@@ -5,6 +5,7 @@ namespace AsefSondaj\AdaptationLayer\Providers;
 use AsefSondaj\AdaptationLayer\Http\Middleware\BlockDisabledRoutes;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -67,6 +68,20 @@ class AdaptationServiceProvider extends ServiceProvider
         $this->publishes([
             $this->getPath('Config/asef.php') => config_path('asef.php'),
         ], 'asef-config');
+
+        // 5) Asef-specific storefront routes (product detail + sepet).
+        //    Uses "web" middleware so it participates in Bagisto session/CSRF.
+        Route::middleware('web')->group(function () {
+            Route::get('/urun/{sku}', function (string $sku) {
+                return view('asef-adaptation::product-detail', [
+                    'sku' => strtoupper($sku),
+                ]);
+            })->name('shop.asef.product')->where('sku', '[A-Za-z0-9\-]+');
+
+            Route::get('/sepet', function () {
+                return view('asef-adaptation::sepet');
+            })->name('shop.asef.cart');
+        });
     }
 
     protected function getPath(string $path): string
