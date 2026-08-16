@@ -797,10 +797,10 @@
             margin-bottom: 40px;
         }
         @media (min-width: 768px) {
-            .asef-footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; }
+            .asef-footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr; }
         }
         .asef-footer-brand { grid-column: 1 / -1; }
-        @media (min-width: 768px) { .asef-footer-brand { grid-column: auto; max-width: 300px; } }
+        @media (min-width: 768px) { .asef-footer-brand { grid-column: auto; max-width: 280px; } }
         .asef-footer-brand .asef-brand { display: block; margin-bottom: 12px; }
         .asef-footer-brand p { font-size: 13px; color: var(--gray-secondary); line-height: 1.55; }
         .asef-footer-col h4 {
