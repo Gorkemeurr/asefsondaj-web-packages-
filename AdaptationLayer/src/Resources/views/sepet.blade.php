@@ -82,7 +82,7 @@
                         <h3>Sipariş Özeti</h3>
                         <div class="asef-cart-summary-row">
                             <span class="asef-cart-summary-label">Seçilen Ürün Sayısı</span>
-                            <span class="asef-cart-summary-value"><span data-asef-cart-count>0</span> kalem</span>
+                            <span class="asef-cart-summary-value"><span data-asef-cart-count>0</span> ürün</span>
                         </div>
                         <div class="asef-cart-summary-row">
                             <span class="asef-cart-summary-label">Toplam Adet</span>

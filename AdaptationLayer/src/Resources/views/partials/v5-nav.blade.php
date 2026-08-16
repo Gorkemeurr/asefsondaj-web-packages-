@@ -129,9 +129,27 @@
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                 <span class="asef-badge" data-asef-cart-badge style="display: none;"></span>
             </a>
-            <a href="{{ $waLink }}" class="asef-nav-cta" target="_blank" rel="noopener" style="color:#FFFFFF !important; background:#0066CC !important;">
-                <span style="color:#FFFFFF !important;">İletişim</span>
+            <a href="{{ $waLink }}" class="asef-nav-cta" target="_blank" rel="noopener"
+               style="background:#0066CC !important; color:#FFFFFF !important; text-decoration:none !important;">
+                <span style="color:#FFFFFF !important; -webkit-text-fill-color:#FFFFFF !important;">İletişim</span>
             </a>
+            <script>
+            (function () {
+                function forceWhite() {
+                    document.querySelectorAll('.asef-nav-cta').forEach(function (a) {
+                        a.style.setProperty('color', '#FFFFFF', 'important');
+                        a.style.setProperty('background', '#0066CC', 'important');
+                        a.querySelectorAll('*').forEach(function (el) {
+                            el.style.setProperty('color', '#FFFFFF', 'important');
+                        });
+                    });
+                }
+                if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', forceWhite); }
+                else { forceWhite(); }
+                setTimeout(forceWhite, 300);
+                setTimeout(forceWhite, 1000);
+            })();
+            </script>
         </div>
         <button class="asef-nav-mobile-btn" aria-label="Menü">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
