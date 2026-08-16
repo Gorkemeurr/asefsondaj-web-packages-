@@ -8,7 +8,7 @@ class AsefSetting extends Model
 {
     protected $table = 'asef_settings';
 
-    protected $fillable = ['key', 'label', 'value', 'type', 'help', 'sort'];
+    protected $fillable = ['key', 'group', 'label', 'value', 'type', 'help', 'sort'];
 
     /**
      * Get a setting value by key, with fallback.

@@ -11,7 +11,22 @@ class SettingsController extends Controller
     public function index()
     {
         $items = AsefSetting::orderBy('sort')->orderBy('id')->get();
-        return view('asef-adaptation::admin.settings.index', compact('items'));
+        // Group'a göre grupla — admin panelde sekme/başlık göster
+        $grouped = $items->groupBy('group');
+
+        $groupLabels = [
+            'genel'       => 'Genel',
+            'iletisim'    => 'İletişim',
+            'sosyal'      => 'Sosyal Medya',
+            'anasayfa'    => 'Ana Sayfa',
+            'hakkimizda'  => 'Hakkımızda Sayfası',
+            'kurumsal'    => 'Kurumsal Sayfası',
+            'hizmetler'   => 'Hizmetler Sayfası',
+            'referanslar' => 'Referanslar Sayfası',
+            'makineler'   => 'Sondaj Makineleri Sayfası',
+        ];
+
+        return view('asef-adaptation::admin.settings.index', compact('items', 'grouped', 'groupLabels'));
     }
 
     public function update(Request $req)
