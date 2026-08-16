@@ -3,7 +3,7 @@
 <nav class="asef-nav" aria-label="Ana gezinme">
     <div class="asef-nav-inner">
         <a href="{{ url('/') }}" class="asef-brand">Asef Sondaj</a>
-        <div class="asef-nav-menu">
+        <div class="asef-nav-menu" style="margin-left:40px;">
             <div class="asef-nav-item">
                 <a href="{{ $catalogUrl }}">Ürünler</a>
                 <div class="asef-mega" role="menu" aria-label="Ürünler menüsü">
