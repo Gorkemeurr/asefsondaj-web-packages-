@@ -49,28 +49,21 @@
         }
         .asef-brand {
             display: inline-flex; align-items: center; gap: 10px;
-            font-size: 17px; font-weight: 700; letter-spacing: -0.02em; color: var(--primary);
+            font-size: 17px; font-weight: 700; letter-spacing: -0.02em; color: var(--primary) !important;
             text-decoration: none !important;
         }
         .asef-brand-mark {
-            width: 30px; height: 30px; border-radius: 8px;
-            background: linear-gradient(135deg, #1d1d1f 0%, #38383B 100%);
-            color: #FFFFFF;
+            width: 26px; height: 26px;
             display: inline-flex; align-items: center; justify-content: center;
-            font-family: "Inter", -apple-system, sans-serif;
-            font-size: 15px; font-weight: 700; letter-spacing: -0.02em;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.14), 0 1px 0 rgba(255,255,255,0.08) inset;
-            position: relative; overflow: hidden;
+            color: var(--primary);
+            flex-shrink: 0;
         }
-        .asef-brand-mark::before {
-            content: "";
-            position: absolute; top: 0; left: 0; right: 0; height: 50%;
-            background: linear-gradient(180deg, rgba(255,255,255,0.14), transparent);
-            pointer-events: none;
+        .asef-brand-mark svg { width: 100%; height: 100%; display: block; }
+        .asef-brand-text {
+            display: inline-block;
+            font-weight: 700; color: var(--primary);
+            font-size: 17px; letter-spacing: -0.02em;
         }
-        .asef-brand-text { display: inline-flex; align-items: baseline; gap: 3px; }
-        .asef-brand-text .brand-asef { font-weight: 700; color: var(--primary); }
-        .asef-brand-text .brand-sondaj { font-weight: 400; color: var(--secondary); }
         .asef-nav-menu { display: none; align-items: center; gap: 32px; }
         @media (min-width: 900px) { .asef-nav-menu { display: flex; } }
         .asef-nav-menu > a,
@@ -1039,13 +1032,18 @@
         }
         .asef-cart-item-qty-row { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
         .asef-cart-item-remove {
-            width: 36px; height: 36px; border-radius: 999px;
-            display: grid; place-items: center;
-            color: var(--secondary);
-            background: var(--surface-alt);
-            border: 1px solid var(--outline);
-            cursor: pointer;
+            width: 40px !important; height: 40px !important; border-radius: 999px !important;
+            display: inline-flex !important; align-items: center !important; justify-content: center !important;
+            color: #E11D48 !important;
+            background: #FEF2F2 !important;
+            border: 1.5px solid #FCA5A5 !important;
+            cursor: pointer !important;
             transition: background .15s, color .15s, border-color .15s, transform .15s;
+            flex-shrink: 0;
+            padding: 0 !important;
+            margin: 0;
+            opacity: 1 !important;
+            visibility: visible !important;
         }
         .asef-cart-item-remove:hover { background: #FEF2F2; color: #B21A1A; border-color: #B21A1A; transform: scale(1.05); }
 

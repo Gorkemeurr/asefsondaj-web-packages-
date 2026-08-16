@@ -487,10 +487,12 @@
         <nav class="asef-nav" aria-label="Ana gezinme">
             <div class="asef-nav-inner">
                 <a href="{{ url('/') }}" class="asef-brand" aria-label="Asef Sondaj ana sayfa">
-                    <span class="asef-brand-mark" aria-hidden="true">A</span>
-                    <span class="asef-brand-text">
-                        <span class="brand-asef">Asef</span><span class="brand-sondaj">Sondaj</span>
+                    <span class="asef-brand-mark" aria-hidden="true">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                            <path d="M50 8 L95 92 L74 92 L64 71 L36 71 L26 92 L5 92 Z M44 55 L56 55 L50 41 Z"/>
+                        </svg>
                     </span>
+                    <span class="asef-brand-text">Asef Sondaj</span>
                 </a>
                 <div class="asef-nav-menu">
                     <div class="asef-nav-item">
@@ -751,7 +753,7 @@
             {{-- SONDAJ MAKINALARIMIZ --}}
             <section class="asef-section-wide">
                 <div class="asef-machine-showcase">
-                    <div class="asef-machine-showcase-bg" style="background-image: url('{{ $asefUrl('asef-innovation-render.jpg') }}');"></div>
+                    <div class="asef-machine-showcase-bg" style="background-image: url('{{ $asefUrl('asef-rig-2-clean.jpg') }}');"></div>
                     <div class="asef-machine-content">
                         <div class="asef-label-caps">SONDAJ MAKİNALARIMIZ</div>
                         <h2>Sahada denendi. Kanıtlandı.</h2>
@@ -832,8 +834,10 @@
                 <div class="asef-footer-grid">
                     <div class="asef-footer-brand">
                         <span class="asef-brand" aria-hidden="true">
-                            <span class="asef-brand-mark">A</span>
-                            <span class="asef-brand-text"><span class="brand-asef">Asef</span><span class="brand-sondaj">Sondaj</span></span>
+                            <span class="asef-brand-mark">
+                                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M50 8 L95 92 L74 92 L64 71 L36 71 L26 92 L5 92 Z M44 55 L56 55 L50 41 Z"/></svg>
+                            </span>
+                            <span class="asef-brand-text">Asef Sondaj</span>
                         </span>
                         <p>20 yıllık saha tecrübesiyle sondaj ekipmanları, yedek parça ve teknik çözüm ortağınız.</p>
                     </div>

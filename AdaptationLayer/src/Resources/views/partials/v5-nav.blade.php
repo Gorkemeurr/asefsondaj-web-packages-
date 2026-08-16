@@ -3,10 +3,12 @@
 <nav class="asef-nav" aria-label="Ana gezinme">
     <div class="asef-nav-inner">
         <a href="{{ url('/') }}" class="asef-brand" aria-label="Asef Sondaj ana sayfa">
-            <span class="asef-brand-mark" aria-hidden="true">A</span>
-            <span class="asef-brand-text">
-                <span class="brand-asef">Asef</span><span class="brand-sondaj">Sondaj</span>
+            <span class="asef-brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                    <path d="M50 8 L95 92 L74 92 L64 71 L36 71 L26 92 L5 92 Z M44 55 L56 55 L50 41 Z"/>
+                </svg>
             </span>
+            <span class="asef-brand-text">Asef Sondaj</span>
         </a>
         <div class="asef-nav-menu">
             <div class="asef-nav-item">
@@ -134,7 +136,9 @@
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                 <span class="asef-badge" data-asef-cart-badge style="display: none;"></span>
             </a>
-            <a href="{{ $waLink }}" class="asef-nav-cta" target="_blank" rel="noopener">İletişim</a>
+            <a href="{{ $waLink }}" class="asef-nav-cta" target="_blank" rel="noopener" style="color:#FFFFFF !important; background:#0066CC !important;">
+                <span style="color:#FFFFFF !important;">İletişim</span>
+            </a>
         </div>
         <button class="asef-nav-mobile-btn" aria-label="Menü">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
