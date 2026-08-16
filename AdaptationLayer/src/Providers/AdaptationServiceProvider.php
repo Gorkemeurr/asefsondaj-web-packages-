@@ -4,6 +4,7 @@ namespace AsefSondaj\AdaptationLayer\Providers;
 
 use AsefSondaj\AdaptationLayer\Http\Middleware\BlockDisabledRoutes;
 use AsefSondaj\AdaptationLayer\Http\Middleware\FreshCacheHeaders;
+use AsefSondaj\AdaptationLayer\Http\Middleware\LegacySearchRedirect;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -76,6 +77,7 @@ class AdaptationServiceProvider extends ServiceProvider
             $kernel = $this->app->make(Kernel::class);
             $kernel->pushMiddleware(BlockDisabledRoutes::class);
             $kernel->pushMiddleware(FreshCacheHeaders::class);
+            $kernel->pushMiddleware(LegacySearchRedirect::class);
         } catch (\Throwable $e) {
             // kernel not accessible in this context (rare) — fall back to group registration below
         }
