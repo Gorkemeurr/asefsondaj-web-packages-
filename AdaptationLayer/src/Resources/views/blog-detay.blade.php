@@ -273,6 +273,32 @@
 
     $slug = $slug ?? '';
     $post = $store[$slug] ?? null;
+
+    // DB fallback — admin panelden eklenmiş bloglar (asef_bloglar tablosu)
+    if ($post === null) {
+        try {
+            $dbBlog = \AsefSondaj\AdaptationLayer\Models\AsefBlog::where('slug', $slug)
+                ->where('is_active', true)
+                ->first();
+            if ($dbBlog) {
+                // Body HTML → paragraflara böl (Blade template'i list format bekliyor)
+                $bodyHtml = trim((string) $dbBlog->body);
+                $post = [
+                    'cat'    => $dbBlog->cat,
+                    'title'  => $dbBlog->title,
+                    'lede'   => $dbBlog->lede,
+                    'date'   => $dbBlog->published_at?->format('d M Y') ?? $dbBlog->created_at->format('d M Y'),
+                    'read'   => $dbBlog->read_time ?? '',
+                    'img'    => $dbBlog->image ?? 'asef-hero-rig.jpg',
+                    'author' => $dbBlog->author ?? 'Asef Teknik Ekip',
+                    'body_html' => $bodyHtml,  // Blade view'da nl2br(e) yerine HTML render
+                ];
+            }
+        } catch (\Throwable $e) {
+            // asef_bloglar tablosu henüz oluşmadıysa sessizce fallback
+        }
+    }
+
     $isPlaceholder = $post === null;
 
     if ($isPlaceholder) {
@@ -470,6 +496,9 @@
                     <p style="text-align: center; margin-top: 32px;">
                         <a href="{{ url('blog') }}" class="asef-cta-pill primary">Blog'a Dön</a>
                     </p>
+                @elseif (! empty($post['body_html']))
+                    {{-- DB'den gelen blog: body_html HTML render (admin panelden yazılan HTML) --}}
+                    {!! $post['body_html'] !!}
                 @else
                     @foreach ($post['body'] as [$type, $text])
                         @if ($type === 'h')
