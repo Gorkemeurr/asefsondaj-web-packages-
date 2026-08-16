@@ -175,9 +175,9 @@
                 +       '</div>'
                 +     '</div>'
                 +   '</div>'
-                +   '<button type="button" class="asef-cart-item-remove" data-asef-cart-remove data-sku="' + esc(it.sku) + '" aria-label="Kaldır" '
-                +     'style="width:40px;height:40px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;background:#FEF2F2;color:#E11D48;border:1.5px solid #FCA5A5;cursor:pointer;flex-shrink:0;">'
-                +     '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>'
+                +   '<button type="button" data-asef-cart-remove data-sku="' + esc(it.sku) + '" aria-label="Ürünü sepetten sil" '
+                +     'style="width:44px !important;height:44px !important;min-width:44px !important;border-radius:12px !important;display:inline-flex !important;align-items:center !important;justify-content:center !important;background:#DC2626 !important;color:#FFFFFF !important;border:0 !important;cursor:pointer !important;flex-shrink:0 !important;box-shadow:0 2px 8px rgba(220,38,38,0.35) !important;padding:0 !important;margin:0 0 0 16px !important;align-self:center !important;">'
+                +     '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events:none;"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>'
                 +   '</button>'
                 + '</div>';
         }
