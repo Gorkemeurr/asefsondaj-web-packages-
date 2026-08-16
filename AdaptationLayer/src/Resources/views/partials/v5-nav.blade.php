@@ -157,6 +157,56 @@
     </div>
 </nav>
 
+{{-- Drawer için inline CSS — v5-styles cache sorunu için garanti fallback --}}
+<style>
+    .asef-mobile-drawer {
+        position: fixed !important; inset: 0 !important; z-index: 10000 !important;
+        display: none !important;
+        background: rgba(15,17,20,0.5); backdrop-filter: blur(6px);
+        justify-content: flex-end;
+    }
+    .asef-mobile-drawer.on { display: flex !important; }
+    .asef-mobile-drawer-panel {
+        width: min(340px, 88vw); height: 100%; background: #FFFFFF;
+        display: flex; flex-direction: column;
+        box-shadow: -20px 0 60px rgba(0,0,0,0.24);
+    }
+    .asef-mobile-drawer-head {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 20px 22px; border-bottom: 1px solid #E5E5EA;
+        font-size: 15px; font-weight: 600; color: #1a1c1d;
+    }
+    .asef-mobile-drawer-close {
+        width: 34px; height: 34px; border-radius: 50%;
+        background: #F5F5F7; border: 0; cursor: pointer;
+        display: inline-flex; align-items: center; justify-content: center;
+        color: #1a1c1d;
+    }
+    .asef-mobile-drawer-nav {
+        flex: 1; overflow-y: auto; padding: 12px 8px;
+        display: flex; flex-direction: column;
+    }
+    .asef-mobile-drawer-nav a {
+        padding: 12px 16px; font-size: 15px; font-weight: 500;
+        color: #1a1c1d; border-radius: 8px;
+        text-decoration: none !important;
+    }
+    .asef-mobile-drawer-nav a:hover { background: #F5F5F7; }
+    .asef-mobile-drawer-nav a.sub {
+        font-size: 13px; font-weight: 400; color: #5f5e60;
+        padding: 8px 16px 8px 30px;
+    }
+    .asef-mobile-drawer-cta { padding: 16px; border-top: 1px solid #E5E5EA; }
+    .asef-mobile-drawer-wa {
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+        background: #25D366; color: #FFFFFF !important;
+        padding: 14px 20px; border-radius: 12px;
+        font-size: 14px; font-weight: 600;
+        text-decoration: none;
+    }
+    .asef-mobile-drawer-wa:hover { background: #1EAF54; }
+</style>
+
 {{-- MOBILE DRAWER — hamburger tıklayınca sağdan slide-in --}}
 <div class="asef-mobile-drawer" id="asefMobileDrawer" role="dialog" aria-modal="true" aria-label="Menü">
     <div class="asef-mobile-drawer-panel">
