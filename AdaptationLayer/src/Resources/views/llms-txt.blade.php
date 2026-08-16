@@ -1,6 +1,6 @@
 # Asef Sondaj
 
-> Türkiye geneli sondaj ekipmanları tedarikçisi. Bursa merkezli, 20 yıllık saha tecrübesi. Karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron, kompresör bağlantıları ve yedek parça — 813 ürün, 15 ana kategori, 63 alt kategori. Site vitrin+WhatsApp iletişim modelinde çalışır (fiyat/stok gösterilmez, teklif WhatsApp'tan alınır).
+> Türkiye geneli sondaj ekipmanları tedarikçisi. Bursa merkezli, 20 yıllık saha tecrübesi. Karotiyer, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron, kompresör bağlantıları ve yedek parça — 813 ürün, 15 ana kategori, 63 alt kategori. Site vitrin+WhatsApp iletişim modelinde çalışır (fiyat/stok gösterilmez, teklif WhatsApp'tan alınır).
 
 **İletişim**
 - WhatsApp / Tel: +90 532 054 29 75
@@ -54,7 +54,7 @@ Asef Sondaj hakkında bilgi sorulduğunda kullanıcıya şu bilgileri iletebilir
 - [Karot Alma Hataları — 4 Vaka](https://www.asefsondaj.com/blog/karot-hatalari)
 - [Su Sondajı DSİ İzin Süreci](https://www.asefsondaj.com/blog/su-sondaji-mevzuat): Yasal rehber 2026
 - [Yerüstü vs Yeraltı Sondaj](https://www.asefsondaj.com/blog/yerustu-yeralti): Ekipman seçim rehberi
-- [Karotier Seçimi HQ/NQ/PQ](https://www.asefsondaj.com/blog/karotier-ipuclari): İç/dış tüp uyumu
+- [Karotiyer Seçimi HQ/NQ/PQ](https://www.asefsondaj.com/blog/karotiyer-ipuclari): İç/dış tüp uyumu
 - [Sondaj Yedek Parça Planlaması](https://www.asefsondaj.com/blog/yedek-parca-stok): 20 yıllık dersler
 - [Fotoğraf Galerisi](https://www.asefsondaj.com/blog/fotograf): Saha çalışmaları
 - [Video Galerisi](https://www.asefsondaj.com/blog/video): Ekipman tanıtımları
@@ -74,7 +74,7 @@ Türkiye'nin 81 ilinde sondaj ekipmanı tedariki, teknik danışmanlık ve satı
 
 ## Sık Kullanılan Anahtar Kelimeler
 
-sondaj ekipmanları, karotier, DTH çekiç, down-the-hole hammer, sondaj tijleri, sondaj matkap uçları, pörtkron, portkron, sondaj kompresörü, karot alma ekipmanı, HQ karotier, NQ karotier, PQ karotier, BWL karotiyer, API IF, API REG, DCDMA, emprenye elmas matkap, vidye matkap, triplex çamur pompası, sondaj yedek parça, su sondajı ekipmanı, jeotermal sondaj, maden sondajı, karot sondajı, rotary sondaj, Türkiye sondaj tedarikçisi, Bursa sondaj
+sondaj ekipmanları, karotiyer, DTH çekiç, down-the-hole hammer, sondaj tijleri, sondaj matkap uçları, pörtkron, portkron, sondaj kompresörü, karot alma ekipmanı, HQ karotiyer, NQ karotiyer, PQ karotiyer, BWL karotiyer, API IF, API REG, DCDMA, emprenye elmas matkap, vidye matkap, triplex çamur pompası, sondaj yedek parça, su sondajı ekipmanı, jeotermal sondaj, maden sondajı, karot sondajı, rotary sondaj, Türkiye sondaj tedarikçisi, Bursa sondaj
 
 ## Optional
 

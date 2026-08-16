@@ -54,7 +54,7 @@
         <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Görsel dosya adı <span class="text-xs text-gray-500">(public/asef/ altında)</span></label>
             <input type="text" name="image" value="{{ old('image', $item->image) }}" maxlength="200"
-                   placeholder="ör: karotier-hero.jpg"
+                   placeholder="ör: karotiyer-hero.jpg"
                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm" />
         </div>
 

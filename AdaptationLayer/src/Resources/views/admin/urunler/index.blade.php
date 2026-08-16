@@ -17,7 +17,7 @@
           class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-4 mb-4 flex flex-wrap gap-3 items-end">
         <div class="flex-1 min-w-[200px]">
             <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Arama (SKU veya isim)</label>
-            <input type="text" name="q" value="{{ $searchQuery }}" placeholder="AS-KRT veya karotier..."
+            <input type="text" name="q" value="{{ $searchQuery }}" placeholder="AS-KRT veya karotiyer..."
                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm" />
         </div>
         <div>

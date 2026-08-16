@@ -132,7 +132,7 @@
                             </span>
                         @endforeach
                     </div>
-                    <p style="margin-top:24px; font-size:14px; color:var(--gray-secondary); line-height:1.6;">Bulunduğunuz ilden bağımsız olarak teklif almak veya teknik görüş sormak için WhatsApp'tan iletişime geçebilirsiniz. Sondaj sektörü ekipmanı, karotier, DTH çekiç, matkap, tij, pompa ve yedek parça ihtiyaçlarınızın hepsi için Türkiye geneli servis ağımız hizmetinizdedir.</p>
+                    <p style="margin-top:24px; font-size:14px; color:var(--gray-secondary); line-height:1.6;">Bulunduğunuz ilden bağımsız olarak teklif almak veya teknik görüş sormak için WhatsApp'tan iletişime geçebilirsiniz. Sondaj sektörü ekipmanı, karotiyer, DTH çekiç, matkap, tij, pompa ve yedek parça ihtiyaçlarınızın hepsi için Türkiye geneli servis ağımız hizmetinizdedir.</p>
                 </div>
             </section>
 

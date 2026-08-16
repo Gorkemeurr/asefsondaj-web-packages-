@@ -12,9 +12,9 @@
 @endphp
 
 @push('meta')
-    <meta name="title" content="Asef Sondaj — Sondaj Ekipmanları, Karotier, DTH Çekiç ve Yedek Parça | Türkiye Geneli Tedarik" />
-    <meta name="description" content="Türkiye geneli sondaj ekipmanları tedariki: karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve yedek parça. 20 yıllık saha tecrübesi, hızlı sevkiyat, teknik danışmanlık. Bursa merkezli — 81 ilde hizmet." />
-    <meta name="keywords" content="sondaj ekipmanları, sondaj makinesi yedek parça, karotier, DTH çekiç, sondaj tijleri, sondaj matkap uçları, pörtkron, sondaj kompresörü, karot alma ekipmanı, Türkiye sondaj tedarikçisi, Bursa sondaj" />
+    <meta name="title" content="Asef Sondaj — Sondaj Ekipmanları, Karotiyer, DTH Çekiç ve Yedek Parça | Türkiye Geneli Tedarik" />
+    <meta name="description" content="Türkiye geneli sondaj ekipmanları tedariki: karotiyer, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve yedek parça. 20 yıllık saha tecrübesi, hızlı sevkiyat, teknik danışmanlık. Bursa merkezli — 81 ilde hizmet." />
+    <meta name="keywords" content="sondaj ekipmanları, sondaj makinesi yedek parça, karotiyer, DTH çekiç, sondaj tijleri, sondaj matkap uçları, pörtkron, sondaj kompresörü, karot alma ekipmanı, Türkiye sondaj tedarikçisi, Bursa sondaj" />
     <link rel="canonical" href="{{ url('/') }}" />
 
     {{-- LCP boost: hero image preload --}}
@@ -35,7 +35,7 @@
             '@id'           => url('/') . '#organization',
             'name'          => 'Asef Sondaj',
             'legalName'     => 'Asef Sondaj Ekipmanları',
-            'description'   => 'Türkiye geneli sondaj ekipmanı tedariki: karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve yedek parça. 20 yıllık saha tecrübesi.',
+            'description'   => 'Türkiye geneli sondaj ekipmanı tedariki: karotiyer, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve yedek parça. 20 yıllık saha tecrübesi.',
             'url'           => url('/'),
             'logo'          => url('asef/asef-logo.png'),
             'image'         => url('asef/asef-hero-rig.jpg'),
@@ -82,7 +82,7 @@
             '@id'           => url('/') . '#website',
             'url'           => url('/'),
             'name'          => 'Asef Sondaj',
-            'description'   => 'Türkiye geneli sondaj ekipmanları, karotier, DTH çekiç, tijler ve yedek parça tedariki.',
+            'description'   => 'Türkiye geneli sondaj ekipmanları, karotiyer, DTH çekiç, tijler ve yedek parça tedariki.',
             'inLanguage'    => 'tr-TR',
             'publisher'     => ['@id' => url('/') . '#organization'],
             'potentialAction' => [
@@ -588,7 +588,7 @@
             <section class="asef-hero">
                 <div class="asef-label-caps">SONDAJ EKİPMANLARI TEDARİKÇİSİ · 20 YILLIK TECRÜBE</div>
                 <h1>{!! nl2br(e(asef_setting('hero_title', 'Sondaj Teknolojisinde Geleceğe Ortak.'))) !!}</h1>
-                <p>{!! asef_setting('hero_subtitle', 'Yirmi yılı aşkın saha tecrübemizle Türkiye genelinde <strong>sondaj ekipmanları</strong>, <strong>karotier</strong>, <strong>DTH çekiç</strong>, <strong>sondaj tijleri</strong> ve <strong>yedek parça</strong> tedariki sağlıyoruz — hızlı sevkiyat, teknik danışmanlık ve satış sonrası destekle.') !!}</p>
+                <p>{!! asef_setting('hero_subtitle', 'Yirmi yılı aşkın saha tecrübemizle Türkiye genelinde <strong>sondaj ekipmanları</strong>, <strong>karotiyer</strong>, <strong>DTH çekiç</strong>, <strong>sondaj tijleri</strong> ve <strong>yedek parça</strong> tedariki sağlıyoruz — hızlı sevkiyat, teknik danışmanlık ve satış sonrası destekle.') !!}</p>
                 <div class="asef-hero-ctas">
                     <a href="{{ $catalogUrl }}" class="asef-cta-pill primary">Ürünleri Keşfet</a>
                     <a href="{{ url('hakkimizda') }}" class="asef-cta-pill ghost">Daha Fazla Bilgi <span class="asef-cta-arrow">›</span></a>
@@ -608,7 +608,7 @@
                     <div class="asef-section-head-left">
                         <span class="asef-label-caps">SONDAJ EKİPMANLARI KATALOĞU</span>
                         <h2>Ürün gruplarımız.</h2>
-                        <p style="font-size:15px; color:var(--secondary); line-height:1.6; margin-top:8px; max-width:600px;">15 ana kategori, 63 alt kategori, 813 ürün — karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve sondaj makinesi yedek parçaları tek noktadan.</p>
+                        <p style="font-size:15px; color:var(--secondary); line-height:1.6; margin-top:8px; max-width:600px;">15 ana kategori, 63 alt kategori, 813 ürün — karotiyer, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve sondaj makinesi yedek parçaları tek noktadan.</p>
                     </div>
                     <a href="{{ $catalogUrl }}" class="asef-section-link">Tümünü gör <span>›</span></a>
                 </div>
@@ -639,7 +639,7 @@
             <section id="hakkimizda" class="asef-section asef-brand-block">
                 <div class="asef-label-caps">HAKKIMIZDA</div>
                 <h2>Yirmi yıllık saha, tek bir söz: güven.</h2>
-                <p>Bursa merkezimizden Türkiye'nin 81 ilindeki sondaj operasyonlarına <strong>sondaj ekipmanları</strong>, <strong>sondaj makinesi yedek parça</strong> ve teknik danışmanlık sağlıyoruz. Karotier, DTH çekiç, tij, matkap ucu, pörtkron ve kompresör bağlantı elemanları — her ürünün arkasında 20 yıllık saha tecrübesi vardır.</p>
+                <p>Bursa merkezimizden Türkiye'nin 81 ilindeki sondaj operasyonlarına <strong>sondaj ekipmanları</strong>, <strong>sondaj makinesi yedek parça</strong> ve teknik danışmanlık sağlıyoruz. Karotiyer, DTH çekiç, tij, matkap ucu, pörtkron ve kompresör bağlantı elemanları — her ürünün arkasında 20 yıllık saha tecrübesi vardır.</p>
                 <a href="{{ url('hakkimizda') }}" class="asef-cta-pill ghost">Firma hikayemiz <span class="asef-cta-arrow">›</span></a>
             </section>
 

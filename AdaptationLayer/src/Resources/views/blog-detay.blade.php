@@ -22,7 +22,7 @@
                 ['p', '<strong>Pratik ipucu:</strong> Su sondajında 165-215 mm arası, jeotermal projelerde 250-450 mm arası, karot alımı için ise NQ (75.7 mm), HQ (96 mm) veya PQ (122.6 mm) standart çapları en yaygın seçimlerdir. Delik çapı arttıkça ekipman maliyetleri katlanarak yükselir; ihtiyaçtan büyük çap seçmek klasik bir israftır.'],
                 ['h', '2. Formasyon Karakteri ve Kaya Sertliği'],
                 ['p', 'Türkiye\'nin farklı bölgelerinde jeolojik formasyon karakterleri çok değişkendir. Ege\'nin killi zeminleri, İç Anadolu\'nun sert kalker katmanları, Karadeniz\'in andezit ve bazalt yoğunluklu kayaçları, Güneydoğu\'nun kalın kireçtaşı yataklarıyla tamamen farklı matkap sınıflarına ihtiyaç doğurur. Yumuşak zeminden aşırı aşındırıcı sert kayaca uzanan skalada, tek bir matkap ideal değildir; formasyonu tanımadan seçim yapmak, ekipmanı bir haftada bitirmek demektir.'],
-                ['p', 'Kil ağırlıklı ve orta sertlikte formasyonlar için Tricone (üç konili döner) matkap en yaygın tercihtir. Rulmanlı iç yapısıyla yüksek dönüş verimi sağlar. Sert ve çok sert kayaç formasyonlarında ise DTH (Down-The-Hole) çekiç kullanılır — pnömatik darbe ile kayacı parçalar. Hassas karot alımı gerektiren jeoteknik ve maden aramalarında elmas uçlu karotier setleri tercih edilir; bu setler jeolojik yapıyı bozmadan sağlam kayaç örneği alır.'],
+                ['p', 'Kil ağırlıklı ve orta sertlikte formasyonlar için Tricone (üç konili döner) matkap en yaygın tercihtir. Rulmanlı iç yapısıyla yüksek dönüş verimi sağlar. Sert ve çok sert kayaç formasyonlarında ise DTH (Down-The-Hole) çekiç kullanılır — pnömatik darbe ile kayacı parçalar. Hassas karot alımı gerektiren jeoteknik ve maden aramalarında elmas uçlu karotiyer setleri tercih edilir; bu setler jeolojik yapıyı bozmadan sağlam kayaç örneği alır.'],
                 ['p', 'Kayaç sertliği Mohs skalasında ölçülür; 1-3 arası yumuşak (kil, alçıtaşı), 4-6 orta (kireçtaşı, kum), 7-9 sert (granit, bazalt) olarak sınıflandırılır. Seçtiğiniz matkap kayaç sertliğine uygun değilse ekipman ömrü, saha tecrübemize göre aylardan haftalara iner. Sondaj öncesi bölgesel jeoloji raporu almak, uzun vadede en ekonomik yatırımdır.'],
                 ['h', '3. Çalışma Basıncı, Debi ve Sirkülasyon Sistemi'],
                 ['p', 'Sondaj sisteminde havanın (rotary hava sondajı) veya çamurun (rotary çamur sondajı) sirkülasyonu, hem matkap ve tijin soğutulması hem de kırıntı malzemenin (cutting) yüzeye taşınması için hayati önemdedir. Yetersiz sirkülasyon, matkap ömrünü kısaltır, kuyuda tıkanma yaratır ve ilerlemeyi durdurur.'],
@@ -88,8 +88,8 @@
                 ['p', 'API REG (Regular) klasik ve son derece dayanıklı bir bağlantı türüdür. İç akış geometrisi API IF kadar optimize değildir ancak diş yapısının dayanıklılığı ile öne çıkar. Yerüstü rotary sondajı, su sondajı ve maden aramalarında sıklıkla tercih edilir.'],
                 ['p', 'API REG bağlantıları da taper dişlidir ancak diş açısı ve profil geometrisi farklıdır — bu nedenle IF ile REG bağlantıları KESİNLİKLE uyumsuzdur, birbiri yerine kullanılamaz. En yaygın REG ölçüleri: 2-3/8" REG, 2-7/8" REG, 3-1/2" REG, 4-1/2" REG, 6-5/8" REG. Yerüstü sondaj operasyonlarında bit-shank ve tij-tij bağlantılarında yaygın olarak karşılaşılır.'],
                 ['h', 'DCDMA — Diamond Core Drill Manufacturers Association'],
-                ['p', 'DCDMA standardı, karot alımı ve hassas jeoteknik sondaj için özel olarak geliştirilmiştir. HQ (96 mm dış çap), NQ (75.7 mm), PQ (122 mm), BQ (60 mm) — bu tanıdık ölçüler DCDMA standardından gelir. Her ölçü kendi tij, karotier, iç tüp ve elmas uç setiyle bir bütün oluşturur.'],
-                ['p', 'DCDMA bağlantıları wireline (kablo destekli) karotier sistemleri için optimize edilmiştir. İç tüpün kablo ile hızlıca çıkarılıp değiştirilebilmesi, karot verimini büyük ölçüde artırır. Türkiye\'de maden arama, jeoteknik zemin etüdü ve altın-bakır aramalarında DCDMA yaygın standarttır. Uluslararası projelerde de standart olarak kabul edilir.'],
+                ['p', 'DCDMA standardı, karot alımı ve hassas jeoteknik sondaj için özel olarak geliştirilmiştir. HQ (96 mm dış çap), NQ (75.7 mm), PQ (122 mm), BQ (60 mm) — bu tanıdık ölçüler DCDMA standardından gelir. Her ölçü kendi tij, karotiyer, iç tüp ve elmas uç setiyle bir bütün oluşturur.'],
+                ['p', 'DCDMA bağlantıları wireline (kablo destekli) karotiyer sistemleri için optimize edilmiştir. İç tüpün kablo ile hızlıca çıkarılıp değiştirilebilmesi, karot verimini büyük ölçüde artırır. Türkiye\'de maden arama, jeoteknik zemin etüdü ve altın-bakır aramalarında DCDMA yaygın standarttır. Uluslararası projelerde de standart olarak kabul edilir.'],
                 ['h', 'Bağlantı Standartları Karşılaştırma Tablosu'],
                 ['p', '<strong>API IF</strong>: iç akış optimize, derin/petrol sondajı, orta-yüksek dayanım. <strong>API REG</strong>: dayanıklılık ön planda, yerüstü rotary/su sondajı, en yaygın. <strong>DCDMA</strong>: karot alımı için özel, jeoteknik/maden arama, wireline sistem uyumlu. Yanlış tercih maliyeti: sadece finansal değil, aynı zamanda operasyon süresi kaybı, iş kazası riski ve müşteri güven kaybıdır.'],
                 ['h', 'Yeni Tij Siparişinde 5 Kontrol Noktası'],
@@ -133,17 +133,17 @@
             'body'  => [
                 ['p', 'Karot alma operasyonu; hem doğru ekipman hem de saha disiplini gerektiren hassas bir iştir. Jeolojik analiz, madencilik, jeoteknik zemin araştırması ve altyapı projelerinde alınan karotun kalitesi, tüm projenin dayandığı temel veridir. Yanlış alınmış bir karot, milyonlarca liralık kararların yanlış temele oturmasına neden olabilir.'],
                 ['p', 'Asef Sondaj olarak 20 yıllık saha tecrübemizde binlerce karot operasyonunda gördük ki, karot kalite kaybının %90\'ı 4 tekrar eden hataya dayanır. Bu rehberde bu 4 hatayı gerçek saha vakalarımızdan örneklerle anlatıyor, önleme yöntemlerini paylaşıyoruz.'],
-                ['h', '1. Yanlış Karotier Boyutu Seçimi (HQ/NQ/PQ Karışıklığı)'],
+                ['h', '1. Yanlış Karotiyer Boyutu Seçimi (HQ/NQ/PQ Karışıklığı)'],
                 ['p', 'HQ (96 mm), NQ (75.7 mm), PQ (122 mm) — bu üç ölçü karot alımının temelidir. Aralarında geçiş yaparken bağlantı standartları, iç tüp uyumu, elmas uç boyutu ve karot verimi tamamen değişir. Standart geçişini doğru planlamamak, hem karotu hem de ekipmanı riske atar.'],
-                ['p', '<strong>Saha vakası (Denizli, 2023):</strong> Bir müşterimiz NQ ile başladığı sondajda 120 m sonra formasyon sertliğine bağlı olarak HQ\'ya geçmek istedi. Ancak HQ karotier iç tüp standartları için uyumsuz muhafaza borusu kullandığı için ilk 15 m\'de karot verimi %40\'a düştü. Sorun, geçiş öncesinde muhafaza borusu değişimi ve ara ölçü karotier kullanımıyla çözülebilirdi. Sonuç: 3 gün gecikme, yeniden karot alımı.'],
+                ['p', '<strong>Saha vakası (Denizli, 2023):</strong> Bir müşterimiz NQ ile başladığı sondajda 120 m sonra formasyon sertliğine bağlı olarak HQ\'ya geçmek istedi. Ancak HQ karotiyer iç tüp standartları için uyumsuz muhafaza borusu kullandığı için ilk 15 m\'de karot verimi %40\'a düştü. Sorun, geçiş öncesinde muhafaza borusu değişimi ve ara ölçü karotiyer kullanımıyla çözülebilirdi. Sonuç: 3 gün gecikme, yeniden karot alımı.'],
                 ['h', '2. Hızlı İlerleme Yanılgısı'],
                 ['p', 'Karot alımı hızlı ilerleme değil, TAM ilerlemedir. Aşırı basınç (weight-on-bit, WOB) ve yüksek devir (RPM); karot parçalar, temsili örnek almayı zorlaştırır ve elmas ucun ömrünü kısaltır. Karot sondajında kalite hızdan önce gelmelidir.'],
                 ['p', '<strong>Saha vakası (Manisa, 2024):</strong> Bir jeoteknik firma proje süresini kısaltmak için WOB\'u üretici tavsiyesinin %30 üzerine çıkardı. İlk 20 m\'de günlük 8 m ilerlediler (normal 5 m), ama %60 fragmented (parçalanmış) karot geldi. Jeolog kabul etmedi, aynı bölgeden tekrar sondaj gerekti. Süre kaybı: 5 gün. Ekonomik kayıp: proje bütçesinin %8\'i.'],
                 ['p', 'Doğru pratik: her formasyon değişikliğinde WOB ve RPM parametrelerini yeniden ayarlayın. Yumuşak formasyon: düşük WOB (500-1500 kg), orta RPM (400-600). Sert formasyon: yüksek WOB (2000-4000 kg), düşük RPM (200-400). Elmas uç üreticisinin veri sayfasını takip edin.'],
                 ['h', '3. Yetersiz Soğutma ve Sirkülasyon'],
                 ['p', 'Elmas uçların ömrü, doğru soğutma sıvısı akışıyla katlanır. Yetersiz akış aşırı ısınma, elmas taş kaybı ve iç tüp tıkanması demektir. Karot alımında sirkülasyon sıvısı sadece kırıntı taşıma değil, aynı zamanda uç soğutma ve karot koruma görevi de görür.'],
-                ['p', '<strong>Saha vakası (Van, 2024):</strong> Bir maden arama firması pompa kapasitesini gereksiz görerek yarıya düşürdü. HQ karotier ile 150 m derinlikte 12 lt/dk sıvı akışı ile sondaja devam etti (normal 40 lt/dk). Elmas uç 8 saatte tükendi (normal ömür: 25-40 saat). Ek olarak, karot 3 farklı noktada ısıl deformasyona uğradı — analiz sonuçları güvenilir olmadı.'],
-                ['p', 'Genel kural: karotier boyutuna göre minimum sıvı akış hızları: BQ 15-25 lt/dk, NQ 25-45 lt/dk, HQ 40-70 lt/dk, PQ 60-100 lt/dk. Pompa kapasitesi bu değerleri tam olarak destekleyebiliyor olmalı. Sıvı sıcaklığı 40°C\'yi geçmemeli — üzerinde ise soğutma sistemi eklenmeli.'],
+                ['p', '<strong>Saha vakası (Van, 2024):</strong> Bir maden arama firması pompa kapasitesini gereksiz görerek yarıya düşürdü. HQ karotiyer ile 150 m derinlikte 12 lt/dk sıvı akışı ile sondaja devam etti (normal 40 lt/dk). Elmas uç 8 saatte tükendi (normal ömür: 25-40 saat). Ek olarak, karot 3 farklı noktada ısıl deformasyona uğradı — analiz sonuçları güvenilir olmadı.'],
+                ['p', 'Genel kural: karotiyer boyutuna göre minimum sıvı akış hızları: BQ 15-25 lt/dk, NQ 25-45 lt/dk, HQ 40-70 lt/dk, PQ 60-100 lt/dk. Pompa kapasitesi bu değerleri tam olarak destekleyebiliyor olmalı. Sıvı sıcaklığı 40°C\'yi geçmemeli — üzerinde ise soğutma sistemi eklenmeli.'],
                 ['h', '4. Karot Sandığı Yönetimi ve Belgeleme'],
                 ['p', 'Alınan karotun sistematik olarak numaralandırılması, fotoğraflanması ve saklanması; tüm operasyonun anlamını belirler. Yanlış belgelendirilmiş karot, kaybolmuş karot ile eşdeğerdir — jeolojik analizde kullanılamaz.'],
                 ['p', '<strong>Saha vakası (Trabzon, 2023):</strong> Bir altın arama projesinde ilk 200 m karot düzgün belgelendi. Ancak 200-350 m arası ekip değişimi ve karot sandığı isim etiketleme disiplini kaybolunca, 40 m karotun hangi derinlikten geldiği net belirlenemedi. Jeolog analiz raporunda "belirsiz aralık" olarak işaretledi, projenin bu kısmı için tekrar sondaj kararı verildi. Ek maliyet: proje bütçesinin %12\'si.'],
@@ -151,8 +151,8 @@
                 ['h', 'Bonus: Karot Verimini Artıran 3 Pratik İpucu'],
                 ['p', '<strong>1. Karotu her run\'da (koşta) hemen çıkarın</strong> — karot iç tüpte bırakmak, formasyon sıvısı emerek şişmesine ve parçalanmasına yol açar. <strong>2. Uygun elmas serisi seçin</strong> — matrix sertliği formasyon sertliğine göre olmalı; ters seçim ya elmas taşımaz ya da uç aşınır. <strong>3. İç tüp temizliği</strong> — her run öncesi iç tüp basınçlı suyla yıkanmalı; kalıntı formasyon sonraki karot ile karışır.'],
                 ['h', 'Sonuç'],
-                ['p', 'Karot alma operasyonlarında yaygın 4 hata — yanlış karotier boyutu, hızlı ilerleme, yetersiz soğutma, karot sandığı yönetimi eksikliği — proje süresini uzatır ve bütçeyi artırır. Ancak sistematik disiplin ile bu hatalar tamamen önlenebilir. Karot kalitesi, tüm jeolojik analiz sürecinizin sağlam bir temele oturmasını sağlar.'],
-                ['p', 'Asef Sondaj olarak karot ekipmanları (HQ/NQ/PQ karotier setleri, iç tüp, elmas uçlar, matrix çeşitleri) tedariki ve karot operasyonu teknik danışmanlığı sağlıyoruz. Projeniz için ekipman veya operasyon planlaması destek arıyorsanız WhatsApp\'tan bize yazın.'],
+                ['p', 'Karot alma operasyonlarında yaygın 4 hata — yanlış karotiyer boyutu, hızlı ilerleme, yetersiz soğutma, karot sandığı yönetimi eksikliği — proje süresini uzatır ve bütçeyi artırır. Ancak sistematik disiplin ile bu hatalar tamamen önlenebilir. Karot kalitesi, tüm jeolojik analiz sürecinizin sağlam bir temele oturmasını sağlar.'],
+                ['p', 'Asef Sondaj olarak karot ekipmanları (HQ/NQ/PQ karotiyer setleri, iç tüp, elmas uçlar, matrix çeşitleri) tedariki ve karot operasyonu teknik danışmanlığı sağlıyoruz. Projeniz için ekipman veya operasyon planlaması destek arıyorsanız WhatsApp\'tan bize yazın.'],
             ],
         ],
         'su-sondaji-mevzuat' => [
@@ -200,7 +200,7 @@
                 ['p', 'Avantajları: <em>büyük kompresör ve pompa kullanabilme</em>, <em>lojistik kolay</em>, <em>havalandırma sorun değil</em>, <em>ekipman değişimi hızlı</em>. Dezavantajları: <em>zemin izin ve mülkiyet süreçleri</em>, <em>hava koşullarına açık</em>, <em>gürültü ve titreşim çevre sorunu olabilir</em>.'],
                 ['h', 'Yeraltı Sondaj — Kompakt ve Özel Ekipman'],
                 ['p', 'Yeraltı sondaj esas olarak madencilik operasyonlarında ve tünel açma projelerinde kullanılır. Yer altında sınırlı yükseklik ve manevra alanı nedeniyle kompakt gövdeli sondaj setleri (jumbo, LHD, mono-rail) tercih edilir. Manevra kabiliyeti ön plandadır; hidrolik güç ünitesi ve komplike havalandırma sistemi entegre edilmiştir.'],
-                ['p', 'Yeraltı sondaj tipleri: <strong>Face drilling</strong> (yüz sondaj) — tünel ilerlemesi için delik açma; <strong>Bolt hole drilling</strong> — tavan cıvatası için delik; <strong>Production drilling</strong> — cevher blok çıkarma için delik ağı; <strong>Exploration drilling</strong> — cevher rezerv doğrulama için karotier sondaj. Her tip için farklı ekipman ve teknik yaklaşım gerekir.'],
+                ['p', 'Yeraltı sondaj tipleri: <strong>Face drilling</strong> (yüz sondaj) — tünel ilerlemesi için delik açma; <strong>Bolt hole drilling</strong> — tavan cıvatası için delik; <strong>Production drilling</strong> — cevher blok çıkarma için delik ağı; <strong>Exploration drilling</strong> — cevher rezerv doğrulama için karotiyer sondaj. Her tip için farklı ekipman ve teknik yaklaşım gerekir.'],
                 ['p', 'Yeraltı sondajın kritik farkı: <strong>emniyet ve havalandırma</strong>. Yeraltı ortamda toz kontrolü kritiktir — silikoz gibi meslek hastalığı riski yüksek. Su ile tozdöndürme (wet drilling) neredeyse zorunlu. Ayrıca kaya patlaması, kaya sıçraması riskleri için özel önlemler alınır. Elektrikli veya dizel-elektrikli sondaj ekipmanları yeraltında yaygın çünkü egzoz gazı sorunu azalır.'],
                 ['h', 'Yerüstü vs Yeraltı — Karar Kriterleri Tablosu'],
                 ['p', '<strong>1. Formasyon Derinliği:</strong> Yüzey - 3000 m arası yerüstü ideal. Yeraltı sondajlar genellikle 50-500 m arası kısa deliklerdir (production/exploration). <strong>2. Saha Erişimi:</strong> Açık arazi + araç yolu = yerüstü. Kapalı maden galerisi/tünel = yeraltı. <strong>3. Operasyon Büyüklüğü:</strong> Büyük çaplı, yüksek debi = yerüstü. Yüksek yoğunluk, kısa delik = yeraltı.'],
@@ -210,22 +210,22 @@
                 ['p', '<strong>Yeraltı</strong>: Türkiye\'nin en yaygın yeraltı sondaj uygulaması kömür madenciliğinde (Zonguldak, Kütahya, Manisa Soma), bakır (Küre-Kastamonu), krom (Denizli-Muğla), altın (Uşak-Kışladağ, Gümüşhane-Mastra) madenlerinde. Yeraltı ekipman parkı görece daha küçük ama daha yüksek katma değerli.'],
                 ['h', 'Sonuç ve Ekipman Tavsiyesi'],
                 ['p', 'Yerüstü ve yeraltı sondaj tercihi, projenin karakterine göre yapılır. Formasyon derinliği, saha erişimi, operasyon büyüklüğü, maliyet ve personel yetkinliği — bu beş kriter birlikte değerlendirilmelidir. Doğru tip seçimi, hem operasyon güvenliği hem de proje süresi üzerinde belirleyicidir.'],
-                ['p', 'Asef Sondaj olarak hem yerüstü sondaj (kamyon üstü ve palet üstü rig, matkap, tij, pompa) hem de yeraltı sondaj (kompakt jumbo ekipmanları, karotier sistemleri) için ekipman tedariki ve teknik danışmanlık sağlıyoruz. Projenizin tipini WhatsApp üzerinden bize bildirin, size uygun ekipman ve ekipman ailesi önerelim.'],
+                ['p', 'Asef Sondaj olarak hem yerüstü sondaj (kamyon üstü ve palet üstü rig, matkap, tij, pompa) hem de yeraltı sondaj (kompakt jumbo ekipmanları, karotiyer sistemleri) için ekipman tedariki ve teknik danışmanlık sağlıyoruz. Projenizin tipini WhatsApp üzerinden bize bildirin, size uygun ekipman ve ekipman ailesi önerelim.'],
             ],
         ],
-        'karotier-ipuclari' => [
+        'karotiyer-ipuclari' => [
             'cat'   => 'Ekipman Rehberi',
-            'title' => 'Karotier Seçimi: İç Tüp, Dış Tüp Uyumu ve HQ/NQ/PQ Standartları',
-            'lede'  => 'Karotier setinin iç ve dış tüp uyumu, alınan karotun kalitesini ve elmas ucun ömrünü nasıl etkiler? HQ, NQ, PQ standartları arasında geçiş yaparken bilmeniz gerekenler.',
+            'title' => 'Karotiyer Seçimi: İç Tüp, Dış Tüp Uyumu ve HQ/NQ/PQ Standartları',
+            'lede'  => 'Karotiyer setinin iç ve dış tüp uyumu, alınan karotun kalitesini ve elmas ucun ömrünü nasıl etkiler? HQ, NQ, PQ standartları arasında geçiş yaparken bilmeniz gerekenler.',
             'date'  => '08 Temmuz 2026', 'read' => '9 dakika okuma', 'img'   => 'asef-macro-thread.jpg', 'author' => 'Asef Teknik Ekip',
             'body'  => [
-                ['p', 'Karotier setinin iç tüp ve dış tüp uyumu, alınan karotun kalitesini ve elmas ucun ömrünü doğrudan etkileyen kritik bir mekanik ilişkidir. Karot alma operasyonunda temel amaç formasyonun yapısını bozmadan, mümkün olan en yüksek verimle örnek almaktır. Bu ancak doğru boyutlandırılmış, standartlara uygun karotier seti ile mümkün olur.'],
+                ['p', 'Karotiyer setinin iç tüp ve dış tüp uyumu, alınan karotun kalitesini ve elmas ucun ömrünü doğrudan etkileyen kritik bir mekanik ilişkidir. Karot alma operasyonunda temel amaç formasyonun yapısını bozmadan, mümkün olan en yüksek verimle örnek almaktır. Bu ancak doğru boyutlandırılmış, standartlara uygun karotiyer seti ile mümkün olur.'],
                 ['p', 'Bu rehberde HQ, NQ, PQ standartlarının teknik detaylarını, iç ve dış tüp uyum kurallarını ve karot verimini artırma yollarını uzman gözüyle inceliyoruz.'],
                 ['h', 'DCDMA Standart Boyutları — HQ, NQ, PQ, BQ Ölçüleri'],
-                ['p', 'DCDMA (Diamond Core Drill Manufacturers Association) standardında en yaygın kullanılan karotier ölçüleri şunlardır:'],
+                ['p', 'DCDMA (Diamond Core Drill Manufacturers Association) standardında en yaygın kullanılan karotiyer ölçüleri şunlardır:'],
                 ['p', '<strong>BQ (BTW)</strong> — Dış çap 60 mm, iç tüp iç çap 36.5 mm. Küçük çaplı sondaj ve dar alanlarda tercih edilir. Karot verimi düşük ama ekipman ağırlığı az. <strong>NQ (NTW)</strong> — Dış çap 75.7 mm, iç tüp iç çap 47.6 mm. Türkiye\'de en yaygın kullanılan standart. Orta derinlik (100-300 m) jeoteknik ve maden aramalarında ideal. <strong>HQ (HTW)</strong> — Dış çap 96 mm, iç tüp iç çap 63.5 mm. Daha yüksek karot kalitesi ve daha büyük çaplı örnek gerektiren projelerde. <strong>PQ (PTW)</strong> — Dış çap 122.6 mm, iç tüp iç çap 85 mm. Büyük çaplı jeoteknik projeleri ve özel örnek alma ihtiyaçları için.'],
                 ['h', 'İç Tüp ve Dış Tüp Uyum Mantığı'],
-                ['p', 'Bir karotier seti üç ana parçadan oluşur: dış tüp (formasyona bağlantı, tij ile birleşim), iç tüp (karotu içinde tutan tüp) ve elmas uç (kesme noktası). Bu üçünün senkron çalışması için tüm boyut ve toleransların standart bir ekip halinde olması gerekir.'],
+                ['p', 'Bir karotiyer seti üç ana parçadan oluşur: dış tüp (formasyona bağlantı, tij ile birleşim), iç tüp (karotu içinde tutan tüp) ve elmas uç (kesme noktası). Bu üçünün senkron çalışması için tüm boyut ve toleransların standart bir ekip halinde olması gerekir.'],
                 ['p', 'İç tüp — dış tüp uyumsuzluğunun tespiti: (1) dış tüp içinde iç tüpün sallantısı > 2 mm; (2) sıvı akışında düzensiz basınç dalgalanması; (3) karot parçalarında düzensiz döner deformasyon. Bu belirtiler görülürse operasyon durdurulup uyum kontrol edilmelidir. Devam etmek elmas uç ve karot verimini bozar.'],
                 ['h', 'Standart Geçişleri — HQ → NQ Reduction'],
                 ['p', 'Sondaj sırasında formasyon değişikliği veya sondaj derinliğine bağlı olarak standart geçişi (reduction) yapılabilir. Örnek: 100 m HQ ile başlayan bir sondaj, 250 m\'de NQ ile devam etmek üzere reduction yapabilir. Bu geçiş, ekipman toplam ağırlığını azaltır ve derin sondajı mümkün kılar.'],
@@ -236,8 +236,8 @@
                 ['h', 'Karot Sandığı ve Verim Analizi'],
                 ['p', 'Karot verimi = alınan karot uzunluğu / sondaj ilerleme uzunluğu × 100. İdeal karot verimi %90+ olmalı; %70 altında düşen verim ekipman veya teknik sorun işaretidir. Karot sandığında düşük verim tespiti: her run\'da beklenen karot boyu ile fiili boy karşılaştırılır. Sistematik düşük verim varsa iç tüp mekanizması, elmas uç veya sirkülasyon kontrol edilmelidir.'],
                 ['h', 'Sonuç'],
-                ['p', 'Karotier iç ve dış tüp uyumu, karot alma operasyonunun temel dinamiğidir. HQ/NQ/PQ standartları arasında geçiş yaparken tüm ekipman uyumu bir bütün olarak planlanmalıdır. Karışık standart parçaları asla birlikte kullanmayın.'],
-                ['p', 'Asef Sondaj olarak karotier setleri (dış tüp, iç tüp, iç tüp başlığı, portkron, elmaslı zırh, elmas uçlar) tedariki sağlıyoruz. Projeniz için uygun standart ve set kombinasyonu için WhatsApp\'tan bize yazın — 20 yıllık karot alma tecrübemizden faydalanın.'],
+                ['p', 'Karotiyer iç ve dış tüp uyumu, karot alma operasyonunun temel dinamiğidir. HQ/NQ/PQ standartları arasında geçiş yaparken tüm ekipman uyumu bir bütün olarak planlanmalıdır. Karışık standart parçaları asla birlikte kullanmayın.'],
+                ['p', 'Asef Sondaj olarak karotiyer setleri (dış tüp, iç tüp, iç tüp başlığı, portkron, elmaslı zırh, elmas uçlar) tedariki sağlıyoruz. Projeniz için uygun standart ve set kombinasyonu için WhatsApp\'tan bize yazın — 20 yıllık karot alma tecrübemizden faydalanın.'],
             ],
         ],
         'yedek-parca-stok' => [
@@ -266,7 +266,7 @@
                 ['p', 'Kullanılan yedek parçaları takip etmek uzun vadeli maliyet optimizasyonu için kritiktir. Basit bir Excel takibi ile: parça adı, satın alma tarihi, kullanım süresi, arıza tespit tarihi, değişim maliyeti kayıt altına alınmalı. 12 ay sonra bu veri analiz edildiğinde, hangi parçaların gerçekten "kritik", hangilerinin fazla stoklandığı ortaya çıkar. Bu analiz stok maliyetini %20-30 düşürebilir.'],
                 ['h', 'Sonuç'],
                 ['p', 'Sondaj sektöründe yedek parça planlaması, ekipmandan bağımsız olarak operasyon sürekliliğinin en kritik faktörüdür. 3 seviyeli stok stratejisi, doğru tedarikçi iş birliği ve yaşam döngüsü takibi ile hem duruş maliyetleri minimize edilir hem de projelerin karlılığı korunur.'],
-                ['p', 'Asef Sondaj olarak müşterilerimize sadece ekipman değil, uzun vadeli stok stratejisi de sağlıyoruz. Tüm ana ekipman ailemiz (DTH, tricone, karotier, tij, pompa) için kritik yedek parça ailesini stokta tutuyoruz — Türkiye içi 24 saat acil sevkiyat garantisi ile. Yıllık stok planı yapmak veya kritik parça listesi görmek için WhatsApp\'tan bize yazın.'],
+                ['p', 'Asef Sondaj olarak müşterilerimize sadece ekipman değil, uzun vadeli stok stratejisi de sağlıyoruz. Tüm ana ekipman ailemiz (DTH, tricone, karotiyer, tij, pompa) için kritik yedek parça ailesini stokta tutuyoruz — Türkiye içi 24 saat acil sevkiyat garantisi ile. Yıllık stok planı yapmak veya kritik parça listesi görmek için WhatsApp\'tan bize yazın.'],
             ],
         ],
     ];
@@ -301,14 +301,10 @@
 
     $isPlaceholder = $post === null;
 
+    // Uzman önerisi: yayınlanmamış blog URL'lerini indeksleme dışı tut.
+    // 404 döndürmek en temiz çözüm (soft 404 yerine hard 404).
     if ($isPlaceholder) {
-        $post = [
-            'cat'   => 'Blog',
-            'title' => 'Bu yazı yakında yayınlanacak.',
-            'lede'  => 'Blog içeriğimizi düzenli olarak güncelliyoruz. İçerik önerinizi WhatsApp\'tan iletmeniz yeterli.',
-            'date'  => date('d.m.Y'), 'read' => '—', 'img' => 'asef-hero-rig.jpg', 'author' => 'Asef',
-            'body'  => [],
-        ];
+        abort(404);
     }
 
     // Related — same category, exclude current
@@ -595,21 +591,41 @@
 
             {{-- İÇ LİNK — kategori / hizmet çapraz bağlantı (SEO otorite dağıtımı) --}}
             @if (! $isPlaceholder)
+                @php
+                    // Blog slug → ilgili kategori mapping (SEO iç link)
+                    $blogCategoryMap = [
+                        'karotier-ipuclari'     => ['url' => 'urunler/wireline-karotiyer-sistemi',       'label' => 'Wireline Karotiyer Sistemleri', 'icon' => '⚙️'],
+                        'karot-hatalari'        => ['url' => 'urunler/wireline-karotiyer-sistemi',       'label' => 'Wireline Karotiyer Sistemleri', 'icon' => '⚙️'],
+                        'dth-cekic-bakim'       => ['url' => 'urunler/kaya-delgi-ekipmanlari',           'label' => 'DTH Çekiç ve Kaya Delgi',       'icon' => '🔨'],
+                        'yerustu-yeralti'       => ['url' => 'urunler/kaya-delgi-ekipmanlari',           'label' => 'DTH Çekiç ve Kaya Delgi',       'icon' => '🔨'],
+                        'su-sondaji-mevzuat'    => ['url' => 'urunler/kaya-delgi-ekipmanlari',           'label' => 'Su Sondajı Ekipmanları',        'icon' => '💧'],
+                        'sondaj-tiji-baglanti'  => ['url' => 'urunler/tijler-ve-muhafaza-borulari',      'label' => 'Sondaj Tijleri ve Casing',      'icon' => '📏'],
+                        'yedek-parca-stok'      => ['url' => 'urunler/aksesuarlar',                     'label' => 'Sondaj Aksesuar ve Yedek Parça', 'icon' => '🔧'],
+                        'camur-pompa-verim'     => ['url' => 'urunler/sondaj-kimyasallari',              'label' => 'Sondaj Kimyasalları',           'icon' => '🧪'],
+                    ];
+                    $relatedCat = $blogCategoryMap[$slug] ?? null;
+                @endphp
                 <section style="max-width:800px; margin:60px auto 40px; padding:0 20px;">
                     <div style="background:var(--surface-alt); border-radius:20px; padding:32px 28px;">
                         <div style="font-size:11px; letter-spacing:0.1em; color:var(--link-blue); font-weight:500; text-transform:uppercase; margin-bottom:12px;">İlgili Kaynaklar</div>
                         <h3 style="font-size:20px; font-weight:600; letter-spacing:-0.01em; color:var(--primary); margin-bottom:16px;">Konuyla ilgili keşfedin</h3>
                         <div style="display:grid; grid-template-columns:1fr; gap:10px;">
-                            <a href="{{ url('search') }}" style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:#fff; border-radius:12px; color:var(--primary); text-decoration:none; font-size:15px; font-weight:500; transition:background 0.2s;">
-                                <span>📦 Sondaj Ekipmanları Kataloğu — 813+ ürün</span>
+                            @if ($relatedCat)
+                                <a href="{{ url($relatedCat['url']) }}" style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:#fff; border-radius:12px; color:var(--primary); text-decoration:none; font-size:15px; font-weight:500;">
+                                    <span>{{ $relatedCat['icon'] }} {{ $relatedCat['label'] }} — ürünlere göz at</span>
+                                    <span style="color:var(--link-blue);">›</span>
+                                </a>
+                            @endif
+                            <a href="{{ url('urunler') }}" style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:#fff; border-radius:12px; color:var(--primary); text-decoration:none; font-size:15px; font-weight:500;">
+                                <span>📦 Tüm Sondaj Ekipmanları — 813 ürün</span>
                                 <span style="color:var(--link-blue);">›</span>
                             </a>
                             <a href="{{ url('hizmetlerimiz') }}" style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:#fff; border-radius:12px; color:var(--primary); text-decoration:none; font-size:15px; font-weight:500;">
                                 <span>🛠️ Hizmetlerimiz — Türkiye geneli 81 ilde tedarik</span>
                                 <span style="color:var(--link-blue);">›</span>
                             </a>
-                            <a href="{{ url('hakkimizda') }}" style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:#fff; border-radius:12px; color:var(--primary); text-decoration:none; font-size:15px; font-weight:500;">
-                                <span>🏢 Hakkımızda — 20 yıllık saha tecrübesi</span>
+                            <a href="{{ url('sondaj-sozlugu') }}" style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:#fff; border-radius:12px; color:var(--primary); text-decoration:none; font-size:15px; font-weight:500;">
+                                <span>📚 Sondaj Sözlüğü — 50+ teknik terim</span>
                                 <span style="color:var(--link-blue);">›</span>
                             </a>
                             <a href="{{ asef_wa_link('Merhaba, blog yazınızı okudum, ürünleriniz hakkında bilgi almak istiyorum.') }}" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:#0066CC; border-radius:12px; color:#fff; text-decoration:none; font-size:15px; font-weight:500;">

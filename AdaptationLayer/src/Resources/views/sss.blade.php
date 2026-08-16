@@ -48,7 +48,7 @@
             'a' => 'Evet. Katalogda olmayan ancak ihtiyacınız olan ekipmanları da tedarik ediyoruz. Marka, model ve teknik özellikleri WhatsApp\'tan iletmeniz yeterli — biz araştırıp size dönüyoruz.',
         ],
         [
-            'q' => 'HQ, NQ ve PQ karotier standartları arasındaki fark nedir?',
+            'q' => 'HQ, NQ ve PQ karotiyer standartları arasındaki fark nedir?',
             'a' => 'DCDMA (Diamond Core Drill Manufacturers Association) standartlarıdır. NQ (75.7 mm delik / 47.6 mm karot çapı), HQ (96 mm / 63.5 mm) ve PQ (122.6 mm / 85 mm) — sırayla daha büyük karot çapı ve daha derin sondaj kapasitesi anlamına gelir. Formasyon türü ve istenilen karot çapına göre seçilir.',
         ],
         [
@@ -93,7 +93,7 @@
         ],
         [
             'q' => 'Katalogda hangi kategoriler var?',
-            'a' => '15 ana kategori altında 63 alt kategori ve 813 ürün bulunuyor: Karotier komple sistemler (BWL/HQ/NQ/PQ), DTH çekiç ve bitler, sondaj tijleri (API IF, API REG, DCDMA), matkap uçları, elmas ve vidye ürünler, pörtkron sistemleri, kompresör bağlantıları, çamur pompaları ve yedek parçalar.',
+            'a' => '15 ana kategori altında 63 alt kategori ve 813 ürün bulunuyor: Karotiyer komple sistemler (BWL/HQ/NQ/PQ), DTH çekiç ve bitler, sondaj tijleri (API IF, API REG, DCDMA), matkap uçları, elmas ve vidye ürünler, pörtkron sistemleri, kompresör bağlantıları, çamur pompaları ve yedek parçalar.',
         ],
     ];
 
@@ -102,9 +102,9 @@
 @endphp
 
 @push('meta')
-    <meta name="title" content="Sıkça Sorulan Sorular — Sondaj Ekipmanları, Karotier, DTH Çekiç | Asef Sondaj" />
-    <meta name="description" content="Sondaj ekipmanları hakkında {{ count($faqs) }} sıkça sorulan soru: HQ/NQ/PQ karotier farkı, DTH çekiç seçimi, API IF/REG/DCDMA bağlantı standartları, çamur pompası kapasitesi, tij dayanıklılığı, fiyat, teslimat, yedek parça." />
-    <meta name="keywords" content="sondaj ekipmanları SSS, karotier standartları, DTH çekiç seçimi, API bağlantı standardı, sondaj tiji, matkap ucu seçimi, çamur pompası, sondaj yedek parça" />
+    <meta name="title" content="Sıkça Sorulan Sorular — Sondaj Ekipmanları, Karotiyer, DTH Çekiç | Asef Sondaj" />
+    <meta name="description" content="Sondaj ekipmanları hakkında {{ count($faqs) }} sıkça sorulan soru: HQ/NQ/PQ karotiyer farkı, DTH çekiç seçimi, API IF/REG/DCDMA bağlantı standartları, çamur pompası kapasitesi, tij dayanıklılığı, fiyat, teslimat, yedek parça." />
+    <meta name="keywords" content="sondaj ekipmanları SSS, karotiyer standartları, DTH çekiç seçimi, API bağlantı standardı, sondaj tiji, matkap ucu seçimi, çamur pompası, sondaj yedek parça" />
     <link rel="canonical" href="{{ url('sss') }}" />
     <meta name="theme-color" content="#ffffff" />
 
