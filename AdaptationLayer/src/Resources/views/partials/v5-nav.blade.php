@@ -176,7 +176,34 @@
 })();
 </script>
 
-{{-- Drawer için inline CSS — v5-styles cache sorunu için garanti fallback --}}
+{{-- Nav + Drawer için inline CSS — v5-styles cache sorunu için garanti fallback --}}
+<style>
+    /* Mobil'de nav actions (arama + sepet) HEP görünür */
+    .asef-nav-actions { display: flex !important; align-items: center; gap: 4px; }
+    @media (min-width: 900px) { .asef-nav-actions { gap: 8px; } }
+    /* İletişim CTA mobil'de gizli, masaüstünde görünür */
+    .asef-nav-cta { display: none !important; }
+    @media (min-width: 900px) { .asef-nav-cta { display: inline-flex !important; } }
+    /* Nav icon butonları (arama, sepet) HER BOYUT'ta görünür */
+    .asef-nav-icon-btn {
+        display: inline-flex !important; align-items: center; justify-content: center;
+        width: 36px; height: 36px; border-radius: 8px;
+        color: #1a1c1d; position: relative;
+        text-decoration: none;
+    }
+    .asef-nav-icon-btn:hover { background: #F5F5F7; }
+    /* Nav sticky + üstte kalsın */
+    .asef-nav { position: sticky !important; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #E5E5EA; }
+    .asef-nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1440px; margin: 0 auto; padding: 12px 20px; gap: 12px; }
+    /* Menu mobile'de gizli, masaüstünde flex */
+    .asef-nav-menu { display: none; }
+    @media (min-width: 900px) { .asef-nav-menu { display: flex !important; align-items: center; gap: 28px; } }
+    /* Hamburger sadece mobile'de */
+    .asef-nav-mobile-btn { display: grid !important; place-items: center; width: 36px; height: 36px; background: transparent; border: 0; cursor: pointer; color: #1a1c1d; border-radius: 8px; }
+    .asef-nav-mobile-btn:hover { background: #F5F5F7; }
+    @media (min-width: 900px) { .asef-nav-mobile-btn { display: none !important; } }
+
+</style>
 <style>
     .asef-mobile-drawer {
         position: fixed !important; inset: 0 !important; z-index: 10000 !important;
