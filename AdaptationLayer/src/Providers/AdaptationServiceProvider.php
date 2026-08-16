@@ -24,6 +24,15 @@ class AdaptationServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom($this->getPath('Config/asef.php'), 'asef');
 
+        // Override Bagisto's SitemapController with our AsefSitemapController.
+        // Bagisto's route ('sitemap.xml', 'robots.txt') resolves the controller
+        // through the container; binding a subclass makes Bagisto call OUR
+        // index()/robots() methods and returns our full sitemap.
+        $this->app->bind(
+            \Webkul\Shop\Http\Controllers\SitemapController::class,
+            \AsefSondaj\AdaptationLayer\Http\Controllers\AsefSitemapController::class
+        );
+
         // Bagisto's FPC (Spatie Response Cache) hasher strips all query
         // parameters except "query" from the /search cache key, so
         // /search?cat=delici and /search?cat=tij collide onto the same
@@ -36,58 +45,6 @@ class AdaptationServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // -1) All providers boot ettikten sonra Bagisto native /sitemap.xml + /robots.txt
-        //     rotasını RouteCollection'dan reflection ile kaldır. Kendi rotamız match etsin.
-        $this->app->booted(function () {
-            try {
-                /** @var \Illuminate\Routing\Router $router */
-                $router = $this->app['router'];
-                $collection = $router->getRoutes();
-                $ref = new \ReflectionClass($collection);
-
-                // Kaldırılacak yollar
-                $victimUris = ['sitemap.xml', 'robots.txt'];
-
-                foreach (['routes', 'allRoutes', 'nameList', 'actionList'] as $propName) {
-                    if (! $ref->hasProperty($propName)) continue;
-                    $prop = $ref->getProperty($propName);
-                    $prop->setAccessible(true);
-                    $data = $prop->getValue($collection);
-                    if (! is_array($data)) continue;
-
-                    // 'routes' iç içe method-keyed: ['GET' => ['sitemap.xml' => Route, ...], ...]
-                    if ($propName === 'routes') {
-                        foreach ($data as $method => $arr) {
-                            foreach ($arr as $key => $r) {
-                                if ($r instanceof \Illuminate\Routing\Route && in_array($r->uri(), $victimUris, true)) {
-                                    unset($data[$method][$key]);
-                                }
-                            }
-                        }
-                    }
-                    // 'allRoutes' flat: [key => Route]
-                    elseif ($propName === 'allRoutes') {
-                        foreach ($data as $key => $r) {
-                            if ($r instanceof \Illuminate\Routing\Route && in_array($r->uri(), $victimUris, true)) {
-                                unset($data[$key]);
-                            }
-                        }
-                    }
-                    // nameList / actionList — Bagisto controller referansları
-                    else {
-                        foreach ($data as $key => $r) {
-                            if ($r instanceof \Illuminate\Routing\Route && in_array($r->uri(), $victimUris, true)) {
-                                unset($data[$key]);
-                            }
-                        }
-                    }
-                    $prop->setValue($collection, $data);
-                }
-            } catch (\Throwable $e) {
-                // reflection başarısızsa sessizce geç
-            }
-        });
-
         // 0) Migrations (asef_products, asef_ana_kategoriler, asef_alt_kategoriler, asef_ebat_ref).
         $this->loadMigrationsFrom($this->getPath('Database/Migrations'));
 
@@ -183,11 +140,8 @@ class AdaptationServiceProvider extends ServiceProvider
                 return view('asef-adaptation::blog');
             })->name('shop.asef.blog');
 
-            // Dinamik XML sitemap — 813 ürün + 15+63 kategori + tüm statik sayfalar.
-            // /sitemap.xml'i Bagisto native SitemapController'dan alıyoruz —
-            // aşağıda booted() callback'inde reflection ile Bagisto route'unu
-            // silip kendi rotamızı register ediyoruz.
-            Route::get('/sitemap.xml', function () {
+            // (Dev-only) Debug URL — Bagisto /sitemap.xml override edilemezse yedek.
+            Route::get('/asef-sitemap.xml', function () {
                 $now = date('Y-m-d');
                 $urls = [];
                 $push = function (string $loc, string $lastmod = null, string $changefreq = 'weekly', string $priority = '0.5') use (&$urls, $now) {
@@ -251,22 +205,7 @@ class AdaptationServiceProvider extends ServiceProvider
                     ->header('Content-Type', 'application/xml; charset=utf-8');
             })->name('shop.asef.sitemap');
 
-            // robots.txt — Bagisto route'u booted() içinde kaldırıldı, bizim override.
-            Route::get('/robots.txt', function () {
-                $lines = [
-                    'User-agent: *',
-                    'Allow: /',
-                    'Disallow: /admin/',
-                    'Disallow: /sepet',
-                    'Disallow: /checkout',
-                    'Disallow: /customer/',
-                    '',
-                    'Sitemap: ' . url('sitemap.xml'),
-                    '',
-                ];
-                return response(implode("\n", $lines), 200)
-                    ->header('Content-Type', 'text/plain; charset=utf-8');
-            })->name('shop.asef.robots');
+            // robots.txt Bagisto route + AsefSitemapController override üzerinden çalışır.
 
             // Photo gallery hub + sub-galleries (registered BEFORE /blog/{slug}).
             Route::get('/blog/fotograf', function () {
