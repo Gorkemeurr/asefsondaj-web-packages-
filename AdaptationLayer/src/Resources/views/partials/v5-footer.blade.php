@@ -1,5 +1,6 @@
-{{-- Shared v5 footer — premium, tüm sayfalarla dolu.
-     Requires from parent scope: $catalogUrl, $waLink. --}}
+{{-- Shared v5 footer — premium, tüm sayfalarla dolu + sosyal iconlar.
+     Requires from parent scope: $catalogUrl, $waLink.
+     Cache-buster: 20260816-social-icons-v2 --}}
 @php
     $footAnaAll = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::orderBy('sort')->limit(8)->get();
 @endphp
