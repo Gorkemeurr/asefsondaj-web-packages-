@@ -126,12 +126,21 @@
             display: grid; place-items: center;
         }
         .asef-nav-cta {
-            background: var(--link-blue); color: white;
-            padding: 6px 14px; border-radius: 999px;
-            font-size: 12px; font-weight: 600;
-            margin-left: 8px;
+            background: var(--primary) !important;
+            color: #FFFFFF !important;
+            padding: 8px 18px; border-radius: 999px;
+            font-size: 13px; font-weight: 500; letter-spacing: -0.005em;
+            margin-left: 10px;
+            display: inline-flex; align-items: center; gap: 6px;
+            transition: background .18s, transform .18s, box-shadow .18s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
-        .asef-nav-cta:hover { opacity: 0.9; }
+        .asef-nav-cta:hover {
+            background: #333 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.16);
+        }
+        .asef-nav-cta:active { transform: translateY(0); }
         .asef-nav-mobile-btn {
             display: grid; place-items: center; width: 34px; height: 34px; color: var(--primary);
         }
