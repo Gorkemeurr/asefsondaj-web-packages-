@@ -103,13 +103,27 @@
         $seoH1Sub = 'Karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve yedek parça — Türkiye genelinde sahaya hazır ekipmanlar. Kategoriye göre filtreleyin, ürün kodu (SKU) ile aratın. Teklif için WhatsApp\'tan yazın.';
     }
 
-    // Canonical: filtresiz katalog için ana URL, filtreli için filtre param'lı URL
-    $canonicalUrl = $catalogUrl;
-    if ($anaCode || $altCode) {
-        $canonicalParts = [];
-        if ($anaCode) $canonicalParts['ana'] = $anaCode;
-        if ($altCode) $canonicalParts['alt'] = $altCode;
-        $canonicalUrl = $catalogUrl . '?' . http_build_query($canonicalParts);
+    // Canonical: SEO-friendly /urunler/{ana-slug}/{alt-slug} URL'i
+    $canonicalAnaSlug = null;
+    $canonicalAltSlug = null;
+    if ($anaCode) {
+        $tmpA = $anaKategoriler->firstWhere('code', $anaCode);
+        if ($tmpA && ($tmpA->slug ?? null)) $canonicalAnaSlug = $tmpA->slug;
+    }
+    if ($altCode) {
+        $tmpAl = AsefAltKategori::where('code', $altCode)->first();
+        if ($tmpAl && ($tmpAl->slug ?? null)) $canonicalAltSlug = $tmpAl->slug;
+    }
+
+    if ($canonicalAnaSlug && $canonicalAltSlug) {
+        $canonicalUrl = url('urunler/' . $canonicalAnaSlug . '/' . $canonicalAltSlug);
+    } elseif ($canonicalAnaSlug) {
+        $canonicalUrl = url('urunler/' . $canonicalAnaSlug);
+    } elseif ($queryText) {
+        // Gerçek arama sorgusu — /search URL canonical
+        $canonicalUrl = $catalogUrl . '?' . http_build_query(['query' => $queryText]);
+    } else {
+        $canonicalUrl = url('urunler');
     }
 @endphp
 
@@ -319,6 +333,45 @@
         @include('asef-adaptation::partials.v5-nav')
 
         <main class="asef-main">
+
+            {{-- BREADCRUMB — kategori hiyerarşisi (Ana Sayfa > Ürünler > Kategori > Alt) --}}
+            @if ($activeAnaName || $activeAltName)
+                <nav aria-label="Breadcrumb" style="max-width:1400px; margin:20px auto -8px; padding:0 24px; font-size:13px; color:var(--secondary); line-height:1.4;">
+                    <a href="{{ url('/') }}" style="color:var(--secondary); text-decoration:none;">Ana Sayfa</a>
+                    <span style="margin:0 6px; color:var(--gray-secondary);">›</span>
+                    <a href="{{ url('urunler') }}" style="color:var(--secondary); text-decoration:none;">Ürünler</a>
+                    @if ($activeAnaName)
+                        <span style="margin:0 6px; color:var(--gray-secondary);">›</span>
+                        @if ($canonicalAnaSlug && $activeAltName)
+                            <a href="{{ url('urunler/' . $canonicalAnaSlug) }}" style="color:var(--secondary); text-decoration:none;">{{ $activeAnaName }}</a>
+                        @else
+                            <span style="color:var(--primary); font-weight:500;">{{ $activeAnaName }}</span>
+                        @endif
+                    @endif
+                    @if ($activeAltName)
+                        <span style="margin:0 6px; color:var(--gray-secondary);">›</span>
+                        <span style="color:var(--primary); font-weight:500;">{{ $activeAltName }}</span>
+                    @endif
+                </nav>
+
+                {{-- BreadcrumbList JSON-LD --}}
+                @php
+                    $bcItems = [
+                        ['@type' => 'ListItem', 'position' => 1, 'name' => 'Ana Sayfa', 'item' => url('/')],
+                        ['@type' => 'ListItem', 'position' => 2, 'name' => 'Ürünler', 'item' => url('urunler')],
+                    ];
+                    $bcPos = 3;
+                    if ($activeAnaName) {
+                        $bcAnaUrl = $canonicalAnaSlug ? url('urunler/' . $canonicalAnaSlug) : $catalogUrl . '?ana=' . $anaCode;
+                        $bcItems[] = ['@type' => 'ListItem', 'position' => $bcPos++, 'name' => $activeAnaName, 'item' => $bcAnaUrl];
+                    }
+                    if ($activeAltName && $canonicalAnaSlug && $canonicalAltSlug) {
+                        $bcItems[] = ['@type' => 'ListItem', 'position' => $bcPos, 'name' => $activeAltName, 'item' => url('urunler/' . $canonicalAnaSlug . '/' . $canonicalAltSlug)];
+                    }
+                    $bcJsonLd = ['@context' => 'https://schema.org', '@type' => 'BreadcrumbList', 'itemListElement' => $bcItems];
+                @endphp
+                <script type="application/ld+json">{!! json_encode($bcJsonLd, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
+            @endif
 
             {{-- HERO / SEARCH --}}
             <section class="asef-search-hero">
