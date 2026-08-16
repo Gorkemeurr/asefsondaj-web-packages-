@@ -3,7 +3,7 @@
 <nav class="asef-nav" aria-label="Ana gezinme">
     <div class="asef-nav-inner">
         <a href="{{ url('/') }}" class="asef-brand">Asef Sondaj</a>
-        <div class="asef-nav-menu" style="margin-left:40px;">
+        <div class="asef-nav-menu">
             <div class="asef-nav-item">
                 <a href="{{ $catalogUrl }}">Ürünler</a>
                 <div class="asef-mega" role="menu" aria-label="Ürünler menüsü">
@@ -121,7 +121,7 @@
                 </div>
             </div>
         </div>
-        <div class="asef-nav-actions" style="display:flex !important; align-items:center; gap:4px; margin-left:auto;">
+        <div class="asef-nav-actions" style="display:flex !important; align-items:center; gap:4px;">
             <a href="{{ $catalogUrl }}" class="asef-nav-icon-btn" aria-label="Arama"
                style="display:inline-flex !important; align-items:center; justify-content:center; width:38px; height:38px; border-radius:8px; color:#1a1c1d; text-decoration:none;">
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -216,14 +216,15 @@
     /* Nav sticky + üstte kalsın */
     .asef-nav { position: sticky !important; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #E5E5EA; }
     .asef-nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1440px; margin: 0 auto; padding: 12px 20px; gap: 12px; }
-    /* Menu mobile'de gizli, masaüstünde flex — brand ile arasında margin garanti */
+    /* Menu mobile'de gizli, masaüstünde flex — ORTALANMIŞ */
     .asef-nav-menu { display: none; }
     @media (min-width: 900px) {
         .asef-nav-menu {
             display: flex !important;
+            flex: 1 1 auto;
             align-items: center;
-            gap: 28px;
-            margin-left: 40px !important;
+            justify-content: center;
+            gap: 32px;
         }
     }
     /* Hamburger sadece mobile'de */
