@@ -64,4 +64,11 @@ return [
         'sort'  => 5,
         'icon'  => '',
     ],
+    [
+        'key'   => 'asef.settings',
+        'name'  => 'Genel Ayarlar',
+        'route' => 'admin.asef.settings.index',
+        'sort'  => 6,
+        'icon'  => '',
+    ],
 ];

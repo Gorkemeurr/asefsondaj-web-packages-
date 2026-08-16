@@ -390,6 +390,10 @@ class AdaptationServiceProvider extends ServiceProvider
                 Route::put('/faqs/{id}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\FaqController::class, 'update'])->name('faqs.update');
                 Route::delete('/faqs/{id}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\FaqController::class, 'destroy'])->name('faqs.destroy');
 
+                // Genel Ayarlar (hero, footer, iletişim, WhatsApp)
+                Route::get('/ayarlar', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\SettingsController::class, 'index'])->name('settings.index');
+                Route::put('/ayarlar', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\SettingsController::class, 'update'])->name('settings.update');
+
                 // Sözlük full CRUD
                 Route::get('/sozluk', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\GlossaryController::class, 'index'])->name('glossary.index');
                 Route::get('/sozluk/create', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\GlossaryController::class, 'create'])->name('glossary.create');
