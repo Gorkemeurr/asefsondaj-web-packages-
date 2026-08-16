@@ -48,21 +48,7 @@
             max-width: 1024px; margin: 0 auto; padding: 0 20px;
         }
         .asef-brand {
-            display: inline-flex; align-items: center; gap: 10px;
-            font-size: 17px; font-weight: 700; letter-spacing: -0.02em; color: var(--primary) !important;
-            text-decoration: none !important;
-        }
-        .asef-brand-mark {
-            width: 26px; height: 26px;
-            display: inline-flex; align-items: center; justify-content: center;
-            color: var(--primary);
-            flex-shrink: 0;
-        }
-        .asef-brand-mark svg { width: 100%; height: 100%; display: block; }
-        .asef-brand-text {
-            display: inline-block;
-            font-weight: 700; color: var(--primary);
-            font-size: 17px; letter-spacing: -0.02em;
+            font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: var(--primary);
         }
         .asef-nav-menu { display: none; align-items: center; gap: 32px; }
         @media (min-width: 900px) { .asef-nav-menu { display: flex; } }

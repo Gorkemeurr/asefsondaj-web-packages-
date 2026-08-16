@@ -175,8 +175,9 @@
                 +       '</div>'
                 +     '</div>'
                 +   '</div>'
-                +   '<button type="button" class="asef-cart-item-remove" data-asef-cart-remove data-sku="' + esc(it.sku) + '" aria-label="Kaldır">'
-                +     '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>'
+                +   '<button type="button" class="asef-cart-item-remove" data-asef-cart-remove data-sku="' + esc(it.sku) + '" aria-label="Kaldır" '
+                +     'style="width:40px;height:40px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;background:#FEF2F2;color:#E11D48;border:1.5px solid #FCA5A5;cursor:pointer;flex-shrink:0;">'
+                +     '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>'
                 +   '</button>'
                 + '</div>';
         }
