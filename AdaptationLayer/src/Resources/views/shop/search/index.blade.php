@@ -127,10 +127,17 @@
     .asef-chips-alt .asef-chip {
         scroll-snap-align: start; flex-shrink: 0;
         font-size: 12px; padding: 7px 14px;
-        background: transparent; border-color: var(--outline);
+        background: #FFFFFF;
+        border: 1.5px solid var(--primary);
+        color: var(--on-surface);
+    }
+    .asef-chips-alt .asef-chip:hover:not(.active) {
+        background: #F5F5F7;
+        border-color: var(--primary);
+        color: var(--primary);
     }
     .asef-chips-alt .asef-chip.active {
-        background: white; color: var(--primary); border-color: var(--primary);
+        background: var(--primary); color: #FFFFFF; border-color: var(--primary);
         box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
