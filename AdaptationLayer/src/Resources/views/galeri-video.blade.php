@@ -24,7 +24,8 @@
         ],
     ];
     $meta = $galleries[$slug] ?? $galleries['urun-tanitim-videolari'];
-    $waLink = 'https://wa.me/905320542975?text=' . rawurlencode($waMsgMap[$slug] ?? 'Merhaba, videolarınız hakkında bilgi almak istiyorum.');
+    $waLink     = 'https://wa.me/905320542975?text=' . rawurlencode($waMsgMap[$slug] ?? 'Merhaba, videolarınız hakkında bilgi almak istiyorum.');
+    $catalogUrl = route('shop.search.index');
 @endphp
 
 @push('meta')
