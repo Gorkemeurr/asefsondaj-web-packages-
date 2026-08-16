@@ -232,7 +232,7 @@
                 <div class="asef-label-caps">KATALOG · {{ AsefProduct::where('is_active', true)->count() }} EKİPMAN</div>
                 <h1>{{ $queryText ? '"' . e($queryText) . '" için sonuçlar' : ($activeAltName ?: $activeAnaName ?: 'Ürünleri keşfet.') }}</h1>
                 <p>Sondaj sahasına hazır ekipmanları filtreleyerek gezinin. Teklif için WhatsApp'tan yazın.</p>
-                <form action="{{ route('shop.search.index') }}" class="asef-search-form" method="get" role="search">
+                <form action="{{ route('shop.search.index') }}" class="asef-search-form" method="get" role="search" onsubmit="return asefSearchSubmit(this);">
                     @if ($anaCode)<input type="hidden" name="ana" value="{{ e($anaCode) }}" />@endif
                     @if ($altCode)<input type="hidden" name="alt" value="{{ e($altCode) }}" />@endif
                     <input
@@ -247,6 +247,18 @@
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
                     </button>
                 </form>
+                <script>
+                    // Bagisto native search controller boş query varsa ana sayfaya yönlendiriyor.
+                    // Boş query submit'te query alanını URL'den çıkararak sadece diğer filtre'leri gönderiyoruz.
+                    function asefSearchSubmit(form) {
+                        var q = form.querySelector('input[name="query"]');
+                        if (q && q.value.trim() === '') {
+                            q.disabled = true;  // form submit'te name gitmez
+                            setTimeout(function () { q.disabled = false; }, 300);
+                        }
+                        return true;
+                    }
+                </script>
             </section>
 
             {{-- MAIN CATEGORY CHIPS (15 ana + Tümü) --}}
