@@ -76,13 +76,42 @@
         $tmp = AsefAltKategori::where('code', $altCode)->first();
         $activeAltName = $tmp ? $tmp->name : null;
     }
+
+    // === DYNAMIC SEO — kategori/arama filtre aktif ise ===
+    if ($activeAltName && $activeAnaName) {
+        $seoTitle = $activeAltName . ' — ' . $totalCount . ' Model | ' . $activeAnaName . ' | Asef Sondaj';
+        $seoDesc  = $activeAltName . ' kategorisinde ' . $totalCount . ' model. ' . $activeAnaName . ' ana grubu. Türkiye geneli sevkiyat, teknik danışmanlık, satış sonrası destek. Teklif için WhatsApp: 0532 054 29 75.';
+        $seoH1Sub = $activeAltName . ' — ' . $totalCount . ' model, Türkiye geneli tedarik.';
+    } elseif ($activeAnaName) {
+        $seoTitle = $activeAnaName . ' — ' . $totalCount . '+ Model | Asef Sondaj Kataloğu';
+        $seoDesc  = $activeAnaName . ' kategorisinde ' . $totalCount . '+ model. Karotier, DTH çekiç, tij, matkap ve yedek parça — Türkiye geneli sondaj ekipmanı tedariki. Teklif için WhatsApp.';
+        $seoH1Sub = $activeAnaName . ' kategorisinde ' . $totalCount . '+ model — Türkiye geneli sondaj ekipmanı tedariki.';
+    } elseif ($queryText) {
+        $seoTitle = '"' . $queryText . '" Arama Sonuçları — ' . $totalCount . ' Ürün | Asef Sondaj';
+        $seoDesc  = '"' . $queryText . '" için ' . $totalCount . ' sondaj ekipmanı bulundu. SKU ve ürün adıyla arama, Türkiye geneli sevkiyat. Teklif: WhatsApp.';
+        $seoH1Sub = '"' . $queryText . '" için ' . $totalCount . ' sonuç bulundu.';
+    } else {
+        $seoTitle = 'Sondaj Ekipmanları Kataloğu — ' . $totalCount . '+ Ürün | Karotier, DTH Çekiç, Tij, Matkap | Asef Sondaj';
+        $seoDesc  = $totalCount . '+ sondaj ekipmanı: karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron, kompresör bağlantıları ve yedek parça. Türkiye geneli sevkiyat, teknik danışmanlık. Teklif için WhatsApp.';
+        $seoH1Sub = 'Karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve yedek parça — Türkiye genelinde sahaya hazır ekipmanlar. Kategoriye göre filtreleyin, ürün kodu (SKU) ile aratın. Teklif için WhatsApp\'tan yazın.';
+    }
+
+    // Canonical: filtresiz katalog için ana URL, filtreli için filtre param'lı URL
+    $canonicalUrl = $catalogUrl;
+    if ($anaCode || $altCode) {
+        $canonicalParts = [];
+        if ($anaCode) $canonicalParts['ana'] = $anaCode;
+        if ($altCode) $canonicalParts['alt'] = $altCode;
+        $canonicalUrl = $catalogUrl . '?' . http_build_query($canonicalParts);
+    }
 @endphp
 
 @push('meta')
-    <meta name="title" content="Sondaj Ekipmanları Kataloğu — {{ $totalCount }}+ Ürün | Karotier, DTH Çekiç, Tij, Matkap | Asef Sondaj" />
-    <meta name="description" content="{{ $totalCount }}+ sondaj ekipmanı: karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron, kompresör bağlantıları ve yedek parça. Türkiye geneli sevkiyat, teknik danışmanlık. Teklif için WhatsApp." />
-    <meta name="keywords" content="sondaj ekipmanları katalog, karotier fiyat teklifi, DTH çekiç modelleri, sondaj tijleri, sondaj matkap ucu, pörtkron, sondaj yedek parça" />
+    <meta name="title" content="{{ $seoTitle }}" />
+    <meta name="description" content="{{ e($seoDesc) }}" />
+    <meta name="keywords" content="sondaj ekipmanları katalog, karotier fiyat teklifi, DTH çekiç modelleri, sondaj tijleri, sondaj matkap ucu, pörtkron, sondaj yedek parça{{ $activeAnaName ? ', ' . $activeAnaName : '' }}{{ $activeAltName ? ', ' . $activeAltName : '' }}" />
     <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href="{{ $canonicalUrl }}" />
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')
@@ -288,7 +317,7 @@
             <section class="asef-search-hero">
                 <div class="asef-label-caps">KATALOG · {{ AsefProduct::where('is_active', true)->count() }} EKİPMAN</div>
                 <h1>{{ $queryText ? '"' . e($queryText) . '" için sonuçlar' : ($activeAltName ?: $activeAnaName ?: 'Ürünleri keşfet.') }}</h1>
-                <p>Karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve yedek parça — Türkiye genelinde sahaya hazır ekipmanlar. Kategoriye göre filtreleyin, ürün kodu (SKU) ile aratın. Teklif için WhatsApp'tan yazın.</p>
+                <p>{!! e($seoH1Sub) !!}</p>
                 <form action="{{ route('shop.search.index') }}" class="asef-search-form" method="get" role="search" onsubmit="return asefSearchSubmit(this);">
                     @if ($anaCode)<input type="hidden" name="ana" value="{{ e($anaCode) }}" />@endif
                     @if ($altCode)<input type="hidden" name="alt" value="{{ e($altCode) }}" />@endif
