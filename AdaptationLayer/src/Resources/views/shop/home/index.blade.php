@@ -648,7 +648,7 @@
                 <div class="asef-section-head">
                     <div class="asef-section-head-left">
                         <span class="asef-label-caps">ÖNE ÇIKAN</span>
-                        <h2>Ekipmanlar.</h2>
+                        <h2>Öne çıkan sondaj ekipmanları.</h2>
                     </div>
                     <a href="{{ $catalogUrl }}" class="asef-section-link">Tüm ürünlere bak <span>›</span></a>
                 </div>
