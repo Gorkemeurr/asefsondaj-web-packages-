@@ -11,8 +11,9 @@
     $catalogUrl   = route('shop.search.index');
 
     // === FILTER PARAMS ===
-    $anaCode   = trim((string) request()->query('ana', ''));
-    $altCode   = trim((string) request()->query('alt', ''));
+    // SEO-friendly URL yapısı /urunler/{ana-slug}/{alt-slug} view variable'larından öncelik alır
+    $anaCode   = trim((string) (isset($seoAnaCode) ? $seoAnaCode : request()->query('ana', '')));
+    $altCode   = trim((string) (isset($seoAltCode) ? $seoAltCode : request()->query('alt', '')));
     $queryText = trim((string) request()->query('query', ''));
 
     // Turkish fold: ç→c, ş→s, ı→i, ğ→g, ö→o, ü→u for case-insensitive matching

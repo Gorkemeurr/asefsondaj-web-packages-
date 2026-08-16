@@ -105,6 +105,33 @@ class AdaptationServiceProvider extends ServiceProvider
         $noCache = \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class;
 
         Route::middleware('web')->group(function () use ($noCache) {
+            // SEO-friendly katalog URL yapısı — /urunler/{ana-slug}/{alt-slug}
+            Route::get('/urunler', function () {
+                // /urunler → ana katalog (search view, filtresiz)
+                return view('asef-adaptation::shop.search.index');
+            })->name('shop.asef.catalog');
+
+            Route::get('/urunler/{ana_slug}', function (string $anaSlug) {
+                $ana = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::where('slug', $anaSlug)->first();
+                if (! $ana) abort(404);
+                return view('asef-adaptation::shop.search.index', [
+                    'seoAnaCode' => $ana->code,
+                ]);
+            })->name('shop.asef.category-ana')->where('ana_slug', '[a-z0-9\-]+');
+
+            Route::get('/urunler/{ana_slug}/{alt_slug}', function (string $anaSlug, string $altSlug) {
+                $ana = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::where('slug', $anaSlug)->first();
+                if (! $ana) abort(404);
+                $alt = \AsefSondaj\AdaptationLayer\Models\AsefAltKategori::where('slug', $altSlug)
+                    ->where('parent_code', $ana->code)
+                    ->first();
+                if (! $alt) abort(404);
+                return view('asef-adaptation::shop.search.index', [
+                    'seoAnaCode' => $ana->code,
+                    'seoAltCode' => $alt->code,
+                ]);
+            })->name('shop.asef.category-alt')->where(['ana_slug' => '[a-z0-9\-]+', 'alt_slug' => '[a-z0-9\-]+']);
+
             // Ürün detay — slug (yeni SEO URL) veya SKU (backward compat).
             // Parameter adı 'sku' KALIR — mevcut route('shop.asef.product', ['sku' => ...]) çağrılarını kırmayalım.
             Route::get('/urun/{sku}', function (string $sku) {
