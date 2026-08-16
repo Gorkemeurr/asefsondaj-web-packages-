@@ -131,6 +131,77 @@ class AdaptationServiceProvider extends ServiceProvider
                 return view('asef-adaptation::blog');
             })->name('shop.asef.blog');
 
+            // Dinamik XML sitemap — 813 ürün + 15+63 kategori + tüm statik sayfalar
+            Route::get('/sitemap.xml', function () {
+                $now = date('Y-m-d');
+                $urls = [];
+                $push = function (string $loc, string $lastmod = null, string $changefreq = 'weekly', string $priority = '0.5') use (&$urls, $now) {
+                    $urls[] = [
+                        'loc' => $loc,
+                        'lastmod' => $lastmod ?: $now,
+                        'changefreq' => $changefreq,
+                        'priority' => $priority,
+                    ];
+                };
+                // Ana sayfa
+                $push(url('/'), $now, 'daily', '1.0');
+                // Statik kurumsal
+                foreach (['hakkimizda','kurumsal','sondaj-makinalarimiz','hizmetlerimiz','referanslar','sss','iletisim','destek'] as $slug) {
+                    $push(url($slug), $now, 'monthly', '0.7');
+                }
+                // Blog + galeri
+                foreach (['blog','tum-bloglar','blog/fotograf','blog/video',
+                          'blog/saha-fotograflari','blog/ekipman-fotograflari','blog/proje-fotograflari',
+                          'blog/urun-tanitim-videolari','blog/saha-uygulamalari','blog/teknik-anlatimlar'] as $slug) {
+                    $push(url($slug), $now, 'weekly', '0.6');
+                }
+                // Blog yazıları (blog-detay içinde tanımlı 9 slug)
+                foreach (['ekipman-secim-rehberi','dth-cekic-bakim','sondaj-tiji-baglanti','camur-pompa-verim',
+                          'karot-hatalari','su-sondaji-mevzuat','yerustu-yeralti','karotier-ipuclari','yedek-parca-stok'] as $slug) {
+                    $push(url('blog/' . $slug), $now, 'monthly', '0.6');
+                }
+                // Legal
+                foreach (['kvkk','gizlilik-politikasi','cerez-politikasi','kullanim-sartlari'] as $slug) {
+                    $push(url($slug), $now, 'yearly', '0.3');
+                }
+                // Katalog kök
+                $push(url('search'), $now, 'daily', '0.9');
+                // Kategori sayfaları — ana + alt
+                $anas = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::orderBy('sort')->get();
+                foreach ($anas as $ana) {
+                    $push(url('search') . '?ana=' . $ana->code, $now, 'weekly', '0.8');
+                }
+                $alts = \AsefSondaj\AdaptationLayer\Models\AsefAltKategori::orderBy('sort')->get();
+                foreach ($alts as $alt) {
+                    $push(url('search') . '?ana=' . $alt->parent_code . '&alt=' . $alt->code, $now, 'weekly', '0.7');
+                }
+                // Ürünler
+                $products = \AsefSondaj\AdaptationLayer\Models\AsefProduct::where('is_active', true)->get(['sku','updated_at']);
+                foreach ($products as $p) {
+                    $push(url('urun/' . $p->sku), optional($p->updated_at)->format('Y-m-d') ?: $now, 'weekly', '0.7');
+                }
+
+                $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+                $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+                foreach ($urls as $u) {
+                    $xml .= '  <url>' . "\n";
+                    $xml .= '    <loc>' . htmlspecialchars($u['loc']) . '</loc>' . "\n";
+                    $xml .= '    <lastmod>' . $u['lastmod'] . '</lastmod>' . "\n";
+                    $xml .= '    <changefreq>' . $u['changefreq'] . '</changefreq>' . "\n";
+                    $xml .= '    <priority>' . $u['priority'] . '</priority>' . "\n";
+                    $xml .= '  </url>' . "\n";
+                }
+                $xml .= '</urlset>' . "\n";
+                return response($xml, 200)
+                    ->header('Content-Type', 'application/xml; charset=utf-8');
+            })->name('shop.asef.sitemap');
+
+            // robots.txt — sitemap'i işaretle
+            Route::get('/robots.txt', function () {
+                $txt = "User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /sepet\nDisallow: /checkout\n\nSitemap: " . url('sitemap.xml') . "\n";
+                return response($txt, 200)->header('Content-Type', 'text/plain; charset=utf-8');
+            })->name('shop.asef.robots');
+
             // Photo gallery hub + sub-galleries (registered BEFORE /blog/{slug}).
             Route::get('/blog/fotograf', function () {
                 return view('asef-adaptation::galeri-fotograf-hub');
