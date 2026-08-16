@@ -382,11 +382,21 @@ class AdaptationServiceProvider extends ServiceProvider
                 // Blog Yazıları — Faz 2'de DB'ye taşınacak, şu an placeholder
                 Route::get('/bloglar', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\BlogController::class, 'index'])->name('blog.index');
 
-                // SSS — Faz 2'de DB'ye taşınacak
+                // SSS full CRUD
                 Route::get('/faqs', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\FaqController::class, 'index'])->name('faqs.index');
+                Route::get('/faqs/create', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\FaqController::class, 'create'])->name('faqs.create');
+                Route::post('/faqs', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\FaqController::class, 'store'])->name('faqs.store');
+                Route::get('/faqs/{id}/edit', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\FaqController::class, 'edit'])->name('faqs.edit');
+                Route::put('/faqs/{id}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\FaqController::class, 'update'])->name('faqs.update');
+                Route::delete('/faqs/{id}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\FaqController::class, 'destroy'])->name('faqs.destroy');
 
-                // Sözlük — Faz 2'de DB'ye taşınacak
+                // Sözlük full CRUD
                 Route::get('/sozluk', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\GlossaryController::class, 'index'])->name('glossary.index');
+                Route::get('/sozluk/create', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\GlossaryController::class, 'create'])->name('glossary.create');
+                Route::post('/sozluk', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\GlossaryController::class, 'store'])->name('glossary.store');
+                Route::get('/sozluk/{id}/edit', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\GlossaryController::class, 'edit'])->name('glossary.edit');
+                Route::put('/sozluk/{id}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\GlossaryController::class, 'update'])->name('glossary.update');
+                Route::delete('/sozluk/{id}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\GlossaryController::class, 'destroy'])->name('glossary.destroy');
             });
     }
 
