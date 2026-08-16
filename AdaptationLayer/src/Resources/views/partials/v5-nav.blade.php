@@ -181,17 +181,23 @@
 {{-- Force fresh reload — deploy version bump ile tarayıcı cache'i bir kez bypass --}}
 <script>
 (function () {
-    var VERSION = '20260816p-mobile-nav-align';
+    var VERSION = '20260816q-mobile-nav-group';
     try {
         if (window.sessionStorage && sessionStorage.getItem('asef_ver') !== VERSION) {
             sessionStorage.setItem('asef_ver', VERSION);
-            // Reload with cache bypass
             if (!window.location.href.match(/[?&]_asef=\d/)) {
                 window.location.href = window.location.href +
                     (window.location.href.indexOf('?') > -1 ? '&' : '?') +
                     '_asef=' + Date.now();
                 return;
             }
+        }
+        // Sayfa yüklendiyse ve URL'de ?_asef= varsa temizle (kullanıcıya gösterilmesin).
+        if (window.location.search && /[?&]_asef=\d+/.test(window.location.search) && window.history && window.history.replaceState) {
+            var clean = window.location.pathname
+                + window.location.search.replace(/([?&])_asef=\d+/, '$1').replace(/[?&]$/, '').replace(/\?&/, '?')
+                + window.location.hash;
+            window.history.replaceState({}, '', clean);
         }
     } catch (e) {}
 })();
@@ -202,9 +208,11 @@
     /* Mobil'de nav actions (arama + sepet) HEP görünür */
     .asef-nav-actions { display: flex !important; align-items: center; gap: 4px; }
     @media (min-width: 900px) { .asef-nav-actions { gap: 8px; } }
-    /* Mobilde actions sağa yaslı — hamburger'in hemen solunda hizalı */
+    /* Mobilde: brand solda, [search+sepet+hamburger] bir grup halinde sağa yaslı */
     @media (max-width: 899px) {
+        .asef-nav-inner { justify-content: flex-start !important; }
         .asef-nav-actions { margin-left: auto !important; }
+        .asef-nav-mobile-btn { margin-left: 4px !important; }
     }
     /* İletişim CTA mobil'de gizli, masaüstünde görünür */
     .asef-nav-cta { display: none !important; }
