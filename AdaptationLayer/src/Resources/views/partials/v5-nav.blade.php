@@ -121,7 +121,7 @@
                 </div>
             </div>
         </div>
-        <div class="asef-nav-actions" style="display:flex !important; align-items:center; gap:4px;">
+        <div class="asef-nav-actions" style="display:flex !important; align-items:center; gap:2px; margin-left:auto;">
             <a href="{{ $catalogUrl }}" class="asef-nav-icon-btn" aria-label="Arama"
                style="display:inline-flex !important; align-items:center; justify-content:center; width:38px; height:38px; border-radius:8px; color:#1a1c1d; text-decoration:none;">
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -170,18 +170,18 @@
                 setTimeout(forceWhite, 1000);
             })();
             </script>
+            <button type="button" class="asef-nav-mobile-btn" aria-label="Menü" data-asef-mobile-toggle
+                    style="margin-left:2px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+            </button>
         </div>
-        <button type="button" class="asef-nav-mobile-btn" aria-label="Menü" data-asef-mobile-toggle
-                style="margin-left:2px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
-        </button>
     </div>
 </nav>
 
 {{-- Force fresh reload — deploy version bump ile tarayıcı cache'i bir kez bypass --}}
 <script>
 (function () {
-    var VERSION = '20260816r-mobile-flex-end';
+    var VERSION = '20260816s-hamburger-in-actions';
     try {
         if (window.sessionStorage && sessionStorage.getItem('asef_ver') !== VERSION) {
             sessionStorage.setItem('asef_ver', VERSION);
@@ -205,22 +205,14 @@
 
 {{-- Nav + Drawer için inline CSS — v5-styles cache sorunu için garanti fallback --}}
 <style>
-    /* Mobil'de nav actions (arama + sepet) HEP görünür */
-    .asef-nav-actions { display: flex !important; align-items: center; gap: 4px; }
-    @media (min-width: 900px) { .asef-nav-actions { gap: 8px; } }
-    /* Mobilde: brand solda, [search+sepet+hamburger] bir grup halinde sağa yaslı */
-    @media (max-width: 899px) {
-        .asef-nav-inner {
-            justify-content: flex-end !important;
-            gap: 4px !important;
-        }
-        .asef-brand { margin-right: auto !important; }
-        .asef-nav-actions {
-            margin-left: 0 !important;
-            gap: 2px !important;
-        }
-        .asef-nav-mobile-btn { margin-left: 2px !important; }
+    /* Nav actions: her ekranda flex + sağa yaslı — hamburger de artık actions içinde */
+    .asef-nav-actions {
+        display: flex !important;
+        align-items: center;
+        gap: 2px;
+        margin-left: auto !important;
     }
+    @media (min-width: 900px) { .asef-nav-actions { gap: 8px; } }
     /* İletişim CTA mobil'de gizli, masaüstünde görünür */
     .asef-nav-cta { display: none !important; }
     @media (min-width: 900px) { .asef-nav-cta { display: inline-flex !important; } }
