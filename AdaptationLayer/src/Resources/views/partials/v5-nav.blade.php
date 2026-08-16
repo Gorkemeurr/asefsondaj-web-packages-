@@ -216,9 +216,16 @@
     /* Nav sticky + üstte kalsın */
     .asef-nav { position: sticky !important; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #E5E5EA; }
     .asef-nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1440px; margin: 0 auto; padding: 12px 20px; gap: 12px; }
-    /* Menu mobile'de gizli, masaüstünde flex */
+    /* Menu mobile'de gizli, masaüstünde flex — brand ile arasında margin garanti */
     .asef-nav-menu { display: none; }
-    @media (min-width: 900px) { .asef-nav-menu { display: flex !important; align-items: center; gap: 28px; } }
+    @media (min-width: 900px) {
+        .asef-nav-menu {
+            display: flex !important;
+            align-items: center;
+            gap: 28px;
+            margin-left: 40px !important;
+        }
+    }
     /* Hamburger sadece mobile'de */
     .asef-nav-mobile-btn { display: grid !important; place-items: center; width: 36px; height: 36px; background: transparent; border: 0; cursor: pointer; color: #1a1c1d; border-radius: 8px; }
     .asef-nav-mobile-btn:hover { background: #F5F5F7; }
