@@ -11,8 +11,9 @@
     $catalogUrl   = route('shop.search.index');
 
     // === FILTER PARAMS ===
-    $anaCode   = trim((string) request()->query('ana', ''));
-    $altCode   = trim((string) request()->query('alt', ''));
+    // SEO-friendly URL (yeni /urunler/{ana}/{alt}) view variable'larından öncelik
+    $anaCode   = trim((string) ($_seo_ana_code ?? request()->query('ana', '')));
+    $altCode   = trim((string) ($_seo_alt_code ?? request()->query('alt', '')));
     $queryText = trim((string) request()->query('query', ''));
 
     // Turkish fold: ç→c, ş→s, ı→i, ğ→g, ö→o, ü→u for case-insensitive matching
@@ -102,20 +103,40 @@
         $seoH1Sub = 'Karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve yedek parça — Türkiye genelinde sahaya hazır ekipmanlar. Kategoriye göre filtreleyin, ürün kodu (SKU) ile aratın. Teklif için WhatsApp\'tan yazın.';
     }
 
-    // Canonical: filtresiz katalog için ana URL, filtreli için filtre param'lı URL
-    $canonicalUrl = $catalogUrl;
-    if ($anaCode || $altCode) {
-        $canonicalParts = [];
-        if ($anaCode) $canonicalParts['ana'] = $anaCode;
-        if ($altCode) $canonicalParts['alt'] = $altCode;
-        $canonicalUrl = $catalogUrl . '?' . http_build_query($canonicalParts);
+    // Canonical: SEO-friendly pretty URL (yeni /urunler/{ana}/{alt}) hedeflenir
+    // Filtresiz katalog: /urunler root URL (search index'e redirect ediyor); filtreli: /urunler/{ana}[/{alt}]
+    $anaSlug = null; $altSlug = null;
+    if ($anaCode) {
+        $tmpA = $anaKategoriler->firstWhere('code', $anaCode);
+        if ($tmpA && $tmpA->slug) $anaSlug = $tmpA->slug;
     }
+    if ($altCode) {
+        $tmpAl = AsefAltKategori::where('code', $altCode)->first();
+        if ($tmpAl && $tmpAl->slug) $altSlug = $tmpAl->slug;
+    }
+
+    if ($anaSlug && $altSlug) {
+        $canonicalUrl = url('urunler/' . $anaSlug . '/' . $altSlug);
+    } elseif ($anaSlug) {
+        $canonicalUrl = url('urunler/' . $anaSlug);
+    } elseif ($queryText) {
+        // Gerçek arama sorgusu — /search remains canonical for search results
+        $canonicalUrl = url('search') . '?query=' . rawurlencode($queryText);
+    } else {
+        $canonicalUrl = url('urunler');
+    }
+
+    // Meta robots — kategori pretty URL indexable, gerçek arama sonucu /search?query=X noindex
+    // Legacy /search?ana=X 301 redirect ile yeni URL'e gider (middleware handle eder) — bu view'a hiç ulaşmaz
+    // Sadece gerçek arama sorgularında noindex (arama sonuçları dinamik + değişken)
+    $metaRobots = $queryText ? 'noindex,follow' : 'index,follow';
 @endphp
 
 @push('meta')
     <meta name="title" content="{{ $seoTitle }}" />
     <meta name="description" content="{{ e($seoDesc) }}" />
-    <meta name="keywords" content="sondaj ekipmanları katalog, karotier fiyat teklifi, DTH çekiç modelleri, sondaj tijleri, sondaj matkap ucu, pörtkron, sondaj yedek parça{{ $activeAnaName ? ', ' . $activeAnaName : '' }}{{ $activeAltName ? ', ' . $activeAltName : '' }}" />
+    <meta name="keywords" content="sondaj ekipmanları katalog, karotiyer fiyat teklifi, DTH çekiç modelleri, sondaj tijleri, sondaj matkap ucu, pörtkron, sondaj yedek parça{{ $activeAnaName ? ', ' . $activeAnaName : '' }}{{ $activeAltName ? ', ' . $activeAltName : '' }}" />
+    <meta name="robots" content="{{ $metaRobots }}" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="canonical" href="{{ $canonicalUrl }}" />
 @endpush
@@ -319,6 +340,43 @@
 
         <main class="asef-main">
 
+            {{-- BREADCRUMB — hiyerarşi (Ana Sayfa > Ürünler > Kategori > Alt Kategori) --}}
+            @if ($anaCode || $altCode)
+                <nav aria-label="Breadcrumb" style="max-width:1400px; margin:20px auto -8px; padding:0 24px; font-size:13px; color:var(--secondary); line-height:1.4;">
+                    <a href="{{ url('/') }}" style="color:var(--secondary); text-decoration:none;">Ana Sayfa</a>
+                    <span style="margin:0 6px; color:var(--gray-secondary);">›</span>
+                    <a href="{{ url('urunler') }}" style="color:var(--secondary); text-decoration:none;">Ürünler</a>
+                    @if ($activeAnaName && $anaSlug)
+                        <span style="margin:0 6px; color:var(--gray-secondary);">›</span>
+                        <a href="{{ url('urunler/' . $anaSlug) }}" style="color:var(--secondary); text-decoration:none;">{{ $activeAnaName }}</a>
+                    @elseif ($activeAnaName)
+                        <span style="margin:0 6px; color:var(--gray-secondary);">›</span>
+                        <span style="color:var(--secondary);">{{ $activeAnaName }}</span>
+                    @endif
+                    @if ($activeAltName)
+                        <span style="margin:0 6px; color:var(--gray-secondary);">›</span>
+                        <span style="color:var(--primary); font-weight:500;">{{ $activeAltName }}</span>
+                    @endif
+                </nav>
+
+                {{-- BreadcrumbList JSON-LD --}}
+                @php
+                    $bcItems = [
+                        ['@type' => 'ListItem', 'position' => 1, 'name' => 'Ana Sayfa', 'item' => url('/')],
+                        ['@type' => 'ListItem', 'position' => 2, 'name' => 'Ürünler', 'item' => url('urunler')],
+                    ];
+                    $bcPos = 3;
+                    if ($activeAnaName && $anaSlug) {
+                        $bcItems[] = ['@type' => 'ListItem', 'position' => $bcPos++, 'name' => $activeAnaName, 'item' => url('urunler/' . $anaSlug)];
+                    }
+                    if ($activeAltName && $anaSlug && $altSlug) {
+                        $bcItems[] = ['@type' => 'ListItem', 'position' => $bcPos, 'name' => $activeAltName, 'item' => url('urunler/' . $anaSlug . '/' . $altSlug)];
+                    }
+                    $bcJsonLd = ['@context' => 'https://schema.org', '@type' => 'BreadcrumbList', 'itemListElement' => $bcItems];
+                @endphp
+                <script type="application/ld+json">{!! json_encode($bcJsonLd, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
+            @endif
+
             {{-- HERO / SEARCH --}}
             <section class="asef-search-hero">
                 <div class="asef-label-caps">KATALOG · {{ AsefProduct::where('is_active', true)->count() }} EKİPMAN</div>
@@ -478,14 +536,14 @@
                         @endphp
                         @foreach ($panelAna as $pa)
                             <div class="asef-cat-panel-group">
-                                <a href="{{ route('shop.search.index') . '?ana=' . $pa->code }}" class="asef-cat-panel-ana">
+                                <a href="{{ $pa->slug ? url('urunler/' . $pa->slug) : route('shop.search.index') . '?ana=' . $pa->code }}" class="asef-cat-panel-ana">
                                     {{ $pa->name }}
                                     <span class="asef-cat-panel-count">{{ $pa->products()->where('is_active',true)->count() }}</span>
                                 </a>
                                 @if ($pa->altKategoriler->count() > 0)
                                     <div class="asef-cat-panel-alts">
                                         @foreach ($pa->altKategoriler as $pal)
-                                            <a href="{{ route('shop.search.index') . '?ana=' . $pa->code . '&alt=' . $pal->code }}" class="asef-cat-panel-alt">
+                                            <a href="{{ ($pa->slug && $pal->slug) ? url('urunler/' . $pa->slug . '/' . $pal->slug) : route('shop.search.index') . '?ana=' . $pa->code . '&alt=' . $pal->code }}" class="asef-cat-panel-alt">
                                                 {{ $pal->name }}
                                                 <span class="asef-cat-panel-count">{{ $pal->products()->where('is_active',true)->count() }}</span>
                                             </a>
@@ -539,7 +597,7 @@
                             $imgSrc   = $imgUrl($product);
                             $shortDesc = $product->description
                                 ?: (($product->attrs['ebat_sistem'] ?? '') . ($product->attrs['boy_uzunluk'] ? ' · ' . $product->attrs['boy_uzunluk'] : ''));
-                            $detailUrl = route('shop.asef.product', ['sku' => $product->sku]);
+                            $detailUrl = url('urun/' . ($product->slug ?: $product->sku));
                         @endphp
                         <div class="asef-search-card">
                             <a href="{{ $detailUrl }}" class="asef-search-media" aria-label="{{ $product->name }} detay" style="display:block;">

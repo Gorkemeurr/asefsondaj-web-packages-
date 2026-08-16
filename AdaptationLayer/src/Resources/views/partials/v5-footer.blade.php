@@ -37,7 +37,7 @@
                 <ul>
                     <li><a href="{{ $catalogUrl }}">Tüm Ürünler</a></li>
                     @foreach ($footAnaAll->take(6) as $_a)
-                        <li><a href="{{ $catalogUrl }}?ana={{ $_a->code }}">{{ $_a->name }}</a></li>
+                        <li><a href="{{ $_a->slug ? url('urunler/' . $_a->slug) : $catalogUrl . '?ana=' . $_a->code }}">{{ $_a->name }}</a></li>
                     @endforeach
                     <li><a href="{{ url('sepet') }}">Teklif Sepetim</a></li>
                 </ul>

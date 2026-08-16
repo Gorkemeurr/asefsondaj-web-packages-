@@ -79,23 +79,32 @@
     @endphp
     <script type="application/ld+json">{!! json_encode($productJsonLd, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
 
-    {{-- Breadcrumb JSON-LD --}}
+    {{-- Breadcrumb JSON-LD (yeni SEO-friendly URL yapısı) --}}
     @php
+        $canonicalProductUrl = url('urun/' . ($product->slug ?: $product->sku));
+
         $breadcrumbItems = [
             ['@type' => 'ListItem', 'position' => 1, 'name' => 'Ana Sayfa', 'item' => url('/')],
-            ['@type' => 'ListItem', 'position' => 2, 'name' => 'Ürünler', 'item' => route('shop.search.index')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'Ürünler', 'item' => url('urunler')],
         ];
         $pos = 3;
         if ($anaKat) {
-            $breadcrumbItems[] = ['@type' => 'ListItem', 'position' => $pos++, 'name' => $anaKat->name, 'item' => route('shop.search.index', ['ana' => $anaKat->code])];
+            $anaUrl = $anaKat->slug ? url('urunler/' . $anaKat->slug) : route('shop.search.index', ['ana' => $anaKat->code]);
+            $breadcrumbItems[] = ['@type' => 'ListItem', 'position' => $pos++, 'name' => $anaKat->name, 'item' => $anaUrl];
         }
         if ($altKat && $anaKat) {
-            $breadcrumbItems[] = ['@type' => 'ListItem', 'position' => $pos++, 'name' => $altKat->name, 'item' => route('shop.search.index', ['ana' => $anaKat->code, 'alt' => $altKat->code])];
+            $altUrl = ($anaKat->slug && $altKat->slug)
+                ? url('urunler/' . $anaKat->slug . '/' . $altKat->slug)
+                : route('shop.search.index', ['ana' => $anaKat->code, 'alt' => $altKat->code]);
+            $breadcrumbItems[] = ['@type' => 'ListItem', 'position' => $pos++, 'name' => $altKat->name, 'item' => $altUrl];
         }
-        $breadcrumbItems[] = ['@type' => 'ListItem', 'position' => $pos, 'name' => $product->name, 'item' => url()->current()];
+        $breadcrumbItems[] = ['@type' => 'ListItem', 'position' => $pos, 'name' => $product->name, 'item' => $canonicalProductUrl];
         $breadcrumbJsonLd = ['@context' => 'https://schema.org', '@type' => 'BreadcrumbList', 'itemListElement' => $breadcrumbItems];
     @endphp
     <script type="application/ld+json">{!! json_encode($breadcrumbJsonLd, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
+
+    {{-- Canonical: her zaman slug URL (SKU URL 301 redirect zaten yapıyor) --}}
+    <link rel="canonical" href="{{ $canonicalProductUrl }}" />
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')
