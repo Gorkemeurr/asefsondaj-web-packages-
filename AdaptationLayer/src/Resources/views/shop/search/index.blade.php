@@ -89,10 +89,25 @@
 
 @push('styles')
 <style>
-    /* Chip rows — 15 ana kategori yatay scroll snap */
+    /* Chip rows — 15 ana kategori yatay scroll snap + fade mask sağda */
+    .asef-chips-scroll-wrap {
+        position: relative; max-width: 1024px; margin: 0 auto 12px;
+    }
+    .asef-chips-scroll-wrap::after {
+        content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 40px;
+        background: linear-gradient(to right, transparent, #FFFFFF 70%);
+        pointer-events: none; z-index: 2;
+    }
+    .asef-chips-scroll-wrap::before {
+        content: ""; position: absolute; top: 0; left: 0; bottom: 0; width: 20px;
+        background: linear-gradient(to left, transparent, #FFFFFF 60%);
+        pointer-events: none; z-index: 2; opacity: 0;
+        transition: opacity .2s;
+    }
+    .asef-chips-scroll-wrap.scrolled::before { opacity: 1; }
     .asef-chips-scroll {
-        max-width: 1024px; margin: 0 auto 12px; padding: 0 20px;
-        display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory;
+        padding: 4px 24px 4px 20px;
+        display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x proximity;
         -webkit-overflow-scrolling: touch;
     }
     .asef-chips-scroll::-webkit-scrollbar { height: 0; }
@@ -289,7 +304,8 @@
             </section>
 
             {{-- MAIN CATEGORY CHIPS (15 ana + Tümü) --}}
-            <div class="asef-chips-scroll">
+            <div class="asef-chips-scroll-wrap">
+            <div class="asef-chips-scroll" data-asef-scroll>
                 {{-- "Tümü" temizler HER şeyi (query + ana + alt) — direct /search --}}
                 <button type="button" class="asef-chip asef-chip-panel" data-open-cat-panel aria-label="Tüm kategoriler paneli">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
@@ -308,10 +324,12 @@
                     <a href="{{ $chipUrl }}" class="asef-chip {{ $isActive ? 'active' : '' }}">{{ $ana->name }}</a>
                 @endforeach
             </div>
+            </div>{{-- /asef-chips-scroll-wrap --}}
 
             {{-- SUB CATEGORY CHIPS (aktif ana için alt kategoriler) --}}
             @if ($altKategoriler->count() > 0)
-                <div class="asef-chips-alt">
+                <div class="asef-chips-scroll-wrap">
+                <div class="asef-chips-alt" data-asef-scroll>
                     @php
                         $allAltUrl = route('shop.search.index') . '?' . http_build_query(array_filter([
                             'ana' => $anaCode, 'query' => $queryText,
@@ -328,7 +346,21 @@
                         <a href="{{ $chipUrl }}" class="asef-chip {{ $isActive ? 'active' : '' }}">{{ $alt->name }}</a>
                     @endforeach
                 </div>
+                </div>{{-- /wrap --}}
             @endif
+            <script>
+            (function () {
+                // Convert vertical wheel to horizontal scroll on chip rows (PC UX)
+                document.querySelectorAll('[data-asef-scroll]').forEach(function (el) {
+                    el.addEventListener('wheel', function (e) {
+                        if (e.deltaY === 0) return;
+                        if (el.scrollWidth <= el.clientWidth) return; // nothing to scroll
+                        e.preventDefault();
+                        el.scrollLeft += e.deltaY;
+                    }, { passive: false });
+                });
+            })();
+            </script>
 
             {{-- === TÜM KATEGORİLER PANEL (modal / bottom-sheet) === --}}
             <div class="asef-cat-panel" id="asefCatPanel" role="dialog" aria-modal="true" aria-label="Tüm kategoriler">

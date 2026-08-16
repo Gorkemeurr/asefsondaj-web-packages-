@@ -563,7 +563,8 @@
                 0 2px 6px rgba(0,0,0,0.03);
         }
         .asef-chip:hover {
-            border-color: #C6C6C8;
+            border-color: var(--primary);
+            background: #F5F5F7;
             transform: translateY(-1px);
             box-shadow:
                 0 1px 0 rgba(255,255,255,1) inset,
