@@ -253,38 +253,33 @@
     .asef-mobile-drawer-wa:hover { background: #1EAF54; }
 </style>
 
-{{-- MOBILE DRAWER — hamburger tıklayınca sağdan slide-in.
-     Inline display:none guarantee (CSS render bug'a karşı bulletproof). --}}
-<div class="asef-mobile-drawer" id="asefMobileDrawer" role="dialog" aria-modal="true" aria-label="Menü"
-     style="display:none !important; position:fixed !important; inset:0 !important; z-index:10000 !important; background:rgba(15,17,20,0.5); backdrop-filter:blur(6px); justify-content:flex-end;">
-    <div class="asef-mobile-drawer-panel">
-        <div class="asef-mobile-drawer-head">
-            <span>Menü</span>
-            <button type="button" class="asef-mobile-drawer-close" data-asef-mobile-close aria-label="Kapat">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
-            </button>
-        </div>
-        <nav class="asef-mobile-drawer-nav">
-            <a href="{{ $catalogUrl }}">Ürünler</a>
-            <a href="{{ url('kurumsal') }}">Kurumsal</a>
-            <a href="{{ url('hakkimizda') }}" class="sub">Hakkımızda</a>
-            <a href="{{ url('sondaj-makinalarimiz') }}" class="sub">Sondaj Makinalarımız</a>
-            <a href="{{ url('hizmetlerimiz') }}" class="sub">Hizmetlerimiz</a>
-            <a href="{{ url('referanslar') }}" class="sub">Referanslar</a>
-            <a href="{{ url('blog') }}">Blog</a>
-            <a href="{{ url('tum-bloglar') }}" class="sub">Tüm Yazılar</a>
-            <a href="{{ url('blog/fotograf') }}" class="sub">Fotoğraf Galerisi</a>
-            <a href="{{ url('blog/video') }}" class="sub">Video Galerisi</a>
-            <a href="{{ url('destek') }}">Destek</a>
-            <a href="{{ url('sss') }}" class="sub">SSS</a>
-            <a href="{{ url('iletisim') }}">İletişim</a>
-        </nav>
-        <div class="asef-mobile-drawer-cta">
-            <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-mobile-drawer-wa">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.13 1.6 5.93L0 24l6.34-1.67a11.87 11.87 0 0 0 5.72 1.46h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.45-8.41z"/></svg>
-                WhatsApp'tan Yaz
-            </a>
-        </div>
+{{-- MOBILE DRAWER — Apple tarzı fullscreen menü (beyaz zemin, büyük font).
+     TÜM style INLINE — CSS parse bug'a karşı bulletproof. --}}
+<div id="asefMobileDrawer" role="dialog" aria-modal="true" aria-label="Menü"
+     style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; z-index:10000; background:#FFFFFF; flex-direction:column; overflow-y:auto;">
+    <div style="display:flex; justify-content:flex-end; align-items:center; padding:16px 20px; border-bottom:1px solid #EBEBEB;">
+        <button type="button" data-asef-mobile-close aria-label="Kapat"
+                style="width:44px; height:44px; border:0; background:transparent; cursor:pointer; color:#1a1c1d; display:inline-flex; align-items:center; justify-content:center;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+        </button>
+    </div>
+    <nav style="flex:1; padding:24px 32px 40px 32px; display:flex; flex-direction:column; gap:4px;">
+        <a href="{{ $catalogUrl }}" style="font-size:28px; font-weight:600; color:#1a1c1d; text-decoration:none; padding:12px 0; letter-spacing:-0.01em;">Ürünler</a>
+        <a href="{{ url('kurumsal') }}" style="font-size:28px; font-weight:600; color:#1a1c1d; text-decoration:none; padding:12px 0; letter-spacing:-0.01em;">Kurumsal</a>
+        <a href="{{ url('sondaj-makinalarimiz') }}" style="font-size:28px; font-weight:600; color:#1a1c1d; text-decoration:none; padding:12px 0; letter-spacing:-0.01em;">Sondaj Makinaları</a>
+        <a href="{{ url('hizmetlerimiz') }}" style="font-size:28px; font-weight:600; color:#1a1c1d; text-decoration:none; padding:12px 0; letter-spacing:-0.01em;">Hizmetler</a>
+        <a href="{{ url('referanslar') }}" style="font-size:28px; font-weight:600; color:#1a1c1d; text-decoration:none; padding:12px 0; letter-spacing:-0.01em;">Referanslar</a>
+        <a href="{{ url('blog') }}" style="font-size:28px; font-weight:600; color:#1a1c1d; text-decoration:none; padding:12px 0; letter-spacing:-0.01em;">Blog</a>
+        <a href="{{ url('destek') }}" style="font-size:28px; font-weight:600; color:#1a1c1d; text-decoration:none; padding:12px 0; letter-spacing:-0.01em;">Destek</a>
+        <a href="{{ url('iletisim') }}" style="font-size:28px; font-weight:600; color:#1a1c1d; text-decoration:none; padding:12px 0; letter-spacing:-0.01em;">İletişim</a>
+        <a href="{{ url('hakkimizda') }}" style="font-size:28px; font-weight:600; color:#1a1c1d; text-decoration:none; padding:12px 0; letter-spacing:-0.01em;">Hakkımızda</a>
+    </nav>
+    <div style="padding:20px 32px 40px 32px; border-top:1px solid #EBEBEB;">
+        <a href="{{ $waLink }}" target="_blank" rel="noopener"
+           style="display:flex; align-items:center; justify-content:center; gap:10px; background:#25D366; color:#FFFFFF !important; padding:16px 24px; border-radius:14px; font-size:16px; font-weight:600; text-decoration:none;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.13 1.6 5.93L0 24l6.34-1.67a11.87 11.87 0 0 0 5.72 1.46h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.45-8.41z"/></svg>
+            WhatsApp'tan Yaz
+        </a>
     </div>
 </div>
 <script>
@@ -294,14 +289,14 @@
         if (!drawer || drawer._asefBound) return;
         drawer._asefBound = true;
         function open()  {
-            drawer.classList.add('on');
             drawer.style.setProperty('display', 'flex', 'important');
             document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
         }
         function close() {
-            drawer.classList.remove('on');
             drawer.style.setProperty('display', 'none', 'important');
             document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
         }
         document.querySelectorAll('[data-asef-mobile-toggle]').forEach(function (b) {
             b.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); open(); });
