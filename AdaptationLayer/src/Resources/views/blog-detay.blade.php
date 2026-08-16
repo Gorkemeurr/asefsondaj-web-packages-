@@ -213,7 +213,7 @@
                 ['p', 'Asef Sondaj olarak hem yerüstü sondaj (kamyon üstü ve palet üstü rig, matkap, tij, pompa) hem de yeraltı sondaj (kompakt jumbo ekipmanları, karotiyer sistemleri) için ekipman tedariki ve teknik danışmanlık sağlıyoruz. Projenizin tipini WhatsApp üzerinden bize bildirin, size uygun ekipman ve ekipman ailesi önerelim.'],
             ],
         ],
-        'karotiyer-ipuclari' => [
+        'karotier-ipuclari' => [
             'cat'   => 'Ekipman Rehberi',
             'title' => 'Karotiyer Seçimi: İç Tüp, Dış Tüp Uyumu ve HQ/NQ/PQ Standartları',
             'lede'  => 'Karotiyer setinin iç ve dış tüp uyumu, alınan karotun kalitesini ve elmas ucun ömrünü nasıl etkiler? HQ, NQ, PQ standartları arasında geçiş yaparken bilmeniz gerekenler.',

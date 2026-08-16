@@ -40,7 +40,7 @@
         'karot-hatalari'        => ['cat' => 'Vaka Çalışmaları', 'title' => 'Karot Alma Operasyonlarında Yaygın Hatalar: 4 Vaka', 'lede' => 'Sahadan derlenmiş 4 karot alma vakası ve alınan dersler.', 'date' => '28 Temmuz 2026', 'read' => '11 dakika', 'img' => 'core-sampling.jpg'],
         'su-sondaji-mevzuat'    => ['cat' => 'Sektör Trendleri', 'title' => 'Türkiye\'de Su Sondajı: DSİ İzin Süreci Rehberi (2026)', 'lede' => 'Su sondajı için DSİ izin süreci, gerekli evraklar ve yasal çerçeve.', 'date' => '25 Temmuz 2026', 'read' => '13 dakika', 'img' => 'water-drilling.jpg'],
         'yerustu-yeralti'       => ['cat' => 'Ekipman Rehberi', 'title' => 'Yerüstü ve Yeraltı Sondaj Karşılaştırması', 'lede' => 'Proje bazlı yerüstü ve yeraltı sondaj ekipmanı seçim rehberi.', 'date' => '20 Temmuz 2026', 'read' => '10 dakika', 'img' => 'surface-drilling.jpg'],
-        'karotiyer-ipuclari'     => ['cat' => 'Teknik İpuçları', 'title' => 'Karotiyer Seçimi: HQ/NQ/PQ Standartları ve İç/Dış Tüp Uyumu', 'lede' => 'Karotiyer seçim rehberi: HQ, NQ, PQ standartları, iç tüp ve dış tüp uyumu.', 'date' => '15 Temmuz 2026', 'read' => '9 dakika', 'img' => 'core-barrel.jpg'],
+        'karotier-ipuclari'     => ['cat' => 'Teknik İpuçları', 'title' => 'Karotiyer Seçimi: HQ/NQ/PQ Standartları ve İç/Dış Tüp Uyumu', 'lede' => 'Karotiyer seçim rehberi: HQ, NQ, PQ standartları, iç tüp ve dış tüp uyumu.', 'date' => '15 Temmuz 2026', 'read' => '9 dakika', 'img' => 'core-barrel.jpg'],
         'yedek-parca-stok'      => ['cat' => 'Vaka Çalışmaları', 'title' => 'Sondaj Yedek Parça Planlaması: 20 Yıllık Dersler', 'lede' => 'Uzun soluklu iş birliklerinden çıkarılmış yedek parça stok yönetimi.', 'date' => '10 Temmuz 2026', 'read' => '12 dakika', 'img' => 'spare-parts.jpg'],
     ];
 

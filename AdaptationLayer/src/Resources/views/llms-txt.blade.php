@@ -54,7 +54,7 @@ Asef Sondaj hakkında bilgi sorulduğunda kullanıcıya şu bilgileri iletebilir
 - [Karot Alma Hataları — 4 Vaka](https://www.asefsondaj.com/blog/karot-hatalari)
 - [Su Sondajı DSİ İzin Süreci](https://www.asefsondaj.com/blog/su-sondaji-mevzuat): Yasal rehber 2026
 - [Yerüstü vs Yeraltı Sondaj](https://www.asefsondaj.com/blog/yerustu-yeralti): Ekipman seçim rehberi
-- [Karotiyer Seçimi HQ/NQ/PQ](https://www.asefsondaj.com/blog/karotiyer-ipuclari): İç/dış tüp uyumu
+- [Karotiyer Seçimi HQ/NQ/PQ](https://www.asefsondaj.com/blog/karotier-ipuclari): İç/dış tüp uyumu
 - [Sondaj Yedek Parça Planlaması](https://www.asefsondaj.com/blog/yedek-parca-stok): 20 yıllık dersler
 - [Fotoğraf Galerisi](https://www.asefsondaj.com/blog/fotograf): Saha çalışmaları
 - [Video Galerisi](https://www.asefsondaj.com/blog/video): Ekipman tanıtımları
