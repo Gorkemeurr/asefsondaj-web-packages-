@@ -157,6 +157,25 @@
     </div>
 </nav>
 
+{{-- Force fresh reload — deploy version bump ile tarayıcı cache'i bir kez bypass --}}
+<script>
+(function () {
+    var VERSION = '20260816e-mobile-drawer';
+    try {
+        if (window.sessionStorage && sessionStorage.getItem('asef_ver') !== VERSION) {
+            sessionStorage.setItem('asef_ver', VERSION);
+            // Reload with cache bypass
+            if (!window.location.href.match(/[?&]_asef=\d/)) {
+                window.location.href = window.location.href +
+                    (window.location.href.indexOf('?') > -1 ? '&' : '?') +
+                    '_asef=' + Date.now();
+                return;
+            }
+        }
+    } catch (e) {}
+})();
+</script>
+
 {{-- Drawer için inline CSS — v5-styles cache sorunu için garanti fallback --}}
 <style>
     .asef-mobile-drawer {
