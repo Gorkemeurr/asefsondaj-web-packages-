@@ -2,15 +2,8 @@
      Push once per page via @include('asef-adaptation::partials.v5-styles').
      Cache buster: 20260816-seo-v2 --}}
 @push('meta')
-    {{-- Favicon versions --}}
-    @php
-        $fv = '20260816a';
-        $canonical = url()->current();
-        $ogTitle = $seoTitle ?? ($__env->yieldPushContent('title') ?: 'Asef Sondaj — Sondaj Ekipmanları ve Çözümleri');
-        $ogDesc  = $seoDescription ?? '20+ yıllık saha tecrübesiyle sondaj makineleri, ekipmanları ve yedek parça çözümleri — Bursa merkezli Türkiye geneli hizmet.';
-        $ogImage = $seoImage ?? url('android-chrome-512x512.png');
-        $ogType  = $seoType ?? 'website';
-    @endphp
+    {{-- Favicon versions — ?v query bust browser cache when logo changes --}}
+    @php $fv = '20260816a'; @endphp
     <link rel="icon" type="image/x-icon" href="{{ url('favicon.ico?v=' . $fv) }}" />
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url('favicon-32x32.png?v=' . $fv) }}" />
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url('favicon-16x16.png?v=' . $fv) }}" />
@@ -19,53 +12,6 @@
     <link rel="icon" type="image/png" sizes="512x512" href="{{ url('android-chrome-512x512.png?v=' . $fv) }}" />
     <link rel="manifest" href="{{ url('site.webmanifest?v=' . $fv) }}" />
     <meta name="theme-color" content="#0066CC" />
-
-    {{-- Canonical + Open Graph + Twitter Card — SEO temel --}}
-    <link rel="canonical" href="{{ $canonical }}" />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="author" content="Asef Sondaj" />
-    <meta name="publisher" content="Asef Sondaj" />
-    <meta property="og:site_name" content="Asef Sondaj" />
-    <meta property="og:locale" content="tr_TR" />
-    <meta property="og:type" content="{{ $ogType }}" />
-    <meta property="og:title" content="{{ e($ogTitle) }}" />
-    <meta property="og:description" content="{{ e($ogDesc) }}" />
-    <meta property="og:url" content="{{ $canonical }}" />
-    <meta property="og:image" content="{{ $ogImage }}" />
-    <meta property="og:image:width" content="512" />
-    <meta property="og:image:height" content="512" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="{{ e($ogTitle) }}" />
-    <meta name="twitter:description" content="{{ e($ogDesc) }}" />
-    <meta name="twitter:image" content="{{ $ogImage }}" />
-
-    {{-- Organization JSON-LD — her sayfada — global brand knowledge graph --}}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Asef Sondaj",
-      "url": "{{ url('/') }}",
-      "logo": "{{ url('android-chrome-512x512.png') }}",
-      "description": "20+ yıllık saha tecrübesiyle sondaj makineleri, ekipmanları ve yedek parça çözümleri.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Duaçınarı Mah. 1. Özgünay Sk No:10",
-        "addressLocality": "Yıldırım",
-        "addressRegion": "Bursa",
-        "postalCode": "16250",
-        "addressCountry": "TR"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+90-532-054-29-75",
-        "contactType": "sales",
-        "areaServed": "TR",
-        "availableLanguage": ["Turkish"]
-      },
-      "sameAs": ["https://instagram.com/asefsondajj"]
-    }
-    </script>
 @endpush
 
 @push('styles')

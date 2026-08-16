@@ -186,49 +186,6 @@
     <meta name="title" content="{{ $post['title'] }} — Asef Sondaj Blog" />
     <meta name="description" content="{{ $post['lede'] }}" />
     @if ($isPlaceholder) <meta name="robots" content="noindex" /> @endif
-
-    @if (! $isPlaceholder)
-        {{-- Article structured data — Google Discover + Search --}}
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Article",
-          "headline": {!! json_encode($post['title'], JSON_UNESCAPED_UNICODE) !!},
-          "description": {!! json_encode($post['lede'], JSON_UNESCAPED_UNICODE) !!},
-          "image": [{!! json_encode($asefUrl($post['img'])) !!}],
-          "datePublished": {!! json_encode(date('c')) !!},
-          "dateModified": {!! json_encode(date('c')) !!},
-          "author": { "@type": "Organization", "name": {!! json_encode($post['author'] ?? 'Asef Sondaj', JSON_UNESCAPED_UNICODE) !!}, "url": {!! json_encode(url('/')) !!} },
-          "publisher": {
-            "@type": "Organization",
-            "name": "Asef Sondaj",
-            "logo": { "@type": "ImageObject", "url": {!! json_encode(url('android-chrome-512x512.png')) !!} }
-          },
-          "mainEntityOfPage": { "@type": "WebPage", "@id": {!! json_encode(url()->current()) !!} },
-          "articleSection": {!! json_encode($post['cat'] ?? 'Blog', JSON_UNESCAPED_UNICODE) !!}
-        }
-        </script>
-
-        {{-- Breadcrumb --}}
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": {!! json_encode(url('/')) !!} },
-            { "@type": "ListItem", "position": 2, "name": "Blog", "item": {!! json_encode(url('blog')) !!} },
-            { "@type": "ListItem", "position": 3, "name": {!! json_encode($post['title'], JSON_UNESCAPED_UNICODE) !!}, "item": {!! json_encode(url()->current()) !!} }
-          ]
-        }
-        </script>
-
-        @php
-            $seoTitle = $post['title'] . ' — Asef Sondaj Blog';
-            $seoDescription = $post['lede'];
-            $seoImage = $asefUrl($post['img']);
-            $seoType = 'article';
-        @endphp
-    @endif
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')

@@ -43,26 +43,7 @@
 @push('meta')
     <meta name="title" content="Sıkça Sorulan Sorular — Asef Sondaj" />
     <meta name="description" content="Asef Sondaj ile ilgili sıkça sorulan sorular. Fiyat, sipariş, teslimat, yedek parça, teknik danışmanlık ve garanti hakkında bilgi." />
-
-    {{-- FAQPage structured data — Google "People also ask" için --}}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        @foreach ($faqs as $i => $f)
-        {
-          "@type": "Question",
-          "name": {!! json_encode($f['q'], JSON_UNESCAPED_UNICODE) !!},
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": {!! json_encode($f['a'], JSON_UNESCAPED_UNICODE) !!}
-          }
-        }@if ($i !== array_key_last($faqs)),@endif
-        @endforeach
-      ]
-    }
-    </script>
+    <meta name="theme-color" content="#ffffff" />
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')
