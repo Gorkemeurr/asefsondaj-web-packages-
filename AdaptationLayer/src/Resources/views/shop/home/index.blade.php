@@ -623,7 +623,7 @@
                             });
                     @endphp
                     @foreach ($homeCatList as $_kat)
-                        <a href="{{ $_kat->slug ? url('urunler/' . $_kat->slug) : $catalogUrl . '?ana=' . $_kat->code }}" class="asef-cat-card">
+                        <a href="{{ $catalogUrl }}?ana={{ $_kat->code }}" class="asef-cat-card">
                             <div class="asef-cat-media"><img src="{{ $asefUrl($_kat->image ?: 'asef-hero-equipment.jpg') }}" alt="{{ $_kat->name }} kategorisi — sondaj ekipmanları | Asef Sondaj" loading="lazy" width="400" height="300" /></div>
                             <div class="asef-cat-body">
                                 <div class="asef-cat-title">{{ $_kat->name }}</div>
@@ -660,7 +660,7 @@
                             ->get();
                     @endphp
                     @foreach ($featured as $_f)
-                        <a href="{{ url('urun/' . ($_f->slug ?: $_f->sku)) }}" class="asef-prod-card">
+                        <a href="{{ route('shop.asef.product', ['sku' => $_f->sku]) }}" class="asef-prod-card">
                             <div class="asef-prod-media"><img src="{{ url('asef/' . ($_f->image ?: 'asef-hero-equipment.jpg')) }}" alt="{{ $_f->sku }} — {{ $_f->name }} sondaj ekipmanı | Asef Sondaj" loading="lazy" width="400" height="300" /></div>
                             <div class="asef-prod-body">
                                 <div class="asef-prod-sku">{{ $_f->sku }}</div>
@@ -809,7 +809,7 @@
                                 $footAna = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::orderBy('sort')->limit(3)->get();
                             @endphp
                             @foreach ($footAna as $_fak)
-                                <li><a href="{{ $_fak->slug ? url('urunler/' . $_fak->slug) : $catalogUrl . '?ana=' . $_fak->code }}">{{ $_fak->name }}</a></li>
+                                <li><a href="{{ $catalogUrl }}?ana={{ $_fak->code }}">{{ $_fak->name }}</a></li>
                             @endforeach
                             <li><a href="{{ url('sepet') }}">Teklif Sepetim</a></li>
                         </ul>

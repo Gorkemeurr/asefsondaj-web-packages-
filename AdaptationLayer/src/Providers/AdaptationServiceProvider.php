@@ -4,7 +4,6 @@ namespace AsefSondaj\AdaptationLayer\Providers;
 
 use AsefSondaj\AdaptationLayer\Http\Middleware\BlockDisabledRoutes;
 use AsefSondaj\AdaptationLayer\Http\Middleware\FreshCacheHeaders;
-use AsefSondaj\AdaptationLayer\Http\Middleware\LegacySearchRedirect;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -77,7 +76,6 @@ class AdaptationServiceProvider extends ServiceProvider
             $kernel = $this->app->make(Kernel::class);
             $kernel->pushMiddleware(BlockDisabledRoutes::class);
             $kernel->pushMiddleware(FreshCacheHeaders::class);
-            $kernel->pushMiddleware(LegacySearchRedirect::class);
         } catch (\Throwable $e) {
             // kernel not accessible in this context (rare) — fall back to group registration below
         }
@@ -107,53 +105,11 @@ class AdaptationServiceProvider extends ServiceProvider
         $noCache = \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class;
 
         Route::middleware('web')->group(function () use ($noCache) {
-            // Ürün detay — slug birinci öncelik, SKU ile backward compat
-            Route::get('/urun/{slug_or_sku}', function (string $slugOrSku) {
-                // Önce slug ile ara
-                $product = \AsefSondaj\AdaptationLayer\Models\AsefProduct::where('slug', $slugOrSku)->first();
-                if (! $product) {
-                    // Fallback: SKU (uppercase) ile dene — eski URL'ler (/urun/AS-KRT-001) çalışsın
-                    $product = \AsefSondaj\AdaptationLayer\Models\AsefProduct::where('sku', strtoupper($slugOrSku))->first();
-                    if ($product && $product->slug && $product->slug !== $slugOrSku) {
-                        // Eski SKU URL'i → yeni slug URL'ine 301 redirect (SEO otoritesini yeni URL'ye aktar)
-                        return redirect()->to(url('urun/' . $product->slug), 301);
-                    }
-                }
-                if (! $product) abort(404);
-
+            Route::get('/urun/{sku}', function (string $sku) {
                 return view('asef-adaptation::product-detail', [
-                    'sku' => $product->sku,
-                    'preloadedProduct' => $product,
+                    'sku' => strtoupper($sku),
                 ]);
-            })->name('shop.asef.product')->where('slug_or_sku', '[A-Za-z0-9\-]+');
-
-            // Yeni SEO-friendly kategori URL yapısı — /urunler/{ana}/{alt}
-            // Search controller'a redirect ederek AYNI sonucu göster + canonical yeni URL
-            Route::get('/urunler', function () {
-                return redirect()->to(route('shop.search.index'), 301);
-            })->name('shop.asef.catalog-root');
-
-            Route::get('/urunler/{ana_slug}', function (string $anaSlug) {
-                $ana = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::where('slug', $anaSlug)->first();
-                if (! $ana) abort(404);
-                return view('asef-adaptation::shop.search.index', [
-                    '_seo_ana_code' => $ana->code,
-                    '_seo_pretty_url' => '/urunler/' . $ana->slug,
-                ]);
-            })->name('shop.asef.category-ana')->where('ana_slug', '[a-z0-9\-]+');
-
-            Route::get('/urunler/{ana_slug}/{alt_slug}', function (string $anaSlug, string $altSlug) {
-                $ana = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::where('slug', $anaSlug)->first();
-                $alt = \AsefSondaj\AdaptationLayer\Models\AsefAltKategori::where('slug', $altSlug)
-                    ->when($ana, fn ($q) => $q->where('parent_code', $ana->code))
-                    ->first();
-                if (! $ana || ! $alt) abort(404);
-                return view('asef-adaptation::shop.search.index', [
-                    '_seo_ana_code' => $ana->code,
-                    '_seo_alt_code' => $alt->code,
-                    '_seo_pretty_url' => '/urunler/' . $ana->slug . '/' . $alt->slug,
-                ]);
-            })->name('shop.asef.category-alt')->where(['ana_slug' => '[a-z0-9\-]+', 'alt_slug' => '[a-z0-9\-]+']);
+            })->name('shop.asef.product')->where('sku', '[A-Za-z0-9\-]+');
 
             Route::get('/sepet', function () {
                 return view('asef-adaptation::sepet');

@@ -70,32 +70,21 @@ class AsefSitemapController extends BagistoSitemapController
             $add($base . '/' . $s, $now, 'yearly', '0.3');
         }
 
-        // Katalog kök — SEO-friendly /urunler (yeni URL yapısı)
-        $add($base . '/urunler', $now, 'daily', '0.9');
+        // Katalog kök
+        $add($base . '/search', $now, 'daily', '0.9');
 
-        // Ana kategoriler — YENİ pretty URL /urunler/{slug} (slug varsa)
-        // Ana kategoriler + alt kategoriler → SEO-friendly URL'ler
-        $anaKats = AsefAnaKategori::orderBy('sort')->get();
-        $anaSlugByCode = [];
-        foreach ($anaKats as $ana) {
-            $anaSlugByCode[$ana->code] = $ana->slug;
-            $url = $ana->slug
-                ? $base . '/urunler/' . $ana->slug
-                : $base . '/search?ana=' . $ana->code;  // fallback (slug henüz oluşmadıysa)
-            $add($url, $now, 'weekly', '0.8');
+        // Ana kategoriler + alt
+        foreach (AsefAnaKategori::orderBy('sort')->get() as $ana) {
+            $add($base . '/search?ana=' . $ana->code, $now, 'weekly', '0.8');
         }
         foreach (AsefAltKategori::orderBy('sort')->get() as $alt) {
-            $parentSlug = $anaSlugByCode[$alt->parent_code] ?? null;
-            $url = ($parentSlug && $alt->slug)
-                ? $base . '/urunler/' . $parentSlug . '/' . $alt->slug
-                : $base . '/search?ana=' . $alt->parent_code . '&alt=' . $alt->code;
-            $add($url, $now, 'weekly', '0.7');
+            $add($base . '/search?ana=' . $alt->parent_code . '&alt=' . $alt->code, $now, 'weekly', '0.7');
         }
 
-        // Ürünler — YENİ /urun/{slug} (slug varsa), yoksa /urun/{sku} fallback
-        foreach (AsefProduct::where('is_active', true)->get(['sku','slug','updated_at']) as $p) {
+        // Ürünler
+        foreach (AsefProduct::where('is_active', true)->get(['sku','updated_at']) as $p) {
             $add(
-                $base . '/urun/' . ($p->slug ?: $p->sku),
+                $base . '/urun/' . $p->sku,
                 optional($p->updated_at)->format('Y-m-d') ?: $now,
                 'weekly',
                 '0.7'
