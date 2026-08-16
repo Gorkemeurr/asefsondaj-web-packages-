@@ -134,6 +134,25 @@
         .asef-chips-scroll { padding: 0 16px; }
     }
 
+    /* "Tüm Kategoriler" chip'i özel — CTA vurgu */
+    .asef-chip-panel {
+        display: inline-flex; align-items: center; gap: 6px;
+        border: 1.5px solid var(--primary) !important;
+        background: white !important;
+        color: var(--primary) !important;
+        font-weight: 600 !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 1px 0 rgba(255,255,255,0.9) inset !important;
+        cursor: pointer;
+        transition: transform .2s, box-shadow .2s, background .2s !important;
+    }
+    .asef-chip-panel:hover {
+        transform: translateY(-1px);
+        background: var(--primary) !important;
+        color: white !important;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.16) !important;
+    }
+    .asef-chip-panel svg { flex-shrink: 0; }
+
     /* === TÜM KATEGORİLER PANEL === */
     .asef-cat-panel {
         position: fixed; inset: 0; z-index: 10000;
@@ -265,9 +284,10 @@
             <div class="asef-chips-scroll">
                 {{-- "Tümü" temizler HER şeyi (query + ana + alt) — direct /search --}}
                 <a href="{{ route('shop.search.index') }}" class="asef-chip {{ ! $anaCode && ! $queryText ? 'active' : '' }}">Tümü</a>
-                <button type="button" class="asef-chip" data-open-cat-panel aria-label="Tüm kategoriler paneli">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                <button type="button" class="asef-chip asef-chip-panel" data-open-cat-panel aria-label="Tüm kategoriler paneli">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
                     Tüm Kategoriler
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity: .7;"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
                 @foreach ($anaKategoriler as $ana)
                     @php
@@ -347,15 +367,26 @@
             </div>
             <script>
             (function () {
-                var panel = document.getElementById('asefCatPanel');
-                if (!panel) return;
-                document.addEventListener('click', function (e) {
-                    if (e.target.closest('[data-open-cat-panel]')) { panel.classList.add('on'); document.body.style.overflow = 'hidden'; }
-                    if (e.target.closest('[data-close-cat-panel]') || e.target === panel) { panel.classList.remove('on'); document.body.style.overflow = ''; }
-                });
-                document.addEventListener('keydown', function (e) {
-                    if (e.key === 'Escape' && panel.classList.contains('on')) { panel.classList.remove('on'); document.body.style.overflow = ''; }
-                });
+                function bind() {
+                    var panel = document.getElementById('asefCatPanel');
+                    if (!panel) { console.warn('[asef] cat-panel not found'); return; }
+                    function open()  { panel.classList.add('on');    document.documentElement.style.overflow = 'hidden'; document.body.style.overflow = 'hidden'; }
+                    function close() { panel.classList.remove('on'); document.documentElement.style.overflow = '';       document.body.style.overflow = ''; }
+
+                    // Direct binding to the open button — no delegation surprises with Vue
+                    document.querySelectorAll('[data-open-cat-panel]').forEach(function (btn) {
+                        btn.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); open(); });
+                    });
+                    // Close via X button, backdrop click, and ESC
+                    var closeBtn = panel.querySelector('[data-close-cat-panel]');
+                    if (closeBtn) closeBtn.addEventListener('click', function (e) { e.preventDefault(); close(); });
+                    panel.addEventListener('click', function (e) { if (e.target === panel) close(); });
+                    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && panel.classList.contains('on')) close(); });
+                }
+                if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', bind); }
+                else { bind(); }
+                // Belt & braces: rebind after 500ms in case Vue re-renders
+                setTimeout(bind, 500);
             })();
             </script>
 
