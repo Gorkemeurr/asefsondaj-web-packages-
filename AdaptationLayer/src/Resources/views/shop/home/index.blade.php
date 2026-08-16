@@ -142,13 +142,25 @@
             min-width: 15px; height: 15px; padding: 0 4px; border-radius: 999px;
             display: grid; place-items: center;
         }
-        .asef-nav-cta {
-            background: var(--link-blue); color: white;
-            padding: 6px 14px; border-radius: 999px;
-            font-size: 12px; font-weight: 600;
+        .asef-nav-cta,
+        .asef-nav-cta:link,
+        .asef-nav-cta:visited,
+        .asef-nav-cta:hover,
+        .asef-nav-cta:active {
+            background: #0066CC !important;
+            color: #FFFFFF !important;
+            -webkit-text-fill-color: #FFFFFF !important;
+            padding: 0 14px; height: 34px; border-radius: 999px;
+            font-size: 12.5px; font-weight: 500; letter-spacing: -0.005em;
             margin-left: 8px;
+            display: inline-flex !important; align-items: center; justify-content: center;
+            text-decoration: none !important;
+            text-transform: none !important;
+            box-sizing: border-box;
+            transition: background .15s, transform .15s;
         }
-        .asef-nav-cta:hover { opacity: 0.9; }
+        .asef-nav-cta:hover { background: #0055B0 !important; transform: translateY(-1px); }
+        .asef-nav-cta * { color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF !important; }
         .asef-nav-mobile-btn {
             display: grid; place-items: center; width: 34px; height: 34px; color: var(--primary);
         }
@@ -484,142 +496,8 @@
     <div class="asef-root">
 
         {{-- ============= NAV ============= --}}
-        <nav class="asef-nav" aria-label="Ana gezinme">
-            <div class="asef-nav-inner">
-                <a href="{{ url('/') }}" class="asef-brand">Asef Sondaj</a>
-                <div class="asef-nav-menu">
-                    <div class="asef-nav-item">
-                        <a href="{{ $catalogUrl }}">Ürünler</a>
-                        <div class="asef-mega" role="menu" aria-label="Ürünler menüsü">
-                            <div class="asef-mega-grid">
-                                <div class="asef-mega-col asef-mega-main">
-                                    <h5>Ürün Gruplarını Keşfedin</h5>
-                                    <a href="{{ $catalogUrl }}">Tüm Ürünler</a>
-                                    @php
-                                        $homeAna = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::orderBy('sort')->limit(6)->get();
-                                    @endphp
-                                    @foreach ($homeAna as $_ak)
-                                        <a href="{{ $catalogUrl }}?ana={{ $_ak->code }}">{{ $_ak->name }}</a>
-                                    @endforeach
-                                </div>
-                                <div class="asef-mega-col asef-mega-side">
-                                    <h5>Hızlı Bağlantılar</h5>
-                                    <a href="{{ $catalogUrl }}">Ürün Arama</a>
-                                    <a href="{{ url('sepet') }}">Teklif Sepetim</a>
-                                    <a href="{{ $waLink }}" target="_blank" rel="noopener">WhatsApp'tan Yaz</a>
-                                </div>
-                                <div class="asef-mega-col asef-mega-side">
-                                    <h5>Popüler Ürünler</h5>
-                                    @php
-                                        $homePopular = \AsefSondaj\AdaptationLayer\Models\AsefProduct::query()
-                                            ->where('is_active', true)
-                                            ->whereIn('sku', ['AS-DTH-001','AS-EMB-001','AS-KRT-001','AS-TRC-001'])
-                                            ->get()->keyBy('sku');
-                                        foreach (['AS-DTH-001','AS-EMB-001','AS-KRT-001','AS-TRC-001'] as $_sku) {
-                                            if (! isset($homePopular[$_sku])) continue;
-                                            $_p = $homePopular[$_sku];
-                                            echo '<a href="'.route('shop.asef.product', ['sku' => $_p->sku]).'">'.e($_p->name).'</a>';
-                                        }
-                                    @endphp
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="asef-nav-item">
-                        <a href="{{ url('kurumsal') }}">Kurumsal</a>
-                        <div class="asef-mega" role="menu" aria-label="Kurumsal menüsü">
-                            <div class="asef-mega-grid">
-                                <div class="asef-mega-col asef-mega-main">
-                                    <h5>Kurumsalı Keşfedin</h5>
-                                    <a href="{{ url('hakkimizda') }}">Hakkımızda</a>
-                                    <a href="{{ url('sondaj-makinalarimiz') }}">Sondaj Makinalarımız</a>
-                                    <a href="{{ url('hizmetlerimiz') }}">Hizmetlerimiz</a>
-                                    <a href="{{ url('referanslar') }}">Referanslar</a>
-                                </div>
-                                <div class="asef-mega-col asef-mega-side">
-                                    <h5>Hızlı Bağlantılar</h5>
-                                    <a href="{{ url('iletisim') }}">İletişim</a>
-                                    <a href="{{ $waLink }}" target="_blank" rel="noopener">WhatsApp'a Yaz</a>
-                                </div>
-                                <div class="asef-mega-col asef-mega-side">
-                                    <h5>Daha Fazla</h5>
-                                    <a href="{{ url('blog') }}">Blog</a>
-                                    <a href="{{ url('destek') }}">Destek</a>
-                                    <a href="tel:+905320542975">Hemen Ara</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="asef-nav-item">
-                        <a href="{{ url('blog') }}">Blog</a>
-                        <div class="asef-mega" role="menu" aria-label="Blog menüsü">
-                            <div class="asef-mega-grid">
-                                <div class="asef-mega-col asef-mega-main">
-                                    <h5>Blog'u Keşfedin</h5>
-                                    <a href="{{ url('tum-bloglar') }}">Tüm Bloglar</a>
-                                    <a href="{{ url('blog/fotograf') }}">Fotoğraf Galerisi</a>
-                                    <a href="{{ url('blog/video') }}">Video Galerisi</a>
-                                </div>
-                                <div class="asef-mega-col asef-mega-side">
-                                    <h5>Fotoğraf Galerisi</h5>
-                                    <a href="{{ url('blog/saha-fotograflari') }}">Saha Fotoğrafları</a>
-                                    <a href="{{ url('blog/ekipman-fotograflari') }}">Ekipman Fotoğrafları</a>
-                                    <a href="{{ url('blog/proje-fotograflari') }}">Proje Fotoğrafları</a>
-                                </div>
-                                <div class="asef-mega-col asef-mega-side">
-                                    <h5>Video Galerisi</h5>
-                                    <a href="{{ url('blog/urun-tanitim-videolari') }}">Ürün Tanıtım Videoları</a>
-                                    <a href="{{ url('blog/saha-uygulamalari') }}">Saha Uygulamaları</a>
-                                    <a href="{{ url('blog/teknik-anlatimlar') }}">Teknik Anlatımlar</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="asef-nav-item">
-                        <a href="{{ url('destek') }}">Destek</a>
-                        <div class="asef-mega" role="menu" aria-label="Destek menüsü">
-                            <div class="asef-mega-grid">
-                                <div class="asef-mega-col asef-mega-main">
-                                    <h5>Destek Merkezi</h5>
-                                    <a href="{{ url('iletisim') }}">İletişim</a>
-                                    <a href="{{ url('sss') }}">SSS</a>
-                                    <a href="{{ url('kvkk') }}">KVKK Aydınlatma Metni</a>
-                                    <a href="{{ url('gizlilik-politikasi') }}">Gizlilik Politikası</a>
-                                    <a href="{{ url('cerez-politikasi') }}">Çerez Politikası</a>
-                                    <a href="{{ url('kullanim-sartlari') }}">Kullanım Şartları</a>
-                                </div>
-                                <div class="asef-mega-col asef-mega-side">
-                                    <h5>İletişim Kanalları</h5>
-                                    <a href="{{ $waLink }}" target="_blank" rel="noopener">WhatsApp'a Yaz</a>
-                                    <a href="tel:+905320542975">+90 532 054 29 75</a>
-                                    <a href="mailto:iletisim@asefsondaj.com">iletisim@asefsondaj.com</a>
-                                    <a href="mailto:destek@asefsondaj.com">destek@asefsondaj.com</a>
-                                </div>
-                                <div class="asef-mega-col asef-mega-side">
-                                    <h5>Yasal Bağlantılar</h5>
-                                    <a href="{{ url('kvkk') }}">KVKK Aydınlatma</a>
-                                    <a href="{{ url('cerez-politikasi') }}">Çerez Ayarları</a>
-                                    <a href="{{ url('gizlilik-politikasi') }}">Veri İşleme Politikası</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="asef-nav-actions">
-                    <a href="{{ $catalogUrl }}" class="asef-nav-icon-btn" aria-label="Arama">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-                    </a>
-                    <a href="{{ url('sepet') }}" class="asef-nav-icon-btn" aria-label="Teklif Sepetim">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                        <span class="asef-badge" data-asef-cart-badge style="display: none;"></span>
-                    </a>
-                    <a href="{{ $waLink }}" class="asef-nav-cta" target="_blank" rel="noopener">İletişim</a>
-                </div>
-                <button class="asef-nav-mobile-btn" aria-label="Menü">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
-                </button>
-            </div>
-        </nav>
+        {{-- Use shared partial nav for consistency across all pages --}}
+        @include('asef-adaptation::partials.v5-nav')
 
         <main class="asef-main">
 
