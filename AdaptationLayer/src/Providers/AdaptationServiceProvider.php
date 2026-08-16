@@ -105,11 +105,29 @@ class AdaptationServiceProvider extends ServiceProvider
         $noCache = \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class;
 
         Route::middleware('web')->group(function () use ($noCache) {
-            Route::get('/urun/{sku}', function (string $sku) {
+            // Ürün detay — slug (yeni SEO URL) veya SKU (backward compat)
+            Route::get('/urun/{key}', function (string $key) {
+                // Önce slug ile ara (yeni SEO URL)
+                $product = \AsefSondaj\AdaptationLayer\Models\AsefProduct::where('slug', $key)->first();
+
+                if (! $product) {
+                    // Fallback: SKU (uppercase) ile ara — eski /urun/AS-KRT-001 URL'leri
+                    $product = \AsefSondaj\AdaptationLayer\Models\AsefProduct::where('sku', strtoupper($key))->first();
+
+                    // Eğer SKU eşleşti VE ürünün slug'ı varsa → 301 redirect yeni slug URL'ine
+                    if ($product && $product->slug && $product->slug !== $key) {
+                        return redirect(url('urun/' . $product->slug), 301);
+                    }
+                }
+
+                if (! $product) {
+                    abort(404);
+                }
+
                 return view('asef-adaptation::product-detail', [
-                    'sku' => strtoupper($sku),
+                    'sku' => $product->sku,
                 ]);
-            })->name('shop.asef.product')->where('sku', '[A-Za-z0-9\-]+');
+            })->name('shop.asef.product')->where('key', '[A-Za-z0-9\-]+');
 
             Route::get('/sepet', function () {
                 return view('asef-adaptation::sepet');
