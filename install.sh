@@ -90,17 +90,34 @@ echo "==> 3.5 Asef catalog migrate + seed"
 $PHP_BIN artisan migrate --path=packages/AsefSondaj/AdaptationLayer/src/Database/Migrations --force
 $PHP_BIN artisan db:seed --class="AsefSondaj\\AdaptationLayer\\Database\\Seeders\\AsefCatalogSeeder" --force 2>&1 || echo "    (seed skipped / failed — non-blocking)"
 
-# ---------- 4) Cache clear ----------
-echo "==> 4/5 Cache clear"
+# ---------- 4) Cache clear (agresif — CSS/JS partial'lar için opcache reset dahil) ----------
+echo "==> 4/5 Cache clear (agresif)"
 $PHP_BIN artisan optimize:clear
-# Explicit view compilation dir wipe — Bagisto sometimes leaves stale compiled Blade
-# files even after optimize:clear (e.g., adaptation views retain old $products/$filtered)
 rm -rf storage/framework/views/*.php 2>/dev/null || true
 $PHP_BIN artisan view:clear
-# Spatie Response Cache — Bagisto caches entire HTML responses per URL. If we
-# do not clear this, /search?cat=* returns the FIRST cached variant regardless
-# of the query string, and users see wrong products / stale filter results.
 $PHP_BIN artisan responsecache:clear 2>/dev/null || true
+
+# OPCache reset — opcache compiled PHP files (Blade view derlemeleri) hafızada
+# tutulur, artisan cache clear opcache'ı temizlemez. Bir PHP CLI script ile
+# opcache_reset() çağır — CLI opcache runtime opcache'ından ayrıdır ama
+# invalidate script FPM opcache'ı hedefler.
+cat > /tmp/asef-opcache-reset.php <<'EOF_OPCACHE'
+<?php
+if (function_exists('opcache_reset')) {
+    $ok = opcache_reset();
+    echo "opcache_reset(): " . ($ok ? 'OK' : 'FAILED') . "\n";
+} else {
+    echo "opcache_reset() not available\n";
+}
+EOF_OPCACHE
+
+# Web tarafında (FPM opcache) reset için: public/'e geçici script koy + HTTP çağır
+cp /tmp/asef-opcache-reset.php "$BAGISTO_ROOT/public/asef-opcache-reset.php" 2>/dev/null || true
+if [ -f "$BAGISTO_ROOT/public/asef-opcache-reset.php" ]; then
+    curl -sS -m 20 "https://www.asefsondaj.com/asef-opcache-reset.php" 2>&1 | head -3 || true
+    rm -f "$BAGISTO_ROOT/public/asef-opcache-reset.php"
+    echo "    FPM opcache reset attempted"
+fi
 
 # ---------- 5) Copy logo + favicon + webhook to public/ ----------
 echo "==> 5/7 Publishing logo + favicon + webhook"
