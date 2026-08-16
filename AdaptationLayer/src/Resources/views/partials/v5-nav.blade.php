@@ -151,8 +151,63 @@
             })();
             </script>
         </div>
-        <button class="asef-nav-mobile-btn" aria-label="Menü">
+        <button type="button" class="asef-nav-mobile-btn" aria-label="Menü" data-asef-mobile-toggle>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
         </button>
     </div>
 </nav>
+
+{{-- MOBILE DRAWER — hamburger tıklayınca sağdan slide-in --}}
+<div class="asef-mobile-drawer" id="asefMobileDrawer" role="dialog" aria-modal="true" aria-label="Menü">
+    <div class="asef-mobile-drawer-panel">
+        <div class="asef-mobile-drawer-head">
+            <span>Menü</span>
+            <button type="button" class="asef-mobile-drawer-close" data-asef-mobile-close aria-label="Kapat">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+            </button>
+        </div>
+        <nav class="asef-mobile-drawer-nav">
+            <a href="{{ $catalogUrl }}">Ürünler</a>
+            <a href="{{ url('kurumsal') }}">Kurumsal</a>
+            <a href="{{ url('hakkimizda') }}" class="sub">Hakkımızda</a>
+            <a href="{{ url('sondaj-makinalarimiz') }}" class="sub">Sondaj Makinalarımız</a>
+            <a href="{{ url('hizmetlerimiz') }}" class="sub">Hizmetlerimiz</a>
+            <a href="{{ url('referanslar') }}" class="sub">Referanslar</a>
+            <a href="{{ url('blog') }}">Blog</a>
+            <a href="{{ url('tum-bloglar') }}" class="sub">Tüm Yazılar</a>
+            <a href="{{ url('blog/fotograf') }}" class="sub">Fotoğraf Galerisi</a>
+            <a href="{{ url('blog/video') }}" class="sub">Video Galerisi</a>
+            <a href="{{ url('destek') }}">Destek</a>
+            <a href="{{ url('sss') }}" class="sub">SSS</a>
+            <a href="{{ url('iletisim') }}">İletişim</a>
+        </nav>
+        <div class="asef-mobile-drawer-cta">
+            <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-mobile-drawer-wa">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.13 1.6 5.93L0 24l6.34-1.67a11.87 11.87 0 0 0 5.72 1.46h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.45-8.41z"/></svg>
+                WhatsApp'tan Yaz
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+(function () {
+    function bindMobileNav() {
+        var drawer = document.getElementById('asefMobileDrawer');
+        if (!drawer || drawer._asefBound) return;
+        drawer._asefBound = true;
+        function open()  { drawer.classList.add('on'); document.body.style.overflow = 'hidden'; }
+        function close() { drawer.classList.remove('on'); document.body.style.overflow = ''; }
+        document.querySelectorAll('[data-asef-mobile-toggle]').forEach(function (b) {
+            b.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); open(); });
+        });
+        drawer.querySelectorAll('[data-asef-mobile-close]').forEach(function (b) {
+            b.addEventListener('click', function (e) { e.preventDefault(); close(); });
+        });
+        drawer.addEventListener('click', function (e) { if (e.target === drawer) close(); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.classList.contains('on')) close(); });
+    }
+    if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', bindMobileNav); }
+    else { bindMobileNav(); }
+    setTimeout(bindMobileNav, 500);
+})();
+</script>

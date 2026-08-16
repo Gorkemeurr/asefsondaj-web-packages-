@@ -124,8 +124,11 @@
             letter-spacing: 0;
         }
         .asef-mega-small a:hover { color: var(--link-blue); }
-        .asef-nav-actions { display: none; align-items: center; gap: 8px; }
-        @media (min-width: 900px) { .asef-nav-actions { display: flex; } }
+        /* MOBILE-FIRST: nav-actions her boyutta görünür, sadece CTA mobil'de gizli */
+        .asef-nav-actions { display: flex; align-items: center; gap: 4px; }
+        @media (min-width: 900px) { .asef-nav-actions { gap: 8px; } }
+        .asef-nav-cta { display: none !important; }
+        @media (min-width: 900px) { .asef-nav-cta { display: inline-flex !important; } }
         .asef-nav-icon-btn {
             width: 34px; height: 34px; display: grid; place-items: center;
             color: var(--secondary); transition: color .15s; position: relative;
@@ -165,9 +168,67 @@
             transform: translateY(-1px);
         }
         .asef-nav-mobile-btn {
-            display: grid; place-items: center; width: 34px; height: 34px; color: var(--primary);
+            display: grid; place-items: center; width: 34px; height: 34px;
+            color: var(--primary); background: transparent; border: 0; cursor: pointer;
+            border-radius: 8px; transition: background .15s;
         }
+        .asef-nav-mobile-btn:hover { background: var(--surface-alt); }
         @media (min-width: 900px) { .asef-nav-mobile-btn { display: none; } }
+
+        /* MOBILE DRAWER — sağdan slide-in menü */
+        .asef-mobile-drawer {
+            position: fixed; inset: 0; z-index: 10000; display: none;
+            background: rgba(15,17,20,0.5); backdrop-filter: blur(6px);
+            justify-content: flex-end;
+        }
+        .asef-mobile-drawer.on { display: flex; animation: mdFade .2s ease-out; }
+        @keyframes mdFade { from { opacity: 0; } to { opacity: 1; } }
+        .asef-mobile-drawer-panel {
+            width: min(340px, 88vw); height: 100%; background: #FFFFFF;
+            display: flex; flex-direction: column;
+            animation: mdSlide .3s cubic-bezier(0.16,1,0.3,1);
+            box-shadow: -20px 0 60px rgba(0,0,0,0.24);
+        }
+        @keyframes mdSlide { from { transform: translateX(30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        .asef-mobile-drawer-head {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 22px; border-bottom: 1px solid var(--outline);
+            font-size: 15px; font-weight: 600; color: var(--primary);
+        }
+        .asef-mobile-drawer-close {
+            width: 34px; height: 34px; border-radius: 50%;
+            background: var(--surface-alt); border: 0; cursor: pointer;
+            display: inline-flex; align-items: center; justify-content: center;
+            color: var(--on-surface);
+        }
+        .asef-mobile-drawer-close:hover { background: #EEEEF0; }
+        .asef-mobile-drawer-nav {
+            flex: 1; overflow-y: auto; padding: 12px 8px;
+            display: flex; flex-direction: column;
+        }
+        .asef-mobile-drawer-nav a {
+            padding: 12px 16px; font-size: 15px; font-weight: 500;
+            color: var(--primary); border-radius: 8px;
+            transition: background .15s;
+            text-decoration: none;
+        }
+        .asef-mobile-drawer-nav a:hover { background: var(--surface-alt); }
+        .asef-mobile-drawer-nav a.sub {
+            font-size: 13px; font-weight: 400; color: var(--secondary);
+            padding: 8px 16px 8px 30px;
+        }
+        .asef-mobile-drawer-cta {
+            padding: 16px; border-top: 1px solid var(--outline);
+        }
+        .asef-mobile-drawer-wa {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: #25D366; color: #FFFFFF !important;
+            padding: 14px 20px; border-radius: 12px;
+            font-size: 14px; font-weight: 600;
+            text-decoration: none;
+            transition: background .15s;
+        }
+        .asef-mobile-drawer-wa:hover { background: #1EAF54; }
 
         .asef-main { padding-top: 56px; }
 
