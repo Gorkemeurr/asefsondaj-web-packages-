@@ -89,23 +89,24 @@
 
 @push('styles')
 <style>
-    /* Chip rows — [◀] [scroll] [▶] — sabit yükseklik + explicit padding */
-    .asef-chips-scroll-wrap {
-        max-width: 1024px; width: 100%;
-        margin: 0 auto 10px;
-        padding-left: 20px; padding-right: 20px;
+    /* Double wrap — [◀ ortak] [ [ana satır] + [alt satır] ] [▶ ortak] */
+    .asef-chips-double-wrap {
+        max-width: 1024px; width: 100%; box-sizing: border-box;
+        margin: 0 auto 22px;
+        padding: 0 20px;
         display: flex; align-items: center; gap: 10px;
-        height: 42px;
-        box-sizing: border-box;
+    }
+    .asef-chips-double-inner {
+        flex: 1 1 0; min-width: 0;
+        display: flex; flex-direction: column; gap: 10px;
     }
     .asef-chips-scroll, .asef-chips-alt {
-        flex: 1 1 0; min-width: 0;
-        height: 42px;
-        padding: 0;
+        width: 100%;
         display: flex; align-items: center; gap: 10px;
         overflow-x: auto; scroll-snap-type: x proximity;
         -webkit-overflow-scrolling: touch;
         scroll-behavior: smooth;
+        padding: 2px 0;
     }
     .asef-chips-scroll::-webkit-scrollbar, .asef-chips-alt::-webkit-scrollbar { height: 0; }
     .asef-chips-scroll, .asef-chips-alt { scrollbar-width: none; }
@@ -163,24 +164,23 @@
         .asef-chips-scroll { padding: 0 16px; }
     }
 
-    /* "Tüm Kategoriler" chip'i özel — CTA vurgu */
+    /* "Tüm Kategoriler" chip'i — premium, subtle */
     .asef-chip-panel {
-        display: inline-flex; align-items: center; gap: 6px;
-        border: 1.5px solid var(--primary) !important;
-        background: white !important;
+        display: inline-flex; align-items: center; gap: 7px;
+        border: 1px solid #D2D2D7 !important;
+        background: #F5F5F7 !important;
         color: var(--primary) !important;
-        font-weight: 600 !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 1px 0 rgba(255,255,255,0.9) inset !important;
+        font-weight: 500 !important;
+        letter-spacing: -0.005em;
+        box-shadow: none !important;
         cursor: pointer;
-        transition: transform .2s, box-shadow .2s, background .2s !important;
+        transition: background .15s, border-color .15s !important;
     }
     .asef-chip-panel:hover {
-        transform: translateY(-1px);
-        background: var(--primary) !important;
-        color: white !important;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.16) !important;
+        background: #FFFFFF !important;
+        border-color: var(--primary) !important;
     }
-    .asef-chip-panel svg { flex-shrink: 0; }
+    .asef-chip-panel svg { flex-shrink: 0; opacity: 0.65; }
 
     /* === TÜM KATEGORİLER PANEL === */
     .asef-cat-panel {
@@ -317,12 +317,13 @@
                 </script>
             </section>
 
-            {{-- MAIN CATEGORY CHIPS (15 ana + Tümü) --}}
-            <div class="asef-chips-scroll-wrap">
-            <button type="button" class="asef-scroll-arrow left" data-scroll-arrow="left" aria-label="Sola kaydır">
+            {{-- CATEGORY CHIPS — tek wrap, sol/sağ ok'lar iki satırı birlikte kaydırır --}}
+            <div class="asef-chips-double-wrap">
+            <button type="button" class="asef-scroll-arrow left" data-double-arrow="left" aria-label="Sola kaydır">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
-            <div class="asef-chips-scroll" data-asef-scroll>
+            <div class="asef-chips-double-inner">
+            <div class="asef-chips-scroll" data-asef-double-scroll>
                 {{-- "Tümü" temizler HER şeyi (query + ana + alt) — direct /search --}}
                 <button type="button" class="asef-chip asef-chip-panel" data-open-cat-panel aria-label="Tüm kategoriler paneli">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
@@ -341,18 +342,10 @@
                     <a href="{{ $chipUrl }}" class="asef-chip {{ $isActive ? 'active' : '' }}">{{ $ana->name }}</a>
                 @endforeach
             </div>
-            <button type="button" class="asef-scroll-arrow right" data-scroll-arrow="right" aria-label="Sağa kaydır">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
-            </button>
-            </div>{{-- /asef-chips-scroll-wrap --}}
 
-            {{-- SUB CATEGORY CHIPS (aktif ana için alt kategoriler) --}}
+            {{-- SUB CATEGORY CHIPS (aktif ana için alt kategoriler) — aynı wrap içinde --}}
             @if ($altKategoriler->count() > 0)
-                <div class="asef-chips-scroll-wrap">
-                <button type="button" class="asef-scroll-arrow left" data-scroll-arrow="left" aria-label="Sola kaydır">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-                </button>
-                <div class="asef-chips-alt" data-asef-scroll>
+                <div class="asef-chips-alt" data-asef-double-scroll>
                     @php
                         $allAltUrl = route('shop.search.index') . '?' . http_build_query(array_filter([
                             'ana' => $anaCode, 'query' => $queryText,
@@ -369,40 +362,48 @@
                         <a href="{{ $chipUrl }}" class="asef-chip {{ $isActive ? 'active' : '' }}">{{ $alt->name }}</a>
                     @endforeach
                 </div>
-                <button type="button" class="asef-scroll-arrow right" data-scroll-arrow="right" aria-label="Sağa kaydır">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
-                </button>
-                </div>{{-- /wrap --}}
             @endif
+            </div>{{-- /asef-chips-double-inner --}}
+            <button type="button" class="asef-scroll-arrow right" data-double-arrow="right" aria-label="Sağa kaydır">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+            </button>
+            </div>{{-- /asef-chips-double-wrap --}}
             <script>
             (function () {
                 function bindScrollControls() {
-                    document.querySelectorAll('.asef-chips-scroll-wrap').forEach(function (wrap) {
-                        var scroller = wrap.querySelector('[data-asef-scroll]');
-                        if (!scroller || scroller._asefBound) return;
-                        scroller._asefBound = true;
-                        var leftBtn  = wrap.querySelector('.asef-scroll-arrow.left');
-                        var rightBtn = wrap.querySelector('.asef-scroll-arrow.right');
+                    document.querySelectorAll('.asef-chips-double-wrap').forEach(function (wrap) {
+                        if (wrap._asefBound) return;
+                        wrap._asefBound = true;
+                        var scrollers = wrap.querySelectorAll('[data-asef-double-scroll]');
+                        if (!scrollers.length) return;
+                        var leftBtn  = wrap.querySelector('[data-double-arrow="left"]');
+                        var rightBtn = wrap.querySelector('[data-double-arrow="right"]');
 
                         function updateArrows() {
-                            var canScroll = scroller.scrollWidth > scroller.clientWidth + 4;
-                            var atStart   = scroller.scrollLeft <= 2;
-                            var atEnd     = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 2;
-                            if (leftBtn)  leftBtn.disabled  = !canScroll || atStart;
-                            if (rightBtn) rightBtn.disabled = !canScroll || atEnd;
+                            var canL = false, canR = false;
+                            scrollers.forEach(function (s) {
+                                if (s.scrollWidth > s.clientWidth + 4) {
+                                    if (s.scrollLeft > 2) canL = true;
+                                    if (s.scrollLeft + s.clientWidth < s.scrollWidth - 2) canR = true;
+                                }
+                            });
+                            if (leftBtn)  leftBtn.disabled  = !canL;
+                            if (rightBtn) rightBtn.disabled = !canR;
                         }
-                        // Wheel: dikey → yatay
-                        scroller.addEventListener('wheel', function (e) {
-                            if (e.deltaY === 0) return;
-                            if (scroller.scrollWidth <= scroller.clientWidth) return;
-                            e.preventDefault();
-                            scroller.scrollLeft += e.deltaY;
-                        }, { passive: false });
-                        // Arrow buttons
-                        if (leftBtn)  leftBtn.addEventListener('click',  function () { scroller.scrollBy({ left: -260, behavior: 'smooth' }); });
-                        if (rightBtn) rightBtn.addEventListener('click', function () { scroller.scrollBy({ left:  260, behavior: 'smooth' }); });
-                        // Update arrows on scroll + resize
-                        scroller.addEventListener('scroll', updateArrows, { passive: true });
+                        scrollers.forEach(function (s) {
+                            s.addEventListener('wheel', function (e) {
+                                if (e.deltaY === 0) return;
+                                if (s.scrollWidth <= s.clientWidth) return;
+                                e.preventDefault();
+                                s.scrollLeft += e.deltaY;
+                            }, { passive: false });
+                            s.addEventListener('scroll', updateArrows, { passive: true });
+                        });
+                        function scrollAll(delta) {
+                            scrollers.forEach(function (s) { s.scrollBy({ left: delta, behavior: 'smooth' }); });
+                        }
+                        if (leftBtn)  leftBtn.addEventListener('click',  function () { scrollAll(-260); });
+                        if (rightBtn) rightBtn.addEventListener('click', function () { scrollAll(260);  });
                         window.addEventListener('resize', updateArrows);
                         setTimeout(updateArrows, 100);
                         setTimeout(updateArrows, 600);
