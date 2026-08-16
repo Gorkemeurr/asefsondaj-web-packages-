@@ -4,7 +4,17 @@
     $catalogUrl = route('shop.search.index');
     $asefUrl    = static fn (string $rel): string => url('asef/' . ltrim($rel, '/'));
 
-    $faqs = [
+    // Öncelik: DB (admin panelden yönetilenler). Boş ise Blade fallback array.
+    $dbFaqs = collect();
+    try {
+        $dbFaqs = \AsefSondaj\AdaptationLayer\Models\AsefFaq::where('is_active', true)
+            ->orderBy('sort')->orderBy('id')->get()
+            ->map(fn ($f) => ['q' => $f->q, 'a' => $f->a])->all();
+    } catch (\Throwable $e) {
+        $dbFaqs = [];
+    }
+
+    $faqsBladeArray = [
         [
             'q' => 'Fiyat almak için ne yapmalıyım?',
             'a' => 'Katalogdan ilgilendiğiniz ürünleri "Sepete Ekle" ile teklif sepetinize atın, ardından "WhatsApp\'tan Teklif Al" butonu ile ürünler listesini doğrudan bize gönderin. Ekibimiz en kısa sürede fiyat ve teslim süresi ile döner.',
@@ -86,6 +96,9 @@
             'a' => '15 ana kategori altında 63 alt kategori ve 813 ürün bulunuyor: Karotier komple sistemler (BWL/HQ/NQ/PQ), DTH çekiç ve bitler, sondaj tijleri (API IF, API REG, DCDMA), matkap uçları, elmas ve vidye ürünler, pörtkron sistemleri, kompresör bağlantıları, çamur pompaları ve yedek parçalar.',
         ],
     ];
+
+    // Nihai listeleme: DB doluysa DB, boşsa Blade fallback (site kesintisiz)
+    $faqs = ! empty($dbFaqs) ? $dbFaqs : $faqsBladeArray;
 @endphp
 
 @push('meta')

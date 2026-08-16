@@ -1,0 +1,83 @@
+    <?php return [
+        [
+            'q' => 'Fiyat almak için ne yapmalıyım?',
+            'a' => 'Katalogdan ilgilendiğiniz ürünleri "Sepete Ekle" ile teklif sepetinize atın, ardından "WhatsApp\'tan Teklif Al" butonu ile ürünler listesini doğrudan bize gönderin. Ekibimiz en kısa sürede fiyat ve teslim süresi ile döner.',
+        ],
+        [
+            'q' => 'Web sitesinde neden fiyat gösterilmiyor?',
+            'a' => 'Sondaj ekipmanlarında fiyatlar; ölçü, bağlantı standardı, formasyon ve adet gibi teknik parametrelere göre değişir. Doğru fiyat için operasyon bilgilerinizi birlikte değerlendirmemiz gerekir; bu yüzden sabit liste fiyatı yayınlamıyoruz.',
+        ],
+        [
+            'q' => 'Türkiye\'nin her yerine gönderim yapıyor musunuz?',
+            'a' => 'Evet. 20 yılı aşkın süredir Türkiye geneline ekipman ve yedek parça sevkiyatı sağlıyoruz. Bulunduğunuz ile göre teslim süresi ve kargo bilgilerini teklifle birlikte paylaşıyoruz.',
+        ],
+        [
+            'q' => 'Yedek parça bulabilir miyim?',
+            'a' => 'Katalogdaki tüm ekipmanlar için orijinal yedek parça ve bakım seti temin ediyoruz. Elimizde olmayan modeller için de tedarik desteği sunuyoruz — WhatsApp\'tan model bilgisi paylaşmanız yeterli.',
+        ],
+        [
+            'q' => 'Teknik danışmanlık ücretli mi?',
+            'a' => 'Hayır. Ürün seçimi ve teknik uygunluk için danışmanlık ücretsizdir. Delik çapı, formasyon tipi, çalışma basıncı gibi bilgileri paylaştığınızda size en uygun ekipmanı öneriyoruz.',
+        ],
+        [
+            'q' => 'Ürünlerin garantisi var mı?',
+            'a' => 'Katalogdaki tüm ekipmanlar üretici garantisi altındadır. Garanti süresi ve şartları ürüne göre değişir; teklif aşamasında detaylarını iletiyoruz. Satış sonrası servis desteği tüm ürünler için mevcuttur.',
+        ],
+        [
+            'q' => 'Sipariş sonrası teslim süresi ne kadar?',
+            'a' => 'Stokta olan ürünler için 2-5 iş günü içinde kargoya veriyoruz. Sipariş üzerine tedarik edilen özel ürünler için süre ürüne göre değişir; her siparişte net süreyi teklifte belirtiyoruz.',
+        ],
+        [
+            'q' => 'Farklı marka/model ekipman tedarik edebilir misiniz?',
+            'a' => 'Evet. Katalogda olmayan ancak ihtiyacınız olan ekipmanları da tedarik ediyoruz. Marka, model ve teknik özellikleri WhatsApp\'tan iletmeniz yeterli — biz araştırıp size dönüyoruz.',
+        ],
+        [
+            'q' => 'HQ, NQ ve PQ karotier standartları arasındaki fark nedir?',
+            'a' => 'DCDMA (Diamond Core Drill Manufacturers Association) standartlarıdır. NQ (75.7 mm delik / 47.6 mm karot çapı), HQ (96 mm / 63.5 mm) ve PQ (122.6 mm / 85 mm) — sırayla daha büyük karot çapı ve daha derin sondaj kapasitesi anlamına gelir. Formasyon türü ve istenilen karot çapına göre seçilir.',
+        ],
+        [
+            'q' => 'DTH çekiç hangi delik çaplarında kullanılır?',
+            'a' => 'Down-the-hole (DTH) çekiçler genellikle 90 mm ile 305 mm arasındaki delik çaplarında kullanılır. Sert kaya formasyonlarında hem hız hem verim açısından rotary sondajdan üstündür. Kaya sertliği + delik çapı kombinasyonuna göre uygun DTH modeli önerilir.',
+        ],
+        [
+            'q' => 'Su sondajı ile jeotermal sondaj ekipmanı arasında fark var mı?',
+            'a' => 'Evet. Su sondajı genelde 30-200 metre derinliğe, jeotermal sondaj ise 500-3000 metre + yüksek sıcaklık ortamına inebilir. Jeotermal için özel yüksek sıcaklık dayanımlı tij, çamur ve sızdırmazlık ekipmanı gerekir. Detayları operasyon bilgilerinizle birlikte planlıyoruz.',
+        ],
+        [
+            'q' => 'API IF, API REG ve DCDMA bağlantı standartları nedir?',
+            'a' => 'Sondaj tijlerinde kullanılan diş standartlarıdır. API IF (Internal Flush) genelde su/jeotermal sondaj tijlerinde, API REG (Regular) rotary sondajda, DCDMA ise karot sondajında yaygındır. Ekipman değişimi yapılacaksa mutlaka mevcut bağlantı standardı ile uyumlu ürün seçilmelidir.',
+        ],
+        [
+            'q' => 'Sondaj tijleri ne kadar dayanıklı, ne sıklıkla değişmeli?',
+            'a' => 'Kaliteli sondaj tiji doğru kullanımla 2-4 yıl dayanır. Ancak korozyon, aşırı torque, yanlış bağlantı ve formasyon aşındırıcılığı ömrü kısaltır. Diş aşınması, gövde çatlağı ve düzgün olmayan yüzeyler değişim işaretidir — periyodik kontrol öneririz.',
+        ],
+        [
+            'q' => 'Sondaj matkap ucu (bit) seçimi nasıl yapılır?',
+            'a' => 'Matkap ucu seçimi 3 faktöre bağlıdır: formasyon tipi (yumuşak/orta/sert), delik çapı ve çalışma basıncı. Yumuşak formasyonda PDC bit, sert kaya için tricone veya karbür button bit tercih edilir. Doğru bit seçimi hem sondaj hızını hem bit ömrünü ciddi artırır.',
+        ],
+        [
+            'q' => 'Çamur pompası (mud pump) kapasitesi nasıl seçilir?',
+            'a' => 'Çamur pompası seçiminde 3 parametre önemli: gerekli basınç (bar), debi (L/min) ve tijli-formasyon kombinasyonu için minimum çamur hızı. Yanlış boyutlandırma pompayı aşırı yorar, verimi düşürür. Delik çapı + derinlik + tij ölçünüzü paylaşırsanız hesaplayıp öneririz.',
+        ],
+        [
+            'q' => 'Yerinde bakım veya servis desteği veriyor musunuz?',
+            'a' => 'Bursa merkez + civar iller için yerinde teknik destek verebiliyoruz. Uzak iller için WhatsApp/telefonla adım-adım servis rehberliği + gerekli parçanın hızlı sevkiyatı çözüm sunuyoruz.',
+        ],
+        [
+            'q' => 'Ödeme koşulları nelerdir?',
+            'a' => 'Havale/EFT, çek ve kurumsal siparişlerde açık hesap yöntemleriyle çalışıyoruz. Kredi kartı ile online ödeme şu an sitede yok — teklif aşamasında birlikte en uygun ödeme planını belirliyoruz.',
+        ],
+        [
+            'q' => 'İhracat / yurt dışı gönderim yapıyor musunuz?',
+            'a' => 'Evet. Türk cumhuriyetleri, Balkanlar ve Ortadoğu\'ya sondaj ekipmanı ihracatı sağlıyoruz. Fatura, gümrük evrakı ve nakliye organizasyonu ile ilgili detayları teklifle birlikte iletiyoruz.',
+        ],
+        [
+            'q' => 'Kullanılmış / ikinci el ekipman satıyor musunuz?',
+            'a' => 'Zaman zaman revizyondan geçmiş, garantili ikinci el ekipmanlarımız olabiliyor. Stok durumu değişkendir — WhatsApp\'tan bilgi alabilirsiniz.',
+        ],
+        [
+            'q' => 'Katalogda hangi kategoriler var?',
+            'a' => '15 ana kategori altında 63 alt kategori ve 813 ürün bulunuyor: Karotier komple sistemler (BWL/HQ/NQ/PQ), DTH çekiç ve bitler, sondaj tijleri (API IF, API REG, DCDMA), matkap uçları, elmas ve vidye ürünler, pörtkron sistemleri, kompresör bağlantıları, çamur pompaları ve yedek parçalar.',
+        ],
+    ];
+?>
