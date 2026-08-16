@@ -298,9 +298,69 @@
 @endphp
 
 @push('meta')
-    <meta name="title" content="{{ $post['title'] }} — Asef Sondaj Blog" />
+    <meta name="title" content="{{ $post['title'] }} — {{ $post['cat'] }} | Asef Sondaj Blog" />
     <meta name="description" content="{{ $post['lede'] }}" />
+    <meta name="keywords" content="{{ $post['cat'] }}, sondaj sektörü, sondaj ekipmanları, {{ $post['title'] }}" />
+    <link rel="canonical" href="{{ url('blog/' . $slug) }}" />
     @if ($isPlaceholder) <meta name="robots" content="noindex" /> @endif
+
+    {{-- Open Graph / Twitter Card --}}
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ $post['title'] }}" />
+    <meta property="og:description" content="{{ $post['lede'] }}" />
+    <meta property="og:url" content="{{ url('blog/' . $slug) }}" />
+    <meta property="og:image" content="{{ url('asef/' . $post['img']) }}" />
+    <meta property="og:site_name" content="Asef Sondaj" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ $post['title'] }}" />
+    <meta name="twitter:description" content="{{ $post['lede'] }}" />
+    <meta name="twitter:image" content="{{ url('asef/' . $post['img']) }}" />
+
+    @if (! $isPlaceholder)
+        {{-- Article + BreadcrumbList JSON-LD (Google rich results) --}}
+        @php
+            $articleJsonLd = [
+                '@context'      => 'https://schema.org',
+                '@type'         => 'Article',
+                'headline'      => $post['title'],
+                'description'   => $post['lede'],
+                'image'         => [url('asef/' . $post['img'])],
+                'datePublished' => date('c', strtotime(str_replace('.', '-', $post['date'] ?? '2026-01-01'))),
+                'author'        => [
+                    '@type' => 'Organization',
+                    'name'  => 'Asef Sondaj',
+                    'url'   => url('/'),
+                ],
+                'publisher'     => [
+                    '@type' => 'Organization',
+                    'name'  => 'Asef Sondaj',
+                    'logo'  => [
+                        '@type' => 'ImageObject',
+                        'url'   => url('asef/asef-logo.png'),
+                    ],
+                ],
+                'mainEntityOfPage' => [
+                    '@type' => 'WebPage',
+                    '@id'   => url('blog/' . $slug),
+                ],
+                'articleSection' => $post['cat'],
+                'inLanguage'     => 'tr-TR',
+            ];
+
+            $breadcrumbJsonLd = [
+                '@context'        => 'https://schema.org',
+                '@type'           => 'BreadcrumbList',
+                'itemListElement' => [
+                    ['@type' => 'ListItem', 'position' => 1, 'name' => 'Ana Sayfa', 'item' => url('/')],
+                    ['@type' => 'ListItem', 'position' => 2, 'name' => 'Blog', 'item' => url('blog')],
+                    ['@type' => 'ListItem', 'position' => 3, 'name' => $post['title'], 'item' => url('blog/' . $slug)],
+                ],
+            ];
+        @endphp
+        <script type="application/ld+json">{!! json_encode($articleJsonLd, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
+        <script type="application/ld+json">{!! json_encode($breadcrumbJsonLd, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
+    @endif
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')
@@ -400,7 +460,7 @@
 
             {{-- HERO IMAGE --}}
             <div class="bd-hero-img-wrap">
-                <div class="bd-hero-img"><img src="{{ $asefUrl($post['img']) }}" alt="{{ $post['title'] }}"></div>
+                <div class="bd-hero-img"><img src="{{ $asefUrl($post['img']) }}" alt="{{ $post['title'] }} — {{ $post['cat'] }} | Asef Sondaj Blog" loading="eager" fetchpriority="high" width="1200" height="675"></div>
             </div>
 
             {{-- BODY --}}
@@ -504,6 +564,34 @@
                 </script>
             @endif
 
+            {{-- İÇ LİNK — kategori / hizmet çapraz bağlantı (SEO otorite dağıtımı) --}}
+            @if (! $isPlaceholder)
+                <section style="max-width:800px; margin:60px auto 40px; padding:0 20px;">
+                    <div style="background:var(--surface-alt); border-radius:20px; padding:32px 28px;">
+                        <div style="font-size:11px; letter-spacing:0.1em; color:var(--link-blue); font-weight:500; text-transform:uppercase; margin-bottom:12px;">İlgili Kaynaklar</div>
+                        <h3 style="font-size:20px; font-weight:600; letter-spacing:-0.01em; color:var(--primary); margin-bottom:16px;">Konuyla ilgili keşfedin</h3>
+                        <div style="display:grid; grid-template-columns:1fr; gap:10px;">
+                            <a href="{{ url('search') }}" style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:#fff; border-radius:12px; color:var(--primary); text-decoration:none; font-size:15px; font-weight:500; transition:background 0.2s;">
+                                <span>📦 Sondaj Ekipmanları Kataloğu — 813+ ürün</span>
+                                <span style="color:var(--link-blue);">›</span>
+                            </a>
+                            <a href="{{ url('hizmetlerimiz') }}" style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:#fff; border-radius:12px; color:var(--primary); text-decoration:none; font-size:15px; font-weight:500;">
+                                <span>🛠️ Hizmetlerimiz — Türkiye geneli 81 ilde tedarik</span>
+                                <span style="color:var(--link-blue);">›</span>
+                            </a>
+                            <a href="{{ url('hakkimizda') }}" style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:#fff; border-radius:12px; color:var(--primary); text-decoration:none; font-size:15px; font-weight:500;">
+                                <span>🏢 Hakkımızda — 20 yıllık saha tecrübesi</span>
+                                <span style="color:var(--link-blue);">›</span>
+                            </a>
+                            <a href="https://wa.me/905320542975?text={{ rawurlencode('Merhaba, blog yazınızı okudum, ürünleriniz hakkında bilgi almak istiyorum.') }}" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:#0066CC; border-radius:12px; color:#fff; text-decoration:none; font-size:15px; font-weight:500;">
+                                <span>💬 WhatsApp'tan Uzman Danışmanlığı Al</span>
+                                <span>›</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            @endif
+
             {{-- RELATED --}}
             @if (count($related) > 0)
                 <section class="bd-related-wrap">
@@ -513,7 +601,7 @@
                     <div class="bd-related-grid">
                         @foreach ($related as $rslug => $r)
                             <a href="{{ url('blog/' . $rslug) }}" class="bd-related-card">
-                                <div class="bd-related-media"><img src="{{ $asefUrl($r['img']) }}" alt="{{ $r['title'] }}" loading="lazy"></div>
+                                <div class="bd-related-media"><img src="{{ $asefUrl($r['img']) }}" alt="{{ $r['title'] }} — {{ $r['cat'] }} | Asef Sondaj Blog" loading="lazy" width="400" height="250"></div>
                                 <div class="bd-related-body">
                                     <span class="bd-related-cat">{{ $r['cat'] }}</span>
                                     <div class="bd-related-title">{{ $r['title'] }}</div>
