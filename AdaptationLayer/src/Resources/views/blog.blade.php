@@ -42,8 +42,10 @@
 @endphp
 
 @push('meta')
-    <meta name="title" content="Blog — Asef Sondaj" />
-    <meta name="description" content="Sondaj sektörü içgörüleri, ekipman rehberleri, vaka çalışmaları ve teknik anlatımlar." />
+    <meta name="title" content="Blog — Sondaj Sektörü Rehberleri ve Vaka Çalışmaları | Asef Sondaj" />
+    <meta name="description" content="Sondaj sektörü rehberleri, ekipman seçim kılavuzları, saha vaka çalışmaları ve teknik anlatımlar. 20 yıllık saha tecrübemizden derlenen uzman içerikler." />
+    <meta name="keywords" content="sondaj blog, sondaj rehberi, sondaj ekipmanı seçimi, sondaj vaka çalışmaları, sondaj teknik anlatımları" />
+    <link rel="canonical" href="{{ url('blog') }}" />
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')

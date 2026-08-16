@@ -65,6 +65,7 @@
     <meta name="title" content="{{ $pageTitle }}" />
     <meta name="description" content="{{ e($pageDesc) }}" />
     <meta name="keywords" content="{{ $product->name }}, {{ $product->sku }}, {{ $altName }}, {{ $anaName }}, sondaj ekipmanı, sondaj yedek parça, {{ $ebatSistem }}" />
+    <link rel="canonical" href="{{ url('urun/' . ($product->slug ?: $product->sku)) }}" />
 
     {{-- Product structured data (Google rich card) — fiyat/stok BİLİNÇLİ olarak yok --}}
     @php
