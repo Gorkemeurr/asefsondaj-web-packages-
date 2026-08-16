@@ -25,6 +25,11 @@ class AdaptationServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom($this->getPath('Config/asef.php'), 'asef');
 
+        // Bagisto admin menu genişlet — Asef Sondaj grubu + alt öğeler
+        // menu.admin config'ine merge et (Bagisto AdminServiceProvider
+        // dosyayı 'menu.admin' key altında yükler)
+        $this->mergeConfigFrom($this->getPath('Config/admin-menu.php'), 'menu.admin');
+
         // Override Bagisto's SitemapController with our AsefSitemapController.
         // Bagisto's route ('sitemap.xml', 'robots.txt') resolves the controller
         // through the container; binding a subclass makes Bagisto call OUR
@@ -292,6 +297,49 @@ class AdaptationServiceProvider extends ServiceProvider
                 return view('asef-adaptation::legal.kullanim-sartlari');
             })->name('shop.asef.terms');
         });
+
+        // ============================================================
+        //  ADMIN ROUTES — Bagisto admin panel altında Asef Sondaj CRUD
+        // ============================================================
+        $adminPrefix = config('app.admin_url') . '/asef';
+
+        Route::prefix($adminPrefix)
+            ->middleware(['web', 'admin'])
+            ->name('admin.asef.')
+            ->group(function () {
+                // Ana Kategoriler
+                Route::get('/kategoriler/ana', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\AnaKategoriController::class, 'index'])->name('categories.ana.index');
+                Route::get('/kategoriler/ana/create', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\AnaKategoriController::class, 'create'])->name('categories.ana.create');
+                Route::post('/kategoriler/ana', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\AnaKategoriController::class, 'store'])->name('categories.ana.store');
+                Route::get('/kategoriler/ana/{code}/edit', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\AnaKategoriController::class, 'edit'])->name('categories.ana.edit');
+                Route::put('/kategoriler/ana/{code}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\AnaKategoriController::class, 'update'])->name('categories.ana.update');
+                Route::delete('/kategoriler/ana/{code}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\AnaKategoriController::class, 'destroy'])->name('categories.ana.destroy');
+
+                // Alt Kategoriler
+                Route::get('/kategoriler/alt', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\AltKategoriController::class, 'index'])->name('categories.alt.index');
+                Route::get('/kategoriler/alt/create', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\AltKategoriController::class, 'create'])->name('categories.alt.create');
+                Route::post('/kategoriler/alt', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\AltKategoriController::class, 'store'])->name('categories.alt.store');
+                Route::get('/kategoriler/alt/{code}/edit', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\AltKategoriController::class, 'edit'])->name('categories.alt.edit');
+                Route::put('/kategoriler/alt/{code}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\AltKategoriController::class, 'update'])->name('categories.alt.update');
+                Route::delete('/kategoriler/alt/{code}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\AltKategoriController::class, 'destroy'])->name('categories.alt.destroy');
+
+                // Ürünler
+                Route::get('/urunler', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\UrunController::class, 'index'])->name('products.index');
+                Route::get('/urunler/create', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\UrunController::class, 'create'])->name('products.create');
+                Route::post('/urunler', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\UrunController::class, 'store'])->name('products.store');
+                Route::get('/urunler/{sku}/edit', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\UrunController::class, 'edit'])->name('products.edit');
+                Route::put('/urunler/{sku}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\UrunController::class, 'update'])->name('products.update');
+                Route::delete('/urunler/{sku}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\UrunController::class, 'destroy'])->name('products.destroy');
+
+                // Blog Yazıları — Faz 2'de DB'ye taşınacak, şu an placeholder
+                Route::get('/bloglar', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\BlogController::class, 'index'])->name('blog.index');
+
+                // SSS — Faz 2'de DB'ye taşınacak
+                Route::get('/faqs', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\FaqController::class, 'index'])->name('faqs.index');
+
+                // Sözlük — Faz 2'de DB'ye taşınacak
+                Route::get('/sozluk', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\GlossaryController::class, 'index'])->name('glossary.index');
+            });
     }
 
     protected function getPath(string $path): string
