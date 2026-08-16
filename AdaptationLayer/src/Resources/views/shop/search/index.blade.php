@@ -194,14 +194,22 @@
     }
     .asef-cat-panel-all {
         display: flex; align-items: center; gap: 14px;
-        padding: 14px 18px; border-radius: 14px;
-        background: var(--primary); color: white;
-        transition: transform .2s;
+        padding: 18px 20px; border-radius: 16px;
+        background: var(--primary); color: #ffffff !important;
+        transition: transform .2s, box-shadow .2s;
+        text-decoration: none;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.14);
     }
-    .asef-cat-panel-all:hover { transform: translateY(-2px); }
-    .asef-cat-panel-all span:first-child { font-size: 24px; }
-    .asef-cat-panel-all-title { font-size: 16px; font-weight: 600; }
-    .asef-cat-panel-all-sub { font-size: 12px; opacity: 0.8; }
+    .asef-cat-panel-all:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(0,0,0,0.24); }
+    .asef-cat-panel-all-icon {
+        width: 42px; height: 42px; border-radius: 12px;
+        background: rgba(255,255,255,0.12); backdrop-filter: blur(6px);
+        display: inline-flex; align-items: center; justify-content: center;
+        color: #ffffff; flex-shrink: 0;
+    }
+    .asef-cat-panel-all-icon svg { width: 20px; height: 20px; }
+    .asef-cat-panel-all-title { font-size: 16px; font-weight: 600; color: #ffffff; letter-spacing: -0.01em; }
+    .asef-cat-panel-all-sub   { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 2px; }
     .asef-cat-panel-group { border-top: 1px solid var(--outline); padding-top: 16px; }
     .asef-cat-panel-group:first-of-type { border-top: 0; padding-top: 0; }
     .asef-cat-panel-ana {
@@ -283,12 +291,12 @@
             {{-- MAIN CATEGORY CHIPS (15 ana + Tümü) --}}
             <div class="asef-chips-scroll">
                 {{-- "Tümü" temizler HER şeyi (query + ana + alt) — direct /search --}}
-                <a href="{{ route('shop.search.index') }}" class="asef-chip {{ ! $anaCode && ! $queryText ? 'active' : '' }}">Tümü</a>
                 <button type="button" class="asef-chip asef-chip-panel" data-open-cat-panel aria-label="Tüm kategoriler paneli">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
                     Tüm Kategoriler
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity: .7;"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
+                <a href="{{ route('shop.search.index') }}" class="asef-chip {{ ! $anaCode && ! $queryText ? 'active' : '' }}">Tümü</a>
                 @foreach ($anaKategoriler as $ana)
                     @php
                         // Ana chip tıklaması: query'yi KORU (arama içi kategori refine)
@@ -333,11 +341,14 @@
                     </div>
                     <div class="asef-cat-panel-body">
                         <a href="{{ route('shop.search.index') }}" class="asef-cat-panel-all">
-                            <span>🎯</span>
-                            <div>
+                            <span class="asef-cat-panel-all-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                            </span>
+                            <div style="flex: 1;">
                                 <div class="asef-cat-panel-all-title">Tüm Ürünler</div>
-                                <div class="asef-cat-panel-all-sub">{{ \AsefSondaj\AdaptationLayer\Models\AsefProduct::where('is_active',true)->count() }} ürün</div>
+                                <div class="asef-cat-panel-all-sub">{{ \AsefSondaj\AdaptationLayer\Models\AsefProduct::where('is_active',true)->count() }} ürün · tümünü göz at</div>
                             </div>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.9;"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                         </a>
                         @php
                             $panelAna = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::with(['altKategoriler' => function ($q) {
