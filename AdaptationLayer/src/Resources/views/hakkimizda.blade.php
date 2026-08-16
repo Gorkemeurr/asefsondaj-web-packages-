@@ -59,8 +59,10 @@
 @endphp
 
 @push('meta')
-    <meta name="title" content="Hakkımızda — Asef Sondaj" />
-    <meta name="description" content="20 yıllık saha tecrübesiyle Türkiye'nin sondaj operasyonlarına ekipman, yedek parça ve teknik çözüm sağlıyoruz." />
+    <meta name="title" content="Hakkımızda — 20 Yıllık Sondaj Ekipmanı Tedarikçisi | Asef Sondaj Bursa" />
+    <meta name="description" content="Asef Sondaj — 20 yıllık saha tecrübesiyle Türkiye'nin 81 ilindeki sondaj operasyonlarına ekipman, yedek parça ve teknik danışmanlık. Bursa merkezli, karotier, DTH çekiç, sondaj tijleri, matkap uçları tedariği." />
+    <meta name="keywords" content="Asef Sondaj hakkımızda, sondaj ekipmanı tedarikçisi, Bursa sondaj firması, 20 yıllık sondaj tecrübesi, Türkiye sondaj çözüm ortağı" />
+    <link rel="canonical" href="{{ url('hakkimizda') }}" />
     <meta name="theme-color" content="#ffffff" />
 @endpush
 

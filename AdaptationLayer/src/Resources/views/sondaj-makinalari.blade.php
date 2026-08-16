@@ -13,8 +13,10 @@
 @endphp
 
 @push('meta')
-    <meta name="title" content="Sondaj Makinalarımız — Asef Sondaj" />
-    <meta name="description" content="Yerüstü, yeraltı, su ve zemin etüd sondaj makineleri. Türkiye'nin her operasyonu için hazır ekipman." />
+    <meta name="title" content="Sondaj Makineleri — Yerüstü, Yeraltı, Su, Jeoteknik | Asef Sondaj" />
+    <meta name="description" content="Karot, rotary, DTH ve jeoteknik sondaj makineleri: yerüstü, yeraltı, su ve zemin etüd operasyonları için Türkiye geneli tedariği. Makine ve orijinal yedek parça ile birlikte teknik destek." />
+    <meta name="keywords" content="sondaj makineleri, karot sondaj makinesi, rotary sondaj makinesi, DTH sondaj makinesi, jeoteknik sondaj makinesi, su sondaj makinesi" />
+    <link rel="canonical" href="{{ url('sondaj-makinalarimiz') }}" />
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')

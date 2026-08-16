@@ -13,8 +13,10 @@
 @endphp
 
 @push('meta')
-    <meta name="title" content="Referanslar — Asef Sondaj" />
-    <meta name="description" content="20 yıllık saha tecrübesiyle 500+ proje. Türkiye'nin dört bir yanında sondaj çözümleri." />
+    <meta name="title" content="Referanslar — 500+ Sondaj Projesi | Asef Sondaj Türkiye" />
+    <meta name="description" content="20 yıllık saha tecrübesiyle 500+ tamamlanan sondaj projesi. Türkiye'nin 81 ilinde maden, su, jeotermal ve jeoteknik sondaj operasyonları için ekipman ve teknik çözüm." />
+    <meta name="keywords" content="Asef Sondaj referanslar, sondaj projeleri, maden sondaj referansları, su sondaj projeleri, jeotermal sondaj referansları" />
+    <link rel="canonical" href="{{ url('referanslar') }}" />
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')

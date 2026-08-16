@@ -27,8 +27,10 @@
 @endphp
 
 @push('meta')
-    <meta name="title" content="Hizmetlerimiz — Asef Sondaj" />
-    <meta name="description" content="Teknik danışmanlık, proje bazlı tedarik ve satış sonrası destek. 20 yıllık sondaj sektörü deneyimi." />
+    <meta name="title" content="Sondaj Hizmetlerimiz — Teknik Danışmanlık, Tedarik, Satış Sonrası | Asef Sondaj" />
+    <meta name="description" content="Sondaj ekipmanı seçim danışmanlığı, proje bazlı tedarik, Türkiye geneli hızlı sevkiyat ve satış sonrası teknik destek. 20 yıllık saha tecrübesiyle 81 ilde hizmet." />
+    <meta name="keywords" content="sondaj hizmetleri, sondaj ekipmanı danışmanlığı, sondaj tedariği, sondaj proje bazlı, satış sonrası destek, teknik danışmanlık" />
+    <link rel="canonical" href="{{ url('hizmetlerimiz') }}" />
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')

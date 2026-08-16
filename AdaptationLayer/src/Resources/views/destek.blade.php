@@ -12,8 +12,10 @@
 @endphp
 
 @push('meta')
-    <meta name="title" content="Destek Merkezi — Asef Sondaj" />
-    <meta name="description" content="Asef Sondaj destek merkezi: SSS, iletişim, gizlilik politikaları ve teknik destek kaynakları." />
+    <meta name="title" content="Destek Merkezi — SSS, Teknik Yardım, Yasal | Asef Sondaj" />
+    <meta name="description" content="Asef Sondaj destek merkezi: sıkça sorulan sorular, sondaj sözlüğü, WhatsApp iletişim, KVKK ve yasal politikalar. Teknik danışmanlık ve satış sonrası destek kaynakları tek noktada." />
+    <meta name="keywords" content="Asef Sondaj destek, sondaj SSS, sondaj teknik yardım, sondaj sözlüğü, sondaj müşteri hizmetleri" />
+    <link rel="canonical" href="{{ url('destek') }}" />
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')

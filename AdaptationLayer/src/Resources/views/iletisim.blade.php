@@ -6,8 +6,10 @@
 @endphp
 
 @push('meta')
-    <meta name="title" content="İletişim — Asef Sondaj" />
-    <meta name="description" content="Asef Sondaj'a WhatsApp, telefon, e-posta ile ulaşın. Duaçınarı Mah. 1. Özgünay Sk No:10, Yıldırım/Bursa" />
+    <meta name="title" content="İletişim — Asef Sondaj Bursa | WhatsApp, Telefon, Adres" />
+    <meta name="description" content="Asef Sondaj'a ulaşın: WhatsApp +90 532 054 29 75, iletisim@asefsondaj.com. Adres: Duaçınarı Mah. 1. Özgünay Sk No:10, Yıldırım/Bursa. Türkiye geneli sondaj ekipmanı tedariği ve teknik danışmanlık." />
+    <meta name="keywords" content="Asef Sondaj iletişim, Bursa sondaj firması adres, sondaj ekipmanı WhatsApp, sondaj tedarikçisi telefon" />
+    <link rel="canonical" href="{{ url('iletisim') }}" />
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')

@@ -48,8 +48,10 @@
 @endphp
 
 @push('meta')
-    <meta name="title" content="Kurumsal — Asef Sondaj" />
-    <meta name="description" content="Asef Sondaj kurumsal — Hakkımızda, Sondaj Makinalarımız, Hizmetlerimiz ve Referanslar." />
+    <meta name="title" content="Kurumsal — Asef Sondaj | Türkiye Geneli Sondaj Ekipmanı Çözümleri" />
+    <meta name="description" content="Asef Sondaj kurumsal yapı: hakkımızda, sondaj makine parkı, hizmet portföyü ve tamamlanan projeler. 20 yıllık saha tecrübesiyle 81 ilde sondaj çözüm ortağınız." />
+    <meta name="keywords" content="Asef Sondaj kurumsal, sondaj firması Bursa, kurumsal sondaj çözümleri, sondaj hizmet portföyü" />
+    <link rel="canonical" href="{{ url('kurumsal') }}" />
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')
