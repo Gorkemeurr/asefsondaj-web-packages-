@@ -407,6 +407,29 @@
                 </script>
             </section>
 
+            {{-- KATEGORİ SEO İÇERİK — sadece ana kategori aktifken (alt kategori ve gerçek arama sonucu değil) --}}
+            @if ($activeAnaName && ! $activeAltName && ! $queryText && $anaCode)
+                @php
+                    $seoContent = null;
+                    try {
+                        $seoFile = base_path('packages/AsefSondaj/AdaptationLayer/src/Config/kategori-seo-content.php');
+                        if (is_file($seoFile)) {
+                            $seoAll = require $seoFile;
+                            $seoContent = $seoAll[$anaCode] ?? null;
+                        }
+                    } catch (\Throwable $e) {
+                        $seoContent = null;
+                    }
+                @endphp
+                @if ($seoContent)
+                    <section style="max-width:900px; margin:20px auto 30px; padding:0 24px;">
+                        <div style="background:var(--surface-alt); border-radius:20px; padding:32px 28px; color:var(--on-surface); line-height:1.7; font-size:15px;">
+                            {!! $seoContent !!}
+                        </div>
+                    </section>
+                @endif
+            @endif
+
             {{-- CATEGORY CHIPS — tek wrap, sol/sağ ok'lar iki satırı birlikte kaydırır --}}
             <div class="asef-chips-double-wrap">
             <button type="button" class="asef-scroll-arrow left" data-double-arrow="left" aria-label="Sola kaydır">
