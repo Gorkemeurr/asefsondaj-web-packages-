@@ -15,6 +15,87 @@
     <meta name="title" content="Asef Sondaj — Sondaj Ekipmanları, Karotier, DTH Çekiç ve Yedek Parça | Türkiye Geneli Tedarik" />
     <meta name="description" content="Türkiye geneli sondaj ekipmanları tedariki: karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve yedek parça. 20 yıllık saha tecrübesi, hızlı sevkiyat, teknik danışmanlık. Bursa merkezli — 81 ilde hizmet." />
     <meta name="keywords" content="sondaj ekipmanları, sondaj makinesi yedek parça, karotier, DTH çekiç, sondaj tijleri, sondaj matkap uçları, pörtkron, sondaj kompresörü, karot alma ekipmanı, Türkiye sondaj tedarikçisi, Bursa sondaj" />
+
+    {{-- LCP boost: hero image preload --}}
+    <link rel="preload" as="image" href="{{ url('asef/asef-hero-rig.jpg') }}" fetchpriority="high" />
+
+    {{-- Font preload (Inter 400+600 en kritik) --}}
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" crossorigin />
+
+    {{-- DNS prefetch — WhatsApp / Cloudinary vs. dış origin'ler için --}}
+    <link rel="dns-prefetch" href="https://wa.me" />
+    <link rel="dns-prefetch" href="https://api.whatsapp.com" />
+
+    {{-- LocalBusiness + Organization + Website JSON-LD (Google Maps + Knowledge Graph) --}}
+    @php
+        $localBusinessJsonLd = [
+            '@context'      => 'https://schema.org',
+            '@type'         => 'LocalBusiness',
+            '@id'           => url('/') . '#organization',
+            'name'          => 'Asef Sondaj',
+            'legalName'     => 'Asef Sondaj Ekipmanları',
+            'description'   => 'Türkiye geneli sondaj ekipmanı tedariki: karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve yedek parça. 20 yıllık saha tecrübesi.',
+            'url'           => url('/'),
+            'logo'          => url('asef/asef-logo.png'),
+            'image'         => url('asef/asef-hero-rig.jpg'),
+            'telephone'     => '+90 532 054 29 75',
+            'email'         => 'iletisim@asefsondaj.com',
+            'address'       => [
+                '@type'           => 'PostalAddress',
+                'streetAddress'   => 'Duaçınarı Mah. 1. Özgünay Sk No:10',
+                'addressLocality' => 'Yıldırım',
+                'addressRegion'   => 'Bursa',
+                'postalCode'      => '16270',
+                'addressCountry'  => 'TR',
+            ],
+            'geo'           => [
+                '@type'     => 'GeoCoordinates',
+                'latitude'  => 40.2119,
+                'longitude' => 29.1000,
+            ],
+            'areaServed'    => [
+                '@type' => 'Country',
+                'name'  => 'Türkiye',
+            ],
+            'openingHoursSpecification' => [
+                '@type'      => 'OpeningHoursSpecification',
+                'dayOfWeek'  => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                'opens'      => '09:00',
+                'closes'     => '18:00',
+            ],
+            'sameAs'        => [
+                'https://instagram.com/asefsondajj',
+                'https://share.google/feiNpSvOEuMJtBfwL',
+            ],
+            'contactPoint'  => [
+                '@type'         => 'ContactPoint',
+                'telephone'     => '+90 532 054 29 75',
+                'contactType'   => 'customer service',
+                'availableLanguage' => ['Turkish'],
+            ],
+        ];
+
+        $websiteJsonLd = [
+            '@context'      => 'https://schema.org',
+            '@type'         => 'WebSite',
+            '@id'           => url('/') . '#website',
+            'url'           => url('/'),
+            'name'          => 'Asef Sondaj',
+            'description'   => 'Türkiye geneli sondaj ekipmanları, karotier, DTH çekiç, tijler ve yedek parça tedariki.',
+            'inLanguage'    => 'tr-TR',
+            'publisher'     => ['@id' => url('/') . '#organization'],
+            'potentialAction' => [
+                '@type'         => 'SearchAction',
+                'target'        => [
+                    '@type'       => 'EntryPoint',
+                    'urlTemplate' => url('search') . '?query={search_term_string}',
+                ],
+                'query-input'   => 'required name=search_term_string',
+            ],
+        ];
+    @endphp
+    <script type="application/ld+json">{!! json_encode($localBusinessJsonLd, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
+    <script type="application/ld+json">{!! json_encode($websiteJsonLd, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
     <meta name="theme-color" content="#ffffff" />
 @endpush
 
