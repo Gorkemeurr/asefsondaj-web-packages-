@@ -46,11 +46,16 @@
     $anaName = $product->anaKategori->name ?? '';
     $ebatSistem = $product->attrs['ebat_sistem'] ?? '';
 
-    $pageDesc = $product->description
+    // Description'da HTML olabilir (generator/admin panel) — meta için strip_tags + kısalt
+    $descRaw = $product->description
         ?: trim(($ebatSistem ? $ebatSistem . ' — ' : '') . $product->name . '. '
             . ($altName ? $altName . ' kategorisinde ' : '')
             . 'sondaj ekipmanı. SKU: ' . $product->sku . '. '
             . 'Türkiye geneli sevkiyat, teknik danışmanlık ve satış sonrası destek. Teklif için WhatsApp\'tan yazın.');
+    $pageDesc = trim(preg_replace('/\s+/', ' ', strip_tags($descRaw)));
+    if (mb_strlen($pageDesc) > 300) {
+        $pageDesc = mb_substr($pageDesc, 0, 297) . '...';
+    }
 
     $pageTitle = $product->name . ' (' . $product->sku . ') — '
         . ($altName ?: 'Sondaj Ekipmanı') . ' | Asef Sondaj';
@@ -173,7 +178,15 @@
                         </div>
 
                         @if ($product->description)
-                            <p class="asef-pd-desc">{{ $product->description }}</p>
+                            <div class="asef-pd-desc">
+                                @if (strpos($product->description, '<') !== false)
+                                    {{-- Zaten HTML formatlı (generator veya admin panelden) --}}
+                                    {!! $product->description !!}
+                                @else
+                                    {{-- Plain text — otomatik paragraf --}}
+                                    <p>{{ $product->description }}</p>
+                                @endif
+                            </div>
                         @endif
 
                         {{-- TEKNİK ÖZELLİKLER — sadece DOLU alanlar --}}
