@@ -181,7 +181,7 @@
 {{-- Force fresh reload — deploy version bump ile tarayıcı cache'i bir kez bypass --}}
 <script>
 (function () {
-    var VERSION = '20260816o-mobile-cta-hide';
+    var VERSION = '20260816p-mobile-nav-align';
     try {
         if (window.sessionStorage && sessionStorage.getItem('asef_ver') !== VERSION) {
             sessionStorage.setItem('asef_ver', VERSION);
