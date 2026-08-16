@@ -13,7 +13,7 @@ return [
         'name'  => 'Asef Sondaj',
         'route' => 'admin.asef.categories.ana.index',
         'sort'  => 3,
-        'icon'  => 'icon-catalog',
+        'icon'  => 'icon-product',
     ],
     [
         'key'   => 'asef.categories',
