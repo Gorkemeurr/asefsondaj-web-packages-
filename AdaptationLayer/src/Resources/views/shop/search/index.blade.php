@@ -89,15 +89,18 @@
 
 @push('styles')
 <style>
-    /* Chip rows — flex layout: [◀] [scroll] [▶] */
+    /* Chip rows — flex layout: [◀] [scroll] [▶] — hizalama tutarlı */
     .asef-chips-scroll-wrap {
-        max-width: 1024px; margin: 0 auto 12px; padding: 0 12px;
-        display: flex; align-items: center; gap: 8px;
+        max-width: 1024px; margin: 0 auto 10px;
+        padding-left: 20px; padding-right: 20px;
+        display: flex; align-items: center; gap: 10px;
+        min-height: 40px;
     }
     .asef-chips-scroll, .asef-chips-alt {
-        flex: 1; min-width: 0;
-        padding: 4px 4px;
-        display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x proximity;
+        flex: 1 1 0; min-width: 0;
+        padding: 3px 2px;
+        display: flex; align-items: center; gap: 10px;
+        overflow-x: auto; scroll-snap-type: x proximity;
         -webkit-overflow-scrolling: touch;
         scroll-behavior: smooth;
     }
