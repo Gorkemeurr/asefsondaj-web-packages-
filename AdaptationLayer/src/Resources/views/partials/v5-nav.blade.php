@@ -15,7 +15,8 @@
                                 $navAna = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::orderBy('sort')->limit(6)->get();
                             @endphp
                             @foreach ($navAna as $_ak)
-                                <a href="{{ $catalogUrl }}?ana={{ $_ak->code }}">{{ $_ak->name }}</a>
+                                @php $_akSlug = $_ak->slug ?? null; @endphp
+                                <a href="{{ $_akSlug ? url('urunler/' . $_akSlug) : $catalogUrl . '?ana=' . $_ak->code }}">{{ $_ak->name }}</a>
                             @endforeach
                         </div>
                         <div class="asef-mega-col asef-mega-side">
