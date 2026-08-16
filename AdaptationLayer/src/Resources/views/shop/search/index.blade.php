@@ -89,30 +89,48 @@
 
 @push('styles')
 <style>
-    /* Chip rows — 15 ana kategori yatay scroll snap + fade mask sağda */
+    /* Chip rows — 15 ana kategori yatay scroll + arrow butonlar (PC UX) */
     .asef-chips-scroll-wrap {
         position: relative; max-width: 1024px; margin: 0 auto 12px;
     }
     .asef-chips-scroll-wrap::after {
-        content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 40px;
+        content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 50px;
         background: linear-gradient(to right, transparent, #FFFFFF 70%);
-        pointer-events: none; z-index: 2;
+        pointer-events: none; z-index: 1;
     }
     .asef-chips-scroll-wrap::before {
-        content: ""; position: absolute; top: 0; left: 0; bottom: 0; width: 20px;
+        content: ""; position: absolute; top: 0; left: 0; bottom: 0; width: 50px;
         background: linear-gradient(to left, transparent, #FFFFFF 60%);
-        pointer-events: none; z-index: 2; opacity: 0;
+        pointer-events: none; z-index: 1; opacity: 0;
         transition: opacity .2s;
     }
     .asef-chips-scroll-wrap.scrolled::before { opacity: 1; }
-    .asef-chips-scroll {
-        padding: 4px 24px 4px 20px;
+    .asef-chips-scroll, .asef-chips-alt {
+        padding: 4px 30px;
         display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x proximity;
         -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
     }
-    .asef-chips-scroll::-webkit-scrollbar { height: 0; }
-    .asef-chips-scroll { scrollbar-width: none; }
-    .asef-chips-scroll .asef-chip { scroll-snap-align: start; flex-shrink: 0; }
+    .asef-chips-scroll::-webkit-scrollbar, .asef-chips-alt::-webkit-scrollbar { height: 0; }
+    .asef-chips-scroll, .asef-chips-alt { scrollbar-width: none; }
+    .asef-chips-scroll .asef-chip, .asef-chips-alt .asef-chip { scroll-snap-align: start; flex-shrink: 0; }
+
+    /* Arrow buttons — sadece scroll gerekiyorsa görünür */
+    .asef-scroll-arrow {
+        position: absolute; top: 50%; transform: translateY(-50%);
+        width: 34px; height: 34px; border-radius: 50%;
+        background: #FFFFFF; border: 1.5px solid var(--primary);
+        color: var(--primary); cursor: pointer;
+        display: none; align-items: center; justify-content: center;
+        z-index: 3;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.14);
+        transition: background .15s, color .15s, transform .15s;
+    }
+    .asef-scroll-arrow:hover { background: var(--primary); color: #FFFFFF; transform: translateY(-50%) scale(1.08); }
+    .asef-scroll-arrow.on { display: inline-flex; }
+    .asef-scroll-arrow.left  { left: 6px; }
+    .asef-scroll-arrow.right { right: 6px; }
+    .asef-scroll-arrow svg { width: 16px; height: 16px; }
     .asef-chips-alt {
         max-width: 1024px; margin: 0 auto 24px; padding: 0 20px;
         display: flex; gap: 8px; overflow-x: auto; flex-wrap: nowrap;
@@ -305,6 +323,12 @@
 
             {{-- MAIN CATEGORY CHIPS (15 ana + Tümü) --}}
             <div class="asef-chips-scroll-wrap">
+            <button type="button" class="asef-scroll-arrow left" data-scroll-arrow="left" aria-label="Sola kaydır">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button type="button" class="asef-scroll-arrow right" data-scroll-arrow="right" aria-label="Sağa kaydır">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+            </button>
             <div class="asef-chips-scroll" data-asef-scroll>
                 {{-- "Tümü" temizler HER şeyi (query + ana + alt) — direct /search --}}
                 <button type="button" class="asef-chip asef-chip-panel" data-open-cat-panel aria-label="Tüm kategoriler paneli">
@@ -329,6 +353,12 @@
             {{-- SUB CATEGORY CHIPS (aktif ana için alt kategoriler) --}}
             @if ($altKategoriler->count() > 0)
                 <div class="asef-chips-scroll-wrap">
+                <button type="button" class="asef-scroll-arrow left" data-scroll-arrow="left" aria-label="Sola kaydır">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button type="button" class="asef-scroll-arrow right" data-scroll-arrow="right" aria-label="Sağa kaydır">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+                </button>
                 <div class="asef-chips-alt" data-asef-scroll>
                     @php
                         $allAltUrl = route('shop.search.index') . '?' . http_build_query(array_filter([
@@ -350,15 +380,42 @@
             @endif
             <script>
             (function () {
-                // Convert vertical wheel to horizontal scroll on chip rows (PC UX)
-                document.querySelectorAll('[data-asef-scroll]').forEach(function (el) {
-                    el.addEventListener('wheel', function (e) {
-                        if (e.deltaY === 0) return;
-                        if (el.scrollWidth <= el.clientWidth) return; // nothing to scroll
-                        e.preventDefault();
-                        el.scrollLeft += e.deltaY;
-                    }, { passive: false });
-                });
+                function bindScrollControls() {
+                    document.querySelectorAll('.asef-chips-scroll-wrap').forEach(function (wrap) {
+                        var scroller = wrap.querySelector('[data-asef-scroll]');
+                        if (!scroller || scroller._asefBound) return;
+                        scroller._asefBound = true;
+                        var leftBtn  = wrap.querySelector('.asef-scroll-arrow.left');
+                        var rightBtn = wrap.querySelector('.asef-scroll-arrow.right');
+
+                        function updateArrows() {
+                            var canScroll = scroller.scrollWidth > scroller.clientWidth + 4;
+                            var atStart   = scroller.scrollLeft <= 2;
+                            var atEnd     = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 2;
+                            if (leftBtn)  leftBtn.classList.toggle('on',  canScroll && !atStart);
+                            if (rightBtn) rightBtn.classList.toggle('on', canScroll && !atEnd);
+                            wrap.classList.toggle('scrolled', !atStart);
+                        }
+                        // Wheel: dikey → yatay
+                        scroller.addEventListener('wheel', function (e) {
+                            if (e.deltaY === 0) return;
+                            if (scroller.scrollWidth <= scroller.clientWidth) return;
+                            e.preventDefault();
+                            scroller.scrollLeft += e.deltaY;
+                        }, { passive: false });
+                        // Arrow buttons
+                        if (leftBtn)  leftBtn.addEventListener('click',  function () { scroller.scrollBy({ left: -260, behavior: 'smooth' }); });
+                        if (rightBtn) rightBtn.addEventListener('click', function () { scroller.scrollBy({ left:  260, behavior: 'smooth' }); });
+                        // Update arrows on scroll + resize
+                        scroller.addEventListener('scroll', updateArrows, { passive: true });
+                        window.addEventListener('resize', updateArrows);
+                        setTimeout(updateArrows, 100);
+                        setTimeout(updateArrows, 600);
+                    });
+                }
+                if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', bindScrollControls); }
+                else { bindScrollControls(); }
+                setTimeout(bindScrollControls, 500);
             })();
             </script>
 
