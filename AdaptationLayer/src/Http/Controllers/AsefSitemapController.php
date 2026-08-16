@@ -41,16 +41,18 @@ class AsefSitemapController extends BagistoSitemapController
         // Ana sayfa
         $add($base . '/', $now, 'daily', '1.0');
 
-        // Kurumsal + statik
-        foreach (['hakkimizda','kurumsal','sondaj-makinalarimiz','hizmetlerimiz','referanslar','sss','iletisim','destek'] as $s) {
+        // Kurumsal + statik + sözlük
+        foreach (['hakkimizda','kurumsal','sondaj-makinalarimiz','hizmetlerimiz','referanslar','sss','iletisim','destek','sondaj-sozlugu'] as $s) {
             $add($base . '/' . $s, $now, 'monthly', '0.7');
         }
 
-        // Blog + galeri
+        // Blog + galeri + kategori landing
         foreach ([
             'blog','tum-bloglar','blog/fotograf','blog/video',
             'blog/saha-fotograflari','blog/ekipman-fotograflari','blog/proje-fotograflari',
             'blog/urun-tanitim-videolari','blog/saha-uygulamalari','blog/teknik-anlatimlar',
+            'blog/kategori/ekipman-rehberi','blog/kategori/vaka-calismalari',
+            'blog/kategori/sektor-trendleri','blog/kategori/teknik-ipuclari',
         ] as $s) {
             $add($base . '/' . $s, $now, 'weekly', '0.6');
         }
