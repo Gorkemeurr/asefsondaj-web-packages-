@@ -85,6 +85,11 @@ echo "==> 3/5 Composer update asefsondaj/adaptation-layer + dump-autoload"
 $COMPOSER_BIN update asefsondaj/adaptation-layer --no-scripts --no-interaction 2>&1 || $COMPOSER_BIN require asefsondaj/adaptation-layer:@dev --no-scripts --no-interaction
 $COMPOSER_BIN dump-autoload -o --no-scripts
 
+# ---------- 3.5) Migrate + seed Asef catalog (idempotent) ----------
+echo "==> 3.5 Asef catalog migrate + seed"
+$PHP_BIN artisan migrate --path=packages/AsefSondaj/AdaptationLayer/src/Database/Migrations --force
+$PHP_BIN artisan db:seed --class="AsefSondaj\\AdaptationLayer\\Database\\Seeders\\AsefCatalogSeeder" --force 2>&1 || echo "    (seed skipped / failed — non-blocking)"
+
 # ---------- 4) Cache clear ----------
 echo "==> 4/5 Cache clear"
 $PHP_BIN artisan optimize:clear

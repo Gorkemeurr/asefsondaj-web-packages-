@@ -36,6 +36,9 @@ class AdaptationServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        // 0) Migrations (asef_products, asef_ana_kategoriler, asef_alt_kategoriler, asef_ebat_ref).
+        $this->loadMigrationsFrom($this->getPath('Database/Migrations'));
+
         // 1) Load our own view namespace (for future custom pages / partials).
         $this->loadViewsFrom($this->getPath('Resources/views'), 'asef-adaptation');
 
