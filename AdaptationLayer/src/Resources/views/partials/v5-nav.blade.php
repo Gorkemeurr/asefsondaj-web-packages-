@@ -121,7 +121,7 @@
                 </div>
             </div>
         </div>
-        <div class="asef-nav-actions" style="display:flex !important; align-items:center; gap:2px; margin-left:auto;">
+        <div class="asef-nav-actions" style="display:flex !important; align-items:center; gap:2px;">
             <a href="{{ $catalogUrl }}" class="asef-nav-icon-btn" aria-label="Arama"
                style="display:inline-flex !important; align-items:center; justify-content:center; width:38px; height:38px; border-radius:8px; color:#1a1c1d; text-decoration:none;">
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -181,7 +181,7 @@
 {{-- Force fresh reload — deploy version bump ile tarayıcı cache'i bir kez bypass --}}
 <script>
 (function () {
-    var VERSION = '20260816s-hamburger-in-actions';
+    var VERSION = '20260816t-desktop-nav-fix';
     try {
         if (window.sessionStorage && sessionStorage.getItem('asef_ver') !== VERSION) {
             sessionStorage.setItem('asef_ver', VERSION);
@@ -205,14 +205,16 @@
 
 {{-- Nav + Drawer için inline CSS — v5-styles cache sorunu için garanti fallback --}}
 <style>
-    /* Nav actions: her ekranda flex + sağa yaslı — hamburger de artık actions içinde */
+    /* Nav actions — desktop: doğal akışta sağda (nav-menu flex:1 zaten iter), mobile: margin-left:auto ile sağa iter */
     .asef-nav-actions {
         display: flex !important;
         align-items: center;
         gap: 2px;
-        margin-left: auto !important;
     }
     @media (min-width: 900px) { .asef-nav-actions { gap: 8px; } }
+    @media (max-width: 899px) {
+        .asef-nav-actions { margin-left: auto !important; }
+    }
     /* İletişim CTA mobil'de gizli, masaüstünde görünür */
     .asef-nav-cta { display: none !important; }
     @media (min-width: 900px) { .asef-nav-cta { display: inline-flex !important; } }
