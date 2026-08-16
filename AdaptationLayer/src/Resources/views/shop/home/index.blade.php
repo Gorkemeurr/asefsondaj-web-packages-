@@ -12,8 +12,9 @@
 @endphp
 
 @push('meta')
-    <meta name="title" content="{{ $channel->home_seo['meta_title'] ?? 'Asef Sondaj — Sondaj Teknolojisinde Geleceğe Ortak' }}" />
-    <meta name="description" content="{{ $channel->home_seo['meta_description'] ?? '20 yıllık saha tecrübesiyle sondaj ekipmanları, yedek parça ve teknik çözüm ortağınız.' }}" />
+    <meta name="title" content="Asef Sondaj — Sondaj Ekipmanları, Karotier, DTH Çekiç ve Yedek Parça | Türkiye Geneli Tedarik" />
+    <meta name="description" content="Türkiye geneli sondaj ekipmanları tedariki: karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve yedek parça. 20 yıllık saha tecrübesi, hızlı sevkiyat, teknik danışmanlık. Bursa merkezli — 81 ilde hizmet." />
+    <meta name="keywords" content="sondaj ekipmanları, sondaj makinesi yedek parça, karotier, DTH çekiç, sondaj tijleri, sondaj matkap uçları, pörtkron, sondaj kompresörü, karot alma ekipmanı, Türkiye sondaj tedarikçisi, Bursa sondaj" />
     <meta name="theme-color" content="#ffffff" />
 @endpush
 
@@ -503,9 +504,9 @@
 
             {{-- HERO --}}
             <section class="asef-hero">
-                <div class="asef-label-caps">SAHAYA HAZIR EKİPMAN · 20 YILLIK TECRÜBE</div>
+                <div class="asef-label-caps">SONDAJ EKİPMANLARI TEDARİKÇİSİ · 20 YILLIK TECRÜBE</div>
                 <h1>Sondaj Teknolojisinde<br>Geleceğe Ortak.</h1>
-                <p>Yirmi yılı aşkın saha tecrübemizle Türkiye'nin en zorlu projelerinde güvenle çalışan sondaj ekipmanlarını sizinle buluşturuyoruz.</p>
+                <p>Yirmi yılı aşkın saha tecrübemizle Türkiye genelinde <strong>sondaj ekipmanları</strong>, <strong>karotier</strong>, <strong>DTH çekiç</strong>, <strong>sondaj tijleri</strong> ve <strong>yedek parça</strong> tedariki sağlıyoruz — hızlı sevkiyat, teknik danışmanlık ve satış sonrası destekle.</p>
                 <div class="asef-hero-ctas">
                     <a href="{{ $catalogUrl }}" class="asef-cta-pill primary">Ürünleri Keşfet</a>
                     <a href="{{ url('hakkimizda') }}" class="asef-cta-pill ghost">Daha Fazla Bilgi <span class="asef-cta-arrow">›</span></a>
@@ -525,6 +526,7 @@
                     <div class="asef-section-head-left">
                         <span class="asef-label-caps">ÜRÜN GRUPLARI</span>
                         <h2>Kataloğu keşfet.</h2>
+                        <p style="font-size:15px; color:var(--secondary); line-height:1.6; margin-top:8px; max-width:600px;">15 ana kategori, 63 alt kategori, 813 ürün — karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve sondaj makinesi yedek parçaları tek noktadan.</p>
                     </div>
                     <a href="{{ $catalogUrl }}" class="asef-section-link">Tümünü gör <span>›</span></a>
                 </div>
@@ -555,7 +557,7 @@
             <section id="hakkimizda" class="asef-section asef-brand-block">
                 <div class="asef-label-caps">HAKKIMIZDA</div>
                 <h2>Yirmi yıllık saha, tek bir söz: güven.</h2>
-                <p>Bursa merkezimizden Türkiye'nin dört bir yanındaki sondaj operasyonlarına ekipman, yedek parça ve teknik danışmanlık sağlıyoruz. Her ürünün arkasında saha tecrübesi vardır.</p>
+                <p>Bursa merkezimizden Türkiye'nin 81 ilindeki sondaj operasyonlarına <strong>sondaj ekipmanları</strong>, <strong>sondaj makinesi yedek parça</strong> ve teknik danışmanlık sağlıyoruz. Karotier, DTH çekiç, tij, matkap ucu, pörtkron ve kompresör bağlantı elemanları — her ürünün arkasında 20 yıllık saha tecrübesi vardır.</p>
                 <a href="{{ url('hakkimizda') }}" class="asef-cta-pill ghost">Firma hikayemiz <span class="asef-cta-arrow">›</span></a>
             </section>
 
@@ -595,6 +597,7 @@
                 <div class="asef-section-head-center">
                     <div class="asef-label-caps">HİZMETLERİMİZ</div>
                     <h2>Ekipmandan öte, çözüm.</h2>
+                    <p style="font-size:15px; color:var(--secondary); line-height:1.6; margin-top:12px; max-width:640px; margin-left:auto; margin-right:auto;">Sondaj ekipmanı seçim danışmanlığı, proje bazlı tedarik, hızlı yedek parça sevkiyatı ve satış sonrası teknik destek — Türkiye geneli hizmet.</p>
                 </div>
                 <div class="asef-services-grid">
                     <div class="asef-service-card">

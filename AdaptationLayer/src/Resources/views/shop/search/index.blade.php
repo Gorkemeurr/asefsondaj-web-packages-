@@ -79,8 +79,9 @@
 @endphp
 
 @push('meta')
-    <meta name="title" content="Ürünler — Asef Sondaj" />
-    <meta name="description" content="{{ $totalCount }}+ sondaj ekipmanı — karotier, matkap, tij, pompa. Teklif için WhatsApp'tan yazın." />
+    <meta name="title" content="Sondaj Ekipmanları Kataloğu — {{ $totalCount }}+ Ürün | Karotier, DTH Çekiç, Tij, Matkap | Asef Sondaj" />
+    <meta name="description" content="{{ $totalCount }}+ sondaj ekipmanı: karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron, kompresör bağlantıları ve yedek parça. Türkiye geneli sevkiyat, teknik danışmanlık. Teklif için WhatsApp." />
+    <meta name="keywords" content="sondaj ekipmanları katalog, karotier fiyat teklifi, DTH çekiç modelleri, sondaj tijleri, sondaj matkap ucu, pörtkron, sondaj yedek parça" />
     <meta name="theme-color" content="#ffffff" />
 @endpush
 
@@ -287,7 +288,7 @@
             <section class="asef-search-hero">
                 <div class="asef-label-caps">KATALOG · {{ AsefProduct::where('is_active', true)->count() }} EKİPMAN</div>
                 <h1>{{ $queryText ? '"' . e($queryText) . '" için sonuçlar' : ($activeAltName ?: $activeAnaName ?: 'Ürünleri keşfet.') }}</h1>
-                <p>Sondaj sahasına hazır ekipmanları filtreleyerek gezinin. Teklif için WhatsApp'tan yazın.</p>
+                <p>Karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve yedek parça — Türkiye genelinde sahaya hazır ekipmanlar. Kategoriye göre filtreleyin, ürün kodu (SKU) ile aratın. Teklif için WhatsApp'tan yazın.</p>
                 <form action="{{ route('shop.search.index') }}" class="asef-search-form" method="get" role="search" onsubmit="return asefSearchSubmit(this);">
                     @if ($anaCode)<input type="hidden" name="ana" value="{{ e($anaCode) }}" />@endif
                     @if ($altCode)<input type="hidden" name="alt" value="{{ e($altCode) }}" />@endif

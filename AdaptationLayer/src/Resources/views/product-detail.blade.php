@@ -42,13 +42,24 @@
         $related = $related->concat($extra);
     }
 
+    $altName = $product->altKategori->name ?? '';
+    $anaName = $product->anaKategori->name ?? '';
+    $ebatSistem = $product->attrs['ebat_sistem'] ?? '';
+
     $pageDesc = $product->description
-        ?: (($product->attrs['ebat_sistem'] ?? '') . ' — ' . $product->name . ' teknik detayları ve teklif için WhatsApp\'tan iletişime geçin.');
+        ?: trim(($ebatSistem ? $ebatSistem . ' — ' : '') . $product->name . '. '
+            . ($altName ? $altName . ' kategorisinde ' : '')
+            . 'sondaj ekipmanı. SKU: ' . $product->sku . '. '
+            . 'Türkiye geneli sevkiyat, teknik danışmanlık ve satış sonrası destek. Teklif için WhatsApp\'tan yazın.');
+
+    $pageTitle = $product->name . ' (' . $product->sku . ') — '
+        . ($altName ?: 'Sondaj Ekipmanı') . ' | Asef Sondaj';
 @endphp
 
 @push('meta')
-    <meta name="title" content="{{ $product->name }} ({{ $product->sku }}) — Asef Sondaj" />
+    <meta name="title" content="{{ $pageTitle }}" />
     <meta name="description" content="{{ e($pageDesc) }}" />
+    <meta name="keywords" content="{{ $product->name }}, {{ $product->sku }}, {{ $altName }}, {{ $anaName }}, sondaj ekipmanı, sondaj yedek parça, {{ $ebatSistem }}" />
 
     {{-- Product structured data (Google rich card) — fiyat/stok BİLİNÇLİ olarak yok --}}
     @php
