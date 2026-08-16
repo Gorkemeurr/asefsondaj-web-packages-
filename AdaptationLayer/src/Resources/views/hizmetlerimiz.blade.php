@@ -97,6 +97,43 @@
                 @endforeach
             </section>
 
+            {{-- TÜRKİYE GENELİ HİZMET AĞI — 81 İL --}}
+            <section class="asef-section" style="max-width:1024px; margin:0 auto; padding:60px 20px 20px;">
+                <div style="text-align:center; margin-bottom:32px;">
+                    <div class="asef-label-caps">TÜRKİYE GENELİ HİZMET</div>
+                    <h2 style="font-size:clamp(28px, 3.4vw, 40px); font-weight:600; letter-spacing:-0.02em; color:var(--primary); margin:12px 0 16px;">81 ilde sondaj çözüm ortağınız.</h2>
+                    <p style="font-size:17px; color:var(--secondary); line-height:1.6; max-width:720px; margin:0 auto;">Bursa merkezli olarak Türkiye'nin 81 ilinde sondaj ekipmanı tedariki, teknik danışmanlık ve satış sonrası servis sağlıyoruz. 20 yıllık saha tecrübemiz, tüm bölgelerdeki iklim, formasyon ve mevzuat farklılıklarına özel çözüm üretmemizi mümkün kılıyor.</p>
+                </div>
+                <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:14px; margin-bottom:40px;">
+                    @foreach ([
+                        ['🚚', 'Türkiye içi hızlı kargo — ekipman siparişleriniz 2-5 iş gününde teslim.'],
+                        ['🏗️', 'Ağır yük organizasyonu — sondaj makinesi ve komple set için kamyon+kurulum desteği.'],
+                        ['📞', 'Teknik danışmanlık 7/24 — WhatsApp ve telefon üzerinden anında yanıt.'],
+                        ['⚡', 'Yedek parça acil sevkiyat — kritik parçalar için 24 saat hızlı çözüm.'],
+                    ] as $svc)
+                        <div style="background:var(--surface-alt); padding:20px; border-radius:14px; display:flex; gap:12px; align-items:flex-start;">
+                            <span style="font-size:22px; flex-shrink:0;">{{ $svc[0] }}</span>
+                            <span style="font-size:14px; color:var(--on-surface); line-height:1.5;">{{ $svc[1] }}</span>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div style="margin-top:32px;">
+                    <h3 style="font-size:18px; font-weight:600; color:var(--primary); margin-bottom:16px; letter-spacing:-0.01em;">Hizmet Verdiğimiz İller</h3>
+                    @php
+                        $iller = ['Adana','Adıyaman','Afyonkarahisar','Ağrı','Aksaray','Amasya','Ankara','Antalya','Ardahan','Artvin','Aydın','Balıkesir','Bartın','Batman','Bayburt','Bilecik','Bingöl','Bitlis','Bolu','Burdur','Bursa','Çanakkale','Çankırı','Çorum','Denizli','Diyarbakır','Düzce','Edirne','Elazığ','Erzincan','Erzurum','Eskişehir','Gaziantep','Giresun','Gümüşhane','Hakkari','Hatay','Iğdır','Isparta','İstanbul','İzmir','Kahramanmaraş','Karabük','Karaman','Kars','Kastamonu','Kayseri','Kırıkkale','Kırklareli','Kırşehir','Kilis','Kocaeli','Konya','Kütahya','Malatya','Manisa','Mardin','Mersin','Muğla','Muş','Nevşehir','Niğde','Ordu','Osmaniye','Rize','Sakarya','Samsun','Siirt','Sinop','Sivas','Şanlıurfa','Şırnak','Tekirdağ','Tokat','Trabzon','Tunceli','Uşak','Van','Yalova','Yozgat','Zonguldak'];
+                    @endphp
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(120px, 1fr)); gap:6px 12px; font-size:14px; color:var(--on-surface);">
+                        @foreach ($iller as $il)
+                            <span style="padding:6px 0;{{ $il === 'Bursa' ? 'font-weight:600; color:var(--primary);' : '' }}">
+                                {{ $il }}{{ $il === 'Bursa' ? ' (Merkez)' : '' }}
+                            </span>
+                        @endforeach
+                    </div>
+                    <p style="margin-top:24px; font-size:14px; color:var(--gray-secondary); line-height:1.6;">Bulunduğunuz ilden bağımsız olarak teklif almak veya teknik görüş sormak için WhatsApp'tan iletişime geçebilirsiniz. Sondaj sektörü ekipmanı, karotier, DTH çekiç, matkap, tij, pompa ve yedek parça ihtiyaçlarınızın hepsi için Türkiye geneli servis ağımız hizmetinizdedir.</p>
+                </div>
+            </section>
+
             <section class="asef-section">
                 <div class="asef-cta-band">
                     <div class="asef-label-caps">HAZIR MISIN?</div>
