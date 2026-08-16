@@ -105,17 +105,18 @@ class AdaptationServiceProvider extends ServiceProvider
         $noCache = \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class;
 
         Route::middleware('web')->group(function () use ($noCache) {
-            // Ürün detay — slug (yeni SEO URL) veya SKU (backward compat)
-            Route::get('/urun/{key}', function (string $key) {
-                // Önce slug ile ara (yeni SEO URL)
-                $product = \AsefSondaj\AdaptationLayer\Models\AsefProduct::where('slug', $key)->first();
+            // Ürün detay — slug (yeni SEO URL) veya SKU (backward compat).
+            // Parameter adı 'sku' KALIR — mevcut route('shop.asef.product', ['sku' => ...]) çağrılarını kırmayalım.
+            Route::get('/urun/{sku}', function (string $sku) {
+                // Önce slug ile ara (yeni SEO URL: /urun/bwl-karotiyer-15-m)
+                $product = \AsefSondaj\AdaptationLayer\Models\AsefProduct::where('slug', $sku)->first();
 
                 if (! $product) {
                     // Fallback: SKU (uppercase) ile ara — eski /urun/AS-KRT-001 URL'leri
-                    $product = \AsefSondaj\AdaptationLayer\Models\AsefProduct::where('sku', strtoupper($key))->first();
+                    $product = \AsefSondaj\AdaptationLayer\Models\AsefProduct::where('sku', strtoupper($sku))->first();
 
                     // Eğer SKU eşleşti VE ürünün slug'ı varsa → 301 redirect yeni slug URL'ine
-                    if ($product && $product->slug && $product->slug !== $key) {
+                    if ($product && $product->slug && $product->slug !== $sku) {
                         return redirect(url('urun/' . $product->slug), 301);
                     }
                 }
@@ -127,7 +128,7 @@ class AdaptationServiceProvider extends ServiceProvider
                 return view('asef-adaptation::product-detail', [
                     'sku' => $product->sku,
                 ]);
-            })->name('shop.asef.product')->where('key', '[A-Za-z0-9\-]+');
+            })->name('shop.asef.product')->where('sku', '[A-Za-z0-9\-]+');
 
             Route::get('/sepet', function () {
                 return view('asef-adaptation::sepet');
