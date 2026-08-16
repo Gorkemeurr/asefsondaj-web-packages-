@@ -1,75 +1,93 @@
-{{-- Kullanım Şartları — /kullanim-sartlari --}}
-@php $waLink = 'https://wa.me/905320542975'; @endphp
+@php
+    $lpKind      = 'YASAL METİN';
+    $lpTitle     = 'Kullanım Şartları';
+    $lpLede      = 'Asef Sondaj web sitesini ve mobil uygulamasını kullanırken uymanız gereken şartlar, sorumluluk sınırları ve yasal çerçeve.';
+    $lpUpdatedAt = '16 Ağustos 2026';
 
-@push('meta')
-    <meta name="title" content="Kullanım Şartları — Asef Sondaj" />
-@endpush
+    $lpToc = [
+        ['kabul',       'Kabul ve yürürlük'],
+        ['kapsam',      'Hizmet kapsamı'],
+        ['kullanici',   'Kullanıcı yükümlülükleri'],
+        ['icerik',      'İçerik ve fikri mülkiyet'],
+        ['siparis',     'Teklif ve sipariş süreci'],
+        ['sorumluluk',  'Sorumluluk sınırlaması'],
+        ['degisiklik',  'Değişiklikler'],
+        ['sona',        'Hesap askıya alma / sonlandırma'],
+        ['mucbir',      'Mücbir sebep'],
+        ['uyusmazlik',  'Uyuşmazlık ve uygulanacak hukuk'],
+        ['iletisim',    'İletişim'],
+    ];
 
-@include('asef-adaptation::partials.v5-styles')
-@include('asef-adaptation::partials.v5-cart-js')
+    $lpSections = [
+        ['kabul', 'Kabul ve yürürlük', '
+            <p>Bu Kullanım Şartları, <strong>Asef Sondaj</strong> tarafından işletilen <a href="https://www.asefsondaj.com" target="_blank" rel="noopener">www.asefsondaj.com</a> web sitesi ve mobil uygulamasının kullanımına ilişkin şartları belirler.</p>
+            <p>Siteyi kullanmaya başladığınız andan itibaren bu şartları <strong>okuduğunuzu, anladığınızı ve kabul ettiğinizi</strong> beyan etmiş sayılırsınız. Şartları kabul etmiyorsanız lütfen siteyi kullanmayı bırakın.</p>
+        '],
+        ['kapsam', 'Hizmet kapsamı', '
+            <p>Sitemiz üzerinden sunulan hizmetler:</p>
+            <ul>
+                <li>Sondaj ekipmanları ve yedek parça kataloğunun görüntülenmesi.</li>
+                <li>Teknik özellik ve ürün bilgilerine erişim.</li>
+                <li>Teklif listesi oluşturma ve WhatsApp/e-posta üzerinden iletişim.</li>
+                <li>Blog ve içerik erişimi.</li>
+            </ul>
+            <div class="lp-note">Sitemiz üzerinden <strong>doğrudan online satış, ödeme veya kargo</strong> hizmeti verilmez. Ürün siparişleri Asef Sondaj ile iletişime geçildikten sonra ayrı ticari süreçlerle yürütülür.</div>
+        '],
+        ['kullanici', 'Kullanıcı yükümlülükleri', '
+            <p>Siteyi kullanırken aşağıdaki kurallara uymayı taahhüt edersiniz:</p>
+            <ul>
+                <li>Yasalara, kamu düzenine ve ahlaka aykırı içerik iletmeyeceğinizi,</li>
+                <li>Site altyapısına zarar verecek eylemlerde bulunmayacağınızı (DDoS, tersine mühendislik, brute force vb.),</li>
+                <li>Başkalarının haklarını ihlal edecek şekilde kullanmayacağınızı,</li>
+                <li>Verdiğiniz bilgilerin doğru ve güncel olduğunu,</li>
+                <li>Site içeriğini izin almadan çoğaltıp ticari amaçla dağıtmayacağınızı.</li>
+            </ul>
+        '],
+        ['icerik', 'İçerik ve fikri mülkiyet', '
+            <p>Sitede yer alan tüm içerikler — metin, görsel, video, logo, teknik çizim, ürün fotoğrafı, blog yazısı — <strong>Asef Sondaj\'a veya lisans veren üçüncü kişilere</strong> aittir ve <strong>5846 sayılı Fikir ve Sanat Eserleri Kanunu</strong> ile korunmaktadır.</p>
+            <p>İzinsiz kopyalama, çoğaltma, yayınlama veya ticari amaçla kullanma yasaktır. İhlal durumunda hukuki ve cezai süreç başlatılır.</p>
+            <p>Kişisel, ticari olmayan kullanım (örneğin sosyal medyada paylaşım) kaynak göstermek koşuluyla serbesttir.</p>
+        '],
+        ['siparis', 'Teklif ve sipariş süreci', '
+            <p>Site üzerinden teklif talebi süreci:</p>
+            <ol>
+                <li>İlgilendiğiniz ürünü teklif sepetine ekleyin.</li>
+                <li>Sepetten WhatsApp\'a otomatik oluşturulan mesajı iletin.</li>
+                <li>Ekibimiz talebinizi değerlendirip fiyat, temin süresi ve teknik bilgilendirme ile döner.</li>
+                <li>Sipariş, ayrı yapılacak sözleşme veya proforma faturaya bağlıdır.</li>
+            </ol>
+            <p>Sitedeki ürün kataloğu genel bilgi amaçlıdır. Fiyat, stok durumu ve teslim süresi sipariş anında teyit edilir.</p>
+        '],
+        ['sorumluluk', 'Sorumluluk sınırlaması', '
+            <p>Asef Sondaj:</p>
+            <ul>
+                <li>Sitedeki bilgilerin doğruluğu için makul özeni gösterir ancak <strong>yazım/güncelleme hatalarından doğabilecek zararlardan sorumlu tutulamaz</strong>.</li>
+                <li>Sitenin kesintisiz veya hatasız çalışacağını garanti etmez.</li>
+                <li>Kullanıcıların site içeriğine dayanarak aldığı kararlardan doğan zararlardan sorumlu değildir. Kritik projelerde ekibimize danışmanız önerilir.</li>
+                <li>Üçüncü taraf web sitelerine verilen linklerin içeriğinden sorumlu değildir.</li>
+            </ul>
+        '],
+        ['degisiklik', 'Değişiklikler', '
+            <p>Asef Sondaj, Kullanım Şartlarını, ürün kataloğunu, hizmetleri ve sitenin genel yapısını <strong>önceden bildirim yapmaksızın değiştirme hakkını saklı tutar</strong>. Güncel şartların bu sayfada yayınlanmış olması yeterli tebliğ sayılır.</p>
+        '],
+        ['sona', 'Hesap askıya alma / sonlandırma', '
+            <p>Kullanıcı tarafından bu şartların ihlali, dolandırıcılık, kötü niyetli kullanım veya yasa dışı faaliyet tespit edilmesi durumunda Asef Sondaj kullanıcının site erişimini <strong>tek taraflı, önceden bildirim gerekmeksizin</strong> askıya alma veya sonlandırma hakkını saklı tutar.</p>
+        '],
+        ['mucbir', 'Mücbir sebep', '
+            <p>Tarafların kontrolü dışında gelişen — deprem, sel, salgın hastalık, savaş, siber saldırı, elektrik/internet kesintisi vb. — mücbir sebepler sonucu ortaya çıkan gecikme veya ifa edememe halinde Asef Sondaj sorumlu tutulmaz.</p>
+        '],
+        ['uyusmazlik', 'Uyuşmazlık ve uygulanacak hukuk', '
+            <p>Bu Kullanım Şartlarından doğacak uyuşmazlıklarda <strong>Türkiye Cumhuriyeti kanunları</strong> uygulanır. Yetkili mahkeme ve icra daireleri <strong>Bursa</strong>\'dır. Tüketici sıfatıyla yapılan işlemlerde Tüketici Hakem Heyeti ve Tüketici Mahkemeleri de yetkilidir.</p>
+        '],
+        ['iletisim', 'İletişim', '
+            <p>Kullanım Şartları hakkında sorularınız için:</p>
+            <ul>
+                <li><strong>E-posta</strong>: <a href="mailto:iletisim@asefsondaj.com">iletisim@asefsondaj.com</a></li>
+                <li><strong>Telefon</strong>: +90 532 054 29 75</li>
+                <li><strong>Adres</strong>: Duaçınarı Mah. 1. Özgünay Sk No:10, Yıldırım / Bursa</li>
+            </ul>
+        '],
+    ];
+@endphp
 
-@push('styles')
-<style>
-    .lg-wrap { max-width: 780px; margin: 0 auto 80px; padding: 0 20px; }
-    @media (min-width: 768px) { .lg-wrap { margin-bottom: 120px; } }
-    .lg-wrap h2 { font-size: 24px; font-weight: 600; letter-spacing: -0.01em; color: var(--primary); margin: 40px 0 12px; }
-    .lg-wrap h2:first-child { margin-top: 0; }
-    .lg-wrap p { font-size: 16px; color: var(--on-surface); line-height: 1.7; margin-bottom: 14px; }
-    .lg-wrap ul { padding-left: 20px; margin-bottom: 16px; }
-    .lg-wrap li { font-size: 16px; color: var(--on-surface); line-height: 1.7; margin-bottom: 6px; }
-    .lg-meta { font-size: 13px; color: var(--gray-secondary); padding: 20px 0; border-bottom: 1px solid var(--outline); margin-bottom: 32px; }
-</style>
-@endpush
-
-<x-shop::layouts :has-header="false" :has-feature="false" :has-footer="false">
-    <x-slot:title>Kullanım Şartları — Asef Sondaj</x-slot>
-
-    <div class="asef-root">
-        @include('asef-adaptation::partials.v5-nav')
-
-        <main class="asef-main">
-            <section class="asef-hero" style="padding-bottom: 24px;">
-                <div class="asef-label-caps">YASAL BİLGİ</div>
-                <h1>Kullanım Şartları.</h1>
-                <p>Web sitesini kullanırken uygulanan kurallar ve sorumluluklar.</p>
-            </section>
-
-            <section class="lg-wrap">
-                <div class="lg-meta">Son güncelleme: {{ date('d.m.Y') }}</div>
-
-                <h2>1. Genel Hükümler</h2>
-                <p>Bu web sitesini (asefsondaj.com) ziyaret ederek ve kullanarak aşağıdaki şartları kabul etmiş sayılırsınız. Şartları kabul etmiyorsanız siteyi kullanmayınız.</p>
-
-                <h2>2. Site İçeriği</h2>
-                <p>Web sitesindeki tüm içerik (metin, görsel, tasarım, logo, ürün fotoğrafları) Asef Sondaj'a aittir. İzinsiz kopyalama, çoğaltma veya ticari amaçla kullanım yasaktır.</p>
-
-                <h2>3. Ürün Bilgileri</h2>
-                <p>Web sitesindeki ürün bilgileri, teknik özellikler ve görseller bilgi amaçlıdır. Kesin ürün özellikleri ve fiyatlandırma için WhatsApp veya telefon yoluyla iletişime geçilmelidir. Ürün özelliklerinde ve stok durumunda değişiklik yapma hakkı saklıdır.</p>
-
-                <h2>4. Teklif Sistemi</h2>
-                <p>"Teklif Sepeti"ne eklenen ürünler bağlayıcı bir sipariş oluşturmaz. Nihai teklif, iletişime geçtikten sonra teknik ekibimizin değerlendirmesi sonrasında oluşturulur. Fiyat, teslim süresi ve ürün uygunluğu bu aşamada netleştirilir.</p>
-
-                <h2>5. Kullanıcı Sorumlulukları</h2>
-                <ul>
-                    <li>Verdiği bilgilerin doğru ve güncel olmasından sorumludur.</li>
-                    <li>Site içeriğini yasal amaçlar dışında kullanamaz.</li>
-                    <li>Site güvenliğini tehdit edici davranışlarda bulunamaz.</li>
-                </ul>
-
-                <h2>6. Sorumluluk Sınırlandırması</h2>
-                <p>Web sitesindeki bilgilerin kullanımından kaynaklanan doğrudan veya dolaylı zararlardan Asef Sondaj sorumlu tutulamaz. Site içeriği önceden haber verilmeksizin değiştirilebilir.</p>
-
-                <h2>7. Değişiklikler</h2>
-                <p>Bu kullanım şartları önceden haber verilmeksizin güncellenebilir. Değişiklikler bu sayfada yayınlandığı andan itibaren yürürlüğe girer.</p>
-
-                <h2>8. Yetkili Mahkeme</h2>
-                <p>İşbu şartlardan doğabilecek uyuşmazlıklarda Bursa Mahkemeleri ve İcra Daireleri yetkilidir.</p>
-
-                <h2>9. İletişim</h2>
-                <p>Sorularınız için: <a href="mailto:iletisim@asefsondaj.com" style="color:var(--link-blue);">iletisim@asefsondaj.com</a></p>
-            </section>
-        </main>
-
-        @include('asef-adaptation::partials.v5-footer')
-    </div>
-</x-shop::layouts>
+@include('asef-adaptation::partials.legal-shell')

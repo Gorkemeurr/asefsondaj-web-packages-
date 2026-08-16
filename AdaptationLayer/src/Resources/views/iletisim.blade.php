@@ -61,7 +61,7 @@
                 </a>
                 <a href="tel:+905320542975" class="ct-card">
                     <div class="ct-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1 .37 1.95.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.86.33 1.81.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-                    <div><div class="ct-label">TELEFON</div><div class="ct-value">+90 532 054 29 75</div><div class="ct-sub">Hafta içi 09:00 – 18:00</div></div>
+                    <div><div class="ct-label">TELEFON</div><div class="ct-value">+90 532 054 29 75</div><div class="ct-sub">Teknik destek ve teklif hattı</div></div>
                 </a>
                 <a href="mailto:iletisim@asefsondaj.com" class="ct-card">
                     <div class="ct-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/></svg></div>

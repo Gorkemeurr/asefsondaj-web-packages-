@@ -1,74 +1,84 @@
-{{-- Çerez Politikası — /cerez-politikasi --}}
-@php $waLink = 'https://wa.me/905320542975'; @endphp
+@php
+    $lpKind      = 'YASAL METİN';
+    $lpTitle     = 'Çerez Politikası';
+    $lpLede      = 'Web sitemizde ve mobil uygulamamızda kullanılan çerezler, hangi amaçla kullanıldıkları ve kontrol seçenekleri hakkında bilgi.';
+    $lpUpdatedAt = '16 Ağustos 2026';
 
-@push('meta')
-    <meta name="title" content="Çerez Politikası — Asef Sondaj" />
-@endpush
+    $lpToc = [
+        ['nedir',      'Çerez nedir?'],
+        ['turler',     'Kullanılan çerez türleri'],
+        ['amac',       'Kullanım amaçları'],
+        ['ucuncu',     'Üçüncü taraf çerezleri'],
+        ['kontrol',    'Çerez kontrolü'],
+        ['tarayici',   'Tarayıcı ayarları'],
+        ['degisiklik', 'Politika değişiklikleri'],
+        ['iletisim',   'İletişim'],
+    ];
 
-@include('asef-adaptation::partials.v5-styles')
-@include('asef-adaptation::partials.v5-cart-js')
+    $lpSections = [
+        ['nedir', 'Çerez nedir?', '
+            <p><strong>Çerez (cookie)</strong>, ziyaret ettiğiniz web siteleri tarafından tarayıcınıza küçük bir metin dosyası olarak yerleştirilen veridir. Çerezler, siteyi bir sonraki ziyaretinizde sizi tanımak, tercihlerinizi hatırlamak ve deneyimi kişiselleştirmek amacıyla kullanılır.</p>
+            <p>Bu politika 5809 sayılı <strong>Elektronik Haberleşme Kanunu</strong> ve 6698 sayılı <strong>Kişisel Verilerin Korunması Kanunu (KVKK)</strong> çerçevesinde hazırlanmıştır.</p>
+        '],
+        ['turler', 'Kullanılan çerez türleri', '
+            <p>Sitemizde aşağıdaki çerez türleri kullanılmaktadır:</p>
+            <table>
+                <thead><tr><th>Tür</th><th>Kullanım</th><th>Süre</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Zorunlu</strong></td><td>Site fonksiyonlarını çalıştırır (oturum, güvenlik). Onay gerektirmez.</td><td>Oturum / 1 yıl</td></tr>
+                    <tr><td><strong>İşlevsel</strong></td><td>Tercihlerinizi hatırlar (dil, teklif sepeti).</td><td>1 yıl</td></tr>
+                    <tr><td><strong>Performans</strong></td><td>Kullanım istatistikleri toplar (sayfa süresi, tıklama).</td><td>2 yıl</td></tr>
+                    <tr><td><strong>Pazarlama</strong></td><td>Kişiselleştirilmiş reklam ve içerik gösterir. <em>Sadece rızanız varsa aktifleşir.</em></td><td>2 yıl</td></tr>
+                </tbody>
+            </table>
+        '],
+        ['amac', 'Kullanım amaçları', '
+            <p>Çerezleri aşağıdaki amaçlar için kullanırız:</p>
+            <ul>
+                <li><strong>Site fonksiyonelliği</strong>: Teklif sepetinin doğru çalışması, oturum yönetimi.</li>
+                <li><strong>Kullanıcı deneyimi</strong>: Tercihlerinizi hatırlama, hızlı erişim.</li>
+                <li><strong>Analitik</strong>: Site kullanım istatistiklerinin toplanması, iyileştirme çalışmaları.</li>
+                <li><strong>Güvenlik</strong>: Yetkisiz erişim tespiti ve önlenmesi.</li>
+            </ul>
+        '],
+        ['ucuncu', 'Üçüncü taraf çerezleri', '
+            <p>Aşağıdaki üçüncü taraf servisleri de çerez kullanabilir:</p>
+            <ul>
+                <li><strong>Google Analytics</strong>: Kullanım istatistikleri (anonim). Anonim kimlik ve oturum verisi tutar.</li>
+                <li><strong>Cloudflare</strong>: Güvenlik ve performans altyapısı (zorunlu).</li>
+                <li><strong>Meta Pixel / Google Ads</strong>: Sadece pazarlama izniniz varsa aktifleşir.</li>
+            </ul>
+            <p>Bu servislerin kendi gizlilik politikaları vardır. Detaylar için ilgili sağlayıcının politikasına bakabilirsiniz.</p>
+        '],
+        ['kontrol', 'Çerez kontrolü', '
+            <p>Sitemizi ilk ziyaretinizde çerez tercih paneli görürsünüz. Buradan:</p>
+            <ul>
+                <li>Zorunlu dışındaki tüm çerezleri <strong>reddedebilir</strong>,</li>
+                <li>Kategori bazında (işlevsel / analitik / pazarlama) <strong>seçim yapabilir</strong>,</li>
+                <li>Tercihlerinizi <strong>istediğiniz zaman değiştirebilirsiniz</strong>.</li>
+            </ul>
+        '],
+        ['tarayici', 'Tarayıcı ayarları', '
+            <p>Tarayıcınızın ayarlarından da çerezleri yönetebilirsiniz:</p>
+            <ul>
+                <li><strong>Chrome</strong>: Ayarlar → Gizlilik ve güvenlik → Çerezler</li>
+                <li><strong>Safari</strong>: Tercihler → Gizlilik → Çerezleri ve web sitesi verilerini yönet</li>
+                <li><strong>Firefox</strong>: Ayarlar → Gizlilik ve Güvenlik → Çerezler ve Site Verileri</li>
+                <li><strong>Edge</strong>: Ayarlar → Çerezler ve site izinleri</li>
+            </ul>
+            <div class="lp-note">Tüm çerezleri devre dışı bırakırsanız site fonksiyonlarının bir kısmı çalışmayabilir (özellikle teklif sepeti).</div>
+        '],
+        ['degisiklik', 'Politika değişiklikleri', '
+            <p>Kullanılan çerez türleri veya süreleri değiştikçe bu politika güncellenir. Değişiklikler bu sayfada yayınlanır.</p>
+        '],
+        ['iletisim', 'İletişim', '
+            <p>Çerez uygulamalarımızla ilgili sorularınız için:</p>
+            <ul>
+                <li><strong>E-posta</strong>: <a href="mailto:destek@asefsondaj.com">destek@asefsondaj.com</a></li>
+                <li><strong>Telefon</strong>: +90 532 054 29 75</li>
+            </ul>
+        '],
+    ];
+@endphp
 
-@push('styles')
-<style>
-    .lg-wrap { max-width: 780px; margin: 0 auto 80px; padding: 0 20px; }
-    @media (min-width: 768px) { .lg-wrap { margin-bottom: 120px; } }
-    .lg-wrap h2 { font-size: 24px; font-weight: 600; letter-spacing: -0.01em; color: var(--primary); margin: 40px 0 12px; }
-    .lg-wrap h2:first-child { margin-top: 0; }
-    .lg-wrap p { font-size: 16px; color: var(--on-surface); line-height: 1.7; margin-bottom: 14px; }
-    .lg-wrap ul { padding-left: 20px; margin-bottom: 16px; }
-    .lg-wrap li { font-size: 16px; color: var(--on-surface); line-height: 1.7; margin-bottom: 6px; }
-    .lg-meta { font-size: 13px; color: var(--gray-secondary); padding: 20px 0; border-bottom: 1px solid var(--outline); margin-bottom: 32px; }
-    .lg-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
-    .lg-table th, .lg-table td { text-align: left; padding: 12px; border-bottom: 1px solid var(--outline); }
-    .lg-table th { color: var(--gray-secondary); font-weight: 500; letter-spacing: 0.02em; }
-</style>
-@endpush
-
-<x-shop::layouts :has-header="false" :has-feature="false" :has-footer="false">
-    <x-slot:title>Çerez Politikası — Asef Sondaj</x-slot>
-
-    <div class="asef-root">
-        @include('asef-adaptation::partials.v5-nav')
-
-        <main class="asef-main">
-            <section class="asef-hero" style="padding-bottom: 24px;">
-                <div class="asef-label-caps">YASAL BİLGİ</div>
-                <h1>Çerez Politikası.</h1>
-                <p>Web sitemizde kullanılan çerezler ve amaçları.</p>
-            </section>
-
-            <section class="lg-wrap">
-                <div class="lg-meta">Son güncelleme: {{ date('d.m.Y') }}</div>
-
-                <h2>Çerez Nedir?</h2>
-                <p>Çerezler, web sitesini ziyaret ettiğinizde tarayıcınıza gönderilen ve cihazınızda saklanan küçük metin dosyalarıdır. Web sitesinin doğru çalışmasını sağlamak ve deneyiminizi iyileştirmek için kullanılır.</p>
-
-                <h2>Kullandığımız Çerezler</h2>
-                <table class="lg-table">
-                    <thead>
-                        <tr><th>Tür</th><th>Amaç</th><th>Süre</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Zorunlu</td><td>Site fonksiyonları (dil, oturum)</td><td>Oturum</td></tr>
-                        <tr><td>Fonksiyonel</td><td>Teklif sepeti (localStorage)</td><td>Kalıcı</td></tr>
-                        <tr><td>Analitik</td><td>Ziyaret istatistikleri (anonim)</td><td>~1 yıl</td></tr>
-                    </tbody>
-                </table>
-
-                <h2>Üçüncü Taraf Çerezler</h2>
-                <p>Web sitemizde gömülü Google Maps gibi üçüncü taraf servisler kendi çerezlerini yerleştirebilir. Bu çerezler ilgili sağlayıcıların politikalarına tabidir.</p>
-
-                <h2>Çerez Yönetimi</h2>
-                <p>Çerezleri tarayıcınızın ayarlarından yönetebilir veya silebilirsiniz. Ancak zorunlu çerezleri devre dışı bırakırsanız site fonksiyonları düzgün çalışmayabilir.</p>
-
-                <h2>Değişiklikler</h2>
-                <p>Bu politika güncellenebilir. Değişiklikler bu sayfada yayınlanır.</p>
-
-                <h2>İletişim</h2>
-                <p>Sorularınız için: <a href="mailto:destek@asefsondaj.com" style="color:var(--link-blue);">destek@asefsondaj.com</a></p>
-            </section>
-        </main>
-
-        @include('asef-adaptation::partials.v5-footer')
-    </div>
-</x-shop::layouts>
+@include('asef-adaptation::partials.legal-shell')
