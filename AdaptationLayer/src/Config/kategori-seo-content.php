@@ -15,6 +15,12 @@ return [
     'WLS' => '
 <h2>Wireline Karotiyer Sistemleri</h2>
 <p>Wireline karotiyer sistemleri, sondaj tijini kuyudan çıkarmadan karot numunesini yüzeye almaya olanak tanıyan modern maden ve jeoteknik sondaj ekipmanlarıdır. İç tüp, yüzeyden salınan bir overshot ile ip aracılığıyla yakalanıp çıkarılır — bu, geleneksel karotiyer sondajına kıyasla operasyon süresini %40-60 kısaltır.</p>
+<h3>Kategoriye özel SSS</h3>
+<ul>
+<li><strong>BWL, NWL, HWL, PWL karotier arasındaki fark nedir?</strong> Farklı DCDMA ölçüleridir. BWL en küçük (60 mm), PWL en büyük (122.6 mm). Karot çapı da bu ölçüye göre değişir.</li>
+<li><strong>Wireline sistem konvansiyonelden daha hızlı mı?</strong> Evet — operasyon süresini %40-60 kısaltır çünkü iç tüp yüzeye çekilirken tijler kuyuda kalır.</li>
+<li><strong>Hangi karotier boyutu benim projeme uygun?</strong> Hedef karot çapı, formasyon karakteri, sondaj derinliği ve makine kapasitesine göre seçilir. Ücretsiz danışmanlık için WhatsApp\'tan yazın.</li>
+</ul>
 <h3>DCDMA Standardı: BWL, NWL, HWL, PWL</h3>
 <p>Wireline sistemler DCDMA (Diamond Core Drill Manufacturers Association) standardında sınıflandırılır. Her ölçü farklı delik çapı ve karot çapına karşılık gelir:</p>
 <ul>
@@ -45,6 +51,12 @@ return [
     'DVD' => '
 <h2>Elmas ve Vidye (Widia) Sondaj Ürünleri</h2>
 <p>Elmas ve vidye ürünler, sondaj bit\'lerinin kayacı kesme kabiliyetini belirleyen kritik ekipmanlardır. Elmas ürünler sert kaya formasyonlarında (granit, bazalt, kuvarsit), vidye (tungsten karbür) ürünler orta sertlikte formasyonlarda ekonomik verim sağlar.</p>
+<h3>Kategoriye özel SSS</h3>
+<ul>
+<li><strong>Elmas mı vidye mi seçmeliyim?</strong> Kayaç sertliği kritik: sert kaya (granit, bazalt) elmas gerektirir; orta (kireçtaşı, marn) vidye ekonomik.</li>
+<li><strong>Emprenye bit kaç metre dayanır?</strong> Formasyona göre 50-300 metre. Matris sertliği uygunsa uzun ömür, aksi halde erken tükenir.</li>
+<li><strong>Re-set (yeniden elmas yerleştirme) mümkün mü?</strong> Yüzey elmas (surface set) bit\'lerde evet. Emprenye bit\'lerde re-set yok — aşındıkça yeni elmas yüzeye çıkar.</li>
+</ul>
 <h3>Emprenye Elmas Matkap (Impregnated Diamond Bit)</h3>
 <p>Emprenye bit\'lerde sentetik elmas partikülleri metal matrise homojen olarak gömülüdür. Aşındıkça yeni elmas yüzeyi ortaya çıkar — bit kendini bileyerek uzun ömürlü çalışır. Matris sertliği formasyona göre seçilir: yumuşak formasyonda sert matris, sert formasyonda yumuşak matris (elmas serbest kalabilsin).</p>
 <h3>Yüzey Elmas (Surface Set) Bit</h3>
@@ -58,6 +70,12 @@ return [
     'TMB' => '
 <h2>Sondaj Tijleri ve Muhafaza Boruları</h2>
 <p>Sondaj tijleri (drill rods) ve muhafaza boruları (casing), sondaj takımının bel kemiğidir. Doğru tij seçimi delik dikliği, torka dayanım ve operasyon güvenliği için kritiktir. Muhafaza boruları ise kuyu duvarının çökmesini önler ve yerin ilerleyen kısımlarında ilerlemeyi sürdürür.</p>
+<h3>Kategoriye özel SSS</h3>
+<ul>
+<li><strong>API IF ile API REG arasındaki fark nedir?</strong> IF = Internal Flush, yüksek çamur akışı için; REG = Regular, standart rotary bağlantı.</li>
+<li><strong>Tij ne sıklıkla değiştirilmeli?</strong> Kaliteli tij 2-4 yıl dayanır. Diş aşınması, gövde çatlağı ve düzgün olmayan yüzey değişim işaretidir.</li>
+<li><strong>Casing shoe ne işe yarar?</strong> Muhafaza borusu alt ucundaki sertleştirilmiş yakalayıcı — casing indirmeyi kolaylaştırır, alt kesimde kaya kırma.</li>
+</ul>
 <h3>Tij Bağlantı Standartları: API IF, API REG, DCDMA</h3>
 <p><strong>API IF (Internal Flush):</strong> Yüksek çamur akışı ve sıkı bağlantı gereken su/jeotermal sondajında yaygın. İç akış kesiti maksimum tutulur.</p>
 <p><strong>API REG (Regular):</strong> Genel amaçlı rotary sondajda standart bağlantı. Petrol ve maden sondajlarında geniş uygulama.</p>
@@ -139,6 +157,12 @@ return [
     'KDL' => '
 <h2>Kaya Delgi Ekipmanları (DTH ve Rotary)</h2>
 <p>Kaya delgi ekipmanları, sert ve orta sertlikteki formasyonlarda hızlı ve verimli delme sağlayan sistemlerdir. Down-the-hole (DTH) çekiç ve rotary sondaj bit\'leri bu kategorinin ana ürünleridir.</p>
+<h3>Kategoriye özel SSS</h3>
+<ul>
+<li><strong>DTH çekiç için ne kadar kompresör kapasitesi gerekli?</strong> Kural: her inç DTH çapı için minimum 100 cfm (ör: 6 inç → 600 cfm min).</li>
+<li><strong>DTH mi PDC mi tercih etmeliyim?</strong> Sert kayada DTH 3-5 kat hızlı; yumuşak/orta formasyonda PDC ekonomik. Kayaç UCS değerine bak.</li>
+<li><strong>Tricone bit ile PDC bit farkı?</strong> Tricone: üç konik dişli, sert kayada döner. PDC: sentetik elmas, yumuşak-orta formasyonda hızlı.</li>
+</ul>
 <h3>DTH Çekiç Sistemi</h3>
 <p>DTH çekiç, bit\'in hemen üstünde konumlanan pnömatik darbe mekanizmasıdır. Yüksek basınçlı hava ile çalışır — 12-30 bar tipik. Sert kaya formasyonlarında rotary sondaja göre 3-5 kat daha hızlı ilerleme sağlar.</p>
 <p><strong>DTH Delik Çapı:</strong> 90 mm - 305 mm arası. Küçük çaplarda (90-152 mm) su sondajı yaygın; büyük çaplarda (203-305 mm) inşaat kazıkları ve maden sondajı.</p>
