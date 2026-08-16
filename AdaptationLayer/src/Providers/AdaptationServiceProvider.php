@@ -132,7 +132,11 @@ class AdaptationServiceProvider extends ServiceProvider
             })->name('shop.asef.blog');
 
             // Dinamik XML sitemap — 813 ürün + 15+63 kategori + tüm statik sayfalar
-            Route::get('/sitemap.xml', function () {
+            // Path /asef-sitemap.xml kullanıyoruz çünkü Bagisto /sitemap.xml'i
+            // native olarak boş sitemapindex ile döndürüyor (admin panelde
+            // sitemap tanımlı olmadığı için). Google Search Console'a bu URL'i
+            // manuel ekle.
+            Route::get('/asef-sitemap.xml', function () {
                 $now = date('Y-m-d');
                 $urls = [];
                 $push = function (string $loc, string $lastmod = null, string $changefreq = 'weekly', string $priority = '0.5') use (&$urls, $now) {
@@ -196,11 +200,9 @@ class AdaptationServiceProvider extends ServiceProvider
                     ->header('Content-Type', 'application/xml; charset=utf-8');
             })->name('shop.asef.sitemap');
 
-            // robots.txt — sitemap'i işaretle
-            Route::get('/robots.txt', function () {
-                $txt = "User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /sepet\nDisallow: /checkout\n\nSitemap: " . url('sitemap.xml') . "\n";
-                return response($txt, 200)->header('Content-Type', 'text/plain; charset=utf-8');
-            })->name('shop.asef.robots');
+            // robots.txt Bagisto native tarafından handle ediliyor (Cloudflare
+            // ek olarak Content-Signal enjekte ediyor). Sitemap referansını
+            // manuel Google Search Console'a eklemek gerekli.
 
             // Photo gallery hub + sub-galleries (registered BEFORE /blog/{slug}).
             Route::get('/blog/fotograf', function () {
