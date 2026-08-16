@@ -587,8 +587,8 @@
             {{-- HERO --}}
             <section class="asef-hero">
                 <div class="asef-label-caps">SONDAJ EKİPMANLARI TEDARİKÇİSİ · 20 YILLIK TECRÜBE</div>
-                <h1>Sondaj Teknolojisinde<br>Geleceğe Ortak.</h1>
-                <p>Yirmi yılı aşkın saha tecrübemizle Türkiye genelinde <strong>sondaj ekipmanları</strong>, <strong>karotier</strong>, <strong>DTH çekiç</strong>, <strong>sondaj tijleri</strong> ve <strong>yedek parça</strong> tedariki sağlıyoruz — hızlı sevkiyat, teknik danışmanlık ve satış sonrası destekle.</p>
+                <h1>{!! nl2br(e(asef_setting('hero_title', 'Sondaj Teknolojisinde Geleceğe Ortak.'))) !!}</h1>
+                <p>{!! asef_setting('hero_subtitle', 'Yirmi yılı aşkın saha tecrübemizle Türkiye genelinde <strong>sondaj ekipmanları</strong>, <strong>karotier</strong>, <strong>DTH çekiç</strong>, <strong>sondaj tijleri</strong> ve <strong>yedek parça</strong> tedariki sağlıyoruz — hızlı sevkiyat, teknik danışmanlık ve satış sonrası destekle.') !!}</p>
                 <div class="asef-hero-ctas">
                     <a href="{{ $catalogUrl }}" class="asef-cta-pill primary">Ürünleri Keşfet</a>
                     <a href="{{ url('hakkimizda') }}" class="asef-cta-pill ghost">Daha Fazla Bilgi <span class="asef-cta-arrow">›</span></a>

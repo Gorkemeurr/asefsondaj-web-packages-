@@ -6,7 +6,10 @@
     "autoload": {
         "psr-4": {
             "AsefSondaj\\AdaptationLayer\\": "src/"
-        }
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
     },
     "extra": {
         "laravel": {
