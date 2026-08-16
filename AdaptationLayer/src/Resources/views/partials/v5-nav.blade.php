@@ -226,8 +226,10 @@
     .asef-mobile-drawer-wa:hover { background: #1EAF54; }
 </style>
 
-{{-- MOBILE DRAWER — hamburger tıklayınca sağdan slide-in --}}
-<div class="asef-mobile-drawer" id="asefMobileDrawer" role="dialog" aria-modal="true" aria-label="Menü">
+{{-- MOBILE DRAWER — hamburger tıklayınca sağdan slide-in.
+     Inline display:none guarantee (CSS render bug'a karşı bulletproof). --}}
+<div class="asef-mobile-drawer" id="asefMobileDrawer" role="dialog" aria-modal="true" aria-label="Menü"
+     style="display:none !important; position:fixed !important; inset:0 !important; z-index:10000 !important; background:rgba(15,17,20,0.5); backdrop-filter:blur(6px); justify-content:flex-end;">
     <div class="asef-mobile-drawer-panel">
         <div class="asef-mobile-drawer-head">
             <span>Menü</span>
@@ -264,8 +266,16 @@
         var drawer = document.getElementById('asefMobileDrawer');
         if (!drawer || drawer._asefBound) return;
         drawer._asefBound = true;
-        function open()  { drawer.classList.add('on'); document.body.style.overflow = 'hidden'; }
-        function close() { drawer.classList.remove('on'); document.body.style.overflow = ''; }
+        function open()  {
+            drawer.classList.add('on');
+            drawer.style.setProperty('display', 'flex', 'important');
+            document.body.style.overflow = 'hidden';
+        }
+        function close() {
+            drawer.classList.remove('on');
+            drawer.style.setProperty('display', 'none', 'important');
+            document.body.style.overflow = '';
+        }
         document.querySelectorAll('[data-asef-mobile-toggle]').forEach(function (b) {
             b.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); open(); });
         });
