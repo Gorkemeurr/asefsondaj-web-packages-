@@ -550,9 +550,9 @@
         .asef-chip {
             position: relative;
             display: inline-flex; align-items: center; gap: 6px;
-            padding: 11px 22px; border-radius: 999px;
-            font-size: 14px; font-weight: 600; letter-spacing: -0.005em;
-            border: 1.5px solid var(--primary);
+            padding: 8px 16px; border-radius: 999px;
+            font-size: 13px; font-weight: 500; letter-spacing: -0.005em;
+            border: 1px solid var(--primary);
             background: #FFFFFF;
             color: var(--on-surface);
             transition: transform .2s cubic-bezier(0.16, 1, 0.3, 1), border-color .2s, color .2s, background .2s, box-shadow .22s;

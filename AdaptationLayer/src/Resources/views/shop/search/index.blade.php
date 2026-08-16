@@ -105,19 +105,22 @@
     .asef-chips-scroll, .asef-chips-alt { scrollbar-width: none; }
     .asef-chips-scroll .asef-chip, .asef-chips-alt .asef-chip { scroll-snap-align: start; flex-shrink: 0; }
 
-    /* Arrow buttons — chip'lerin YANINDA, üstüne binmez */
+    /* Arrow buttons — küçük + soft */
     .asef-scroll-arrow {
         flex-shrink: 0;
-        width: 36px; height: 36px; border-radius: 50%;
-        background: #FFFFFF; border: 1.5px solid var(--primary);
-        color: var(--primary); cursor: pointer;
+        width: 30px; height: 30px; border-radius: 50%;
+        background: #FFFFFF; border: 1px solid #D2D2D7;
+        color: var(--secondary); cursor: pointer;
         display: inline-flex; align-items: center; justify-content: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        transition: background .15s, color .15s, transform .15s, opacity .2s;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+        transition: background .15s, color .15s, transform .15s, opacity .2s, border-color .15s;
     }
-    .asef-scroll-arrow:hover:not(:disabled) { background: var(--primary); color: #FFFFFF; transform: scale(1.08); }
-    .asef-scroll-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
-    .asef-scroll-arrow svg { width: 16px; height: 16px; }
+    .asef-scroll-arrow:hover:not(:disabled) {
+        background: var(--primary); color: #FFFFFF; border-color: var(--primary);
+        transform: scale(1.08);
+    }
+    .asef-scroll-arrow:disabled { opacity: 0.25; cursor: not-allowed; }
+    .asef-scroll-arrow svg { width: 14px; height: 14px; }
     .asef-chips-alt {
         max-width: 1024px; margin: 0 auto 24px; padding: 0 20px;
         display: flex; gap: 8px; overflow-x: auto; flex-wrap: nowrap;
