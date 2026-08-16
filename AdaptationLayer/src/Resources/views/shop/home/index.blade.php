@@ -516,7 +516,7 @@
             {{-- HERO IMAGE --}}
             <div class="asef-hero-image-wrap">
                 <div class="asef-hero-image">
-                    <img src="{{ $asefUrl('asef-hero-rig.jpg') }}" alt="Asef Sondaj sahada" loading="eager" />
+                    <img src="{{ $asefUrl('asef-hero-rig.jpg') }}" alt="Asef Sondaj sahada çalışan sondaj makinesi — Türkiye geneli sondaj ekipmanı tedariki, 20 yıllık saha tecrübesi" loading="eager" fetchpriority="high" width="1200" height="800" />
                 </div>
             </div>
 
@@ -543,7 +543,7 @@
                     @endphp
                     @foreach ($homeCatList as $_kat)
                         <a href="{{ $catalogUrl }}?ana={{ $_kat->code }}" class="asef-cat-card">
-                            <div class="asef-cat-media"><img src="{{ $asefUrl($_kat->image ?: 'asef-hero-equipment.jpg') }}" alt="{{ $_kat->name }}" loading="lazy" /></div>
+                            <div class="asef-cat-media"><img src="{{ $asefUrl($_kat->image ?: 'asef-hero-equipment.jpg') }}" alt="{{ $_kat->name }} kategorisi — sondaj ekipmanları | Asef Sondaj" loading="lazy" width="400" height="300" /></div>
                             <div class="asef-cat-body">
                                 <div class="asef-cat-title">{{ $_kat->name }}</div>
                                 <div class="asef-cat-meta">{{ $_kat->cnt }} ürün</div>
@@ -580,7 +580,7 @@
                     @endphp
                     @foreach ($featured as $_f)
                         <a href="{{ route('shop.asef.product', ['sku' => $_f->sku]) }}" class="asef-prod-card">
-                            <div class="asef-prod-media"><img src="{{ url('asef/' . ($_f->image ?: 'asef-hero-equipment.jpg')) }}" alt="{{ $_f->name }}" loading="lazy" /></div>
+                            <div class="asef-prod-media"><img src="{{ url('asef/' . ($_f->image ?: 'asef-hero-equipment.jpg')) }}" alt="{{ $_f->sku }} — {{ $_f->name }} sondaj ekipmanı | Asef Sondaj" loading="lazy" width="400" height="300" /></div>
                             <div class="asef-prod-body">
                                 <div class="asef-prod-sku">{{ $_f->sku }}</div>
                                 <div class="asef-prod-title">{{ $_f->name }}</div>

@@ -75,6 +75,12 @@
     if ($altCode) {
         $tmp = AsefAltKategori::where('code', $altCode)->first();
         $activeAltName = $tmp ? $tmp->name : null;
+        // Alt kategori seçiliyse ama ana filter gelmediyse, alt'ın parent'ından
+        // ana adını yakala (SEO başlıklarında "{Alt} | {Ana}" göstermek için)
+        if ($tmp && ! $activeAnaName && $tmp->parent_code) {
+            $parentAna = $anaKategoriler->firstWhere('code', $tmp->parent_code);
+            if ($parentAna) $activeAnaName = $parentAna->name;
+        }
     }
 
     // === DYNAMIC SEO — kategori/arama filtre aktif ise ===
@@ -537,7 +543,7 @@
                         @endphp
                         <div class="asef-search-card">
                             <a href="{{ $detailUrl }}" class="asef-search-media" aria-label="{{ $product->name }} detay" style="display:block;">
-                                <img src="{{ $imgSrc }}" alt="{{ $product->name }}" loading="lazy" />
+                                <img src="{{ $imgSrc }}" alt="{{ $product->sku }} — {{ $product->name }}{{ $catLabel ? ' | ' . $catLabel : '' }} sondaj ekipmanı" loading="lazy" width="400" height="300" />
                                 <span class="asef-search-sku">{{ $product->sku }}</span>
                             </a>
                             <a href="{{ $detailUrl }}" class="asef-search-body" style="color:inherit;">
