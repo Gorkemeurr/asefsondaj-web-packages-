@@ -61,6 +61,7 @@
                 <ul>
                     <li><a href="{{ url('blog') }}">Blog Ana Sayfa</a></li>
                     <li><a href="{{ url('tum-bloglar') }}">Tüm Yazılar</a></li>
+                    <li><a href="{{ url('sondaj-sozlugu') }}">Sondaj Sözlüğü</a></li>
                     <li><a href="{{ url('blog/fotograf') }}">Fotoğraf Galerisi</a></li>
                     <li><a href="{{ url('blog/video') }}">Video Galerisi</a></li>
                     <li><a href="{{ url('sss') }}">Sık Sorulan Sorular</a></li>

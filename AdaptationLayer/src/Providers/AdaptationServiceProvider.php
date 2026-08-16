@@ -157,8 +157,12 @@ class AdaptationServiceProvider extends ServiceProvider
                 // Ana sayfa
                 $push(url('/'), $now, 'daily', '1.0');
                 // Statik kurumsal
-                foreach (['hakkimizda','kurumsal','sondaj-makinalarimiz','hizmetlerimiz','referanslar','sss','iletisim','destek'] as $slug) {
+                foreach (['hakkimizda','kurumsal','sondaj-makinalarimiz','hizmetlerimiz','referanslar','sss','iletisim','destek','sondaj-sozlugu'] as $slug) {
                     $push(url($slug), $now, 'monthly', '0.7');
+                }
+                // Blog kategori landing (4 kategori)
+                foreach (['ekipman-rehberi','vaka-calismalari','sektor-trendleri','teknik-ipuclari'] as $cat) {
+                    $push(url('blog/kategori/' . $cat), $now, 'weekly', '0.7');
                 }
                 // Blog + galeri
                 foreach (['blog','tum-bloglar','blog/fotograf','blog/video',
@@ -242,9 +246,27 @@ class AdaptationServiceProvider extends ServiceProvider
                 return view('asef-adaptation::galeri-video', ['slug' => 'teknik-anlatimlar']);
             })->name('shop.asef.gallery.teknik-video');
 
+            // Blog kategori landing (BEFORE /blog/{slug} — 2 segment wins)
+            Route::get('/blog/kategori/{cat}', function (string $cat) {
+                return view('asef-adaptation::blog-kategori', ['cat' => $cat]);
+            })->name('shop.asef.blog-category')->where('cat', '[a-z0-9\-]+');
+
             Route::get('/blog/{slug}', function (string $slug) {
                 return view('asef-adaptation::blog-detay', ['slug' => $slug]);
             })->name('shop.asef.blog-post')->where('slug', '[a-z0-9\-]+');
+
+            // llms.txt — AI arama motorlarına (ChatGPT, Perplexity, Claude) site kılavuzu
+            Route::get('/llms.txt', function () {
+                return response(view('asef-adaptation::llms-txt')->render(), 200, [
+                    'Content-Type' => 'text/plain; charset=utf-8',
+                    'Cache-Control' => 'public, max-age=3600',
+                ]);
+            })->name('shop.asef.llms-txt');
+
+            // Sondaj sözlüğü — 60+ sektör terimi
+            Route::get('/sondaj-sozlugu', function () {
+                return view('asef-adaptation::sondaj-sozlugu');
+            })->name('shop.asef.glossary');
 
             Route::get('/iletisim', function () {
                 return view('asef-adaptation::iletisim');

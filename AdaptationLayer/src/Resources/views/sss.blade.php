@@ -37,13 +37,82 @@
             'q' => 'Farklı marka/model ekipman tedarik edebilir misiniz?',
             'a' => 'Evet. Katalogda olmayan ancak ihtiyacınız olan ekipmanları da tedarik ediyoruz. Marka, model ve teknik özellikleri WhatsApp\'tan iletmeniz yeterli — biz araştırıp size dönüyoruz.',
         ],
+        [
+            'q' => 'HQ, NQ ve PQ karotier standartları arasındaki fark nedir?',
+            'a' => 'DCDMA (Diamond Core Drill Manufacturers Association) standartlarıdır. NQ (75.7 mm delik / 47.6 mm karot çapı), HQ (96 mm / 63.5 mm) ve PQ (122.6 mm / 85 mm) — sırayla daha büyük karot çapı ve daha derin sondaj kapasitesi anlamına gelir. Formasyon türü ve istenilen karot çapına göre seçilir.',
+        ],
+        [
+            'q' => 'DTH çekiç hangi delik çaplarında kullanılır?',
+            'a' => 'Down-the-hole (DTH) çekiçler genellikle 90 mm ile 305 mm arasındaki delik çaplarında kullanılır. Sert kaya formasyonlarında hem hız hem verim açısından rotary sondajdan üstündür. Kaya sertliği + delik çapı kombinasyonuna göre uygun DTH modeli önerilir.',
+        ],
+        [
+            'q' => 'Su sondajı ile jeotermal sondaj ekipmanı arasında fark var mı?',
+            'a' => 'Evet. Su sondajı genelde 30-200 metre derinliğe, jeotermal sondaj ise 500-3000 metre + yüksek sıcaklık ortamına inebilir. Jeotermal için özel yüksek sıcaklık dayanımlı tij, çamur ve sızdırmazlık ekipmanı gerekir. Detayları operasyon bilgilerinizle birlikte planlıyoruz.',
+        ],
+        [
+            'q' => 'API IF, API REG ve DCDMA bağlantı standartları nedir?',
+            'a' => 'Sondaj tijlerinde kullanılan diş standartlarıdır. API IF (Internal Flush) genelde su/jeotermal sondaj tijlerinde, API REG (Regular) rotary sondajda, DCDMA ise karot sondajında yaygındır. Ekipman değişimi yapılacaksa mutlaka mevcut bağlantı standardı ile uyumlu ürün seçilmelidir.',
+        ],
+        [
+            'q' => 'Sondaj tijleri ne kadar dayanıklı, ne sıklıkla değişmeli?',
+            'a' => 'Kaliteli sondaj tiji doğru kullanımla 2-4 yıl dayanır. Ancak korozyon, aşırı torque, yanlış bağlantı ve formasyon aşındırıcılığı ömrü kısaltır. Diş aşınması, gövde çatlağı ve düzgün olmayan yüzeyler değişim işaretidir — periyodik kontrol öneririz.',
+        ],
+        [
+            'q' => 'Sondaj matkap ucu (bit) seçimi nasıl yapılır?',
+            'a' => 'Matkap ucu seçimi 3 faktöre bağlıdır: formasyon tipi (yumuşak/orta/sert), delik çapı ve çalışma basıncı. Yumuşak formasyonda PDC bit, sert kaya için tricone veya karbür button bit tercih edilir. Doğru bit seçimi hem sondaj hızını hem bit ömrünü ciddi artırır.',
+        ],
+        [
+            'q' => 'Çamur pompası (mud pump) kapasitesi nasıl seçilir?',
+            'a' => 'Çamur pompası seçiminde 3 parametre önemli: gerekli basınç (bar), debi (L/min) ve tijli-formasyon kombinasyonu için minimum çamur hızı. Yanlış boyutlandırma pompayı aşırı yorar, verimi düşürür. Delik çapı + derinlik + tij ölçünüzü paylaşırsanız hesaplayıp öneririz.',
+        ],
+        [
+            'q' => 'Yerinde bakım veya servis desteği veriyor musunuz?',
+            'a' => 'Bursa merkez + civar iller için yerinde teknik destek verebiliyoruz. Uzak iller için WhatsApp/telefonla adım-adım servis rehberliği + gerekli parçanın hızlı sevkiyatı çözüm sunuyoruz.',
+        ],
+        [
+            'q' => 'Ödeme koşulları nelerdir?',
+            'a' => 'Havale/EFT, çek ve kurumsal siparişlerde açık hesap yöntemleriyle çalışıyoruz. Kredi kartı ile online ödeme şu an sitede yok — teklif aşamasında birlikte en uygun ödeme planını belirliyoruz.',
+        ],
+        [
+            'q' => 'İhracat / yurt dışı gönderim yapıyor musunuz?',
+            'a' => 'Evet. Türk cumhuriyetleri, Balkanlar ve Ortadoğu\'ya sondaj ekipmanı ihracatı sağlıyoruz. Fatura, gümrük evrakı ve nakliye organizasyonu ile ilgili detayları teklifle birlikte iletiyoruz.',
+        ],
+        [
+            'q' => 'Kullanılmış / ikinci el ekipman satıyor musunuz?',
+            'a' => 'Zaman zaman revizyondan geçmiş, garantili ikinci el ekipmanlarımız olabiliyor. Stok durumu değişkendir — WhatsApp\'tan bilgi alabilirsiniz.',
+        ],
+        [
+            'q' => 'Katalogda hangi kategoriler var?',
+            'a' => '15 ana kategori altında 63 alt kategori ve 813 ürün bulunuyor: Karotier komple sistemler (BWL/HQ/NQ/PQ), DTH çekiç ve bitler, sondaj tijleri (API IF, API REG, DCDMA), matkap uçları, elmas ve vidye ürünler, pörtkron sistemleri, kompresör bağlantıları, çamur pompaları ve yedek parçalar.',
+        ],
     ];
 @endphp
 
 @push('meta')
-    <meta name="title" content="Sıkça Sorulan Sorular — Asef Sondaj" />
-    <meta name="description" content="Asef Sondaj ile ilgili sıkça sorulan sorular. Fiyat, sipariş, teslimat, yedek parça, teknik danışmanlık ve garanti hakkında bilgi." />
+    <meta name="title" content="Sıkça Sorulan Sorular — Sondaj Ekipmanları, Karotier, DTH Çekiç | Asef Sondaj" />
+    <meta name="description" content="Sondaj ekipmanları hakkında {{ count($faqs) }} sıkça sorulan soru: HQ/NQ/PQ karotier farkı, DTH çekiç seçimi, API IF/REG/DCDMA bağlantı standartları, çamur pompası kapasitesi, tij dayanıklılığı, fiyat, teslimat, yedek parça." />
+    <meta name="keywords" content="sondaj ekipmanları SSS, karotier standartları, DTH çekiç seçimi, API bağlantı standardı, sondaj tiji, matkap ucu seçimi, çamur pompası, sondaj yedek parça" />
+    <link rel="canonical" href="{{ url('sss') }}" />
     <meta name="theme-color" content="#ffffff" />
+
+    {{-- FAQPage JSON-LD — Google zengin sonuçlar (accordion) --}}
+    @php
+        $faqJsonLd = [
+            '@context'   => 'https://schema.org',
+            '@type'      => 'FAQPage',
+            'mainEntity' => array_map(function ($f) {
+                return [
+                    '@type'          => 'Question',
+                    'name'           => $f['q'],
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => $f['a'],
+                    ],
+                ];
+            }, $faqs),
+        ];
+    @endphp
+    <script type="application/ld+json">{!! json_encode($faqJsonLd, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')
