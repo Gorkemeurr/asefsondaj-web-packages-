@@ -67,6 +67,9 @@
     <meta name="keywords" content="{{ $product->name }}, {{ $product->sku }}, {{ $altName }}, {{ $anaName }}, sondaj ekipmanı, sondaj yedek parça, {{ $ebatSistem }}" />
     <link rel="canonical" href="{{ url('urun/' . ($product->slug ?: $product->sku)) }}" />
 
+    {{-- LCP boost: ürün fotoğrafı preload (hero image ürün sayfasında ürün resmi) --}}
+    <link rel="preload" as="image" href="{{ $imgSrc }}" fetchpriority="high" />
+
     {{-- Product structured data (Google rich card) — fiyat/stok BİLİNÇLİ olarak yok --}}
     @php
         $productJsonLd = [

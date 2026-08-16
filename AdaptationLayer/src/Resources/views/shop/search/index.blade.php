@@ -133,6 +133,12 @@
     <meta name="keywords" content="sondaj ekipmanları katalog, karotiyer fiyat teklifi, DTH çekiç modelleri, sondaj tijleri, sondaj matkap ucu, pörtkron, sondaj yedek parça{{ $activeAnaName ? ', ' . $activeAnaName : '' }}{{ $activeAltName ? ', ' . $activeAltName : '' }}" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="canonical" href="{{ $canonicalUrl }}" />
+
+    {{-- LCP boost: sonuç sayfası ilk ürün görselini preload (grid en üst kart) --}}
+    @php $firstProductForPreload = $products->first(); @endphp
+    @if ($firstProductForPreload)
+        <link rel="preload" as="image" href="{{ $imgUrl($firstProductForPreload) }}" fetchpriority="high" />
+    @endif
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')
