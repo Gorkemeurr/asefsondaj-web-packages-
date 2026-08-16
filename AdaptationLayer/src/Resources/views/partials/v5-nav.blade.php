@@ -131,10 +131,28 @@
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                 <span class="asef-badge" data-asef-cart-badge style="display: none;"></span>
             </a>
-            <a href="{{ $waLink }}" class="asef-nav-cta" target="_blank" rel="noopener"
+            {{-- Desktop only — mobile'de JS + media query ile gizli --}}
+            <a href="{{ $waLink }}" class="asef-nav-cta asef-desktop-only" target="_blank" rel="noopener"
+               id="asefNavContact"
                style="background:#0066CC !important; color:#FFFFFF !important; text-decoration:none !important;">
                 <span style="color:#FFFFFF !important; -webkit-text-fill-color:#FFFFFF !important;">İletişim</span>
             </a>
+            <script>
+            (function () {
+                function hideOnMobile() {
+                    var el = document.getElementById('asefNavContact');
+                    if (!el) return;
+                    if (window.innerWidth < 900) {
+                        el.style.setProperty('display', 'none', 'important');
+                    } else {
+                        el.style.setProperty('display', 'inline-flex', 'important');
+                    }
+                }
+                if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', hideOnMobile); }
+                else { hideOnMobile(); }
+                window.addEventListener('resize', hideOnMobile);
+            })();
+            </script>
             <script>
             (function () {
                 function forceWhite() {
@@ -163,7 +181,7 @@
 {{-- Force fresh reload — deploy version bump ile tarayıcı cache'i bir kez bypass --}}
 <script>
 (function () {
-    var VERSION = '20260816n-nav-align';
+    var VERSION = '20260816o-mobile-cta-hide';
     try {
         if (window.sessionStorage && sessionStorage.getItem('asef_ver') !== VERSION) {
             sessionStorage.setItem('asef_ver', VERSION);
