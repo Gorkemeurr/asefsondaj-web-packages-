@@ -1,6 +1,6 @@
 {{-- Tüm Bloglar (arşiv) — /tum-bloglar --}}
 @php
-    $waLink       = 'https://wa.me/905320542975?text=' . rawurlencode('Merhaba, blog içeriği hakkında bilgi almak istiyorum.');
+    $waLink       = asef_wa_link('Merhaba, blog içeriği hakkında bilgi almak istiyorum.');
     $catalogUrl   = route('shop.search.index');
     $asefUrl      = static fn (string $rel): string => url('asef/' . ltrim($rel, '/'));
 

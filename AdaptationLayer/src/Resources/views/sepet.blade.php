@@ -6,7 +6,7 @@
      ============================================================ --}}
 @php
     $channel      = core()->getCurrentChannel();
-    $waLink       = 'https://wa.me/905320542975?text=' . rawurlencode('Merhaba, Asef Sondaj ürünleriniz hakkında bilgi ve teklif almak istiyorum.');
+    $waLink       = asef_wa_link('Merhaba, Asef Sondaj ürünleriniz hakkında bilgi ve teklif almak istiyorum.');
     $catalogUrl   = route('shop.search.index');
     $asefUrl      = static fn (string $rel): string => url('asef/' . ltrim($rel, '/'));
 

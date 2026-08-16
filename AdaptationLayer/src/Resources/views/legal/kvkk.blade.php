@@ -1,6 +1,6 @@
 {{-- KVKK Aydınlatma Metni — /kvkk --}}
 @php
-    $waLink = 'https://wa.me/905320542975?text=' . rawurlencode('Merhaba, KVKK ile ilgili başvuruda bulunmak istiyorum.');
+    $waLink = asef_wa_link('Merhaba, KVKK ile ilgili başvuruda bulunmak istiyorum.');
     $catalogUrl = route('shop.search.index');
     $asefUrl = static fn (string $rel): string => url('asef/' . ltrim($rel, '/'));
 @endphp

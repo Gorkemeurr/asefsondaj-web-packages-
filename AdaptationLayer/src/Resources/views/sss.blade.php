@@ -1,6 +1,6 @@
 {{-- SSS (Sıkça Sorulan Sorular) — /sss --}}
 @php
-    $waLink     = 'https://wa.me/905320542975?text=' . rawurlencode('Merhaba, sormak istediğim bir konu var.');
+    $waLink     = asef_wa_link('Merhaba, sormak istediğim bir konu var.');
     $catalogUrl = route('shop.search.index');
     $asefUrl    = static fn (string $rel): string => url('asef/' . ltrim($rel, '/'));
 

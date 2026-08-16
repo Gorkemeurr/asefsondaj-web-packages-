@@ -2,7 +2,7 @@
      Parent scope: $lpTitle, $lpLede, $lpUpdatedAt, $lpToc (array of [anchor,label]),
                     $lpSections (array of [anchor, title, html]), $lpKind (label). --}}
 @php
-    $waLink     = 'https://wa.me/905320542975?text=' . rawurlencode('Merhaba, ' . $lpTitle . ' hakkında bilgi almak istiyorum.');
+    $waLink     = asef_wa_link('Merhaba, ' . $lpTitle . ' hakkında bilgi almak istiyorum.');
     $catalogUrl = route('shop.search.index');
 @endphp
 

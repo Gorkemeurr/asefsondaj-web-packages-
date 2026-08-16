@@ -1,6 +1,6 @@
 {{-- Blog Kategori Landing — /blog/kategori/{cat} --}}
 @php
-    $waLink     = 'https://wa.me/905320542975?text=' . rawurlencode('Merhaba, blog kategorinizi inceledim, ürünleriniz hakkında bilgi almak istiyorum.');
+    $waLink     = asef_wa_link('Merhaba, blog kategorinizi inceledim, ürünleriniz hakkında bilgi almak istiyorum.');
     $catalogUrl = route('shop.search.index');
     $asefUrl    = static fn (string $rel): string => url('asef/' . ltrim($rel, '/'));
 

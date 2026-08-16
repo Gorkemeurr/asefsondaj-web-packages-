@@ -1,6 +1,6 @@
 {{-- İletişim — /iletisim --}}
 @php
-    $waLink = 'https://wa.me/905320542975?text=' . rawurlencode('Merhaba, iletişim sayfasından bilgi almak istiyorum.');
+    $waLink = asef_wa_link('Merhaba, iletişim sayfasından bilgi almak istiyorum.');
     $catalogUrl = route('shop.search.index');
     $asefUrl = static fn (string $rel): string => url('asef/' . ltrim($rel, '/'));
 @endphp

@@ -1,6 +1,6 @@
 {{-- Sondaj Sözlüğü — /sondaj-sozlugu | 60+ sektör terimi --}}
 @php
-    $waLink     = 'https://wa.me/905320542975?text=' . rawurlencode('Merhaba, sondaj sözlüğünde bahsedilen bir konuda uzman görüşü almak istiyorum.');
+    $waLink     = asef_wa_link('Merhaba, sondaj sözlüğünde bahsedilen bir konuda uzman görüşü almak istiyorum.');
     $catalogUrl = route('shop.search.index');
 
     // Öncelik: DB (admin panelden yönetilenler). Boş ise Blade fallback array.

@@ -1,6 +1,6 @@
 {{-- Kurumsal Landing — /kurumsal --}}
 @php
-    $waLink       = 'https://wa.me/905320542975?text=' . rawurlencode('Merhaba, kurumsal bilgi almak istiyorum.');
+    $waLink       = asef_wa_link('Merhaba, kurumsal bilgi almak istiyorum.');
     $catalogUrl   = route('shop.search.index');
     $asefUrl      = static fn (string $rel): string => url('asef/' . ltrim($rel, '/'));
 

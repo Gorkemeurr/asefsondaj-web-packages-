@@ -1,6 +1,6 @@
 {{-- Hizmetlerimiz — /hizmetlerimiz --}}
 @php
-    $waLink = 'https://wa.me/905320542975?text=' . rawurlencode('Merhaba, hizmetleriniz hakkında bilgi almak istiyorum.');
+    $waLink = asef_wa_link('Merhaba, hizmetleriniz hakkında bilgi almak istiyorum.');
     $catalogUrl = route('shop.search.index');
     $asefUrl = static fn (string $rel): string => url('asef/' . ltrim($rel, '/'));
 

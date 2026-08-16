@@ -1,6 +1,6 @@
 {{-- Blog yazı detay — /blog/{slug} --}}
 @php
-    $waLink       = 'https://wa.me/905320542975?text=' . rawurlencode('Merhaba, blog yazısı hakkında bilgi almak istiyorum.');
+    $waLink       = asef_wa_link('Merhaba, blog yazısı hakkında bilgi almak istiyorum.');
     $catalogUrl   = route('shop.search.index');
     $asefUrl      = static fn (string $rel): string => url('asef/' . ltrim($rel, '/'));
 
@@ -612,7 +612,7 @@
                                 <span>🏢 Hakkımızda — 20 yıllık saha tecrübesi</span>
                                 <span style="color:var(--link-blue);">›</span>
                             </a>
-                            <a href="https://wa.me/905320542975?text={{ rawurlencode('Merhaba, blog yazınızı okudum, ürünleriniz hakkında bilgi almak istiyorum.') }}" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:#0066CC; border-radius:12px; color:#fff; text-decoration:none; font-size:15px; font-weight:500;">
+                            <a href="{{ asef_wa_link('Merhaba, blog yazınızı okudum, ürünleriniz hakkında bilgi almak istiyorum.') }}" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:#0066CC; border-radius:12px; color:#fff; text-decoration:none; font-size:15px; font-weight:500;">
                                 <span>💬 WhatsApp'tan Uzman Danışmanlığı Al</span>
                                 <span>›</span>
                             </a>

@@ -6,7 +6,7 @@
 @php
     use AsefSondaj\AdaptationLayer\Models\AsefProduct;
 
-    $waLink       = 'https://wa.me/905320542975?text=' . rawurlencode('Merhaba, Asef Sondaj ürünleriniz hakkında bilgi ve teklif almak istiyorum.');
+    $waLink       = asef_wa_link('Merhaba, Asef Sondaj ürünleriniz hakkında bilgi ve teklif almak istiyorum.');
     $catalogUrl   = route('shop.search.index');
 
     $sku = strtoupper(trim($sku ?? ''));
@@ -216,7 +216,7 @@
                                 if ($techParts) {
                                     $productDescHtml .= '<p><strong>Teknik özellikler:</strong> ' . e(implode(', ', $techParts)) . '.</p>';
                                 }
-                                $productDescHtml .= '<p><strong>Sevkiyat ve destek:</strong> Türkiye geneli 81 ilde 2-5 iş günü sevkiyat. Teknik danışmanlık ve satış sonrası destek dahil. Teklif için WhatsApp: <a href="https://wa.me/905320542975">0532 054 29 75</a>.</p>';
+                                $productDescHtml .= '<p><strong>Sevkiyat ve destek:</strong> Türkiye geneli 81 ilde 2-5 iş günü sevkiyat. Teknik danışmanlık ve satış sonrası destek dahil. Teklif için WhatsApp: <a href="' . asef_wa_link() . '">' . e(asef_setting('iletisim_telefon', '+90 532 054 29 75')) . '</a>.</p>';
                             }
                         @endphp
                         <div class="asef-pd-desc">
