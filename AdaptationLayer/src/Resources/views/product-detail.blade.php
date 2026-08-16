@@ -49,7 +49,53 @@
 @push('meta')
     <meta name="title" content="{{ $product->name }} ({{ $product->sku }}) — Asef Sondaj" />
     <meta name="description" content="{{ e($pageDesc) }}" />
-    <meta name="theme-color" content="#ffffff" />
+
+    {{-- Product structured data — Google rich result için kritik --}}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": {!! json_encode($product->name, JSON_UNESCAPED_UNICODE) !!},
+      "sku": {!! json_encode($product->sku) !!},
+      "mpn": {!! json_encode($product->sku) !!},
+      "description": {!! json_encode($pageDesc, JSON_UNESCAPED_UNICODE) !!},
+      "image": {!! json_encode([$imgSrc]) !!},
+      "brand": { "@type": "Brand", "name": {!! json_encode($product->brand, JSON_UNESCAPED_UNICODE) !!} },
+      "manufacturer": { "@type": "Organization", "name": "Asef Sondaj" },
+      @if ($altKat)"category": {!! json_encode($altKat->name, JSON_UNESCAPED_UNICODE) !!},@endif
+      "offers": {
+        "@type": "Offer",
+        "url": {!! json_encode(url()->current()) !!},
+        "priceCurrency": "TRY",
+        "price": "0",
+        "availability": "https://schema.org/InStock",
+        "priceValidUntil": {!! json_encode(date('Y-12-31')) !!},
+        "seller": { "@type": "Organization", "name": "Asef Sondaj" }
+      }
+    }
+    </script>
+
+    {{-- Breadcrumb JSON-LD --}}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": {!! json_encode(url('/')) !!} },
+        { "@type": "ListItem", "position": 2, "name": "Ürünler", "item": {!! json_encode(route('shop.search.index')) !!} }@if ($anaKat),
+        { "@type": "ListItem", "position": 3, "name": {!! json_encode($anaKat->name, JSON_UNESCAPED_UNICODE) !!}, "item": {!! json_encode(route('shop.search.index', ['ana' => $anaKat->code])) !!} }@endif @if ($altKat),
+        { "@type": "ListItem", "position": 4, "name": {!! json_encode($altKat->name, JSON_UNESCAPED_UNICODE) !!}, "item": {!! json_encode(route('shop.search.index', ['ana' => optional($anaKat)->code, 'alt' => $altKat->code])) !!} }@endif,
+        { "@type": "ListItem", "position": 5, "name": {!! json_encode($product->name, JSON_UNESCAPED_UNICODE) !!}, "item": {!! json_encode(url()->current()) !!} }
+      ]
+    }
+    </script>
+
+    @php
+        $seoTitle = $product->name . ' (' . $product->sku . ') — Asef Sondaj';
+        $seoDescription = $pageDesc;
+        $seoImage = $imgSrc;
+        $seoType = 'product';
+    @endphp
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')
