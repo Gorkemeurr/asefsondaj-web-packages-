@@ -15,6 +15,7 @@
     <meta name="title" content="Asef Sondaj — Sondaj Ekipmanları, Karotier, DTH Çekiç ve Yedek Parça | Türkiye Geneli Tedarik" />
     <meta name="description" content="Türkiye geneli sondaj ekipmanları tedariki: karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve yedek parça. 20 yıllık saha tecrübesi, hızlı sevkiyat, teknik danışmanlık. Bursa merkezli — 81 ilde hizmet." />
     <meta name="keywords" content="sondaj ekipmanları, sondaj makinesi yedek parça, karotier, DTH çekiç, sondaj tijleri, sondaj matkap uçları, pörtkron, sondaj kompresörü, karot alma ekipmanı, Türkiye sondaj tedarikçisi, Bursa sondaj" />
+    <link rel="canonical" href="{{ url('/') }}" />
 
     {{-- LCP boost: hero image preload --}}
     <link rel="preload" as="image" href="{{ url('asef/asef-hero-rig.jpg') }}" fetchpriority="high" />
@@ -605,8 +606,8 @@
             <section id="urunler" class="asef-section">
                 <div class="asef-section-head">
                     <div class="asef-section-head-left">
-                        <span class="asef-label-caps">ÜRÜN GRUPLARI</span>
-                        <h2>Kataloğu keşfet.</h2>
+                        <span class="asef-label-caps">SONDAJ EKİPMANLARI KATALOĞU</span>
+                        <h2>Ürün gruplarımız.</h2>
                         <p style="font-size:15px; color:var(--secondary); line-height:1.6; margin-top:8px; max-width:600px;">15 ana kategori, 63 alt kategori, 813 ürün — karotier, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve sondaj makinesi yedek parçaları tek noktadan.</p>
                     </div>
                     <a href="{{ $catalogUrl }}" class="asef-section-link">Tümünü gör <span>›</span></a>

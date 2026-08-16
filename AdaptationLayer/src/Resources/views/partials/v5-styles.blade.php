@@ -13,7 +13,10 @@
     <meta name="theme-color" content="#0066CC" />
 
     {{-- Canonical + Open Graph + Twitter Card — SEO temel katmanı --}}
-    <link rel="canonical" href="{{ url()->current() }}" />
+    {{-- Canonical: her sayfa kendi canonical'ını @push('meta') içinde tanımlar.
+         Bu partial artık default canonical basmaz (duplicate canonical Google için
+         karışıklık yaratır — uzman önerisi). Canonical eklemeyen sayfalarda tarayıcı
+         URL kendisi self-canonical kabul edilir. --}}
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="author" content="Asef Sondaj" />
     <meta name="publisher" content="Asef Sondaj" />
