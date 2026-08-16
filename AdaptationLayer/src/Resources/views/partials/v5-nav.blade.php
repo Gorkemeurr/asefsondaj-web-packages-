@@ -202,6 +202,10 @@
     /* Mobil'de nav actions (arama + sepet) HEP görünür */
     .asef-nav-actions { display: flex !important; align-items: center; gap: 4px; }
     @media (min-width: 900px) { .asef-nav-actions { gap: 8px; } }
+    /* Mobilde actions sağa yaslı — hamburger'in hemen solunda hizalı */
+    @media (max-width: 899px) {
+        .asef-nav-actions { margin-left: auto !important; }
+    }
     /* İletişim CTA mobil'de gizli, masaüstünde görünür */
     .asef-nav-cta { display: none !important; }
     @media (min-width: 900px) { .asef-nav-cta { display: inline-flex !important; } }
