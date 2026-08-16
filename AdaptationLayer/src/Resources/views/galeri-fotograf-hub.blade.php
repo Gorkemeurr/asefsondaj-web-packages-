@@ -93,7 +93,7 @@
                         <a href="{{ $a['url'] }}" class="gh-album">
                             <div class="gh-album-media">
                                 <span class="gh-album-badge">{{ $a['count'] }}</span>
-                                <img src="{{ $asefUrl($a['img']) }}" alt="{{ $a['title'] }}" loading="lazy">
+                                <img src="{{ $asefUrl($a['img']) }}" alt="{{ $a['title'] }}" loading="lazy" width="600" height="400">
                             </div>
                             <div class="gh-album-body">
                                 <span class="gh-album-num">{{ $a['label'] }}</span>

@@ -167,7 +167,7 @@
                 <div class="gf-grid" id="gfGrid">
                     @foreach ($items as $i => $it)
                         <button type="button" class="gf-cell {{ $i >= $initial ? 'is-hidden' : '' }}" data-gf-idx="{{ $i }}" data-gf-src="{{ $it['src'] }}" data-gf-alt="{{ $it['alt'] }}">
-                            <img src="{{ $it['src'] }}" alt="{{ $it['alt'] }}" loading="lazy">
+                            <img src="{{ $it['src'] }}" alt="{{ $it['alt'] }}" loading="lazy" width="400" height="300" decoding="async">
                         </button>
                     @endforeach
                 </div>

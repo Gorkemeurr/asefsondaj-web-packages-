@@ -161,7 +161,7 @@
                 <div class="asef-pd-grid">
                     <div>
                         <div class="asef-pd-gallery">
-                            <img src="{{ $imgSrc }}" alt="{{ $product->sku }} — {{ $product->name }}{{ $altName ? ' | ' . $altName : '' }} | Asef Sondaj sondaj ekipmanı" loading="eager" fetchpriority="high" />
+                            <img src="{{ $imgSrc }}" alt="{{ $product->sku }} — {{ $product->name }}{{ $altName ? ' | ' . $altName : '' }} | Asef Sondaj sondaj ekipmanı" loading="eager" fetchpriority="high" width="800" height="800" />
                         </div>
                     </div>
 
@@ -300,7 +300,7 @@
                             @endphp
                             <a href="{{ route('shop.asef.product', ['sku' => $r->sku]) }}" class="asef-related-card">
                                 <div class="asef-related-media">
-                                    <img src="{{ $rImg }}" alt="{{ $r->sku }} — {{ $r->name }} sondaj ekipmanı" loading="lazy" />
+                                    <img src="{{ $rImg }}" alt="{{ $r->sku }} — {{ $r->name }} sondaj ekipmanı" loading="lazy" width="400" height="400" />
                                 </div>
                                 <div class="asef-related-name">{{ $r->name }}</div>
                                 <div class="asef-related-desc">{{ $r->attrs['ebat_sistem'] ?? '' }} {{ $r->attrs['boy_uzunluk'] ? '· ' . $r->attrs['boy_uzunluk'] : '' }}</div>

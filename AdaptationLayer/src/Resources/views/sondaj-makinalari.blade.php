@@ -63,7 +63,7 @@
             <section class="mk-grid">
                 @foreach ($types as $t)
                     <a href="{{ $waLink }}" target="_blank" rel="noopener" class="mk-card">
-                        <div class="mk-media"><img src="{{ $asefUrl($t['img']) }}" alt="{{ $t['title'] }}" loading="lazy"></div>
+                        <div class="mk-media"><img src="{{ $asefUrl($t['img']) }}" alt="{{ $t['title'] }}" loading="lazy" width="600" height="400"></div>
                         <div class="mk-body">
                             <span class="mk-num">{{ $t['num'] }}</span>
                             <div class="mk-title">{{ $t['title'] }}</div>

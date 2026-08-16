@@ -383,7 +383,7 @@
             {{-- MARKA HIKAYESI --}}
             <section class="ab-sec-wide ab-reveal">
                 <div class="ab-story-grid">
-                    <div class="ab-story-media"><img src="{{ $asefUrl('asef-hero-rig.jpg') }}" alt="Asef Sondaj sahada"></div>
+                    <div class="ab-story-media"><img src="{{ $asefUrl('asef-hero-rig.jpg') }}" alt="Asef Sondaj sahada" loading="lazy" width="1200" height="800"></div>
                     <div class="ab-story-body">
                         <h2>Sahaya hazır çözümler, mühendislikte hassasiyet.</h2>
                         <p>Asef Sondaj, 2005'ten bu yana Türkiye'nin sondaj sektöründe faaliyet gösteren, Bursa merkezli teknik çözüm ortağıdır. Delici ekipmandan pompa sistemlerine, tijden karot ürünlerine kadar geniş bir yelpazede ürün ve hizmet sunuyoruz.</p>
@@ -490,7 +490,7 @@
                 <div class="ab-equip">
                     @foreach ($equipStrip as $e)
                         <a href="{{ $catalogUrl }}" class="ab-equip-item">
-                            <img src="{{ $asefUrl($e['img']) }}" alt="{{ $e['label'] }}" loading="lazy">
+                            <img src="{{ $asefUrl($e['img']) }}" alt="{{ $e['label'] }}" loading="lazy" width="300" height="300">
                             <span class="ab-equip-label">{{ $e['label'] }}</span>
                         </a>
                     @endforeach
@@ -538,7 +538,7 @@
             <section class="ab-sec ab-reveal">
                 <div class="ab-team">
                     <div class="ab-team-img">
-                        <img src="{{ $asefUrl('asef-hero-equipment.jpg') }}" alt="Asef Sondaj ekibi">
+                        <img src="{{ $asefUrl('asef-hero-equipment.jpg') }}" alt="Asef Sondaj ekibi" loading="lazy" width="800" height="600">
                     </div>
                     <div class="ab-team-body">
                         <div class="asef-label-caps">EKİBİMİZ</div>

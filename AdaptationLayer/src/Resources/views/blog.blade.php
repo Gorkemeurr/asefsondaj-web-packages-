@@ -176,7 +176,7 @@
             <div class="bg-featured-wrap">
                 <a href="{{ url('blog/' . $featured['slug']) }}" style="text-decoration:none;color:inherit;display:block;">
                     <div class="bg-featured">
-                        <div class="bg-featured-media"><img src="{{ $asefUrl($featured['img']) }}" alt="{{ $featured['title'] }}"></div>
+                        <div class="bg-featured-media"><img src="{{ $asefUrl($featured['img']) }}" alt="{{ $featured['title'] }}" loading="eager" fetchpriority="high" width="1200" height="675"></div>
                         <div class="bg-featured-body">
                             <span class="bg-featured-cat">ÖNE ÇIKAN · {{ $featured['cat'] }}</span>
                             <h2 class="bg-featured-title">{{ $featured['title'] }}</h2>
@@ -207,7 +207,7 @@
                 <div class="bg-posts-grid">
                     @foreach ($posts as $p)
                         <a href="{{ url('blog/' . $p['slug']) }}" class="bg-post">
-                            <div class="bg-post-media"><img src="{{ $asefUrl($p['img']) }}" alt="{{ $p['title'] }}" loading="lazy"></div>
+                            <div class="bg-post-media"><img src="{{ $asefUrl($p['img']) }}" alt="{{ $p['title'] }}" loading="lazy" width="400" height="250"></div>
                             <div class="bg-post-body">
                                 <span class="bg-post-cat">{{ $p['cat'] }}</span>
                                 <div class="bg-post-title">{{ $p['title'] }}</div>
@@ -226,7 +226,7 @@
             <section class="bg-galleries">
                 @foreach ($galleries as $g)
                     <a href="{{ $g['url'] }}" class="bg-gallery">
-                        <img src="{{ $asefUrl($g['img']) }}" alt="{{ $g['title'] }}" loading="lazy">
+                        <img src="{{ $asefUrl($g['img']) }}" alt="{{ $g['title'] }}" loading="lazy" width="600" height="400">
                         <div class="bg-gallery-body">
                             <div class="bg-gallery-label">{{ $g['label'] }}</div>
                             <div class="bg-gallery-title">{{ $g['title'] }}</div>

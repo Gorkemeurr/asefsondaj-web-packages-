@@ -139,7 +139,7 @@
                 <div class="kr-panels">
                     @foreach ($panels as $p)
                         <a href="{{ $p['url'] }}" class="kr-panel">
-                            <div class="kr-panel-media"><img src="{{ $asefUrl($p['img']) }}" alt="{{ $p['title'] }}" loading="lazy"></div>
+                            <div class="kr-panel-media"><img src="{{ $asefUrl($p['img']) }}" alt="{{ $p['title'] }}" loading="lazy" width="600" height="400"></div>
                             <div class="kr-panel-body">
                                 <span class="kr-panel-num">{{ $p['label'] }}</span>
                                 <div class="kr-panel-title">{{ $p['title'] }}</div>
