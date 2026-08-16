@@ -53,7 +53,7 @@
             <section class="asef-hero">
                 <div class="asef-label-caps">SONDAJ MAKİNALARIMIZ</div>
                 <h1>Sahada denendi. Kanıtlandı.</h1>
-                <p>Yerüstü, yeraltı, su ve zemin etüd operasyonları için hazır çözümler. Doğru makine için ekibimiz size özel öneride bulunur.</p>
+                <p>{{ asef_setting('sondaj_makinalari_hero_desc', 'Yerüstü, yeraltı, su ve zemin etüd operasyonları için hazır çözümler. Doğru makine için ekibimiz size özel öneride bulunur.') }}</p>
                 <div class="asef-hero-ctas">
                     <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-cta-pill primary">Uzmana Danış</a>
                     <a href="{{ $catalogUrl }}" class="asef-cta-pill ghost">Ekipman Kataloğu <span class="asef-cta-arrow">›</span></a>

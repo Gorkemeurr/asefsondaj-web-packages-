@@ -72,7 +72,7 @@
             <section class="asef-hero">
                 <div class="asef-label-caps">HİZMETLERİMİZ</div>
                 <h1>Ekipmandan öte, çözüm.</h1>
-                <p>Danışmanlıktan tedarike, kurulumdan satış sonrası desteğe — her adımda yanınızdayız.</p>
+                <p>{{ asef_setting('hizmetlerimiz_hero_desc', 'Danışmanlıktan tedarike, kurulumdan satış sonrası desteğe — her adımda yanınızdayız.') }}</p>
                 <div class="asef-hero-ctas">
                     <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-cta-pill primary">Uzmana Danış</a>
                     <a href="{{ $catalogUrl }}" class="asef-cta-pill ghost">Kataloga Git <span class="asef-cta-arrow">›</span></a>

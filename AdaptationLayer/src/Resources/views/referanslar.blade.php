@@ -72,7 +72,7 @@
             <section class="asef-hero">
                 <div class="asef-label-caps">REFERANSLAR</div>
                 <h1>Yirmi yılın izleri, sahada.</h1>
-                <p>Türkiye'nin dört bir yanında tamamladığımız sondaj projeleri; kalıcı iş birlikleri ve güven ile büyüyor.</p>
+                <p>{{ asef_setting('referanslar_hero_desc', "Türkiye'nin dört bir yanında tamamladığımız sondaj projeleri; kalıcı iş birlikleri ve güven ile büyüyor.") }}</p>
             </section>
 
             <section class="rf-stats">

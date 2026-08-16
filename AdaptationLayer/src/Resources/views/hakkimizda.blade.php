@@ -362,7 +362,7 @@
             <section class="ab-hero ab-reveal">
                 <div class="asef-label-caps">HAKKIMIZDA</div>
                 <h1>Yirmi yıllık saha,<br>tek bir söz: <span class="ab-hero-accent">güven.</span></h1>
-                <p>Bursa merkezimizden Türkiye'nin dört bir yanındaki sondaj operasyonlarına ekipman, yedek parça ve teknik çözüm sunuyoruz. Sahaya hazır olan biziz.</p>
+                <p>{{ asef_setting('hakkimizda_hero_desc', "Bursa merkezimizden Türkiye'nin dört bir yanındaki sondaj operasyonlarına ekipman, yedek parça ve teknik çözüm sunuyoruz. Sahaya hazır olan biziz.") }}</p>
                 <div class="asef-hero-ctas">
                     <a href="{{ $catalogUrl }}" class="asef-cta-pill primary">Ürünleri Keşfet</a>
                     <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-cta-pill ghost">Uzmana Sor <span class="asef-cta-arrow">›</span></a>

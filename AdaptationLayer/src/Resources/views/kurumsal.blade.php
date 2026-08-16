@@ -118,7 +118,7 @@
             <section class="asef-hero">
                 <div class="asef-label-caps">KURUMSAL</div>
                 <h1>Sahada güvenilir. Kurumsal duruşta ciddi.</h1>
-                <p>Firma hikayemizden hizmetlerimize, sondaj makinalarımızdan referans projelerimize — Asef Sondaj'ın tüm kurumsal sayfalarına buradan ulaşın.</p>
+                <p>{{ asef_setting('kurumsal_hero_desc', "Firma hikayemizden hizmetlerimize, sondaj makinalarımızdan referans projelerimize — Asef Sondaj'ın tüm kurumsal sayfalarına buradan ulaşın.") }}</p>
                 <div class="asef-hero-ctas">
                     <a href="{{ url('hakkimizda') }}" class="asef-cta-pill primary">Hakkımızda</a>
                     <a href="{{ $waLink }}" target="_blank" rel="noopener" class="asef-cta-pill ghost">Uzmana Sor <span class="asef-cta-arrow">›</span></a>
