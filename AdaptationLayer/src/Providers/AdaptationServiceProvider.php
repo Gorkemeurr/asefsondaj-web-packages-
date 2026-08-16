@@ -347,6 +347,26 @@ class AdaptationServiceProvider extends ServiceProvider
         });
 
         // ============================================================
+        //  MOBIL APP API — Flutter uygulaması için JSON endpoint'ler
+        //  Public read-only. Web sitesini hiçbir şekilde etkilemez.
+        // ============================================================
+        Route::prefix('api/asef')
+            ->middleware('api')
+            ->name('api.asef.')
+            ->group(function () {
+                $ctrl = \AsefSondaj\AdaptationLayer\Http\Controllers\Api\AsefApiController::class;
+                Route::get('/health',              [$ctrl, 'health'])->name('health');
+                Route::get('/settings',            [$ctrl, 'settings'])->name('settings');
+                Route::get('/categories',          [$ctrl, 'categories'])->name('categories');
+                Route::get('/products',            [$ctrl, 'products'])->name('products.index');
+                Route::get('/products/{sku}',      [$ctrl, 'product'])->name('products.show')->where('sku', '[A-Za-z0-9\-]+');
+                Route::get('/blogs',               [$ctrl, 'blogs'])->name('blogs.index');
+                Route::get('/blogs/{slug}',        [$ctrl, 'blog'])->name('blogs.show')->where('slug', '[a-z0-9\-]+');
+                Route::get('/faqs',                [$ctrl, 'faqs'])->name('faqs.index');
+                Route::get('/glossary',            [$ctrl, 'glossary'])->name('glossary.index');
+            });
+
+        // ============================================================
         //  ADMIN ROUTES — Bagisto admin panel altında Asef Sondaj CRUD
         // ============================================================
         $adminPrefix = config('app.admin_url') . '/asef';
