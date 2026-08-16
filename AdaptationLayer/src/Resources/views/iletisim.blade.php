@@ -59,25 +59,25 @@
             <section class="ct-grid">
                 <a href="{{ $waLink }}" target="_blank" rel="noopener" class="ct-card">
                     <div class="ct-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.13 1.6 5.93L0 24l6.34-1.67a11.87 11.87 0 0 0 5.72 1.46h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.45-8.41zM12.07 21.8h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.22-3.76.99 1-3.67-.24-.38a9.88 9.88 0 0 1-1.51-5.24c0-5.46 4.44-9.9 9.91-9.9 2.64 0 5.13 1.03 7 2.9a9.83 9.83 0 0 1 2.9 7c0 5.46-4.44 9.9-9.88 9.9z"/></svg></div>
-                    <div><div class="ct-label">WHATSAPP</div><div class="ct-value">+90 532 054 29 75</div><div class="ct-sub">Anında yanıt, teknik danışmanlık</div></div>
+                    <div><div class="ct-label">WHATSAPP</div><div class="ct-value">{{ asef_setting('iletisim_telefon', '+90 532 054 29 75') }}</div><div class="ct-sub">Anında yanıt, teknik danışmanlık</div></div>
                 </a>
-                <a href="tel:+905320542975" class="ct-card">
+                <a href="tel:{{ preg_replace('/[^0-9+]/', '', asef_setting('iletisim_telefon', '+90 532 054 29 75')) }}" class="ct-card">
                     <div class="ct-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1 .37 1.95.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.86.33 1.81.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-                    <div><div class="ct-label">TELEFON</div><div class="ct-value">+90 532 054 29 75</div><div class="ct-sub">Teknik destek ve teklif hattı</div></div>
+                    <div><div class="ct-label">TELEFON</div><div class="ct-value">{{ asef_setting('iletisim_telefon', '+90 532 054 29 75') }}</div><div class="ct-sub">Teknik destek ve teklif hattı</div></div>
                 </a>
-                <a href="mailto:iletisim@asefsondaj.com" class="ct-card">
+                <a href="mailto:{{ asef_setting('iletisim_email', 'iletisim@asefsondaj.com') }}" class="ct-card">
                     <div class="ct-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/></svg></div>
-                    <div><div class="ct-label">E-POSTA</div><div class="ct-value">iletisim@asefsondaj.com</div><div class="ct-sub">Kurumsal iletişim</div></div>
+                    <div><div class="ct-label">E-POSTA</div><div class="ct-value">{{ asef_setting('iletisim_email', 'iletisim@asefsondaj.com') }}</div><div class="ct-sub">Kurumsal iletişim</div></div>
                 </a>
-                <a href="mailto:destek@asefsondaj.com" class="ct-card">
+                <a href="mailto:{{ asef_setting('iletisim_email_destek', 'destek@asefsondaj.com') }}" class="ct-card">
                     <div class="ct-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-                    <div><div class="ct-label">TEKNİK DESTEK</div><div class="ct-value">destek@asefsondaj.com</div><div class="ct-sub">Ürün ve teknik sorularınız</div></div>
+                    <div><div class="ct-label">TEKNİK DESTEK</div><div class="ct-value">{{ asef_setting('iletisim_email_destek', 'destek@asefsondaj.com') }}</div><div class="ct-sub">Ürün ve teknik sorularınız</div></div>
                 </a>
                 <div class="ct-card">
                     <div class="ct-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-                    <div><div class="ct-label">ADRES</div><div class="ct-value">Duaçınarı Mah.</div><div class="ct-sub">1. Özgünay Sk No:10<br>Yıldırım / Bursa</div></div>
+                    <div><div class="ct-label">ADRES</div><div class="ct-value">{{ asef_setting('iletisim_adres', 'Duaçınarı Mah. 1. Özgünay Sk No:10, Yıldırım / Bursa') }}</div><div class="ct-sub">{{ asef_setting('iletisim_saatleri', 'Pazartesi - Cumartesi 09:00 - 18:00') }}</div></div>
                 </div>
-                <a href="https://instagram.com/asefsondajj" target="_blank" rel="noopener" class="ct-card">
+                <a href="{{ asef_setting('instagram_url', 'https://instagram.com/asefsondajj') }}" target="_blank" rel="noopener" class="ct-card">
                     <div class="ct-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></div>
                     <div><div class="ct-label">INSTAGRAM</div><div class="ct-value">@asefsondajj</div><div class="ct-sub">Saha fotoğrafları ve içerikler</div></div>
                 </a>
