@@ -1,5 +1,6 @@
 {{-- Shared v5 design language styles (Apple-esque minimalist).
-     Push once per page via @include('asef-adaptation::partials.v5-styles'). --}}
+     Push once per page via @include('asef-adaptation::partials.v5-styles').
+     Cache buster: 20260816-seo-v2 --}}
 @push('meta')
     {{-- Favicon versions --}}
     @php
