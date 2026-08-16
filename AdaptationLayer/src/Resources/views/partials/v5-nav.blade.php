@@ -121,7 +121,7 @@
                 </div>
             </div>
         </div>
-        <div class="asef-nav-actions" style="display:flex !important; align-items:center; gap:4px;">
+        <div class="asef-nav-actions" style="display:flex !important; align-items:center; gap:4px; margin-left:auto;">
             <a href="{{ $catalogUrl }}" class="asef-nav-icon-btn" aria-label="Arama"
                style="display:inline-flex !important; align-items:center; justify-content:center; width:38px; height:38px; border-radius:8px; color:#1a1c1d; text-decoration:none;">
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -153,7 +153,8 @@
             })();
             </script>
         </div>
-        <button type="button" class="asef-nav-mobile-btn" aria-label="Menü" data-asef-mobile-toggle>
+        <button type="button" class="asef-nav-mobile-btn" aria-label="Menü" data-asef-mobile-toggle
+                style="margin-left:2px;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
         </button>
     </div>
@@ -162,7 +163,7 @@
 {{-- Force fresh reload — deploy version bump ile tarayıcı cache'i bir kez bypass --}}
 <script>
 (function () {
-    var VERSION = '20260816m-nav-icons-fix';
+    var VERSION = '20260816n-nav-align';
     try {
         if (window.sessionStorage && sessionStorage.getItem('asef_ver') !== VERSION) {
             sessionStorage.setItem('asef_ver', VERSION);
