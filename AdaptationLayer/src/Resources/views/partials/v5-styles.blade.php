@@ -11,6 +11,19 @@
     <link rel="icon" type="image/png" sizes="512x512" href="{{ url('android-chrome-512x512.png?v=' . $fv) }}" />
     <link rel="manifest" href="{{ url('site.webmanifest?v=' . $fv) }}" />
     <meta name="theme-color" content="#0066CC" />
+
+    {{-- Canonical + Open Graph + Twitter Card — SEO temel katmanı --}}
+    <link rel="canonical" href="{{ url()->current() }}" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Asef Sondaj" />
+    <meta name="publisher" content="Asef Sondaj" />
+    <meta property="og:site_name" content="Asef Sondaj" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:image" content="{{ url('android-chrome-512x512.png') }}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="{{ url('android-chrome-512x512.png') }}" />
 @endpush
 
 @push('styles')
