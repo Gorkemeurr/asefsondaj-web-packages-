@@ -133,6 +133,83 @@
     @media (max-width: 640px) {
         .asef-chips-scroll { padding: 0 16px; }
     }
+
+    /* === TÜM KATEGORİLER PANEL === */
+    .asef-cat-panel {
+        position: fixed; inset: 0; z-index: 10000;
+        background: rgba(15,17,20,0.5); backdrop-filter: blur(8px);
+        display: none; align-items: flex-end; justify-content: center;
+    }
+    @media (min-width: 768px) {
+        .asef-cat-panel { align-items: center; }
+    }
+    .asef-cat-panel.on { display: flex; animation: catFade .2s ease-out; }
+    @keyframes catFade { from { opacity: 0; } to { opacity: 1; } }
+    .asef-cat-panel-inner {
+        background: white; width: 100%; max-width: 900px; max-height: 88vh;
+        border-radius: 24px 24px 0 0;
+        display: flex; flex-direction: column;
+        animation: catSlide .3s cubic-bezier(0.16,1,0.3,1);
+        box-shadow: 0 -20px 60px rgba(0,0,0,0.3);
+    }
+    @media (min-width: 768px) {
+        .asef-cat-panel-inner { border-radius: 24px; max-height: 82vh; }
+    }
+    @keyframes catSlide { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .asef-cat-panel-head {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 22px 28px; border-bottom: 1px solid var(--outline); flex-shrink: 0;
+    }
+    .asef-cat-panel-head h3 { font-size: 20px; font-weight: 600; color: var(--primary); }
+    .asef-cat-panel-close {
+        width: 36px; height: 36px; border-radius: 50%;
+        background: var(--surface-alt); border: 0;
+        display: inline-flex; align-items: center; justify-content: center;
+        color: var(--on-surface); cursor: pointer; transition: background .15s;
+    }
+    .asef-cat-panel-close:hover { background: #EEEEF0; }
+    .asef-cat-panel-close svg { width: 18px; height: 18px; }
+    .asef-cat-panel-body {
+        padding: 20px 28px 32px; overflow-y: auto;
+        display: flex; flex-direction: column; gap: 18px;
+    }
+    .asef-cat-panel-all {
+        display: flex; align-items: center; gap: 14px;
+        padding: 14px 18px; border-radius: 14px;
+        background: var(--primary); color: white;
+        transition: transform .2s;
+    }
+    .asef-cat-panel-all:hover { transform: translateY(-2px); }
+    .asef-cat-panel-all span:first-child { font-size: 24px; }
+    .asef-cat-panel-all-title { font-size: 16px; font-weight: 600; }
+    .asef-cat-panel-all-sub { font-size: 12px; opacity: 0.8; }
+    .asef-cat-panel-group { border-top: 1px solid var(--outline); padding-top: 16px; }
+    .asef-cat-panel-group:first-of-type { border-top: 0; padding-top: 0; }
+    .asef-cat-panel-ana {
+        display: flex; justify-content: space-between; align-items: center;
+        font-size: 15px; font-weight: 600; color: var(--primary);
+        padding: 8px 4px; margin-bottom: 8px;
+        border-radius: 8px; transition: background .15s;
+    }
+    .asef-cat-panel-ana:hover { background: var(--surface-alt); }
+    .asef-cat-panel-alts {
+        display: grid; grid-template-columns: 1fr; gap: 4px;
+        padding-left: 12px;
+    }
+    @media (min-width: 640px) { .asef-cat-panel-alts { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 900px) { .asef-cat-panel-alts { grid-template-columns: 1fr 1fr 1fr; } }
+    .asef-cat-panel-alt {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 8px 12px; font-size: 13px; color: var(--secondary);
+        border-radius: 6px; transition: background .15s, color .15s;
+    }
+    .asef-cat-panel-alt:hover { background: var(--surface-alt); color: var(--primary); }
+    .asef-cat-panel-count {
+        font-size: 11px; color: var(--gray-secondary);
+        background: var(--surface-alt); padding: 2px 8px; border-radius: 999px;
+        font-family: "SF Mono", ui-monospace, Menlo, monospace;
+    }
+    .asef-cat-panel-ana .asef-cat-panel-count { background: white; border: 1px solid var(--outline); }
 </style>
 @endpush
 
@@ -174,12 +251,15 @@
 
             {{-- MAIN CATEGORY CHIPS (15 ana + Tümü) --}}
             <div class="asef-chips-scroll">
-                @php
-                    $tumUrl = $queryText ? route('shop.search.index') . '?' . http_build_query(['query' => $queryText]) : route('shop.search.index');
-                @endphp
-                <a href="{{ $tumUrl }}" class="asef-chip {{ ! $anaCode ? 'active' : '' }}">Tümü</a>
+                {{-- "Tümü" temizler HER şeyi (query + ana + alt) — direct /search --}}
+                <a href="{{ route('shop.search.index') }}" class="asef-chip {{ ! $anaCode && ! $queryText ? 'active' : '' }}">Tümü</a>
+                <button type="button" class="asef-chip" data-open-cat-panel aria-label="Tüm kategoriler paneli">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                    Tüm Kategoriler
+                </button>
                 @foreach ($anaKategoriler as $ana)
                     @php
+                        // Ana chip tıklaması: query'yi KORU (arama içi kategori refine)
                         $qs = ['ana' => $ana->code];
                         if ($queryText) $qs['query'] = $queryText;
                         $chipUrl = route('shop.search.index') . '?' . http_build_query($qs);
@@ -209,6 +289,63 @@
                     @endforeach
                 </div>
             @endif
+
+            {{-- === TÜM KATEGORİLER PANEL (modal / bottom-sheet) === --}}
+            <div class="asef-cat-panel" id="asefCatPanel" role="dialog" aria-modal="true" aria-label="Tüm kategoriler">
+                <div class="asef-cat-panel-inner">
+                    <div class="asef-cat-panel-head">
+                        <h3>Tüm Kategoriler</h3>
+                        <button type="button" class="asef-cat-panel-close" data-close-cat-panel aria-label="Kapat">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+                        </button>
+                    </div>
+                    <div class="asef-cat-panel-body">
+                        <a href="{{ route('shop.search.index') }}" class="asef-cat-panel-all">
+                            <span>🎯</span>
+                            <div>
+                                <div class="asef-cat-panel-all-title">Tüm Ürünler</div>
+                                <div class="asef-cat-panel-all-sub">{{ \AsefSondaj\AdaptationLayer\Models\AsefProduct::where('is_active',true)->count() }} ürün</div>
+                            </div>
+                        </a>
+                        @php
+                            $panelAna = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::with(['altKategoriler' => function ($q) {
+                                $q->orderBy('sort');
+                            }])->orderBy('sort')->get();
+                        @endphp
+                        @foreach ($panelAna as $pa)
+                            <div class="asef-cat-panel-group">
+                                <a href="{{ route('shop.search.index') . '?ana=' . $pa->code }}" class="asef-cat-panel-ana">
+                                    {{ $pa->name }}
+                                    <span class="asef-cat-panel-count">{{ $pa->products()->where('is_active',true)->count() }}</span>
+                                </a>
+                                @if ($pa->altKategoriler->count() > 0)
+                                    <div class="asef-cat-panel-alts">
+                                        @foreach ($pa->altKategoriler as $pal)
+                                            <a href="{{ route('shop.search.index') . '?ana=' . $pa->code . '&alt=' . $pal->code }}" class="asef-cat-panel-alt">
+                                                {{ $pal->name }}
+                                                <span class="asef-cat-panel-count">{{ $pal->products()->where('is_active',true)->count() }}</span>
+                                            </a>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <script>
+            (function () {
+                var panel = document.getElementById('asefCatPanel');
+                if (!panel) return;
+                document.addEventListener('click', function (e) {
+                    if (e.target.closest('[data-open-cat-panel]')) { panel.classList.add('on'); document.body.style.overflow = 'hidden'; }
+                    if (e.target.closest('[data-close-cat-panel]') || e.target === panel) { panel.classList.remove('on'); document.body.style.overflow = ''; }
+                });
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape' && panel.classList.contains('on')) { panel.classList.remove('on'); document.body.style.overflow = ''; }
+                });
+            })();
+            </script>
 
             {{-- RESULT COUNT --}}
             <div class="asef-search-count">
