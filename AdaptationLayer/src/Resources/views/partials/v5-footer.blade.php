@@ -21,9 +21,12 @@
                 <h4>Katalog</h4>
                 <ul>
                     <li><a href="{{ $catalogUrl }}">Ürünler</a></li>
-                    <li><a href="{{ $catalogUrl }}?cat=delici">Delici Ekipmanlar</a></li>
-                    <li><a href="{{ $catalogUrl }}?cat=tij">Tij ve Borular</a></li>
-                    <li><a href="{{ $catalogUrl }}?cat=pompa">Pompa Sistemleri</a></li>
+                    @php
+                        $footPartAna = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::orderBy('sort')->limit(3)->get();
+                    @endphp
+                    @foreach ($footPartAna as $_fpa)
+                        <li><a href="{{ $catalogUrl }}?ana={{ $_fpa->code }}">{{ $_fpa->name }}</a></li>
+                    @endforeach
                     <li><a href="{{ url('sepet') }}">Teklif Sepetim</a></li>
                 </ul>
             </div>

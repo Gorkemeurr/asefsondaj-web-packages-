@@ -495,11 +495,12 @@
                                 <div class="asef-mega-col asef-mega-main">
                                     <h5>Ürün Gruplarını Keşfedin</h5>
                                     <a href="{{ $catalogUrl }}">Tüm Ürünler</a>
-                                    <a href="{{ $catalogUrl }}">Delici Ekipmanlar</a>
-                                    <a href="{{ $catalogUrl }}">Tij ve Borular</a>
-                                    <a href="{{ $catalogUrl }}">Pompa Sistemleri</a>
-                                    <a href="{{ $catalogUrl }}">Karot Ürünleri</a>
-                                    <a href="{{ $catalogUrl }}">Yedek Parça</a>
+                                    @php
+                                        $homeAna = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::orderBy('sort')->limit(6)->get();
+                                    @endphp
+                                    @foreach ($homeAna as $_ak)
+                                        <a href="{{ $catalogUrl }}?ana={{ $_ak->code }}">{{ $_ak->name }}</a>
+                                    @endforeach
                                 </div>
                                 <div class="asef-mega-col asef-mega-side">
                                     <h5>Hızlı Bağlantılar</h5>
@@ -509,10 +510,17 @@
                                 </div>
                                 <div class="asef-mega-col asef-mega-side">
                                     <h5>Popüler Ürünler</h5>
-                                    <a href="{{ route('shop.asef.product', ['sku' => 'AS-DTH-040']) }}">DTH Çekiç 4 İnç</a>
-                                    <a href="{{ route('shop.asef.product', ['sku' => 'AS-BIT-152']) }}">DTH Button Bit 6 İnç</a>
-                                    <a href="{{ route('shop.asef.product', ['sku' => 'AS-ROD-300']) }}">Sondaj Tiji 3 Metre</a>
-                                    <a href="{{ route('shop.asef.product', ['sku' => 'AS-PMP-600']) }}">Triplex Çamur Pompası</a>
+                                    @php
+                                        $homePopular = \AsefSondaj\AdaptationLayer\Models\AsefProduct::query()
+                                            ->where('is_active', true)
+                                            ->whereIn('sku', ['AS-DTH-001','AS-EMB-001','AS-KRT-001','AS-TRC-001'])
+                                            ->get()->keyBy('sku');
+                                        foreach (['AS-DTH-001','AS-EMB-001','AS-KRT-001','AS-TRC-001'] as $_sku) {
+                                            if (! isset($homePopular[$_sku])) continue;
+                                            $_p = $homePopular[$_sku];
+                                            echo '<a href="'.route('shop.asef.product', ['sku' => $_p->sku]).'">'.e($_p->name).'</a>';
+                                        }
+                                    @endphp
                                 </div>
                             </div>
                         </div>
@@ -692,24 +700,24 @@
                     <a href="{{ $catalogUrl }}" class="asef-section-link">Tüm ürünlere bak <span>›</span></a>
                 </div>
                 <div class="asef-prod-grid">
-                    <a href="{{ route('shop.asef.product', ['sku' => 'AS-DTH-040']) }}" class="asef-prod-card">
-                        <div class="asef-prod-media"><img src="{{ $asefUrl('dth-hammer.jpg') }}" alt="DTH Çekiç 4 İnç" loading="lazy" /></div>
-                        <div class="asef-prod-body">
-                            <div class="asef-prod-sku">AS-DTH-040</div>
-                            <div class="asef-prod-title">DTH Çekiç 4 İnç</div>
-                            <div class="asef-prod-desc">Yüksek darbe enerjili profesyonel kuyu delme çekici.</div>
-                            <span class="asef-prod-link">Detay <span>›</span></span>
-                        </div>
-                    </a>
-                    <a href="{{ route('shop.asef.product', ['sku' => 'AS-ROD-300']) }}" class="asef-prod-card">
-                        <div class="asef-prod-media"><img src="{{ $asefUrl('drill-rods.jpg') }}" alt="Sondaj Tiji 3 Metre" loading="lazy" /></div>
-                        <div class="asef-prod-body">
-                            <div class="asef-prod-sku">AS-ROD-300</div>
-                            <div class="asef-prod-title">Sondaj Tiji 3 Metre</div>
-                            <div class="asef-prod-desc">Yüksek tork aktarımı için hassas dişli sondaj tiji.</div>
-                            <span class="asef-prod-link">Detay <span>›</span></span>
-                        </div>
-                    </a>
+                    @php
+                        $featured = \AsefSondaj\AdaptationLayer\Models\AsefProduct::query()
+                            ->where('is_active', true)
+                            ->whereIn('sku', ['AS-DTH-001','AS-EMB-001','AS-KRT-001','AS-TRC-001','AS-PDC-001','AS-WTJ-001'])
+                            ->orderByRaw("FIELD(sku,'AS-DTH-001','AS-EMB-001','AS-KRT-001','AS-TRC-001','AS-PDC-001','AS-WTJ-001')")
+                            ->get();
+                    @endphp
+                    @foreach ($featured as $_f)
+                        <a href="{{ route('shop.asef.product', ['sku' => $_f->sku]) }}" class="asef-prod-card">
+                            <div class="asef-prod-media"><img src="{{ url('asef/' . ($_f->image ?: 'asef-hero-equipment.jpg')) }}" alt="{{ $_f->name }}" loading="lazy" /></div>
+                            <div class="asef-prod-body">
+                                <div class="asef-prod-sku">{{ $_f->sku }}</div>
+                                <div class="asef-prod-title">{{ $_f->name }}</div>
+                                <div class="asef-prod-desc">{{ optional($_f->altKategori)->name }}</div>
+                                <span class="asef-prod-link">Detay <span>›</span></span>
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
             </section>
 
@@ -844,9 +852,12 @@
                         <h4>Katalog</h4>
                         <ul>
                             <li><a href="{{ $catalogUrl }}">Ürünler</a></li>
-                            <li><a href="{{ $catalogUrl }}?cat=delici">Delici Ekipmanlar</a></li>
-                            <li><a href="{{ $catalogUrl }}?cat=tij">Tij ve Borular</a></li>
-                            <li><a href="{{ $catalogUrl }}?cat=pompa">Pompa Sistemleri</a></li>
+                            @php
+                                $footAna = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::orderBy('sort')->limit(3)->get();
+                            @endphp
+                            @foreach ($footAna as $_fak)
+                                <li><a href="{{ $catalogUrl }}?ana={{ $_fak->code }}">{{ $_fak->name }}</a></li>
+                            @endforeach
                             <li><a href="{{ url('sepet') }}">Teklif Sepetim</a></li>
                         </ul>
                     </div>

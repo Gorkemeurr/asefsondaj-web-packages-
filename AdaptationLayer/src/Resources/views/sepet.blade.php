@@ -10,17 +10,20 @@
     $catalogUrl   = route('shop.search.index');
     $asefUrl      = static fn (string $rel): string => url('asef/' . ltrim($rel, '/'));
 
-    // Master catalog used to enrich legacy cart rows that lack img/cat/name
-    $asefJsCatalog = [
-        'AS-DTH-040' => ['name' => 'DTH Çekiç 4 İnç',              'cat' => 'Delici Ekipmanlar', 'img' => $asefUrl('dth-hammer.jpg')],
-        'AS-BIT-152' => ['name' => 'DTH Button Bit 6 İnç',         'cat' => 'Delici Ekipmanlar', 'img' => $asefUrl('asef-diamond-bit.jpg')],
-        'AS-TRI-215' => ['name' => 'Tricone Matkap 8 1/2 İnç',     'cat' => 'Delici Ekipmanlar', 'img' => $asefUrl('asef-macro-diamond.jpg')],
-        'AS-ROD-300' => ['name' => 'Sondaj Tiji 3 Metre',          'cat' => 'Tij ve Borular',    'img' => $asefUrl('drill-rods.jpg')],
-        'AS-CAS-168' => ['name' => 'Muhafaza Borusu 6 5/8 İnç',    'cat' => 'Tij ve Borular',    'img' => $asefUrl('asef-macro-thread.jpg')],
-        'AS-PMP-600' => ['name' => 'Triplex Çamur Pompası',        'cat' => 'Pompa Sistemleri',  'img' => $asefUrl('mud-pump.jpg')],
-        'AS-SWI-250' => ['name' => 'Yüksek Basınçlı Döner Başlık', 'cat' => 'Pompa Sistemleri',  'img' => $asefUrl('asef-macro-valve.jpg')],
-        'AS-SRV-001' => ['name' => 'DTH Bakım ve Sızdırmazlık Seti','cat' => 'Yedek Parça',      'img' => $asefUrl('asef-spare-parts.jpg')],
-    ];
+    // Master catalog used to enrich legacy cart rows that lack img/cat/name.
+    // 813 ürünün tümü DB'den — sepette hangisi varsa lookup ile enrich edilir.
+    $asefJsCatalog = \AsefSondaj\AdaptationLayer\Models\AsefProduct::query()
+        ->where('is_active', true)
+        ->with('altKategori')
+        ->get(['sku', 'name', 'image', 'alt_code'])
+        ->mapWithKeys(function ($p) use ($asefUrl) {
+            return [$p->sku => [
+                'name' => $p->name,
+                'cat'  => optional($p->altKategori)->name ?: '',
+                'img'  => $asefUrl($p->image ?: 'asef-hero-equipment.jpg'),
+            ]];
+        })
+        ->toArray();
 @endphp
 
 @push('meta')

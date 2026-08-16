@@ -1,173 +1,86 @@
 {{-- ============================================================
-     Asef Sondaj — Ürün Detay Sayfası (v5)
+     Asef Sondaj — Ürün Detay (v5, DB backed)
      Route: /urun/{sku}
-     Hardcoded catalog until Bagisto backend wired (Faz 2).
+     Faz 2B: AsefProduct'tan okur, statik catalog kaldırıldı.
      ============================================================ --}}
 @php
-    $channel      = core()->getCurrentChannel();
+    use AsefSondaj\AdaptationLayer\Models\AsefProduct;
+
     $waLink       = 'https://wa.me/905320542975?text=' . rawurlencode('Merhaba, Asef Sondaj ürünleriniz hakkında bilgi ve teklif almak istiyorum.');
     $catalogUrl   = route('shop.search.index');
-    $asefUrl      = static fn (string $rel): string => url('asef/' . ltrim($rel, '/'));
 
-    // Master catalog — kaynak: mobile app + ana sayfa.
-    $catalog = [
-        'AS-DTH-040' => [
-            'sku' => 'AS-DTH-040',
-            'name' => 'DTH Çekiç 4 İnç',
-            'cat' => 'delici', 'catLabel' => 'Delici Ekipmanlar',
-            'desc' => 'Yüksek darbe enerjili profesyonel kuyu delme çekici. Sert formasyonlarda yüksek verimlilik ve uzun ömür sağlar.',
-            'img'  => 'dth-hammer.jpg',
-            'usecases' => ['Kuyu delme', 'Su sondajı', 'Maden sondajı'],
-            'specs' => [
-                ['label' => 'Delme çapı',    'value' => '105 – 130 mm'],
-                ['label' => 'Bağlantı',      'value' => 'DTH-4 standart'],
-                ['label' => 'Ağırlık',       'value' => '38 kg'],
-                ['label' => 'Çalışma basıncı','value' => '10 – 25 bar'],
-            ],
-        ],
-        'AS-BIT-152' => [
-            'sku' => 'AS-BIT-152',
-            'name' => 'DTH Button Bit 6 İnç',
-            'cat' => 'delici', 'catLabel' => 'Delici Ekipmanlar',
-            'desc' => 'Sert formasyonlar için karbür butonlu delici matkap. Aşırı aşındırıcı zeminlerde bile kesme performansı korur.',
-            'img'  => 'asef-diamond-bit.jpg',
-            'usecases' => ['Sert formasyon', 'Kuyu delme', 'Yeraltı su sondajı'],
-            'specs' => [
-                ['label' => 'Çap',            'value' => '152 mm (6 inç)'],
-                ['label' => 'Buton sayısı',   'value' => '12 karbür'],
-                ['label' => 'Bağlantı',       'value' => 'DHD-360 standart'],
-                ['label' => 'Malzeme',        'value' => 'Tungsten karbür'],
-            ],
-        ],
-        'AS-TRI-215' => [
-            'sku' => 'AS-TRI-215',
-            'name' => 'Tricone Matkap 8 1/2 İnç',
-            'cat' => 'delici', 'catLabel' => 'Delici Ekipmanlar',
-            'desc' => 'Rulmanlı üç konili döner matkap; büyük çaplı delme operasyonlarında yüksek dönüş verimi sunar.',
-            'img'  => 'asef-macro-diamond.jpg',
-            'usecases' => ['Rotary sondaj', 'Büyük çaplı delme'],
-            'specs' => [
-                ['label' => 'Çap',           'value' => '215 mm (8 1/2 inç)'],
-                ['label' => 'Konfigürasyon', 'value' => 'IADC 517'],
-                ['label' => 'Bağlantı',      'value' => 'API 6 5/8 REG'],
-                ['label' => 'Malzeme',       'value' => 'Karbür + rulmanlı'],
-            ],
-        ],
-        'AS-ROD-300' => [
-            'sku' => 'AS-ROD-300',
-            'name' => 'Sondaj Tiji 3 Metre',
-            'cat' => 'tij', 'catLabel' => 'Tij ve Borular',
-            'desc' => 'Yüksek tork aktarımı için hassas dişli sondaj tiji. Ekleme sistemi ile uzun kuyu operasyonlarında güvenle kullanılır.',
-            'img'  => 'drill-rods.jpg',
-            'usecases' => ['Kuyu delme', 'Zemin sondajı', 'Su sondajı'],
-            'specs' => [
-                ['label' => 'Boy',      'value' => '3.000 mm'],
-                ['label' => 'Çap',      'value' => '76 mm'],
-                ['label' => 'Bağlantı', 'value' => 'API IF standart'],
-                ['label' => 'Malzeme',  'value' => 'AISI 4145H'],
-            ],
-        ],
-        'AS-CAS-168' => [
-            'sku' => 'AS-CAS-168',
-            'name' => 'Muhafaza Borusu 6 5/8 İnç',
-            'cat' => 'tij', 'catLabel' => 'Tij ve Borular',
-            'desc' => 'Kuyu duvarını sabitleyen dayanıklı çelik muhafaza borusu. Deformasyona karşı yüksek dirençlidir.',
-            'img'  => 'asef-macro-thread.jpg',
-            'usecases' => ['Kuyu koruma', 'Su sondajı'],
-            'specs' => [
-                ['label' => 'Çap',       'value' => '168 mm (6 5/8 inç)'],
-                ['label' => 'Cidar',     'value' => '7.32 mm'],
-                ['label' => 'Boy',       'value' => '6.000 mm'],
-                ['label' => 'Malzeme',   'value' => 'API 5CT J55'],
-            ],
-        ],
-        'AS-PMP-600' => [
-            'sku' => 'AS-PMP-600',
-            'name' => 'Triplex Çamur Pompası',
-            'cat' => 'pompa', 'catLabel' => 'Pompa Sistemleri',
-            'desc' => 'Sondaj devri için yüksek basınçlı üç pistonlu çamur pompası. Sürekli çalışmada kararlı basınç sağlar.',
-            'img'  => 'mud-pump.jpg',
-            'usecases' => ['Rotary sondaj', 'Çamur devri', 'Kuyu temizliği'],
-            'specs' => [
-                ['label' => 'Debi',           'value' => '600 L/dk'],
-                ['label' => 'Basınç',         'value' => '50 bar max'],
-                ['label' => 'Piston sayısı',  'value' => '3 (Triplex)'],
-                ['label' => 'Motor',          'value' => 'Elektrik / Dizel'],
-            ],
-        ],
-        'AS-SWI-250' => [
-            'sku' => 'AS-SWI-250',
-            'name' => 'Yüksek Basınçlı Döner Başlık',
-            'cat' => 'pompa', 'catLabel' => 'Pompa Sistemleri',
-            'desc' => 'Sondaj dizisi dönerken akışkan aktarımını kesintisiz sürdüren, değiştirilebilir conta grubuna sahip ağır hizmet döner başlık.',
-            'img'  => 'asef-macro-valve.jpg',
-            'usecases' => ['Rotary sondaj', 'Su enjeksiyonu', 'Hava aktarımı'],
-            'specs' => [
-                ['label' => 'Çalışma basıncı', 'value' => '250 bar'],
-                ['label' => 'Bağlantı',        'value' => 'API seçenekli'],
-                ['label' => 'Gövde',           'value' => 'Çelik'],
-                ['label' => 'Conta',           'value' => 'Değiştirilebilir kartuş'],
-            ],
-        ],
-        'AS-SRV-001' => [
-            'sku' => 'AS-SRV-001',
-            'name' => 'DTH Bakım ve Sızdırmazlık Seti',
-            'cat' => 'yedek-parca', 'catLabel' => 'Yedek Parça',
-            'desc' => 'DTH çekiç bakımı için tam sızdırmazlık ve conta seti. Uzun servis ömrü için tavsiye edilen orijinal parça seti.',
-            'img'  => 'asef-spare-parts.jpg',
-            'usecases' => ['Periyodik bakım', 'DTH servis'],
-            'specs' => [
-                ['label' => 'Uyumluluk',   'value' => 'AS-DTH-040'],
-                ['label' => 'İçerik',      'value' => 'O-ring · Piston contaları · Yağ keçesi'],
-                ['label' => 'Adet',        'value' => '1 komple set'],
-                ['label' => 'Menşei',      'value' => 'Orijinal'],
-            ],
-        ],
-    ];
-
-    $sku = strtoupper($sku ?? '');
-    $product = $catalog[$sku] ?? null;
+    $sku = strtoupper(trim($sku ?? ''));
+    $product = AsefProduct::where('sku', $sku)->where('is_active', true)->first();
 
     if (! $product) {
         abort(404);
     }
 
-    // Related — same category, excluding self, max 3
-    $related = collect($catalog)
-        ->filter(fn ($p) => $p['cat'] === $product['cat'] && $p['sku'] !== $product['sku'])
-        ->take(3)
-        ->values();
+    $altKat = $product->altKategori;
+    $anaKat = $product->anaKategori;
+    $catLabel = $altKat ? $altKat->name : ($anaKat ? $anaKat->name : '');
 
-    // If less than 3 related, top up from other categories
+    $imgFile = $product->image ?: 'asef-hero-equipment.jpg';
+    $imgSrc  = url('asef/' . $imgFile);
+
+    $filledAttrs = $product->filledAttrs();
+
+    // Related — same alt category, 3 items
+    $related = AsefProduct::where('is_active', true)
+        ->where('alt_code', $product->alt_code)
+        ->where('sku', '!=', $product->sku)
+        ->orderBy('sort')
+        ->limit(3)
+        ->get();
     if ($related->count() < 3) {
-        $extra = collect($catalog)
-            ->filter(fn ($p) => $p['cat'] !== $product['cat'] && $p['sku'] !== $product['sku'])
-            ->take(3 - $related->count())
-            ->values();
+        $extra = AsefProduct::where('is_active', true)
+            ->where('ana_code', $product->ana_code)
+            ->whereNotIn('sku', $related->pluck('sku')->push($product->sku))
+            ->orderBy('sort')
+            ->limit(3 - $related->count())
+            ->get();
         $related = $related->concat($extra);
     }
+
+    $pageDesc = $product->description
+        ?: (($product->attrs['ebat_sistem'] ?? '') . ' — ' . $product->name . ' teknik detayları ve teklif için WhatsApp\'tan iletişime geçin.');
 @endphp
 
 @push('meta')
-    <meta name="title" content="{{ $product['name'] }} — Asef Sondaj" />
-    <meta name="description" content="{{ $product['desc'] }}" />
+    <meta name="title" content="{{ $product->name }} ({{ $product->sku }}) — Asef Sondaj" />
+    <meta name="description" content="{{ e($pageDesc) }}" />
     <meta name="theme-color" content="#ffffff" />
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')
 @include('asef-adaptation::partials.v5-cart-js')
 
-<x-shop::layouts
-    :has-header="false"
-    :has-feature="false"
-    :has-footer="false"
->
-    <x-slot:title>
-        {{ $product['name'] }} — Asef Sondaj
-    </x-slot>
+@push('styles')
+<style>
+    .pd-sku-copy {
+        display: inline-flex; align-items: center; gap: 6px;
+        background: var(--surface-alt); padding: 4px 10px; border-radius: 8px;
+        font-family: "SF Mono", ui-monospace, Menlo, monospace; font-size: 12px;
+        color: var(--on-surface); cursor: pointer; border: 1px solid transparent;
+        transition: background .15s, border-color .15s;
+    }
+    .pd-sku-copy:hover { background: #EEEEF0; border-color: var(--outline); }
+    .pd-sku-copy svg { width: 12px; height: 12px; }
+    .pd-copy-toast {
+        position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%) translateY(20px);
+        background: #1d1d1f; color: #fff; padding: 12px 22px; border-radius: 999px;
+        font-size: 14px; font-weight: 500; z-index: 9999;
+        opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s;
+        box-shadow: 0 14px 34px rgba(0,0,0,0.24);
+    }
+    .pd-copy-toast.on { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+@endpush
+
+<x-shop::layouts :has-header="false" :has-feature="false" :has-footer="false">
+    <x-slot:title>{{ $product->name }} — Asef Sondaj</x-slot>
 
     <div class="asef-root">
-
         @include('asef-adaptation::partials.v5-nav')
 
         <main class="asef-main">
@@ -177,54 +90,62 @@
                 <nav class="asef-breadcrumb" aria-label="breadcrumb">
                     <a href="{{ url('/') }}">Ana Sayfa</a>
                     <span class="sep">/</span>
-                    <a href="{{ route('shop.search.index', ['cat' => $product['cat']]) }}">{{ $product['catLabel'] }}</a>
+                    <a href="{{ route('shop.search.index') }}">Ürünler</a>
+                    @if ($anaKat)
+                        <span class="sep">/</span>
+                        <a href="{{ route('shop.search.index', ['ana' => $anaKat->code]) }}">{{ $anaKat->name }}</a>
+                    @endif
+                    @if ($altKat)
+                        <span class="sep">/</span>
+                        <a href="{{ route('shop.search.index', ['ana' => $anaKat->code, 'alt' => $altKat->code]) }}">{{ $altKat->name }}</a>
+                    @endif
                     <span class="sep">/</span>
-                    <span class="current">{{ $product['name'] }}</span>
+                    <span class="current">{{ $product->name }}</span>
                 </nav>
             </div>
 
             {{-- PRODUCT MAIN --}}
             <section class="asef-pd-wrap" style="padding-top: 0;">
                 <div class="asef-pd-grid">
-                    {{-- GALLERY (single image for now — Bagisto backend will multi later) --}}
                     <div>
                         <div class="asef-pd-gallery">
-                            <img src="{{ $asefUrl($product['img']) }}" alt="{{ $product['name'] }}" />
+                            <img src="{{ $imgSrc }}" alt="{{ $product->name }}" />
                         </div>
                     </div>
 
-                    {{-- INFO + CTA --}}
                     <div class="asef-pd-info">
-                        <div class="asef-pd-cat">{{ mb_strtoupper($product['catLabel'], 'UTF-8') }}</div>
-                        <h1 class="asef-pd-title">{{ $product['name'] }}</h1>
-                        <div class="asef-pd-sku-line">{{ $product['sku'] }}</div>
-                        <p class="asef-pd-desc">{{ $product['desc'] }}</p>
+                        <div class="asef-pd-cat">{{ mb_strtoupper($catLabel, 'UTF-8') }}</div>
+                        <h1 class="asef-pd-title">{{ $product->name }}</h1>
 
-                        @if (! empty($product['usecases']))
-                            <div class="asef-pd-usecases-title">Kullanım alanları</div>
-                            <div class="asef-pd-usecases">
-                                @foreach ($product['usecases'] as $uc)
-                                    <span class="asef-pd-usecase">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                                        {{ $uc }}
-                                    </span>
+                        {{-- SKU + copy button --}}
+                        <div class="asef-pd-sku-line" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                            <span>Ürün Kodu:</span>
+                            <button type="button" class="pd-sku-copy" data-pd-copy="{{ $product->sku }}" aria-label="Ürün kodunu kopyala">
+                                {{ $product->sku }}
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+                            </button>
+                        </div>
+
+                        @if ($product->description)
+                            <p class="asef-pd-desc">{{ $product->description }}</p>
+                        @endif
+
+                        {{-- TEKNİK ÖZELLİKLER — sadece DOLU alanlar --}}
+                        @if (count($filledAttrs) > 0)
+                            <div class="asef-pd-spec-head">
+                                <div class="asef-pd-spec-title">Teknik özellikler</div>
+                                <div class="asef-pd-spec-sub">{{ count($filledAttrs) }} DEĞER</div>
+                            </div>
+                            <div class="asef-pd-spec-grid">
+                                @foreach ($filledAttrs as $i => $a)
+                                    <div class="asef-pd-spec-card">
+                                        <span class="asef-pd-spec-num">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                                        <span class="asef-pd-spec-label-new">{{ $a['label'] }}</span>
+                                        <span class="asef-pd-spec-value-new">{{ $a['value'] }}{{ $a['unit'] ? ' ' . $a['unit'] : '' }}</span>
+                                    </div>
                                 @endforeach
                             </div>
                         @endif
-
-                        <div class="asef-pd-spec-head">
-                            <div class="asef-pd-spec-title">Teknik özellikler</div>
-                            <div class="asef-pd-spec-sub">{{ count($product['specs']) }} DEĞER</div>
-                        </div>
-                        <div class="asef-pd-spec-grid">
-                            @foreach ($product['specs'] as $i => $spec)
-                                <div class="asef-pd-spec-card">
-                                    <span class="asef-pd-spec-num">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
-                                    <span class="asef-pd-spec-label-new">{{ $spec['label'] }}</span>
-                                    <span class="asef-pd-spec-value-new">{{ $spec['value'] }}</span>
-                                </div>
-                            @endforeach
-                        </div>
 
                         {{-- ADD TO CART CARD --}}
                         <div class="asef-pd-card">
@@ -248,10 +169,10 @@
                                 <button type="button"
                                         class="asef-cta-pill black"
                                         data-asef-pd-add
-                                        data-sku="{{ $product['sku'] }}"
-                                        data-name="{{ $product['name'] }}"
-                                        data-img="{{ $asefUrl($product['img']) }}"
-                                        data-cat="{{ $product['catLabel'] }}">
+                                        data-sku="{{ $product->sku }}"
+                                        data-name="{{ $product->name }}"
+                                        data-img="{{ $imgSrc }}"
+                                        data-cat="{{ $catLabel }}">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                                     Sepete Ekle
                                 </button>
@@ -269,7 +190,7 @@
                 </div>
             </section>
 
-            {{-- RELATED PRODUCTS --}}
+            {{-- RELATED --}}
             @if ($related->count() > 0)
                 <section class="asef-related-wrap">
                     <div class="asef-related-head">
@@ -277,12 +198,15 @@
                     </div>
                     <div class="asef-related-grid">
                         @foreach ($related as $r)
-                            <a href="{{ route('shop.asef.product', ['sku' => $r['sku']]) }}" class="asef-related-card">
+                            @php
+                                $rImg = url('asef/' . ($r->image ?: 'asef-hero-equipment.jpg'));
+                            @endphp
+                            <a href="{{ route('shop.asef.product', ['sku' => $r->sku]) }}" class="asef-related-card">
                                 <div class="asef-related-media">
-                                    <img src="{{ $asefUrl($r['img']) }}" alt="{{ $r['name'] }}" loading="lazy" />
+                                    <img src="{{ $rImg }}" alt="{{ $r->name }}" loading="lazy" />
                                 </div>
-                                <div class="asef-related-name">{{ $r['name'] }}</div>
-                                <div class="asef-related-desc">{{ \Illuminate\Support\Str::limit($r['desc'], 70) }}</div>
+                                <div class="asef-related-name">{{ $r->name }}</div>
+                                <div class="asef-related-desc">{{ $r->attrs['ebat_sistem'] ?? '' }} {{ $r->attrs['boy_uzunluk'] ? '· ' . $r->attrs['boy_uzunluk'] : '' }}</div>
                                 <span class="asef-related-link">İncele ›</span>
                             </a>
                         @endforeach
@@ -292,7 +216,29 @@
 
         </main>
 
+        <div id="pdCopyToast" class="pd-copy-toast" role="status" aria-live="polite">Kod kopyalandı</div>
+        <script>
+        (function () {
+            document.addEventListener('click', function (e) {
+                var btn = e.target.closest('[data-pd-copy]');
+                if (!btn) return;
+                e.preventDefault();
+                var val = btn.getAttribute('data-pd-copy');
+                var toast = document.getElementById('pdCopyToast');
+                function ok() { if (toast) { toast.classList.add('on'); setTimeout(function(){ toast.classList.remove('on'); }, 1800); } }
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(val).then(ok);
+                } else {
+                    var ta = document.createElement('textarea');
+                    ta.value = val; ta.style.position='fixed'; ta.style.opacity='0';
+                    document.body.appendChild(ta); ta.select();
+                    try { document.execCommand('copy'); ok(); } catch(_){}
+                    document.body.removeChild(ta);
+                }
+            });
+        })();
+        </script>
+
         @include('asef-adaptation::partials.v5-footer')
     </div>
-
 </x-shop::layouts>

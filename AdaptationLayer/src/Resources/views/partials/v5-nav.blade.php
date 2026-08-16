@@ -11,11 +11,12 @@
                         <div class="asef-mega-col asef-mega-main">
                             <h5>Ürün Gruplarını Keşfedin</h5>
                             <a href="{{ $catalogUrl }}">Tüm Ürünler</a>
-                            <a href="{{ $catalogUrl }}?cat=delici">Delici Ekipmanlar</a>
-                            <a href="{{ $catalogUrl }}?cat=tij">Tij ve Borular</a>
-                            <a href="{{ $catalogUrl }}?cat=pompa">Pompa Sistemleri</a>
-                            <a href="{{ $catalogUrl }}?cat=karot">Karot Ürünleri</a>
-                            <a href="{{ $catalogUrl }}?cat=yedek-parca">Yedek Parça</a>
+                            @php
+                                $navAna = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::orderBy('sort')->limit(6)->get();
+                            @endphp
+                            @foreach ($navAna as $_ak)
+                                <a href="{{ $catalogUrl }}?ana={{ $_ak->code }}">{{ $_ak->name }}</a>
+                            @endforeach
                         </div>
                         <div class="asef-mega-col asef-mega-side">
                             <h5>Hızlı Bağlantılar</h5>
@@ -25,10 +26,17 @@
                         </div>
                         <div class="asef-mega-col asef-mega-side">
                             <h5>Popüler Ürünler</h5>
-                            <a href="{{ route('shop.asef.product', ['sku' => 'AS-DTH-040']) }}">DTH Çekiç 4 İnç</a>
-                            <a href="{{ route('shop.asef.product', ['sku' => 'AS-BIT-152']) }}">DTH Button Bit 6 İnç</a>
-                            <a href="{{ route('shop.asef.product', ['sku' => 'AS-ROD-300']) }}">Sondaj Tiji 3 Metre</a>
-                            <a href="{{ route('shop.asef.product', ['sku' => 'AS-PMP-600']) }}">Triplex Çamur Pompası</a>
+                            @php
+                                $navPopular = \AsefSondaj\AdaptationLayer\Models\AsefProduct::query()
+                                    ->where('is_active', true)
+                                    ->whereIn('sku', ['AS-DTH-001','AS-EMB-001','AS-KRT-001','AS-TRC-001'])
+                                    ->get()->keyBy('sku');
+                                foreach (['AS-DTH-001','AS-EMB-001','AS-KRT-001','AS-TRC-001'] as $_sku) {
+                                    if (! isset($navPopular[$_sku])) continue;
+                                    $_p = $navPopular[$_sku];
+                                    echo '<a href="'.route('shop.asef.product', ['sku' => $_p->sku]).'">'.e($_p->name).'</a>';
+                                }
+                            @endphp
                         </div>
                     </div>
                 </div>
