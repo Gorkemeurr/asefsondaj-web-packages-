@@ -122,7 +122,20 @@
 @push('styles')
 <style>
     .glossary-wrap { max-width: 900px; margin: 0 auto 100px; padding: 0 20px; }
-    .glossary-nav { position: sticky; top: 60px; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 14px 0; margin-bottom: 30px; border-bottom: 1px solid var(--outline); z-index: 10; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+    .glossary-nav {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 56px;
+        background: #FFFFFF;
+        padding: 14px 12px;
+        margin: 0 -12px 30px;
+        border-bottom: 1px solid var(--outline);
+        border-top: 1px solid var(--outline);
+        z-index: 50;
+        display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+        box-shadow: 0 4px 12px -8px rgba(0,0,0,0.1);
+    }
+    @media (min-width: 900px) { .glossary-nav { top: 64px; } }
     .glossary-nav a { display: inline-flex; width: 32px; height: 32px; align-items: center; justify-content: center; border-radius: 8px; background: var(--surface-alt); color: var(--primary); text-decoration: none; font-weight: 600; font-size: 13px; transition: background 0.2s; }
     .glossary-nav a:hover { background: var(--primary); color: #fff; }
     .glossary-letter-block { margin-bottom: 48px; }
