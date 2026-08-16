@@ -2,7 +2,12 @@
      Requires from parent scope: $catalogUrl, $waLink. --}}
 <nav class="asef-nav" aria-label="Ana gezinme">
     <div class="asef-nav-inner">
-        <a href="{{ url('/') }}" class="asef-brand">Asef Sondaj</a>
+        <a href="{{ url('/') }}" class="asef-brand" aria-label="Asef Sondaj ana sayfa">
+            <span class="asef-brand-mark" aria-hidden="true">A</span>
+            <span class="asef-brand-text">
+                <span class="brand-asef">Asef</span><span class="brand-sondaj">Sondaj</span>
+            </span>
+        </a>
         <div class="asef-nav-menu">
             <div class="asef-nav-item">
                 <a href="{{ $catalogUrl }}">Ürünler</a>

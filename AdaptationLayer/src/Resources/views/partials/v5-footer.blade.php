@@ -4,7 +4,10 @@
     <div class="asef-container">
         <div class="asef-footer-grid">
             <div class="asef-footer-brand">
-                <a href="{{ url('/') }}" class="asef-brand">Asef Sondaj</a>
+                <a href="{{ url('/') }}" class="asef-brand" aria-label="Asef Sondaj ana sayfa">
+                    <span class="asef-brand-mark" aria-hidden="true">A</span>
+                    <span class="asef-brand-text"><span class="brand-asef">Asef</span><span class="brand-sondaj">Sondaj</span></span>
+                </a>
                 <p>20 yıllık saha tecrübesiyle sondaj ekipmanları, yedek parça ve teknik çözüm ortağınız.</p>
             </div>
             <div class="asef-footer-col">

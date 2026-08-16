@@ -486,7 +486,12 @@
         {{-- ============= NAV ============= --}}
         <nav class="asef-nav" aria-label="Ana gezinme">
             <div class="asef-nav-inner">
-                <a href="{{ url('/') }}" class="asef-brand">Asef Sondaj</a>
+                <a href="{{ url('/') }}" class="asef-brand" aria-label="Asef Sondaj ana sayfa">
+                    <span class="asef-brand-mark" aria-hidden="true">A</span>
+                    <span class="asef-brand-text">
+                        <span class="brand-asef">Asef</span><span class="brand-sondaj">Sondaj</span>
+                    </span>
+                </a>
                 <div class="asef-nav-menu">
                     <div class="asef-nav-item">
                         <a href="{{ $catalogUrl }}">Ürünler</a>
@@ -651,34 +656,25 @@
                     <a href="{{ $catalogUrl }}" class="asef-section-link">Tümünü gör <span>›</span></a>
                 </div>
                 <div class="asef-cat-grid">
-                    <a href="{{ $catalogUrl }}" class="asef-cat-card">
-                        <div class="asef-cat-media"><img src="{{ $asefUrl('dth-hammer.jpg') }}" alt="Delici Ekipmanlar" loading="lazy" /></div>
-                        <div class="asef-cat-body">
-                            <div class="asef-cat-title">Delici Ekipmanlar</div>
-                            <div class="asef-cat-meta">3 ürün</div>
-                        </div>
-                    </a>
-                    <a href="{{ $catalogUrl }}" class="asef-cat-card">
-                        <div class="asef-cat-media"><img src="{{ $asefUrl('drill-rods.jpg') }}" alt="Tij ve Borular" loading="lazy" /></div>
-                        <div class="asef-cat-body">
-                            <div class="asef-cat-title">Tij ve Borular</div>
-                            <div class="asef-cat-meta">2 ürün</div>
-                        </div>
-                    </a>
-                    <a href="{{ $catalogUrl }}" class="asef-cat-card">
-                        <div class="asef-cat-media"><img src="{{ $asefUrl('mud-pump.jpg') }}" alt="Pompa Sistemleri" loading="lazy" /></div>
-                        <div class="asef-cat-body">
-                            <div class="asef-cat-title">Pompa Sistemleri</div>
-                            <div class="asef-cat-meta">2 ürün</div>
-                        </div>
-                    </a>
-                    <a href="{{ $catalogUrl }}" class="asef-cat-card">
-                        <div class="asef-cat-media"><img src="{{ $asefUrl('asef-diamond-bit.jpg') }}" alt="Karot Ürünleri" loading="lazy" /></div>
-                        <div class="asef-cat-body">
-                            <div class="asef-cat-title">Karot Ürünleri</div>
-                            <div class="asef-cat-meta">1 ürün</div>
-                        </div>
-                    </a>
+                    @php
+                        $homeCatList = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::query()
+                            ->orderBy('sort')
+                            ->limit(4)
+                            ->get()
+                            ->map(function ($k) {
+                                $k->cnt = $k->products()->where('is_active', true)->count();
+                                return $k;
+                            });
+                    @endphp
+                    @foreach ($homeCatList as $_kat)
+                        <a href="{{ $catalogUrl }}?ana={{ $_kat->code }}" class="asef-cat-card">
+                            <div class="asef-cat-media"><img src="{{ $asefUrl($_kat->image ?: 'asef-hero-equipment.jpg') }}" alt="{{ $_kat->name }}" loading="lazy" /></div>
+                            <div class="asef-cat-body">
+                                <div class="asef-cat-title">{{ $_kat->name }}</div>
+                                <div class="asef-cat-meta">{{ $_kat->cnt }} ürün</div>
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
             </section>
 
@@ -755,7 +751,7 @@
             {{-- SONDAJ MAKINALARIMIZ --}}
             <section class="asef-section-wide">
                 <div class="asef-machine-showcase">
-                    <div class="asef-machine-showcase-bg" style="background-image: url('{{ $asefUrl('drilling-hero.jpg') }}');"></div>
+                    <div class="asef-machine-showcase-bg" style="background-image: url('{{ $asefUrl('asef-innovation-render.jpg') }}');"></div>
                     <div class="asef-machine-content">
                         <div class="asef-label-caps">SONDAJ MAKİNALARIMIZ</div>
                         <h2>Sahada denendi. Kanıtlandı.</h2>
@@ -835,7 +831,10 @@
             <div class="asef-container">
                 <div class="asef-footer-grid">
                     <div class="asef-footer-brand">
-                        <span class="asef-brand">Asef Sondaj</span>
+                        <span class="asef-brand" aria-hidden="true">
+                            <span class="asef-brand-mark">A</span>
+                            <span class="asef-brand-text"><span class="brand-asef">Asef</span><span class="brand-sondaj">Sondaj</span></span>
+                        </span>
                         <p>20 yıllık saha tecrübesiyle sondaj ekipmanları, yedek parça ve teknik çözüm ortağınız.</p>
                     </div>
                     <div class="asef-footer-col">
