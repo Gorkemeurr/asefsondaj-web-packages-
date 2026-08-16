@@ -411,14 +411,25 @@
             @if ($activeAnaName && ! $activeAltName && ! $queryText && $anaCode)
                 @php
                     $seoContent = null;
+                    // Öncelik: DB (admin panelden yönetilir). Boş ise Config dosyası fallback.
                     try {
-                        $seoFile = base_path('packages/AsefSondaj/AdaptationLayer/src/Config/kategori-seo-content.php');
-                        if (is_file($seoFile)) {
-                            $seoAll = require $seoFile;
-                            $seoContent = $seoAll[$anaCode] ?? null;
+                        $dbAna = \AsefSondaj\AdaptationLayer\Models\AsefAnaKategori::where('code', $anaCode)->first();
+                        if ($dbAna && ! empty($dbAna->seo_content)) {
+                            $seoContent = $dbAna->seo_content;
                         }
                     } catch (\Throwable $e) {
-                        $seoContent = null;
+                        // sessiz — DB yok/column yok
+                    }
+                    if (! $seoContent) {
+                        try {
+                            $seoFile = base_path('packages/AsefSondaj/AdaptationLayer/src/Config/kategori-seo-content.php');
+                            if (is_file($seoFile)) {
+                                $seoAll = require $seoFile;
+                                $seoContent = $seoAll[$anaCode] ?? null;
+                            }
+                        } catch (\Throwable $e) {
+                            $seoContent = null;
+                        }
                     }
                 @endphp
                 @if ($seoContent)

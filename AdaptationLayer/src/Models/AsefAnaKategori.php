@@ -10,7 +10,7 @@ class AsefAnaKategori extends Model
     protected $table = 'asef_ana_kategoriler';
 
     protected $fillable = [
-        'code', 'name', 'slug', 'description', 'meta_title', 'image', 'sort',
+        'code', 'name', 'slug', 'description', 'seo_content', 'meta_title', 'image', 'sort',
     ];
 
     public function altKategoriler(): HasMany

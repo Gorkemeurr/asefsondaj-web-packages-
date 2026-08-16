@@ -29,6 +29,7 @@ class AnaKategoriController extends Controller
             'name' => 'required|string|max:200',
             'sort' => 'nullable|integer',
             'image' => 'nullable|string|max:200',
+            'seo_content' => 'nullable|string',
         ]);
         $data['sort'] = $data['sort'] ?? 0;
         AsefAnaKategori::create($data);
@@ -53,6 +54,7 @@ class AnaKategoriController extends Controller
             'name' => 'required|string|max:200',
             'sort' => 'nullable|integer',
             'image' => 'nullable|string|max:200',
+            'seo_content' => 'nullable|string',
         ]);
         $data['sort'] = $data['sort'] ?? 0;
         $item->update($data);
