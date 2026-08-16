@@ -313,9 +313,6 @@
             <button type="button" class="asef-scroll-arrow left" data-scroll-arrow="left" aria-label="Sola kaydır">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
-            <button type="button" class="asef-scroll-arrow right" data-scroll-arrow="right" aria-label="Sağa kaydır">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
-            </button>
             <div class="asef-chips-scroll" data-asef-scroll>
                 {{-- "Tümü" temizler HER şeyi (query + ana + alt) — direct /search --}}
                 <button type="button" class="asef-chip asef-chip-panel" data-open-cat-panel aria-label="Tüm kategoriler paneli">
@@ -335,6 +332,9 @@
                     <a href="{{ $chipUrl }}" class="asef-chip {{ $isActive ? 'active' : '' }}">{{ $ana->name }}</a>
                 @endforeach
             </div>
+            <button type="button" class="asef-scroll-arrow right" data-scroll-arrow="right" aria-label="Sağa kaydır">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+            </button>
             </div>{{-- /asef-chips-scroll-wrap --}}
 
             {{-- SUB CATEGORY CHIPS (aktif ana için alt kategoriler) --}}
@@ -342,9 +342,6 @@
                 <div class="asef-chips-scroll-wrap">
                 <button type="button" class="asef-scroll-arrow left" data-scroll-arrow="left" aria-label="Sola kaydır">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-                </button>
-                <button type="button" class="asef-scroll-arrow right" data-scroll-arrow="right" aria-label="Sağa kaydır">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
                 </button>
                 <div class="asef-chips-alt" data-asef-scroll>
                     @php
@@ -363,6 +360,9 @@
                         <a href="{{ $chipUrl }}" class="asef-chip {{ $isActive ? 'active' : '' }}">{{ $alt->name }}</a>
                     @endforeach
                 </div>
+                <button type="button" class="asef-scroll-arrow right" data-scroll-arrow="right" aria-label="Sağa kaydır">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+                </button>
                 </div>{{-- /wrap --}}
             @endif
             <script>
