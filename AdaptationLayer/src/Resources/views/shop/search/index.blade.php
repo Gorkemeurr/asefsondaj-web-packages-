@@ -631,7 +631,7 @@
                         @endphp
                         <div class="asef-search-card">
                             <a href="{{ $detailUrl }}" class="asef-search-media" aria-label="{{ $product->name }} detay" style="display:block;">
-                                <img src="{{ $imgSrc }}" alt="{{ $product->sku }} — {{ $product->name }}{{ $catLabel ? ' | ' . $catLabel : '' }} sondaj ekipmanı" loading="lazy" width="400" height="300" />
+                                <img src="{{ $imgSrc }}" alt="{{ $product->sku }} — {{ $product->name }}{{ $catLabel ? ' | ' . $catLabel : '' }} sondaj ekipmanı" loading="{{ $loop->index < 4 ? 'eager' : 'lazy' }}" @if($loop->index === 0) fetchpriority="high" @endif width="400" height="300" decoding="async" />
                                 <span class="asef-search-sku">{{ $product->sku }}</span>
                             </a>
                             <a href="{{ $detailUrl }}" class="asef-search-body" style="color:inherit;">

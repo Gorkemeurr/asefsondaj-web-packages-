@@ -109,7 +109,7 @@
                 <div class="tb-grid">
                     @foreach ($filtered as $p)
                         <a href="{{ url('blog/' . $p['slug']) }}" class="tb-post">
-                            <div class="tb-post-media"><img src="{{ $asefUrl($p['img']) }}" alt="{{ $p['title'] }}" loading="lazy" width="400" height="250"></div>
+                            <div class="tb-post-media"><img src="{{ $asefUrl($p['img']) }}" alt="{{ $p['title'] }}" loading="{{ $loop->index < 3 ? 'eager' : 'lazy' }}" width="400" height="250" decoding="async"></div>
                             <div class="tb-post-body">
                                 <span class="tb-post-cat">{{ $p['cat'] }}</span>
                                 <div class="tb-post-title">{{ $p['title'] }}</div>
