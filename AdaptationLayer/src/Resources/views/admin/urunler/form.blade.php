@@ -69,6 +69,10 @@
             </div>
         </div>
 
+        <div class="border-t border-gray-200 dark:border-gray-800 pt-4 mt-2">
+            <p class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Teknik Özellikler (attrs)</p>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Ebat / Sistem</label>
@@ -78,6 +82,51 @@
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Boy / Uzunluk</label>
                 <input type="text" name="attrs_boy_uzunluk" value="{{ old('attrs_boy_uzunluk', $item->attrs['boy_uzunluk'] ?? '') }}" maxlength="100" placeholder="ör: 3 metre" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm" />
             </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Karot Çapı (mm)</label>
+                <input type="text" name="attrs_karot_capi_mm" value="{{ old('attrs_karot_capi_mm', $item->attrs['karot_capi_mm'] ?? '') }}" maxlength="50" placeholder="ör: 63.5" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm" />
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Kuyu Çapı (mm)</label>
+                <input type="text" name="attrs_kuyu_capi_mm" value="{{ old('attrs_kuyu_capi_mm', $item->attrs['kuyu_capi_mm'] ?? '') }}" maxlength="50" placeholder="ör: 96" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm" />
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Dış Çap OD (mm)</label>
+                <input type="text" name="attrs_dis_cap_od_mm" value="{{ old('attrs_dis_cap_od_mm', $item->attrs['dis_cap_od_mm'] ?? '') }}" maxlength="50" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm" />
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">İç Çap ID (mm)</label>
+                <input type="text" name="attrs_ic_cap_id_mm" value="{{ old('attrs_ic_cap_id_mm', $item->attrs['ic_cap_id_mm'] ?? '') }}" maxlength="50" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm" />
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Diş / Bağlantı</label>
+                <input type="text" name="attrs_dis_baglanti" value="{{ old('attrs_dis_baglanti', $item->attrs['dis_baglanti'] ?? '') }}" maxlength="100" placeholder="ör: API IF, DCDMA" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm" />
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Malzeme / Kaplama</label>
+                <input type="text" name="attrs_malzeme_kaplama" value="{{ old('attrs_malzeme_kaplama', $item->attrs['malzeme_kaplama'] ?? '') }}" maxlength="100" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm" />
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Matkap Derecesi</label>
+                <input type="text" name="attrs_matkap_derecesi" value="{{ old('attrs_matkap_derecesi', $item->attrs['matkap_derecesi'] ?? '') }}" maxlength="50" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm" />
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Kayaç Sertliği</label>
+                <input type="text" name="attrs_kayac_sertligi" value="{{ old('attrs_kayac_sertligi', $item->attrs['kayac_sertligi'] ?? '') }}" maxlength="100" placeholder="ör: Sert, Orta" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm" />
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Taç Yüksekliği</label>
+                <input type="text" name="attrs_tac_yuksekligi" value="{{ old('attrs_tac_yuksekligi', $item->attrs['tac_yuksekligi'] ?? '') }}" maxlength="50" placeholder="ör: 10 mm" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm" />
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Satış Birimi</label>
+                <input type="text" name="attrs_satis_birimi" value="{{ old('attrs_satis_birimi', $item->attrs['satis_birimi'] ?? '') }}" maxlength="50" placeholder="ör: Adet, Metre" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm" />
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Teknik Not</label>
+            <textarea name="attrs_teknik_not" rows="2" maxlength="500" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm">{{ old('attrs_teknik_not', $item->attrs['teknik_not'] ?? '') }}</textarea>
         </div>
 
         <div>
