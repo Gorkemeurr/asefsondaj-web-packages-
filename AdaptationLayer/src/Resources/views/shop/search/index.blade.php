@@ -89,24 +89,14 @@
 
 @push('styles')
 <style>
-    /* Chip rows — 15 ana kategori yatay scroll + arrow butonlar (PC UX) */
+    /* Chip rows — flex layout: [◀] [scroll] [▶] */
     .asef-chips-scroll-wrap {
-        position: relative; max-width: 1024px; margin: 0 auto 12px;
+        max-width: 1024px; margin: 0 auto 12px; padding: 0 12px;
+        display: flex; align-items: center; gap: 8px;
     }
-    .asef-chips-scroll-wrap::after {
-        content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 50px;
-        background: linear-gradient(to right, transparent, #FFFFFF 70%);
-        pointer-events: none; z-index: 1;
-    }
-    .asef-chips-scroll-wrap::before {
-        content: ""; position: absolute; top: 0; left: 0; bottom: 0; width: 50px;
-        background: linear-gradient(to left, transparent, #FFFFFF 60%);
-        pointer-events: none; z-index: 1; opacity: 0;
-        transition: opacity .2s;
-    }
-    .asef-chips-scroll-wrap.scrolled::before { opacity: 1; }
     .asef-chips-scroll, .asef-chips-alt {
-        padding: 4px 30px;
+        flex: 1; min-width: 0;
+        padding: 4px 4px;
         display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x proximity;
         -webkit-overflow-scrolling: touch;
         scroll-behavior: smooth;
@@ -115,21 +105,18 @@
     .asef-chips-scroll, .asef-chips-alt { scrollbar-width: none; }
     .asef-chips-scroll .asef-chip, .asef-chips-alt .asef-chip { scroll-snap-align: start; flex-shrink: 0; }
 
-    /* Arrow buttons — sadece scroll gerekiyorsa görünür */
+    /* Arrow buttons — chip'lerin YANINDA, üstüne binmez */
     .asef-scroll-arrow {
-        position: absolute; top: 50%; transform: translateY(-50%);
-        width: 34px; height: 34px; border-radius: 50%;
+        flex-shrink: 0;
+        width: 36px; height: 36px; border-radius: 50%;
         background: #FFFFFF; border: 1.5px solid var(--primary);
         color: var(--primary); cursor: pointer;
-        display: none; align-items: center; justify-content: center;
-        z-index: 3;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.14);
-        transition: background .15s, color .15s, transform .15s;
+        display: inline-flex; align-items: center; justify-content: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: background .15s, color .15s, transform .15s, opacity .2s;
     }
-    .asef-scroll-arrow:hover { background: var(--primary); color: #FFFFFF; transform: translateY(-50%) scale(1.08); }
-    .asef-scroll-arrow.on { display: inline-flex; }
-    .asef-scroll-arrow.left  { left: 6px; }
-    .asef-scroll-arrow.right { right: 6px; }
+    .asef-scroll-arrow:hover:not(:disabled) { background: var(--primary); color: #FFFFFF; transform: scale(1.08); }
+    .asef-scroll-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
     .asef-scroll-arrow svg { width: 16px; height: 16px; }
     .asef-chips-alt {
         max-width: 1024px; margin: 0 auto 24px; padding: 0 20px;
@@ -392,9 +379,8 @@
                             var canScroll = scroller.scrollWidth > scroller.clientWidth + 4;
                             var atStart   = scroller.scrollLeft <= 2;
                             var atEnd     = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 2;
-                            if (leftBtn)  leftBtn.classList.toggle('on',  canScroll && !atStart);
-                            if (rightBtn) rightBtn.classList.toggle('on', canScroll && !atEnd);
-                            wrap.classList.toggle('scrolled', !atStart);
+                            if (leftBtn)  leftBtn.disabled  = !canScroll || atStart;
+                            if (rightBtn) rightBtn.disabled = !canScroll || atEnd;
                         }
                         // Wheel: dikey → yatay
                         scroller.addEventListener('wheel', function (e) {
