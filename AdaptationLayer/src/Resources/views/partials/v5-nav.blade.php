@@ -1,5 +1,53 @@
 {{-- Shared v5 nav (Apple-esque, mega menu Ürünler + Kurumsal).
      Requires from parent scope: $catalogUrl, $waLink. --}}
+
+@push('meta')
+    {{-- SEO — Canonical + Open Graph + Twitter Card + Organization JSON-LD.
+         v5-nav içinde çünkü v5-styles cache invalidate problemi. --}}
+    @php
+        $fv = '20260816a';
+        $seoCanonical = url()->current();
+        $seoTitleR   = $seoTitle ?? 'Asef Sondaj — Sondaj Ekipmanları ve Çözümleri';
+        $seoDescR    = $seoDescription ?? '20+ yıllık saha tecrübesiyle sondaj makineleri, ekipmanları ve yedek parça çözümleri — Bursa merkezli Türkiye geneli hizmet.';
+        $seoImageR   = $seoImage ?? url('android-chrome-512x512.png');
+        $seoTypeR    = $seoType ?? 'website';
+    @endphp
+    <link rel="icon" type="image/x-icon" href="{{ url('favicon.ico?v=' . $fv) }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url('favicon-32x32.png?v=' . $fv) }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url('favicon-16x16.png?v=' . $fv) }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url('apple-touch-icon.png?v=' . $fv) }}" />
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ url('android-chrome-192x192.png?v=' . $fv) }}" />
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ url('android-chrome-512x512.png?v=' . $fv) }}" />
+    <link rel="manifest" href="{{ url('site.webmanifest?v=' . $fv) }}" />
+    <meta name="theme-color" content="#0066CC" />
+    <link rel="canonical" href="{{ $seoCanonical }}" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Asef Sondaj" />
+    <meta property="og:site_name" content="Asef Sondaj" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:type" content="{{ $seoTypeR }}" />
+    <meta property="og:title" content="{{ e($seoTitleR) }}" />
+    <meta property="og:description" content="{{ e($seoDescR) }}" />
+    <meta property="og:url" content="{{ $seoCanonical }}" />
+    <meta property="og:image" content="{{ $seoImageR }}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ e($seoTitleR) }}" />
+    <meta name="twitter:description" content="{{ e($seoDescR) }}" />
+    <meta name="twitter:image" content="{{ $seoImageR }}" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Asef Sondaj",
+      "url": "{{ url('/') }}",
+      "logo": "{{ url('android-chrome-512x512.png') }}",
+      "description": "20+ yıllık saha tecrübesiyle sondaj makineleri, ekipmanları ve yedek parça çözümleri.",
+      "address": { "@type": "PostalAddress", "streetAddress": "Duaçınarı Mah. 1. Özgünay Sk No:10", "addressLocality": "Yıldırım", "addressRegion": "Bursa", "postalCode": "16250", "addressCountry": "TR" },
+      "contactPoint": { "@type": "ContactPoint", "telephone": "+90-532-054-29-75", "contactType": "sales", "areaServed": "TR", "availableLanguage": ["Turkish"] },
+      "sameAs": ["https://instagram.com/asefsondajj"]
+    }
+    </script>
+@endpush
 <nav class="asef-nav" aria-label="Ana gezinme">
     <div class="asef-nav-inner">
         <a href="{{ url('/') }}" class="asef-brand">Asef Sondaj</a>
