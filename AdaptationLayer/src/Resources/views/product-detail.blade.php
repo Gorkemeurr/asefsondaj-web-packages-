@@ -177,17 +177,54 @@
                             </button>
                         </div>
 
-                        @if ($product->description)
-                            <div class="asef-pd-desc">
-                                @if (strpos($product->description, '<') !== false)
-                                    {{-- Zaten HTML formatlı (generator veya admin panelden) --}}
-                                    {!! $product->description !!}
-                                @else
-                                    {{-- Plain text — otomatik paragraf --}}
-                                    <p>{{ $product->description }}</p>
-                                @endif
-                            </div>
-                        @endif
+                        @php
+                            // Description: DB'den (varsa) VEYA otomatik generator (kategori+attrs bazlı)
+                            $productDescHtml = trim($product->description ?? '');
+                            if ($productDescHtml === '') {
+                                // Runtime generator — DB'de description yoksa view seviyesinde üret
+                                $anaMap = [
+                                    'WLS' => 'wireline karotiyer sistemi bileşeni. DCDMA standardında maden ve jeoteknik sondaj operasyonları için özel tasarlanmıştır.',
+                                    'DTS' => 'düz takım karotiyer sistemi ürünü. Konvansiyonel karot sondajında sığ ve orta derinlik uygulamaları için uygundur.',
+                                    'DVD' => 'elmas veya vidye tabanlı sondaj kesici ürünü. Kaya sertliğine ve delik çapına göre optimize edilmiş kesici performansı sağlar.',
+                                    'TMB' => 'sondaj tiji veya muhafaza borusu. Doğru bağlantı standardıyla kuyu operasyonunda güvenli ve verimli çalışma sağlar.',
+                                    'AKS' => 'sondaj aksesuar ürünü. Ana ekipmanın performansını tamamlayarak saha operasyonunu güvenli ve akıcı kılar.',
+                                    'ADP' => 'sondaj adaptörü. Farklı bağlantı standartlarına sahip ekipmanlar arasında geçiş sağlar.',
+                                    'THL' => 'sondaj tahlisiyesi (kurtarma ekipmanı). Kuyuda sıkışan veya kopan ekipmanların çıkarılması için özel tasarlanmıştır.',
+                                    'NUM' => 'numune alma ekipmanı. Jeoteknik etüt ve maden aramaları için laboratuvar analizine uygun numune sağlar.',
+                                    'KDL' => 'kaya delgi ekipmanı. DTH veya rotary sondajda sert ve orta sertlikte formasyonlarda hızlı ilerleme sağlar.',
+                                    'AEL' => 'sondaj sahasında kullanılan anahtar veya el aleti. Operasyon güvenliği ve verimi için ergonomik tasarım.',
+                                    'KSN' => 'karot sandığı veya numune ekipmanı. Alınan kaya numunelerinin sırayla, kırılmadan saklanmasını sağlar.',
+                                    'SKS' => 'sondaj kimyasalı. Çamur sistemi performansını optimize ederek formasyon stabilitesi ve kesik taşımayı iyileştirir.',
+                                    'JEO' => 'jeoteknik ekipman. Zemin etüdü, standart penetrasyon testi ve zemin mekaniği araştırmaları için özel üretilmiştir.',
+                                    'GVN' => 'sondaj güvenlik ekipmanı. Saha operasyonunda operatör güvenliği ve yasal zorunluluk için sertifikalıdır.',
+                                    'SMK' => 'sondaj makinesi veya makine yedek parçası. Operasyon verimliliği ve makine ömrü için orijinal üretici garantisi.',
+                                ];
+                                $ctx = $anaMap[$product->ana_code] ?? 'profesyonel sondaj sektörü ürünü.';
+
+                                $techParts = [];
+                                $a = $product->attrs ?? [];
+                                if (! empty($a['ebat_sistem']))    $techParts[] = $a['ebat_sistem'] . ' sistemi';
+                                if (! empty($a['boy_uzunluk']))    $techParts[] = $a['boy_uzunluk'] . ' uzunluğunda';
+                                if (! empty($a['karot_capi_mm']))  $techParts[] = $a['karot_capi_mm'] . ' mm karot çapı';
+                                if (! empty($a['kuyu_capi_mm']))   $techParts[] = $a['kuyu_capi_mm'] . ' mm kuyu çapı';
+                                if (! empty($a['dis_cap_od_mm']))  $techParts[] = $a['dis_cap_od_mm'] . ' mm dış çap';
+                                if (! empty($a['ic_cap_id_mm']))   $techParts[] = $a['ic_cap_id_mm'] . ' mm iç çap';
+                                if (! empty($a['dis_baglanti']))   $techParts[] = $a['dis_baglanti'] . ' bağlantı';
+
+                                $productDescHtml = '<p><strong>' . e($product->name) . '</strong> (' . e($product->sku) . ') — ' . $ctx . '</p>';
+                                if ($techParts) {
+                                    $productDescHtml .= '<p><strong>Teknik özellikler:</strong> ' . e(implode(', ', $techParts)) . '.</p>';
+                                }
+                                $productDescHtml .= '<p><strong>Sevkiyat ve destek:</strong> Türkiye geneli 81 ilde 2-5 iş günü sevkiyat. Teknik danışmanlık ve satış sonrası destek dahil. Teklif için WhatsApp: <a href="https://wa.me/905320542975">0532 054 29 75</a>.</p>';
+                            }
+                        @endphp
+                        <div class="asef-pd-desc">
+                            @if (strpos($productDescHtml, '<') !== false)
+                                {!! $productDescHtml !!}
+                            @else
+                                <p>{{ $productDescHtml }}</p>
+                            @endif
+                        </div>
 
                         {{-- TEKNİK ÖZELLİKLER — sadece DOLU alanlar --}}
                         @if (count($filledAttrs) > 0)
