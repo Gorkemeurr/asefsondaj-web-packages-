@@ -181,7 +181,7 @@
 {{-- Force fresh reload — deploy version bump ile tarayıcı cache'i bir kez bypass --}}
 <script>
 (function () {
-    var VERSION = '20260816q-mobile-nav-group';
+    var VERSION = '20260816r-mobile-flex-end';
     try {
         if (window.sessionStorage && sessionStorage.getItem('asef_ver') !== VERSION) {
             sessionStorage.setItem('asef_ver', VERSION);
@@ -210,9 +210,16 @@
     @media (min-width: 900px) { .asef-nav-actions { gap: 8px; } }
     /* Mobilde: brand solda, [search+sepet+hamburger] bir grup halinde sağa yaslı */
     @media (max-width: 899px) {
-        .asef-nav-inner { justify-content: flex-start !important; }
-        .asef-nav-actions { margin-left: auto !important; }
-        .asef-nav-mobile-btn { margin-left: 4px !important; }
+        .asef-nav-inner {
+            justify-content: flex-end !important;
+            gap: 4px !important;
+        }
+        .asef-brand { margin-right: auto !important; }
+        .asef-nav-actions {
+            margin-left: 0 !important;
+            gap: 2px !important;
+        }
+        .asef-nav-mobile-btn { margin-left: 2px !important; }
     }
     /* İletişim CTA mobil'de gizli, masaüstünde görünür */
     .asef-nav-cta { display: none !important; }
