@@ -49,7 +49,42 @@
 @push('meta')
     <meta name="title" content="{{ $product->name }} ({{ $product->sku }}) — Asef Sondaj" />
     <meta name="description" content="{{ e($pageDesc) }}" />
-    <meta name="theme-color" content="#ffffff" />
+
+    {{-- Product structured data (Google rich card) — fiyat/stok BİLİNÇLİ olarak yok --}}
+    @php
+        $productJsonLd = [
+            '@context' => 'https://schema.org',
+            '@type' => 'Product',
+            'name' => $product->name,
+            'sku' => $product->sku,
+            'mpn' => $product->sku,
+            'description' => $pageDesc,
+            'image' => [$imgSrc],
+            'brand' => ['@type' => 'Brand', 'name' => $product->brand],
+            'manufacturer' => ['@type' => 'Organization', 'name' => 'Asef Sondaj'],
+            'url' => url()->current(),
+        ];
+        if ($altKat) $productJsonLd['category'] = $altKat->name;
+    @endphp
+    <script type="application/ld+json">{!! json_encode($productJsonLd, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
+
+    {{-- Breadcrumb JSON-LD --}}
+    @php
+        $breadcrumbItems = [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Ana Sayfa', 'item' => url('/')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'Ürünler', 'item' => route('shop.search.index')],
+        ];
+        $pos = 3;
+        if ($anaKat) {
+            $breadcrumbItems[] = ['@type' => 'ListItem', 'position' => $pos++, 'name' => $anaKat->name, 'item' => route('shop.search.index', ['ana' => $anaKat->code])];
+        }
+        if ($altKat && $anaKat) {
+            $breadcrumbItems[] = ['@type' => 'ListItem', 'position' => $pos++, 'name' => $altKat->name, 'item' => route('shop.search.index', ['ana' => $anaKat->code, 'alt' => $altKat->code])];
+        }
+        $breadcrumbItems[] = ['@type' => 'ListItem', 'position' => $pos, 'name' => $product->name, 'item' => url()->current()];
+        $breadcrumbJsonLd = ['@context' => 'https://schema.org', '@type' => 'BreadcrumbList', 'itemListElement' => $breadcrumbItems];
+    @endphp
+    <script type="application/ld+json">{!! json_encode($breadcrumbJsonLd, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
 @endpush
 
 @include('asef-adaptation::partials.v5-styles')
