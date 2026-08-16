@@ -1,5 +1,15 @@
 {{-- Shared v5 design language styles (Apple-esque minimalist).
      Push once per page via @include('asef-adaptation::partials.v5-styles'). --}}
+@push('meta')
+    <link rel="icon" type="image/x-icon" href="{{ url('favicon.ico') }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url('favicon-32x32.png') }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url('favicon-16x16.png') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url('apple-touch-icon.png') }}" />
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ url('android-chrome-192x192.png') }}" />
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ url('android-chrome-512x512.png') }}" />
+    <link rel="manifest" href="{{ url('site.webmanifest') }}" />
+@endpush
+
 @push('styles')
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

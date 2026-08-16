@@ -113,6 +113,12 @@ if [ -f "$PKG_ASSETS/images/favicon.ico" ]; then
     cp -f "$PKG_ASSETS/images/favicon.ico" "$BAGISTO_ROOT/public/favicon.ico"
     echo "    favicon.ico -> public/"
 fi
+for f in favicon-16x16.png favicon-32x32.png apple-touch-icon.png android-chrome-192x192.png android-chrome-512x512.png site.webmanifest; do
+    if [ -f "$PKG_ASSETS/images/$f" ]; then
+        cp -f "$PKG_ASSETS/images/$f" "$BAGISTO_ROOT/public/$f"
+        echo "    $f -> public/"
+    fi
+done
 
 # Homepage assets: brand photos + page CSS/JS -> public/asef/
 mkdir -p "$BAGISTO_ROOT/public/asef"
