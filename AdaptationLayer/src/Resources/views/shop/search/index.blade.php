@@ -479,14 +479,14 @@
                         @endphp
                         @foreach ($panelAna as $pa)
                             <div class="asef-cat-panel-group">
-                                <a href="{{ route('shop.search.index') . '?ana=' . $pa->code }}" class="asef-cat-panel-ana">
+                                <a href="{{ ($pa->slug ?? null) ? url('urunler/' . $pa->slug) : route('shop.search.index') . '?ana=' . $pa->code }}" class="asef-cat-panel-ana">
                                     {{ $pa->name }}
                                     <span class="asef-cat-panel-count">{{ $pa->products()->where('is_active',true)->count() }}</span>
                                 </a>
                                 @if ($pa->altKategoriler->count() > 0)
                                     <div class="asef-cat-panel-alts">
                                         @foreach ($pa->altKategoriler as $pal)
-                                            <a href="{{ route('shop.search.index') . '?ana=' . $pa->code . '&alt=' . $pal->code }}" class="asef-cat-panel-alt">
+                                            <a href="{{ (($pa->slug ?? null) && ($pal->slug ?? null)) ? url('urunler/' . $pa->slug . '/' . $pal->slug) : route('shop.search.index') . '?ana=' . $pa->code . '&alt=' . $pal->code }}" class="asef-cat-panel-alt">
                                                 {{ $pal->name }}
                                                 <span class="asef-cat-panel-count">{{ $pal->products()->where('is_active',true)->count() }}</span>
                                             </a>
@@ -540,7 +540,7 @@
                             $imgSrc   = $imgUrl($product);
                             $shortDesc = $product->description
                                 ?: (($product->attrs['ebat_sistem'] ?? '') . ($product->attrs['boy_uzunluk'] ? ' · ' . $product->attrs['boy_uzunluk'] : ''));
-                            $detailUrl = route('shop.asef.product', ['sku' => $product->sku]);
+                            $detailUrl = url('urun/' . (($product->slug ?? null) ?: $product->sku));
                         @endphp
                         <div class="asef-search-card">
                             <a href="{{ $detailUrl }}" class="asef-search-media" aria-label="{{ $product->name }} detay" style="display:block;">
