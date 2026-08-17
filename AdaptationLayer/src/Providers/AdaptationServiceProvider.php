@@ -31,22 +31,20 @@ class AdaptationServiceProvider extends ServiceProvider
         // dosyayı 'menu.admin' key altında yükler)
         $this->mergeConfigFrom($this->getPath('Config/admin-menu.php'), 'menu.admin');
 
-        // Ekstra guvenlik: merge sonrasi asef.quotes'un menude oldugunu garantile
-        // (config cache stale kalirsa file-based merge yapabilir ama runtime en son soz)
-        $this->app->booted(function () {
-            $menu = config('menu.admin', []);
-            $keys = array_column($menu, 'key');
-            if (! in_array('asef.quotes', $keys, true)) {
-                $menu[] = [
-                    'key'   => 'asef.quotes',
-                    'name'  => 'E-Fatura Oluştur',
-                    'route' => 'admin.asef.quotes.index',
-                    'sort'  => 7,
-                    'icon'  => '',
-                ];
-                config(['menu.admin' => $menu]);
-            }
-        });
+        // GARANTI: Merge sonrasi asef.quotes menu icinde olmali. Config cache
+        // stale kalsa veya file merge fail etse bile runtime senkron injecte et.
+        $menu = config('menu.admin', []);
+        $keys = array_column($menu, 'key');
+        if (! in_array('asef.quotes', $keys, true)) {
+            $menu[] = [
+                'key'   => 'asef.quotes',
+                'name'  => 'E-Fatura Oluştur',
+                'route' => 'admin.asef.quotes.index',
+                'sort'  => 7,
+                'icon'  => '',
+            ];
+            config(['menu.admin' => $menu]);
+        }
 
         // Override Bagisto's SitemapController with our AsefSitemapController.
         // Bagisto's route ('sitemap.xml', 'robots.txt') resolves the controller
