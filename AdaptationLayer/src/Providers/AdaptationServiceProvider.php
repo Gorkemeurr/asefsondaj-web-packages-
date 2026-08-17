@@ -442,6 +442,22 @@ class AdaptationServiceProvider extends ServiceProvider
                     }
                 });
 
+                // Debug: read admin-menu.php file directly
+                Route::get('/e-fatura-file-check', function () {
+                    $path = base_path('packages/AsefSondaj/AdaptationLayer/src/Config/admin-menu.php');
+                    $exists = file_exists($path);
+                    $mtime  = $exists ? date('Y-m-d H:i:s', filemtime($path)) : null;
+                    $data   = $exists ? require $path : null;
+                    return response()->json([
+                        'file_exists' => $exists,
+                        'file_mtime'  => $mtime,
+                        'file_path'   => $path,
+                        'file_keys'   => array_column($data ?? [], 'key'),
+                        'file_count'  => is_array($data) ? count($data) : 0,
+                        'config_cached' => file_exists(base_path('bootstrap/cache/config.php')),
+                    ]);
+                });
+
                 // Debug: dump admin menu items
                 Route::get('/e-fatura-menu-check', function () {
                     $menu = config('menu.admin', []);
