@@ -594,14 +594,10 @@
                 </div>
             </section>
 
-            {{-- HERO IMAGE — <picture> ile WebP+JPG fallback. Modern browserlar WebP alır (%48 daha küçük),
-                 eski browserlar orijinal JPG'yi alır. Görsel keskinliği/renk/boyut aynen aynı. --}}
+            {{-- HERO IMAGE --}}
             <div class="asef-hero-image-wrap">
                 <div class="asef-hero-image">
-                    <picture>
-                        <source srcset="{{ $asefUrl('asef-hero-rig.webp') }}" type="image/webp" />
-                        <img src="{{ $asefUrl('asef-hero-rig.jpg') }}" alt="Asef Sondaj sahada çalışan sondaj makinesi — Türkiye geneli sondaj ekipmanı tedariki, 20 yıllık saha tecrübesi" loading="eager" fetchpriority="high" width="1200" height="800" />
-                    </picture>
+                    <img src="{{ $asefUrl('asef-hero-rig.jpg') }}" alt="Asef Sondaj sahada çalışan sondaj makinesi — Türkiye geneli sondaj ekipmanı tedariki, 20 yıllık saha tecrübesi" loading="eager" fetchpriority="high" width="1200" height="800" />
                 </div>
             </div>
 
