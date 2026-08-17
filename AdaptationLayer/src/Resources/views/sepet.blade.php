@@ -86,68 +86,23 @@
     }
     .asef-cart-field textarea { resize: vertical; min-height: 78px; }
 
-    /* ============ CUSTOM SELECT (v5 Apple minimalist) ============ */
-    .asef-select { position: relative; }
-    .asef-select-trigger {
+    /* Select — v5 tasarım, native (browser dropdown UI) */
+    .asef-cart-field select {
         width: 100%; box-sizing: border-box;
-        display: inline-flex; align-items: center; justify-content: space-between;
-        gap: 10px; padding: 11px 14px;
+        padding: 11px 40px 11px 14px;
         font: 400 14px/1.4 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         color: var(--primary);
-        background: #FFFFFF;
+        background: #FFFFFF url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235f5e60' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 14px center;
+        background-size: 12px;
         border: 1px solid var(--outline); border-radius: 12px;
-        cursor: pointer; text-align: left;
         transition: border-color .15s, box-shadow .15s;
+        -webkit-appearance: none; appearance: none;
+        cursor: pointer;
     }
-    .asef-select-trigger[data-empty="true"] { color: var(--gray-secondary); }
-    .asef-select-trigger:hover { border-color: #B0B0B7; }
-    .asef-select-trigger:focus,
-    .asef-select.is-open .asef-select-trigger {
+    .asef-cart-field select:focus {
         outline: none; border-color: var(--primary);
         box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
     }
-    .asef-select-trigger svg {
-        flex-shrink: 0; color: var(--gray-secondary);
-        transition: transform .2s cubic-bezier(0.16,1,0.3,1);
-    }
-    .asef-select.is-open .asef-select-trigger svg { transform: rotate(180deg); }
-
-    .asef-select-panel {
-        position: absolute; z-index: 20;
-        top: calc(100% + 6px); left: 0; right: 0;
-        background: #FFFFFF;
-        border: 1px solid var(--outline);
-        border-radius: 14px;
-        padding: 6px;
-        box-shadow:
-            0 1px 0 rgba(255,255,255,0.8) inset,
-            0 8px 24px -4px rgba(0,0,0,0.14),
-            0 3px 6px -1px rgba(0,0,0,0.06);
-        opacity: 0; transform: translateY(-4px);
-        transition: opacity .18s cubic-bezier(0.16,1,0.3,1), transform .22s cubic-bezier(0.16,1,0.3,1);
-        pointer-events: none;
-    }
-    .asef-select-panel[hidden] { display: none; }
-    .asef-select.is-open .asef-select-panel {
-        opacity: 1; transform: translateY(0); pointer-events: auto;
-    }
-    .asef-select-option {
-        display: block; width: 100%; box-sizing: border-box;
-        padding: 10px 12px; margin: 0;
-        text-align: left; background: transparent; border: 0;
-        border-radius: 10px; cursor: pointer;
-        font: 400 14px/1.4 'Inter', -apple-system, sans-serif;
-        color: var(--primary);
-        transition: background .12s, color .12s;
-    }
-    .asef-select-option:hover,
-    .asef-select-option:focus {
-        outline: none; background: var(--surface-alt);
-    }
-    .asef-select-option.is-selected {
-        background: var(--primary); color: #FFFFFF;
-    }
-    .asef-select-option.is-selected:hover { background: var(--primary); }
 
     /* İl + İlçe yan yana (mobile'da alt alta) */
     .asef-cart-row-2 { display: grid; grid-template-columns: 1fr; gap: 14px; }
@@ -333,20 +288,13 @@
 
                             <div class="asef-cart-field">
                                 <label for="cart-position">Firmadaki pozisyonunuz</label>
-                                {{-- Custom dropdown — native select yerine v5 tasarımlı --}}
-                                <div class="asef-select" data-asef-select>
-                                    <button type="button" class="asef-select-trigger" data-asef-select-trigger
-                                            aria-haspopup="listbox" aria-expanded="false" data-empty="true">
-                                        <span data-asef-select-label>Seçiniz</span>
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-                                    </button>
-                                    <div class="asef-select-panel" role="listbox" data-asef-select-panel hidden>
-                                        <button type="button" class="asef-select-option" role="option" data-asef-select-option data-value="Firma Sahibi">Firma Sahibi</button>
-                                        <button type="button" class="asef-select-option" role="option" data-asef-select-option data-value="Firma Mühendisi">Firma Mühendisi</button>
-                                        <button type="button" class="asef-select-option" role="option" data-asef-select-option data-value="Firma Operatörü">Firma Operatörü</button>
-                                    </div>
-                                    <input type="hidden" id="cart-position" name="position" data-asef-cart-input="position" value="" />
-                                </div>
+                                <select id="cart-position" name="position"
+                                        data-asef-cart-input="position">
+                                    <option value="">Seçiniz</option>
+                                    <option value="Firma Sahibi">Firma Sahibi</option>
+                                    <option value="Firma Mühendisi">Firma Mühendisi</option>
+                                    <option value="Firma Operatörü">Firma Operatörü</option>
+                                </select>
                             </div>
 
                             <div class="asef-cart-field">
@@ -685,69 +633,6 @@
             }
         });
 
-        // ============ CUSTOM SELECT (v5) ============
-        function closeAllSelects(except) {
-            $$('[data-asef-select].is-open').forEach(function (sel) {
-                if (sel === except) return;
-                sel.classList.remove('is-open');
-                var trigger = sel.querySelector('[data-asef-select-trigger]');
-                if (trigger) trigger.setAttribute('aria-expanded', 'false');
-                var panel = sel.querySelector('[data-asef-select-panel]');
-                if (panel) panel.setAttribute('hidden', '');
-            });
-        }
-
-        document.addEventListener('click', function (ev) {
-            // Trigger tıklama → aç/kapa
-            var trigger = ev.target.closest('[data-asef-select-trigger]');
-            if (trigger) {
-                ev.preventDefault();
-                var wrap = trigger.closest('[data-asef-select]');
-                if (!wrap) return;
-                var isOpen = wrap.classList.toggle('is-open');
-                trigger.setAttribute('aria-expanded', String(isOpen));
-                var panel = wrap.querySelector('[data-asef-select-panel]');
-                if (panel) {
-                    if (isOpen) panel.removeAttribute('hidden');
-                    else panel.setAttribute('hidden', '');
-                }
-                if (isOpen) closeAllSelects(wrap);
-                return;
-            }
-            // Option tıklama → değeri set et
-            var opt = ev.target.closest('[data-asef-select-option]');
-            if (opt) {
-                ev.preventDefault();
-                var wrap2 = opt.closest('[data-asef-select]');
-                if (!wrap2) return;
-                var value = opt.getAttribute('data-value') || '';
-                var label = opt.textContent.trim();
-                var hidden = wrap2.querySelector('input[type="hidden"]');
-                var trg = wrap2.querySelector('[data-asef-select-trigger]');
-                var lbl = wrap2.querySelector('[data-asef-select-label]');
-                if (hidden) hidden.value = value;
-                if (lbl) lbl.textContent = label;
-                if (trg) {
-                    trg.removeAttribute('data-empty');
-                    trg.setAttribute('aria-expanded', 'false');
-                }
-                // Seçili durum işaretle
-                $$('[data-asef-select-option]', wrap2).forEach(function (o) { o.classList.remove('is-selected'); });
-                opt.classList.add('is-selected');
-                // Panel kapat
-                wrap2.classList.remove('is-open');
-                var pnl = wrap2.querySelector('[data-asef-select-panel]');
-                if (pnl) pnl.setAttribute('hidden', '');
-                return;
-            }
-            // Dışına tıklama → tüm select'leri kapat
-            closeAllSelects(null);
-        });
-
-        // ESC ile select kapat
-        document.addEventListener('keydown', function (ev) {
-            if (ev.key === 'Escape') closeAllSelects(null);
-        });
     })();
     </script>
     @endpush
