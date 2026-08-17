@@ -22,7 +22,11 @@
  */
 
 // -------- 1) Configuration --------
-const SECRET       = 'asef-deploy-2026-token';   // CHANGE THIS AFTER FIRST DEPLOY
+// SECRET env var'dan okunur — sunucuda `SetEnv ASEF_DEPLOY_WEBHOOK_SECRET xxx`
+// (Apache) veya cPanel Env Variables ile set edilir. Fallback boş → istek reddedilir.
+// Bu değeri git'e commit ETMEYIN.
+$secret = getenv('ASEF_DEPLOY_WEBHOOK_SECRET') ?: '';
+define('SECRET', $secret);
 const REPO_DIR     = '/home/ase3c7ndajcom/bagisto/packages/AsefSondaj';
 const BAGISTO_ROOT = '/home/ase3c7ndajcom/bagisto';
 const PHP_BIN      = '/opt/alt/php83/usr/bin/php';
@@ -52,6 +56,10 @@ $signature = $_SERVER['HTTP_X_HUB_SIGNATURE_256'] ?? '';
 
 if ($signature === '') {
     fail(401, 'Missing signature');
+}
+
+if (SECRET === '') {
+    fail(500, 'Server not configured (missing ASEF_DEPLOY_WEBHOOK_SECRET env)');
 }
 
 $expected = 'sha256=' . hash_hmac('sha256', $payload, SECRET);

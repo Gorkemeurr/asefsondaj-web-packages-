@@ -351,7 +351,7 @@ class AdaptationServiceProvider extends ServiceProvider
         //  Public read-only. Web sitesini hiçbir şekilde etkilemez.
         // ============================================================
         Route::prefix('api/asef')
-            ->middleware('api')
+            ->middleware(['api', 'throttle:60,1'])
             ->name('api.asef.')
             ->group(function () {
                 $ctrl = \AsefSondaj\AdaptationLayer\Http\Controllers\Api\AsefApiController::class;
