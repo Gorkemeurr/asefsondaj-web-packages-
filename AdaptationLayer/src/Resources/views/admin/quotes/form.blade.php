@@ -175,15 +175,18 @@
     </template>
 
     <script>
+    console.log('[Asef Quote Form] Script loaded v6 (fresh DOM refs)');
     (function(){
         const LOOKUP_URL = @json(route('admin.asef.quotes.lookup'));
-        const FORM = document.getElementById('quote-form');
-        const LIST = document.getElementById('items-list');
-        const EMPTY = document.getElementById('items-empty');
-        const LOOKUP_INPUT = document.getElementById('product-lookup-input');
-        const LOOKUP_ERR = document.getElementById('lookup-error');
-        const CSRF = document.querySelector('meta[name="csrf-token"]')?.content
-                   || FORM.querySelector('input[name="_token"]')?.value || '';
+        console.log('[Asef Quote Form] Lookup URL config:', LOOKUP_URL);
+
+        // DOM refs — HER cagirmada tazele (Vue rerender'a karsi guvenli)
+        const $ = (id) => document.getElementById(id);
+        const form  = () => $('quote-form');
+        const list  = () => $('items-list');
+        const empty = () => $('items-empty');
+        const input = () => $('product-lookup-input');
+        const err   = () => $('lookup-error');
 
         const initialItems = @json($items);
 
@@ -192,7 +195,7 @@
         }
 
         function toggleEmpty() {
-            EMPTY.style.display = LIST.children.length === 0 ? '' : 'none';
+            empty().style.display = list().children.length === 0 ? '' : 'none';
         }
 
         function addRow(item) {
@@ -206,14 +209,14 @@
             row.dataset.image = item.image || '';
             row.querySelector('.item-qty').value = item.quantity || 1;
             row.querySelector('.item-price').value = item.unit_price || 0;
-            LIST.appendChild(row);
+            list().appendChild(row);
             toggleEmpty();
             recalcTotals();
         }
 
         async function addProductByLookup() {
-            LOOKUP_ERR.classList.add('hidden');
-            const q = LOOKUP_INPUT.value.trim();
+            err().classList.add('hidden');
+            const q = input().value.trim();
             if (!q) return;
 
             try {
@@ -228,22 +231,22 @@
                 console.log('[Asef] Lookup response body:', text.substring(0, 300));
                 let data;
                 try { data = JSON.parse(text); } catch (e) {
-                    LOOKUP_ERR.textContent = 'Sunucu JSON dondurmedi (status ' + res.status + '). Konsolu ac.';
-                    LOOKUP_ERR.classList.remove('hidden');
+                    err().textContent = 'Sunucu JSON dondurmedi (status ' + res.status + '). Konsolu ac.';
+                    err().classList.remove('hidden');
                     return;
                 }
                 if (!data.ok) {
-                    LOOKUP_ERR.textContent = data.error || 'Urun bulunamadi';
-                    LOOKUP_ERR.classList.remove('hidden');
+                    err().textContent = data.error || 'Urun bulunamadi';
+                    err().classList.remove('hidden');
                     return;
                 }
                 addRow(data.item);
-                LOOKUP_INPUT.value = '';
-                LOOKUP_INPUT.focus();
+                input().value = '';
+                input().focus();
             } catch (e) {
                 console.error('[Asef] Lookup error:', e);
-                LOOKUP_ERR.textContent = 'Sunucu hatasi: ' + e.message;
-                LOOKUP_ERR.classList.remove('hidden');
+                err().textContent = 'Sunucu hatasi: ' + e.message;
+                err().classList.remove('hidden');
             }
         }
 
@@ -261,7 +264,7 @@
 
         function recalcTotals() {
             let subtotal = 0;
-            LIST.querySelectorAll('.item-row').forEach(row => {
+            list().querySelectorAll('.item-row').forEach(row => {
                 const qty = Math.max(0, parseInt(row.querySelector('.item-qty').value) || 0);
                 const price = Math.max(0, parseFloat(row.querySelector('.item-price').value) || 0);
                 const line = round2(qty * price);
@@ -273,14 +276,14 @@
         }
 
         // Form gonderirken satirlari items[] olarak topla
-        FORM.addEventListener('submit', function(e) {
+        form().addEventListener('submit', function(e) {
             // Onceki hidden inputlari temizle
-            FORM.querySelectorAll('input[name^="items["]').forEach(el => el.remove());
-            const rows = LIST.querySelectorAll('.item-row');
+            form().querySelectorAll('input[name^="items["]').forEach(el => el.remove());
+            const rows = list().querySelectorAll('.item-row');
             if (rows.length === 0) {
                 e.preventDefault();
-                LOOKUP_ERR.textContent = 'En az bir urun eklemelisin';
-                LOOKUP_ERR.classList.remove('hidden');
+                err().textContent = 'En az bir urun eklemelisin';
+                err().classList.remove('hidden');
                 return;
             }
             rows.forEach((row, i) => {
@@ -296,7 +299,7 @@
                     input.type = 'hidden';
                     input.name = `items[${i}][${k}]`;
                     input.value = v ?? '';
-                    FORM.appendChild(input);
+                    form().appendChild(input);
                 });
             });
         });
