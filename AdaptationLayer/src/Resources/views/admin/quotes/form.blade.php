@@ -102,9 +102,8 @@
                 <div class="flex items-center gap-2">
                     <input type="text" id="product-lookup-input"
                            placeholder="Urun kodu, link veya isim yapistir…"
-                           class="w-72 px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none"
-                           onkeydown="if(event.key==='Enter'){event.preventDefault();window.quoteApp.addProductByLookup();}">
-                    <button type="button" onclick="window.quoteApp.addProductByLookup()"
+                           class="w-72 px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none">
+                    <button type="button" id="product-lookup-btn"
                             style="background:#0071E3;color:#fff;padding:8px 16px;border-radius:8px;font-size:14px;font-weight:600;border:0;cursor:pointer;">Ekle</button>
                 </div>
             </div>
@@ -152,24 +151,20 @@
                 <div>
                     <label class="block text-[10px] text-gray-500 mb-0.5">Adet</label>
                     <input type="number" min="1" max="999999" value="1"
-                           class="item-qty w-20 px-2 py-1.5 border border-gray-200 dark:border-gray-700 rounded text-sm bg-white dark:bg-gray-800 text-right"
-                           oninput="window.quoteApp.recalcTotals()">
+                           class="item-qty w-20 px-2 py-1.5 border border-gray-200 dark:border-gray-700 rounded text-sm bg-white dark:bg-gray-800 text-right">
                 </div>
                 <div>
                     <label class="block text-[10px] text-gray-500 mb-0.5">Birim Fiyat (₺)</label>
                     <input type="number" min="0" step="0.01" value="0"
-                           class="item-price w-32 px-2 py-1.5 border border-gray-200 dark:border-gray-700 rounded text-sm bg-white dark:bg-gray-800 text-right"
-                           oninput="window.quoteApp.recalcTotals()">
+                           class="item-price w-32 px-2 py-1.5 border border-gray-200 dark:border-gray-700 rounded text-sm bg-white dark:bg-gray-800 text-right">
                 </div>
                 <div class="text-right">
                     <div class="text-[10px] text-gray-500">Toplam</div>
                     <div class="item-line-total text-sm font-semibold text-gray-900 dark:text-white whitespace-nowrap">0,00 ₺</div>
                 </div>
-                <button type="button" onclick="window.quoteApp.removeRow(this)"
-                        class="ml-1 p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition"
-                        title="Sil">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14z"/></svg>
-                </button>
+                <button type="button" class="item-remove-btn"
+                        style="background:transparent;border:0;color:#dc2626;padding:6px 10px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;"
+                        title="Sil">Sil</button>
             </div>
         </div>
     </template>
@@ -207,8 +202,18 @@
             row.dataset.sku = item.sku || '';
             row.dataset.name = item.name || '';
             row.dataset.image = item.image || '';
-            row.querySelector('.item-qty').value = item.quantity || 1;
-            row.querySelector('.item-price').value = item.unit_price || 0;
+            const qtyEl = row.querySelector('.item-qty');
+            const priceEl = row.querySelector('.item-price');
+            qtyEl.value = item.quantity || 1;
+            priceEl.value = item.unit_price || 0;
+            // Event listener'lari programlatik bagla (inline oninput calismiyor)
+            qtyEl.addEventListener('input', recalcTotals);
+            priceEl.addEventListener('input', recalcTotals);
+            row.querySelector('.item-remove-btn').addEventListener('click', function() {
+                row.remove();
+                toggleEmpty();
+                recalcTotals();
+            });
             list().appendChild(row);
             toggleEmpty();
             recalcTotals();
@@ -315,6 +320,30 @@
         }));
         toggleEmpty();
         recalcTotals();
+
+        // BUTTON + ENTER binding — event listener'lar addEventListener ile
+        // (onclick attribute bir sekilde tetiklenmiyor bu ortamda)
+        const btnEl = $('product-lookup-btn');
+        const inputEl = $('product-lookup-input');
+        if (btnEl) {
+            btnEl.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('[Asef Quote Form] Ekle button clicked');
+                addProductByLookup();
+            });
+            console.log('[Asef Quote Form] Ekle button listener attached');
+        } else {
+            console.error('[Asef Quote Form] product-lookup-btn NOT FOUND at bind time');
+        }
+        if (inputEl) {
+            inputEl.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    console.log('[Asef Quote Form] Enter pressed');
+                    addProductByLookup();
+                }
+            });
+        }
 
         window.quoteApp = { addProductByLookup, removeRow, recalcTotals };
     })();
