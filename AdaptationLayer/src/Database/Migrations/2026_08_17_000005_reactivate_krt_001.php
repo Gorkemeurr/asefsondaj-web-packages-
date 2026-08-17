@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * CEO isteği: /urun/bwl-karotiyer-15-m (AS-KRT-001) frontend'den kaldır.
- * Soft delete — DB'de kayıt kalır, is_active=false.
+ * CEO isteği (geri alma): AS-KRT-001 (BWL Karotiyer 1,5 m) yine aktif olsun.
+ * Önceki 000004 migration'ı is_active=false yapmıştı — bu migration reaktive eder.
  */
 return new class extends Migration
 {
@@ -15,7 +15,7 @@ return new class extends Migration
         if (! Schema::hasTable('asef_products') || ! Schema::hasColumn('asef_products', 'is_active')) {
             return;
         }
-        DB::table('asef_products')->where('sku', 'AS-KRT-001')->update(['is_active' => false]);
+        DB::table('asef_products')->where('sku', 'AS-KRT-001')->update(['is_active' => true]);
     }
 
     public function down(): void
@@ -23,6 +23,6 @@ return new class extends Migration
         if (! Schema::hasTable('asef_products') || ! Schema::hasColumn('asef_products', 'is_active')) {
             return;
         }
-        DB::table('asef_products')->where('sku', 'AS-KRT-001')->update(['is_active' => true]);
+        DB::table('asef_products')->where('sku', 'AS-KRT-001')->update(['is_active' => false]);
     }
 };

@@ -653,13 +653,12 @@
                 </div>
                 <div class="asef-prod-grid">
                     @php
-                        // AS-DTH-001, AS-TRC-001, AS-KRT-001 çıkarıldı (bizde yok).
-                        // Yerlerine AS-KRT-002 (BWL Karotiyer 3m), AS-EMB-002 (BWL Emprenye 3/5),
-                        // AS-KRT-003 (BWLU Karotiyer 1,5m) eklendi.
+                        // AS-DTH-001 ve AS-TRC-001 çıkarıldı (bizde yok).
+                        // Yerlerine AS-KRT-002 (BWL Karotiyer 3m), AS-EMB-002 (BWL Emprenye 3/5) eklendi.
                         $featured = \AsefSondaj\AdaptationLayer\Models\AsefProduct::query()
                             ->where('is_active', true)
-                            ->whereIn('sku', ['AS-EMB-001','AS-EMB-002','AS-KRT-002','AS-KRT-003','AS-PDC-001','AS-WTJ-001'])
-                            ->orderByRaw("FIELD(sku,'AS-KRT-002','AS-KRT-003','AS-EMB-001','AS-EMB-002','AS-PDC-001','AS-WTJ-001')")
+                            ->whereIn('sku', ['AS-EMB-001','AS-EMB-002','AS-KRT-001','AS-KRT-002','AS-PDC-001','AS-WTJ-001'])
+                            ->orderByRaw("FIELD(sku,'AS-KRT-001','AS-KRT-002','AS-EMB-001','AS-EMB-002','AS-PDC-001','AS-WTJ-001')")
                             ->get();
                     @endphp
                     @foreach ($featured as $_f)
