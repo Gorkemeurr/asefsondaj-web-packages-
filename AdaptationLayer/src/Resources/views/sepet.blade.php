@@ -291,14 +291,9 @@
                                 <select id="cart-position" name="position"
                                         data-asef-cart-input="position">
                                     <option value="">Seçiniz</option>
-                                    <option value="Firma sahibi">Firma sahibi</option>
-                                    <option value="Genel müdür">Genel müdür</option>
-                                    <option value="Satın alma müdürü / sorumlusu">Satın alma müdürü / sorumlusu</option>
-                                    <option value="Teknik müdür / sorumlu">Teknik müdür / sorumlu</option>
-                                    <option value="Şantiye şefi / operasyon yöneticisi">Şantiye şefi / operasyon yöneticisi</option>
-                                    <option value="Sondaj operatörü / teknisyeni">Sondaj operatörü / teknisyeni</option>
-                                    <option value="Muhasebe / finans">Muhasebe / finans</option>
-                                    <option value="Diğer">Diğer</option>
+                                    <option value="Firma Sahibi">Firma Sahibi</option>
+                                    <option value="Firma Mühendisi">Firma Mühendisi</option>
+                                    <option value="Firma Operatörü">Firma Operatörü</option>
                                 </select>
                             </div>
 
