@@ -442,6 +442,20 @@ class AdaptationServiceProvider extends ServiceProvider
                     }
                 });
 
+                // Debug: dump admin menu items
+                Route::get('/e-fatura-menu-check', function () {
+                    $menu = config('menu.admin', []);
+                    $asef = array_values(array_filter($menu, fn($m) => str_starts_with($m['key'] ?? '', 'asef')));
+                    $user = auth()->guard('admin')->user();
+                    return response()->json([
+                        'menu_admin_count'   => count($menu),
+                        'asef_items'         => $asef,
+                        'admin_user'         => $user ? $user->email : null,
+                        'admin_role_type'    => $user?->role?->permission_type,
+                        'admin_permissions'  => $user?->role?->permissions,
+                    ]);
+                });
+
                 // Debug endpoint — TEMP
                 Route::get('/e-fatura-debug', function () {
                     try {
