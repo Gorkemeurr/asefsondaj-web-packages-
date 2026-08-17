@@ -9,7 +9,7 @@
             </p>
         </div>
         <a href="{{ route('admin.asef.quotes.create') }}"
-           class="inline-flex items-center gap-2 px-4 py-2 bg-[#0071E3] hover:bg-[#005FBF] text-white rounded-lg text-sm font-medium transition">
+           class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
             Yeni Teklif
         </a>
@@ -38,7 +38,7 @@
                 @forelse($quotes as $q)
                     <tr class="border-b border-gray-100 dark:border-gray-800 last:border-0 hover:bg-gray-50 dark:hover:bg-gray-800/50">
                         <td class="px-4 py-3 text-gray-800 dark:text-white">
-                            <div class="font-mono font-semibold text-[#0071E3]">{{ $q->plateLabel() }}</div>
+                            <div class="font-mono font-semibold text-blue-600">{{ $q->plateLabel() }}</div>
                             <div class="text-[10px] text-gray-500 font-mono mt-0.5">{{ $q->quote_no }}</div>
                         </td>
                         <td class="px-4 py-3 text-gray-800 dark:text-white">
@@ -55,7 +55,7 @@
                         </td>
                         <td class="px-4 py-3 text-right whitespace-nowrap">
                             <a href="{{ route('admin.asef.quotes.pdf', $q->id) }}" target="_blank"
-                               class="inline-block px-3 py-1 text-[#0071E3] hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded text-xs font-medium">PDF</a>
+                               class="inline-block px-3 py-1 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded text-xs font-medium">PDF</a>
                             <a href="{{ route('admin.asef.quotes.edit', $q->id) }}"
                                class="inline-block px-3 py-1 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded text-xs font-medium">Duzenle</a>
                             <form action="{{ route('admin.asef.quotes.destroy', $q->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Silmek istediginden emin misin?');">

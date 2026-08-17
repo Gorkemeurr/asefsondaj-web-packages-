@@ -17,7 +17,7 @@
                class="px-4 py-2 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 rounded-lg text-sm hover:bg-gray-50 dark:hover:bg-gray-800">Vazgec</a>
             @if($mode === 'edit')
                 <a href="{{ route('admin.asef.quotes.pdf', $quote->id) }}" target="_blank"
-                   class="px-4 py-2 border border-[#0071E3] text-[#0071E3] rounded-lg text-sm hover:bg-blue-50 dark:hover:bg-blue-900/20 font-medium">PDF Onizle</a>
+                   class="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg text-sm hover:bg-blue-50 dark:hover:bg-blue-900/20 font-medium">PDF Onizle</a>
             @endif
         </div>
     </div>
@@ -50,22 +50,22 @@
                 <div>
                     <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Ad Soyad *</label>
                     <input type="text" name="customer_name" required value="{{ old('customer_name', $quote->customer_name) }}"
-                           class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3] outline-none">
+                           class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none">
                 </div>
                 <div>
                     <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Telefon *</label>
                     <input type="text" name="customer_phone" required value="{{ old('customer_phone', $quote->customer_phone) }}"
-                           class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3] outline-none">
+                           class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none">
                 </div>
                 <div>
                     <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Firma</label>
                     <input type="text" name="customer_company" value="{{ old('customer_company', $quote->customer_company) }}"
-                           class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3] outline-none">
+                           class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none">
                 </div>
                 <div>
                     <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Pozisyon</label>
                     <select name="customer_position"
-                            class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3] outline-none">
+                            class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none">
                         <option value="">Seciniz</option>
                         @foreach(['Firma Sahibi','Yonetici','Satin Alma','Muhendis','Teknik Personel','Diger'] as $poz)
                             <option value="{{ $poz }}" @selected(old('customer_position', $quote->customer_position) === $poz)>{{ $poz }}</option>
@@ -75,22 +75,22 @@
                 <div>
                     <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Il</label>
                     <input type="text" name="customer_city" value="{{ old('customer_city', $quote->customer_city) }}"
-                           class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3] outline-none">
+                           class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none">
                 </div>
                 <div>
                     <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Ilce</label>
                     <input type="text" name="customer_district" value="{{ old('customer_district', $quote->customer_district) }}"
-                           class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3] outline-none">
+                           class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none">
                 </div>
                 <div class="md:col-span-2">
                     <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">E-posta</label>
                     <input type="email" name="customer_email" value="{{ old('customer_email', $quote->customer_email) }}"
-                           class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3] outline-none">
+                           class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none">
                 </div>
                 <div class="md:col-span-2">
                     <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Not</label>
                     <textarea name="customer_note" rows="2"
-                              class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3] outline-none">{{ old('customer_note', $quote->customer_note) }}</textarea>
+                              class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none">{{ old('customer_note', $quote->customer_note) }}</textarea>
                 </div>
             </div>
         </div>
@@ -102,10 +102,10 @@
                 <div class="flex items-center gap-2">
                     <input type="text" id="product-lookup-input"
                            placeholder="Urun kodu, link veya isim yapistir…"
-                           class="w-72 px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3] outline-none"
+                           class="w-72 px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none"
                            onkeydown="if(event.key==='Enter'){event.preventDefault();window.quoteApp.addProductByLookup();}">
                     <button type="button" onclick="window.quoteApp.addProductByLookup()"
-                            class="px-3 py-2 bg-[#0071E3] hover:bg-[#005FBF] text-white rounded-lg text-sm font-medium">Ekle</button>
+                            class="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium">Ekle</button>
                 </div>
             </div>
 
@@ -128,7 +128,7 @@
                     <label class="text-xs font-medium text-gray-600 dark:text-gray-400">KDV Orani (%)</label>
                     <select name="kdv_rate" id="kdv-rate"
                             onchange="window.quoteApp.recalcTotals()"
-                            class="w-24 px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3] outline-none">
+                            class="w-24 px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none">
                         @foreach([0,1,10,20] as $r)
                             <option value="{{ $r }}" @selected((int) old('kdv_rate', $quote->kdv_rate ?? 20) === $r)>%{{ $r }}</option>
                         @endforeach
@@ -154,7 +154,7 @@
 
         <div class="flex items-center justify-end gap-2">
             <button type="submit"
-                    class="px-6 py-2.5 bg-[#0071E3] hover:bg-[#005FBF] text-white rounded-lg text-sm font-medium">
+                    class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium">
                 {{ $mode === 'edit' ? 'Guncelle' : 'Teklifi Kaydet' }}
             </button>
         </div>
