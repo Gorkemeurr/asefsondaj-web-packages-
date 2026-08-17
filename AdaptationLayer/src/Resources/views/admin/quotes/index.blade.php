@@ -9,8 +9,8 @@
             </p>
         </div>
         <a href="{{ route('admin.asef.quotes.create') }}"
-           class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+           style="display:inline-flex;align-items:center;gap:8px;background:#0071E3;color:#fff;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;">
+            <span style="font-size:18px;line-height:1;">+</span>
             Yeni Teklif
         </a>
     </div>

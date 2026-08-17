@@ -105,7 +105,7 @@
                            class="w-72 px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none"
                            onkeydown="if(event.key==='Enter'){event.preventDefault();window.quoteApp.addProductByLookup();}">
                     <button type="button" onclick="window.quoteApp.addProductByLookup()"
-                            class="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium">Ekle</button>
+                            style="background:#0071E3;color:#fff;padding:8px 16px;border-radius:8px;font-size:14px;font-weight:600;border:0;cursor:pointer;">Ekle</button>
                 </div>
             </div>
 
@@ -120,41 +120,21 @@
             </div>
         </div>
 
-        {{-- FIYATLANDIRMA / TOPLAM --}}
+        {{-- TOPLAM (KDV disi — PDF'te "Fiyatlarimiza KDV dahil degildir" belirtilir) --}}
+        <input type="hidden" name="kdv_rate" value="20">
         <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-base font-semibold text-gray-800 dark:text-white">Toplam</h3>
-                <div class="flex items-center gap-2">
-                    <label class="text-xs font-medium text-gray-600 dark:text-gray-400">KDV Orani (%)</label>
-                    <select name="kdv_rate" id="kdv-rate"
-                            onchange="window.quoteApp.recalcTotals()"
-                            class="w-24 px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none">
-                        @foreach([0,1,10,20] as $r)
-                            <option value="{{ $r }}" @selected((int) old('kdv_rate', $quote->kdv_rate ?? 20) === $r)>%{{ $r }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
-            <div class="max-w-md ml-auto space-y-2 text-sm">
-                <div class="flex justify-between text-gray-600 dark:text-gray-400">
-                    <span>Ara Toplam</span>
+            <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-4">Toplam</h3>
+            <div class="max-w-md ml-auto text-sm">
+                <div class="flex justify-between items-center text-base font-semibold text-gray-900 dark:text-white">
+                    <span>TOPLAM (KDV Hariç)</span>
                     <span><span id="sum-subtotal">0,00</span> ₺</span>
-                </div>
-                <div class="flex justify-between text-gray-600 dark:text-gray-400">
-                    <span>KDV (<span id="sum-kdv-rate">20</span>%)</span>
-                    <span><span id="sum-kdv">0,00</span> ₺</span>
-                </div>
-                <div class="border-t border-gray-200 dark:border-gray-800 pt-2 flex justify-between text-base font-semibold text-gray-900 dark:text-white">
-                    <span>Genel Toplam</span>
-                    <span><span id="sum-grand">0,00</span> ₺</span>
                 </div>
             </div>
         </div>
 
         <div class="flex items-center justify-end gap-2">
             <button type="submit"
-                    class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium">
+                    style="background:#0071E3;color:#fff;padding:12px 32px;border-radius:8px;font-size:14px;font-weight:600;border:0;cursor:pointer;">
                 {{ $mode === 'edit' ? 'Guncelle' : 'Teklifi Kaydet' }}
             </button>
         </div>
@@ -237,10 +217,21 @@
             if (!q) return;
 
             try {
-                const res = await fetch(LOOKUP_URL + '?q=' + encodeURIComponent(q), {
+                const url = LOOKUP_URL + '?q=' + encodeURIComponent(q);
+                console.log('[Asef] Lookup URL:', url);
+                const res = await fetch(url, {
+                    credentials: 'same-origin',
                     headers: {'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest'}
                 });
-                const data = await res.json();
+                console.log('[Asef] Lookup response status:', res.status);
+                const text = await res.text();
+                console.log('[Asef] Lookup response body:', text.substring(0, 300));
+                let data;
+                try { data = JSON.parse(text); } catch (e) {
+                    LOOKUP_ERR.textContent = 'Sunucu JSON dondurmedi (status ' + res.status + '). Konsolu ac.';
+                    LOOKUP_ERR.classList.remove('hidden');
+                    return;
+                }
                 if (!data.ok) {
                     LOOKUP_ERR.textContent = data.error || 'Urun bulunamadi';
                     LOOKUP_ERR.classList.remove('hidden');
@@ -250,6 +241,7 @@
                 LOOKUP_INPUT.value = '';
                 LOOKUP_INPUT.focus();
             } catch (e) {
+                console.error('[Asef] Lookup error:', e);
                 LOOKUP_ERR.textContent = 'Sunucu hatasi: ' + e.message;
                 LOOKUP_ERR.classList.remove('hidden');
             }
@@ -272,19 +264,12 @@
             LIST.querySelectorAll('.item-row').forEach(row => {
                 const qty = Math.max(0, parseInt(row.querySelector('.item-qty').value) || 0);
                 const price = Math.max(0, parseFloat(row.querySelector('.item-price').value) || 0);
-                // Satir totalini once yuvarla, sonra ara toplama ekle — backend ile eslesir
                 const line = round2(qty * price);
                 row.querySelector('.item-line-total').textContent = formatTL(line) + ' ₺';
                 subtotal += line;
             });
             subtotal = round2(subtotal);
-            const rate = Math.max(0, Math.min(100, parseInt(document.getElementById('kdv-rate').value) || 0));
-            const kdv = round2(subtotal * rate / 100);
-            const grand = round2(subtotal + kdv);
             document.getElementById('sum-subtotal').textContent = formatTL(subtotal);
-            document.getElementById('sum-kdv').textContent = formatTL(kdv);
-            document.getElementById('sum-kdv-rate').textContent = rate;
-            document.getElementById('sum-grand').textContent = formatTL(grand);
         }
 
         // Form gonderirken satirlari items[] olarak topla
