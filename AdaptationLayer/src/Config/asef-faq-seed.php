@@ -32,7 +32,7 @@
             'a' => 'Evet. Katalogda olmayan ancak ihtiyacınız olan ekipmanları da tedarik ediyoruz. Marka, model ve teknik özellikleri WhatsApp\'tan iletmeniz yeterli — biz araştırıp size dönüyoruz.',
         ],
         [
-            'q' => 'HQ, NQ ve PQ karotier standartları arasındaki fark nedir?',
+            'q' => 'HQ, NQ ve PQ karotiyer standartları arasındaki fark nedir?',
             'a' => 'DCDMA (Diamond Core Drill Manufacturers Association) standartlarıdır. NQ (75.7 mm delik / 47.6 mm karot çapı), HQ (96 mm / 63.5 mm) ve PQ (122.6 mm / 85 mm) — sırayla daha büyük karot çapı ve daha derin sondaj kapasitesi anlamına gelir. Formasyon türü ve istenilen karot çapına göre seçilir.',
         ],
         [

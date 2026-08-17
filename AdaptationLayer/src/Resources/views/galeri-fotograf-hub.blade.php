@@ -17,7 +17,7 @@
             'url'   => url('blog/ekipman-fotograflari'),
             'label' => '02',
             'title' => 'Ekipman Fotoğrafları',
-            'desc'  => 'DTH çekiçler, tijler, karotierler, pompalar ve yedek parçalarımızın detay çekimleri.',
+            'desc'  => 'DTH çekiçler, tijler, karotiyerler, pompalar ve yedek parçalarımızın detay çekimleri.',
             'count' => '11 fotoğraf',
             'img'   => 'asef-hero-equipment.jpg',
         ],

@@ -6,13 +6,13 @@
         ['t' => 'Ana boru (Casing)', 'd' => 'Sondaj kuyusu duvarlarını sabitlemek için kuyuya indirilen çelik boru. Formasyon çökmesini önler.'],
         // B
         ['t' => 'Bakım seti (Repair kit)', 'd' => 'Bir sondaj ekipmanının periyodik bakımında değiştirilen sızdırmazlık elemanı, conta, o-ring vs. hepsi bir arada.'],
-        ['t' => 'Bit (Matkap Ucu)', 'd' => 'Sondaj takımının kayaya temas eden ucu. PDC, tricone, karbür button, elmas ve karotier bit türleri vardır.'],
+        ['t' => 'Bit (Matkap Ucu)', 'd' => 'Sondaj takımının kayaya temas eden ucu. PDC, tricone, karbür button, elmas ve karotiyer bit türleri vardır.'],
         ['t' => 'Buton (Insert)', 'd' => 'DTH çekiç ve karbür bitlerde kaya kesme işini yapan sertleştirilmiş tungsten karbür uç.'],
-        ['t' => 'BWL Karotiyer', 'd' => 'Bagged Wireline karotier sistemi — 60 mm delik çapı, 42 mm karot çapı. Küçük ölçekli maden ve jeoteknik sondaja uygun.'],
+        ['t' => 'BWL Karotiyer', 'd' => 'Bagged Wireline karotiyer sistemi — 60 mm delik çapı, 42 mm karot çapı. Küçük ölçekli maden ve jeoteknik sondaja uygun.'],
         // C-Ç
         ['t' => 'Çamur (Drilling Mud)', 'd' => 'Sondaj sırasında formasyonu dengeleyen, kesikleri yüzeye taşıyan ve bit\'i soğutan viskoz sıvı. Su bazlı veya polimer olabilir.'],
         ['t' => 'Çamur Pompası', 'd' => 'Sondaj çamurunu yüksek basınçta kuyuya pompalayan üç pistonlu (triplex) veya iki pistonlu (duplex) pompa.'],
-        ['t' => 'Çekirdek (Core)', 'd' => 'Karotier ile alınan silindirik kaya numunesi. Jeolojik değerlendirme için kritiktir.'],
+        ['t' => 'Çekirdek (Core)', 'd' => 'Karotiyer ile alınan silindirik kaya numunesi. Jeolojik değerlendirme için kritiktir.'],
         // D
         ['t' => 'DCDMA', 'd' => 'Diamond Core Drill Manufacturers Association — elmas karot sondajı için standartlar (NQ, HQ, PQ, BQ vs.).'],
         ['t' => 'Delik Çapı', 'd' => 'Sondaj yaparken açılan kuyunun iç çapı — mm cinsinden ifade edilir (76 mm, 96 mm, 122 mm vs.).'],
@@ -26,30 +26,30 @@
         // G
         ['t' => 'Genişletici (Reamer)', 'd' => 'Kuyunun çapını hedef ölçüye getirmek için kullanılan genişletici alet. Pilot bit\'ten sonra çalışır.'],
         // H
-        ['t' => 'HQ Karotier', 'd' => 'Wireline karotier standardı — 96 mm delik çapı, 63.5 mm karot çapı. Genel amaçlı maden ve inşaat sondajı için en yaygın.'],
-        ['t' => 'HWT Casing', 'd' => 'HQ karotier ile uyumlu 4"7/8 iç çaplı casing (kuyu borusu).'],
+        ['t' => 'HQ Karotiyer', 'd' => 'Wireline karotiyer standardı — 96 mm delik çapı, 63.5 mm karot çapı. Genel amaçlı maden ve inşaat sondajı için en yaygın.'],
+        ['t' => 'HWT Casing', 'd' => 'HQ karotiyer ile uyumlu 4"7/8 iç çaplı casing (kuyu borusu).'],
         ['t' => 'Hidrolik Bakım', 'd' => 'Sondaj makinasının hidrolik sisteminin yağ değişimi, filtre temizliği ve basınç kontrolü.'],
         // İ
-        ['t' => 'İç Tüp (Inner Tube)', 'd' => 'Karotier sisteminde alınan çekirdeği koruyan iç boru. Wireline sistemde ip ile yüzeye çekilir.'],
+        ['t' => 'İç Tüp (Inner Tube)', 'd' => 'Karotiyer sisteminde alınan çekirdeği koruyan iç boru. Wireline sistemde ip ile yüzeye çekilir.'],
         // J
         ['t' => 'Jeotermal Sondaj', 'd' => 'Yerin derinliğindeki sıcak su ve buhardan enerji üretmek için yapılan derin sondaj (500-3000 m).'],
         // K
-        ['t' => 'Karotier (Core Barrel)', 'd' => 'Silindirik kaya numunesi alan sondaj takımı. Dış tüp + iç tüp + karotier bit\'ten oluşur.'],
-        ['t' => 'Karotier Komple', 'd' => 'İç tüp, dış tüp, bit ve tüm yardımcı parçaları içeren tam karotier seti.'],
+        ['t' => 'Karotiyer (Core Barrel)', 'd' => 'Silindirik kaya numunesi alan sondaj takımı. Dış tüp + iç tüp + karotiyer bit\'ten oluşur.'],
+        ['t' => 'Karotiyer Komple', 'd' => 'İç tüp, dış tüp, bit ve tüm yardımcı parçaları içeren tam karotiyer seti.'],
         ['t' => 'Kompresör', 'd' => 'DTH çekiçlere ve hava sondajlarına yüksek basınçlı hava sağlayan makine (350-1400 cfm arası).'],
         ['t' => 'Kuyu (Bore Hole)', 'd' => 'Sondaj işlemiyle açılan silindirik boşluk. Kısaca "sondaj kuyusu".'],
         // L
-        ['t' => 'Latch (Kilit)', 'd' => 'Wireline karotier iç tüpünü dış tüp içine kilitleyen mekanizma. Overshot ile açılıp iç tüp çıkarılır.'],
+        ['t' => 'Latch (Kilit)', 'd' => 'Wireline karotiyer iç tüpünü dış tüp içine kilitleyen mekanizma. Overshot ile açılıp iç tüp çıkarılır.'],
         // M
         ['t' => 'Maden Sondajı', 'd' => 'Cevher aramak ve rezerv belirlemek amacıyla yapılan sondaj. Genelde karot alma sondajıdır.'],
         ['t' => 'Matkap Ucu', 'd' => 'Bkz. Bit.'],
         // N
-        ['t' => 'NQ Karotier', 'd' => 'Wireline karotier standardı — 75.7 mm delik çapı, 47.6 mm karot çapı. Orta ölçekli maden ve jeoteknik sondaj için.'],
+        ['t' => 'NQ Karotiyer', 'd' => 'Wireline karotiyer standardı — 75.7 mm delik çapı, 47.6 mm karot çapı. Orta ölçekli maden ve jeoteknik sondaj için.'],
         // O
         ['t' => 'Overshot', 'd' => 'Wireline sondajda iç tüpü yüzeye çekmek için ipe bağlı olarak kuyuya salınan yakalayıcı alet.'],
         // P
         ['t' => 'PDC Bit', 'd' => 'Polycrystalline Diamond Compact — sentetik elmas kesicili matkap ucu. Yumuşak ve orta sert formasyonlarda hızlıdır.'],
-        ['t' => 'PQ Karotier', 'd' => 'Wireline karotier standardı — 122.6 mm delik çapı, 85 mm karot çapı. Büyük çaplı jeoteknik ve rezerv sondajı için.'],
+        ['t' => 'PQ Karotiyer', 'd' => 'Wireline karotiyer standardı — 122.6 mm delik çapı, 85 mm karot çapı. Büyük çaplı jeoteknik ve rezerv sondajı için.'],
         ['t' => 'Pörtkron / Portkron', 'd' => 'Karot sondajında sondaj takımını (tij + bit) kuyuya indirmek ve kaldırmak için kullanılan taşıyıcı sistem.'],
         // R
         ['t' => 'Rotary Sondaj', 'd' => 'Sondaj tijini döndürerek bit\'in kayayı öğütmesi prensibiyle çalışan yöntem. Su, petrol, jeotermal sondajda yaygın.'],
@@ -67,8 +67,8 @@
         ['t' => 'Vidye Matkap', 'd' => 'Widia tungsten karbür uçlu matkap. Orta sert formasyonlarda ekonomik seçenek.'],
         // W
         ['t' => 'Wireline Sistem', 'd' => 'İç tüpü kuyudan çıkarmadan sadece ip ile yüzeye çekme sistemi. Karot sondajında zaman kazandırır.'],
-        ['t' => 'WLS (Wireline Set)', 'd' => 'Wireline karotier komple takımı — dış tüp, iç tüp, latch, overshot, bit dahil.'],
+        ['t' => 'WLS (Wireline Set)', 'd' => 'Wireline karotiyer komple takımı — dış tüp, iç tüp, latch, overshot, bit dahil.'],
         // Y
-        ['t' => 'Yedek Parça', 'd' => 'Aşınan veya kırılan sondaj ekipmanı parçalarının yenisi. Karotier bit, tij bağlantı contası, pompa piston keçe vb.'],
+        ['t' => 'Yedek Parça', 'd' => 'Aşınan veya kırılan sondaj ekipmanı parçalarının yenisi. Karotiyer bit, tij bağlantı contası, pompa piston keçe vb.'],
         ['t' => 'Yağlama', 'd' => 'Sondaj tijleri ve DTH çekiçlerin sızdırmazlık ve sürtünme azaltma için sürekli yağlanması.'],
     ];

@@ -27,7 +27,7 @@
         ],
         'ekipman-fotograflari' => [
             'title'    => 'Ekipman Fotoğrafları',
-            'lede'     => 'DTH çekiçler, tijler, karotierler, pompalar — orijinal ekipman fotoğraflarımız.',
+            'lede'     => 'DTH çekiçler, tijler, karotiyerler, pompalar — orijinal ekipman fotoğraflarımız.',
             'crumb'    => 'Fotoğraf Galerisi',
             'crumbUrl' => url('blog/fotograf'),
             'hub'      => 'Fotoğraf',

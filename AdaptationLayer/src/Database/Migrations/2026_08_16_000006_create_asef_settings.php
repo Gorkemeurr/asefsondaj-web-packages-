@@ -40,7 +40,7 @@ return new class extends Migration {
             ['key' => 'instagram_url',       'label' => 'Instagram URL',        'value' => 'https://instagram.com/asefsondajj', 'type' => 'url'],
             ['key' => 'google_isletme_url',  'label' => 'Google İşletme URL',  'value' => 'https://share.google/feiNpSvOEuMJtBfwL', 'type' => 'url'],
             ['key' => 'hero_title',          'label' => 'Ana Sayfa H1 Başlık', 'value' => 'Sondaj Teknolojisinde Geleceğe Ortak.', 'type' => 'text'],
-            ['key' => 'hero_subtitle',       'label' => 'Ana Sayfa Alt Başlık', 'value' => 'Yirmi yılı aşkın saha tecrübemizle Türkiye genelinde sondaj ekipmanları, karotier, DTH çekiç, sondaj tijleri ve yedek parça tedariki sağlıyoruz.', 'type' => 'textarea'],
+            ['key' => 'hero_subtitle',       'label' => 'Ana Sayfa Alt Başlık', 'value' => 'Yirmi yılı aşkın saha tecrübemizle Türkiye genelinde sondaj ekipmanları, karotiyer, DTH çekiç, sondaj tijleri ve yedek parça tedariki sağlıyoruz.', 'type' => 'textarea'],
             ['key' => 'footer_intro',        'label' => 'Footer Marka Metni', 'value' => '20 yıllık saha tecrübesiyle Türkiye\'nin dört bir yanındaki sondaj operasyonlarına ekipman, yedek parça ve teknik danışmanlık.', 'type' => 'textarea'],
         ];
 

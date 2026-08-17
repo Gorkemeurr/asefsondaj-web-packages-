@@ -7,7 +7,7 @@
  * Uzman önerisi: sabit 500 değil, kategoriye göre esnek — Wireline BWL/NWL/HWL/PWL,
  * DTH hava basıncı+bit uyumu, jeoteknik ekipman tipleri vb. gerçek teknik bilgi.
  *
- * Migration Karotier→Karotiyer normalizasyonu yapılmadığı için metinlerde her iki
+ * Migration Karotiyer→Karotiyer normalizasyonu yapılmadığı için metinlerde her iki
  * yazımı da doğal kullanıyoruz — Google Türkçe stemming ile ikisini de eşleştirir.
  */
 
@@ -17,9 +17,9 @@ return [
 <p>Wireline karotiyer sistemleri, sondaj tijini kuyudan çıkarmadan karot numunesini yüzeye almaya olanak tanıyan modern maden ve jeoteknik sondaj ekipmanlarıdır. İç tüp, yüzeyden salınan bir overshot ile ip aracılığıyla yakalanıp çıkarılır — bu, geleneksel karotiyer sondajına kıyasla operasyon süresini %40-60 kısaltır.</p>
 <h3>Kategoriye özel SSS</h3>
 <ul>
-<li><strong>BWL, NWL, HWL, PWL karotier arasındaki fark nedir?</strong> Farklı DCDMA ölçüleridir. BWL en küçük (60 mm), PWL en büyük (122.6 mm). Karot çapı da bu ölçüye göre değişir.</li>
+<li><strong>BWL, NWL, HWL, PWL karotiyer arasındaki fark nedir?</strong> Farklı DCDMA ölçüleridir. BWL en küçük (60 mm), PWL en büyük (122.6 mm). Karot çapı da bu ölçüye göre değişir.</li>
 <li><strong>Wireline sistem konvansiyonelden daha hızlı mı?</strong> Evet — operasyon süresini %40-60 kısaltır çünkü iç tüp yüzeye çekilirken tijler kuyuda kalır.</li>
-<li><strong>Hangi karotier boyutu benim projeme uygun?</strong> Hedef karot çapı, formasyon karakteri, sondaj derinliği ve makine kapasitesine göre seçilir. Ücretsiz danışmanlık için WhatsApp\'tan yazın.</li>
+<li><strong>Hangi karotiyer boyutu benim projeme uygun?</strong> Hedef karot çapı, formasyon karakteri, sondaj derinliği ve makine kapasitesine göre seçilir. Ücretsiz danışmanlık için WhatsApp\'tan yazın.</li>
 </ul>
 <h3>DCDMA Standardı: BWL, NWL, HWL, PWL</h3>
 <p>Wireline sistemler DCDMA (Diamond Core Drill Manufacturers Association) standardında sınıflandırılır. Her ölçü farklı delik çapı ve karot çapına karşılık gelir:</p>
@@ -96,7 +96,7 @@ return [
 <h3>Aksesuar Kategorileri</h3>
 <ul>
 <li><strong>Su Swivel:</strong> Dönen sondaj takımına sabit yerden su/çamur beslemesi</li>
-<li><strong>Kaldırma Halkaları (Lifting Bail):</strong> Tijleri ve karotieri güvenli taşıma</li>
+<li><strong>Kaldırma Halkaları (Lifting Bail):</strong> Tijleri ve karotiyeri güvenli taşıma</li>
 <li><strong>Yerinde Kalıcı Casing Shoe:</strong> Casing indirmeyi kolaylaştırır, alt uçta kaya kesme</li>
 <li><strong>Şoker Yayları (Shock Sub):</strong> Sondaj titreşimini absorbe eder — bit ömrünü uzatır</li>
 <li><strong>Stabilizatörler:</strong> Delik dikliğini korur, tije titreşim azaltır</li>
@@ -108,7 +108,7 @@ return [
 
     'ADP' => '
 <h2>Sondaj Adaptörleri</h2>
-<p>Sondaj adaptörleri, farklı bağlantı standartlarına sahip iki sondaj ekipmanını birbirine bağlayan geçiş parçalarıdır. Örneğin, API IF standardında bir tij ile DCDMA standardında bir karotier arasına API IF → DCDMA adaptörü yerleştirilir.</p>
+<p>Sondaj adaptörleri, farklı bağlantı standartlarına sahip iki sondaj ekipmanını birbirine bağlayan geçiş parçalarıdır. Örneğin, API IF standardında bir tij ile DCDMA standardında bir karotiyer arasına API IF → DCDMA adaptörü yerleştirilir.</p>
 <h3>Yaygın Adaptör Tipleri</h3>
 <ul>
 <li><strong>API IF ↔ API REG:</strong> Rotary ile su/jeotermal sondaj sistemleri arası</li>
@@ -202,7 +202,7 @@ return [
 <li><strong>Plastik Karot Sandığı:</strong> Uzun süre saklama, nem/koruma iyi</li>
 <li><strong>Metal Karot Sandığı:</strong> Uzun süreli arşiv, taşıma güvenliği</li>
 </ul>
-<p>Kanal sayısı karotier çapına göre değişir: NQ karot için 5 kanal (her kanal 1 metre), HQ için 4 kanal, PQ için 3 kanal genellikle standarttır.</p>
+<p>Kanal sayısı karotiyer çapına göre değişir: NQ karot için 5 kanal (her kanal 1 metre), HQ için 4 kanal, PQ için 3 kanal genellikle standarttır.</p>
 <h3>Numune Etiketleme ve Loglama</h3>
 <p>Her metrede karot sandığına metraj etiketi konulur. Kayıp metre (gerçekten alınamayan karot) kırık işaretiyle belirtilir. Karotın oryantasyonu (yön), açı ölçümü ve RQD (Rock Quality Designation) değeri karot sandığı üzerinde belirtilebilir.</p>
     ',
