@@ -422,6 +422,34 @@ class AdaptationServiceProvider extends ServiceProvider
                 Route::put('/sozluk/{id}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\GlossaryController::class, 'update'])->name('glossary.update');
                 Route::delete('/sozluk/{id}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\GlossaryController::class, 'destroy'])->name('glossary.destroy');
 
+                // Debug endpoint — TEMP
+                Route::get('/e-fatura-debug', function () {
+                    try {
+                        $hasTable = \Illuminate\Support\Facades\Schema::hasTable('asef_quotes');
+                        $hasItemsTable = \Illuminate\Support\Facades\Schema::hasTable('asef_quote_items');
+                        $migrations = \Illuminate\Support\Facades\DB::table('migrations')
+                            ->where('migration', 'like', '%asef_quotes%')->orWhere('migration', 'like', '%plate_seq%')->get();
+                        $classExists = class_exists(\AsefSondaj\AdaptationLayer\Models\AsefQuote::class);
+                        $count = $hasTable ? \AsefSondaj\AdaptationLayer\Models\AsefQuote::count() : 'N/A';
+                        return response()->json([
+                            'asef_quotes_table'      => $hasTable,
+                            'asef_quote_items_table' => $hasItemsTable,
+                            'quote_count'            => $count,
+                            'model_class_exists'     => $classExists,
+                            'migrations'             => $migrations,
+                            'timezone'               => config('app.timezone'),
+                            'app_env'                => config('app.env'),
+                        ]);
+                    } catch (\Throwable $e) {
+                        return response()->json([
+                            'error' => $e->getMessage(),
+                            'file'  => $e->getFile(),
+                            'line'  => $e->getLine(),
+                            'trace' => array_slice(explode("\n", $e->getTraceAsString()), 0, 10),
+                        ], 500);
+                    }
+                });
+
                 // E-Fatura Oluştur (Proforma / Fiyat Teklifi)
                 Route::get('/e-fatura',                 [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\QuoteController::class, 'index'])->name('quotes.index');
                 Route::get('/e-fatura/create',          [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\QuoteController::class, 'create'])->name('quotes.create');
