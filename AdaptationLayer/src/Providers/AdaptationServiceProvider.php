@@ -422,6 +422,26 @@ class AdaptationServiceProvider extends ServiceProvider
                 Route::put('/sozluk/{id}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\GlossaryController::class, 'update'])->name('glossary.update');
                 Route::delete('/sozluk/{id}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\GlossaryController::class, 'destroy'])->name('glossary.destroy');
 
+                // TEMP: force migrate from HTTP (deletes itself after use)
+                Route::get('/e-fatura-migrate', function () {
+                    try {
+                        $exit = \Illuminate\Support\Facades\Artisan::call('migrate', [
+                            '--path'  => 'packages/AsefSondaj/AdaptationLayer/src/Database/Migrations',
+                            '--force' => true,
+                        ]);
+                        return response()->json([
+                            'exit'   => $exit,
+                            'output' => \Illuminate\Support\Facades\Artisan::output(),
+                        ]);
+                    } catch (\Throwable $e) {
+                        return response()->json([
+                            'error' => $e->getMessage(),
+                            'file'  => $e->getFile(),
+                            'line'  => $e->getLine(),
+                        ], 500);
+                    }
+                });
+
                 // Debug endpoint — TEMP
                 Route::get('/e-fatura-debug', function () {
                     try {
