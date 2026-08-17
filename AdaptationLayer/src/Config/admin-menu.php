@@ -71,4 +71,11 @@ return [
         'sort'  => 6,
         'icon'  => '',
     ],
+    [
+        'key'   => 'asef.quotes',
+        'name'  => 'E-Fatura Oluştur',
+        'route' => 'admin.asef.quotes.index',
+        'sort'  => 7,
+        'icon'  => '',
+    ],
 ];

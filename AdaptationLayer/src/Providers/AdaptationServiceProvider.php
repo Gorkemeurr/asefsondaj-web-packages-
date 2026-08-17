@@ -421,6 +421,16 @@ class AdaptationServiceProvider extends ServiceProvider
                 Route::get('/sozluk/{id}/edit', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\GlossaryController::class, 'edit'])->name('glossary.edit');
                 Route::put('/sozluk/{id}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\GlossaryController::class, 'update'])->name('glossary.update');
                 Route::delete('/sozluk/{id}', [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\GlossaryController::class, 'destroy'])->name('glossary.destroy');
+
+                // E-Fatura Oluştur (Proforma / Fiyat Teklifi)
+                Route::get('/e-fatura',                 [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\QuoteController::class, 'index'])->name('quotes.index');
+                Route::get('/e-fatura/create',          [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\QuoteController::class, 'create'])->name('quotes.create');
+                Route::post('/e-fatura',                [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\QuoteController::class, 'store'])->name('quotes.store');
+                Route::get('/e-fatura/{id}/edit',       [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\QuoteController::class, 'edit'])->name('quotes.edit')->whereNumber('id');
+                Route::put('/e-fatura/{id}',            [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\QuoteController::class, 'update'])->name('quotes.update')->whereNumber('id');
+                Route::delete('/e-fatura/{id}',         [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\QuoteController::class, 'destroy'])->name('quotes.destroy')->whereNumber('id');
+                Route::get('/e-fatura/{id}/pdf',        [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\QuoteController::class, 'pdf'])->name('quotes.pdf')->whereNumber('id');
+                Route::get('/e-fatura/product-lookup',  [\AsefSondaj\AdaptationLayer\Http\Controllers\Admin\QuoteController::class, 'productLookup'])->name('quotes.lookup');
             });
     }
 
