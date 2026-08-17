@@ -86,6 +86,30 @@
     }
     .asef-cart-field textarea { resize: vertical; min-height: 78px; }
 
+    /* Select — input ile aynı tasarım */
+    .asef-cart-field select {
+        width: 100%; box-sizing: border-box;
+        padding: 11px 40px 11px 14px;
+        font: 400 14px/1.4 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        color: var(--primary);
+        background: #FFFFFF url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235f5e60' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 14px center;
+        background-size: 12px;
+        border: 1px solid var(--outline); border-radius: 12px;
+        transition: border-color .15s, box-shadow .15s;
+        -webkit-appearance: none; appearance: none;
+        cursor: pointer;
+    }
+    .asef-cart-field select:focus {
+        outline: none; border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+    }
+
+    /* İl + İlçe yan yana (mobile'da alt alta) */
+    .asef-cart-row-2 { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    @media (min-width: 480px) {
+        .asef-cart-row-2 { grid-template-columns: 1fr 1fr; }
+    }
+
     .asef-cart-form-hint {
         min-height: 0; font-size: 12px; color: #DC2626; letter-spacing: -0.005em;
     }
@@ -263,12 +287,43 @@
                             </div>
 
                             <div class="asef-cart-field">
+                                <label for="cart-position">Firmadaki pozisyonunuz</label>
+                                <select id="cart-position" name="position"
+                                        data-asef-cart-input="position">
+                                    <option value="">Seçiniz</option>
+                                    <option value="Firma sahibi">Firma sahibi</option>
+                                    <option value="Genel müdür">Genel müdür</option>
+                                    <option value="Satın alma müdürü / sorumlusu">Satın alma müdürü / sorumlusu</option>
+                                    <option value="Teknik müdür / sorumlu">Teknik müdür / sorumlu</option>
+                                    <option value="Şantiye şefi / operasyon yöneticisi">Şantiye şefi / operasyon yöneticisi</option>
+                                    <option value="Sondaj operatörü / teknisyeni">Sondaj operatörü / teknisyeni</option>
+                                    <option value="Muhasebe / finans">Muhasebe / finans</option>
+                                    <option value="Diğer">Diğer</option>
+                                </select>
+                            </div>
+
+                            <div class="asef-cart-field">
                                 <label for="cart-phone">
                                     Telefon <span aria-hidden="true">*</span>
                                 </label>
                                 <input type="tel" id="cart-phone" name="phone" required
                                        autocomplete="tel" placeholder="Örn: 0532 xxx xx xx"
                                        data-asef-cart-input="phone" />
+                            </div>
+
+                            <div class="asef-cart-row-2">
+                                <div class="asef-cart-field">
+                                    <label for="cart-city">İl</label>
+                                    <input type="text" id="cart-city" name="city"
+                                           autocomplete="address-level1" placeholder="Örn: Bursa"
+                                           data-asef-cart-input="city" />
+                                </div>
+                                <div class="asef-cart-field">
+                                    <label for="cart-district">İlçe</label>
+                                    <input type="text" id="cart-district" name="district"
+                                           autocomplete="address-level2" placeholder="Örn: Yıldırım"
+                                           data-asef-cart-input="district" />
+                                </div>
                             </div>
 
                             <div class="asef-cart-field">
@@ -480,8 +535,13 @@
             lines.push('━ Müşteri ━');
             lines.push('Ad Soyad: ' + form.fullname);
             if (form.company) lines.push('Firma: ' + form.company);
+            if (form.position) lines.push('Pozisyon: ' + form.position);
             lines.push('Telefon: ' + form.phone);
             if (form.email) lines.push('E-posta: ' + form.email);
+            var loc = [];
+            if (form.city) loc.push(form.city);
+            if (form.district) loc.push(form.district);
+            if (loc.length) lines.push('Konum: ' + loc.join(' / '));
             lines.push('');
 
             lines.push('━ Ürünler ━');
