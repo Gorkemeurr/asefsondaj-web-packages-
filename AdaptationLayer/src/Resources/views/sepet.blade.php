@@ -35,6 +35,150 @@
 @include('asef-adaptation::partials.v5-styles')
 @include('asef-adaptation::partials.v5-cart-js')
 
+@push('styles')
+<style>
+    /* ============ SEPET FORMU (v5 Apple minimalist) ============ */
+    .asef-cart-form {
+        margin-top: 24px; padding-top: 24px;
+        border-top: 1px solid var(--outline);
+        display: flex; flex-direction: column; gap: 14px;
+    }
+    .asef-cart-form-title {
+        font-size: 15px; font-weight: 600; letter-spacing: -0.01em;
+        color: var(--primary); margin: 0;
+    }
+    .asef-cart-form-lede {
+        font-size: 12px; color: var(--gray-secondary); line-height: 1.5;
+        margin: -6px 0 6px;
+    }
+    .asef-cart-field { display: flex; flex-direction: column; gap: 6px; }
+    .asef-cart-field label {
+        font-size: 12px; font-weight: 500; color: var(--secondary);
+        letter-spacing: 0.01em;
+    }
+    .asef-cart-field label span[aria-hidden] {
+        color: #DC2626; margin-left: 2px; font-weight: 700;
+    }
+    .asef-cart-field input,
+    .asef-cart-field textarea {
+        width: 100%; box-sizing: border-box;
+        padding: 11px 14px;
+        font: 400 14px/1.4 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        color: var(--primary);
+        background: #FFFFFF;
+        border: 1px solid var(--outline); border-radius: 12px;
+        transition: border-color .15s, box-shadow .15s, background .15s;
+        -webkit-appearance: none; appearance: none;
+    }
+    .asef-cart-field input::placeholder,
+    .asef-cart-field textarea::placeholder {
+        color: var(--gray-secondary); font-weight: 400;
+    }
+    .asef-cart-field input:focus,
+    .asef-cart-field textarea:focus {
+        outline: none; border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+    }
+    .asef-cart-field input.is-invalid,
+    .asef-cart-field textarea.is-invalid {
+        border-color: #DC2626;
+        box-shadow: 0 0 0 3px rgba(220,38,38,0.10);
+    }
+    .asef-cart-field textarea { resize: vertical; min-height: 78px; }
+
+    .asef-cart-form-hint {
+        min-height: 0; font-size: 12px; color: #DC2626; letter-spacing: -0.005em;
+    }
+
+    /* ============ 3D HATA MODALI (Apple depth) ============ */
+    .asef-cart-modal-backdrop {
+        position: fixed; inset: 0;
+        background: rgba(15,17,20,0.42);
+        backdrop-filter: blur(18px) saturate(180%);
+        -webkit-backdrop-filter: blur(18px) saturate(180%);
+        display: none; align-items: center; justify-content: center;
+        z-index: 10001; padding: 20px;
+        opacity: 0; transition: opacity .28s cubic-bezier(0.16,1,0.3,1);
+    }
+    .asef-cart-modal-backdrop.on { display: flex; opacity: 1; }
+    .asef-cart-modal {
+        width: 100%; max-width: 420px;
+        background: linear-gradient(180deg, #FFFFFF 0%, #F5F5F7 100%);
+        border-radius: 28px;
+        padding: 32px 28px 24px;
+        box-shadow:
+            0 1px 0 rgba(255,255,255,0.9) inset,
+            0 0 0 1px rgba(0,0,0,0.04),
+            0 24px 80px -8px rgba(0,0,0,0.35),
+            0 8px 20px -4px rgba(0,0,0,0.18);
+        transform: scale(.94) translateY(10px);
+        opacity: 0; transition: transform .32s cubic-bezier(0.16,1,0.3,1), opacity .28s;
+        text-align: center;
+    }
+    .asef-cart-modal-backdrop.on .asef-cart-modal {
+        transform: scale(1) translateY(0); opacity: 1;
+    }
+    .asef-cart-modal-icon {
+        width: 72px; height: 72px; margin: 0 auto 20px;
+        border-radius: 20px;
+        background: linear-gradient(180deg, #FEE2E2 0%, #FCA5A5 100%);
+        display: flex; align-items: center; justify-content: center;
+        box-shadow:
+            0 1px 0 rgba(255,255,255,0.65) inset,
+            0 10px 24px -6px rgba(220,38,38,0.35),
+            0 3px 6px -1px rgba(220,38,38,0.15);
+    }
+    .asef-cart-modal-icon svg {
+        width: 36px; height: 36px; color: #B91C1C;
+        filter: drop-shadow(0 1px 1px rgba(255,255,255,0.4));
+    }
+    .asef-cart-modal h4 {
+        font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
+        color: var(--primary); margin: 0 0 10px; line-height: 1.25;
+    }
+    .asef-cart-modal p {
+        font-size: 14px; color: var(--secondary); line-height: 1.55;
+        margin: 0 0 24px;
+    }
+    .asef-cart-modal-actions { display: flex; flex-direction: column; gap: 10px; }
+    .asef-cart-modal-btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        padding: 13px 22px; border-radius: 999px; border: 0;
+        font: 600 14px/1 'Inter', -apple-system, sans-serif;
+        letter-spacing: -0.005em; cursor: pointer;
+        transition: transform .15s cubic-bezier(0.16,1,0.3,1), box-shadow .2s, background .2s;
+    }
+    .asef-cart-modal-btn.primary {
+        background: var(--primary); color: #FFFFFF;
+        box-shadow: 0 6px 16px -4px rgba(0,0,0,0.4), 0 2px 4px -1px rgba(0,0,0,0.2);
+    }
+    .asef-cart-modal-btn.primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 22px -4px rgba(0,0,0,0.45), 0 3px 6px -1px rgba(0,0,0,0.25);
+    }
+    .asef-cart-modal-btn.ghost {
+        background: transparent; color: var(--secondary);
+    }
+    .asef-cart-modal-btn.ghost:hover { color: var(--primary); }
+
+    @media (prefers-reduced-motion: reduce) {
+        .asef-cart-modal-backdrop, .asef-cart-modal {
+            transition: none;
+        }
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+        .asef-cart-modal { max-width: 100%; padding: 26px 22px 22px; border-radius: 22px; }
+        .asef-cart-modal-icon { width: 60px; height: 60px; border-radius: 16px; margin-bottom: 16px; }
+        .asef-cart-modal-icon svg { width: 30px; height: 30px; }
+        .asef-cart-modal h4 { font-size: 18px; }
+        .asef-cart-modal p { font-size: 13.5px; margin-bottom: 20px; }
+        .asef-cart-modal-btn { padding: 14px 22px; font-size: 15px; }
+    }
+</style>
+@endpush
+
 <x-shop::layouts
     :has-header="false"
     :has-feature="false"
@@ -97,11 +241,58 @@
                             <span class="asef-cart-summary-value">Dahil</span>
                         </div>
 
+                        {{-- Sipariş bilgileri formu — WhatsApp mesajına otomatik eklenir --}}
+                        <form class="asef-cart-form" data-asef-cart-form novalidate autocomplete="on">
+                            <div class="asef-cart-form-title">Sipariş bilgileriniz</div>
+                            <p class="asef-cart-form-lede">Bilgilerinizi girin, WhatsApp'a otomatik iletilsin.</p>
+
+                            <div class="asef-cart-field">
+                                <label for="cart-fullname">
+                                    Ad Soyad <span aria-hidden="true">*</span>
+                                </label>
+                                <input type="text" id="cart-fullname" name="fullname" required
+                                       autocomplete="name" placeholder="Örn: Ali Yılmaz"
+                                       data-asef-cart-input="fullname" />
+                            </div>
+
+                            <div class="asef-cart-field">
+                                <label for="cart-company">Firma adı</label>
+                                <input type="text" id="cart-company" name="company"
+                                       autocomplete="organization" placeholder="Örn: XYZ Sondaj Ltd. Şti."
+                                       data-asef-cart-input="company" />
+                            </div>
+
+                            <div class="asef-cart-field">
+                                <label for="cart-phone">
+                                    Telefon <span aria-hidden="true">*</span>
+                                </label>
+                                <input type="tel" id="cart-phone" name="phone" required
+                                       autocomplete="tel" placeholder="Örn: 0532 xxx xx xx"
+                                       data-asef-cart-input="phone" />
+                            </div>
+
+                            <div class="asef-cart-field">
+                                <label for="cart-email">E-posta</label>
+                                <input type="email" id="cart-email" name="email"
+                                       autocomplete="email" placeholder="ornek@firma.com"
+                                       data-asef-cart-input="email" />
+                            </div>
+
+                            <div class="asef-cart-field">
+                                <label for="cart-note">Sipariş notu</label>
+                                <textarea id="cart-note" name="note" rows="3"
+                                          placeholder="Teslim tarihi, kargo adresi, özel istek..."
+                                          data-asef-cart-input="note"></textarea>
+                            </div>
+
+                            <div class="asef-cart-form-hint" data-asef-cart-form-hint aria-live="polite"></div>
+                        </form>
+
                         <div class="asef-cart-cta-block">
-                            <a href="#" data-asef-wa-quote class="asef-cta-pill primary">
+                            <button type="button" data-asef-wa-quote class="asef-cta-pill primary asef-cart-wa-btn">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF" style="flex-shrink:0;"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.13 1.6 5.93L0 24l6.34-1.67a11.87 11.87 0 0 0 5.72 1.46h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.45-8.41zM12.07 21.8h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.22-3.76.99 1-3.67-.24-.38a9.88 9.88 0 0 1-1.51-5.24c0-5.46 4.44-9.9 9.91-9.9 2.64 0 5.13 1.03 7 2.9a9.83 9.83 0 0 1 2.9 7c0 5.46-4.44 9.9-9.88 9.9zm5.43-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.93-2.22-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.35.19 1.86.11.57-.08 1.76-.72 2-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
-                                WhatsApp'tan Teklif Al
-                            </a>
+                                WhatsApp'tan Teklif Gönder
+                            </button>
                             <a href="{{ $catalogUrl }}" class="asef-cart-continue">Alışverişe devam et</a>
                         </div>
 
@@ -125,6 +316,24 @@
         </main>
 
         @include('asef-adaptation::partials.v5-footer')
+    </div>
+
+    {{-- 3D tasarımlı hata modalı — form validation başarısız olduğunda gösterilir --}}
+    <div class="asef-cart-modal-backdrop" data-asef-cart-modal role="dialog" aria-modal="true" aria-labelledby="asef-cart-modal-title" aria-hidden="true">
+        <div class="asef-cart-modal">
+            <div class="asef-cart-modal-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 9v4"/>
+                    <path d="M12 17h.01"/>
+                    <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                </svg>
+            </div>
+            <h4 id="asef-cart-modal-title">Formu doldurmanız gerekiyor</h4>
+            <p data-asef-cart-modal-msg>Sipariş talebinizi WhatsApp'a gönderebilmemiz için lütfen Ad Soyad ve Telefon alanlarını doldurun.</p>
+            <div class="asef-cart-modal-actions">
+                <button type="button" class="asef-cart-modal-btn primary" data-asef-cart-modal-close>Tamam, dolduruyorum</button>
+            </div>
+        </div>
     </div>
 
     {{-- Sepet renderer — reads localStorage via AsefCart, generates rows.
@@ -217,6 +426,156 @@
         // Second pass after Vue mount likely settled
         setTimeout(tryRender, 300);
         setTimeout(tryRender, 1000);
+    })();
+    </script>
+
+    {{-- Form validation + WhatsApp mesajı zenginleştirme --}}
+    <script>
+    (function () {
+        var WA_PHONE = '905320542975';
+
+        function $(sel, root) { return (root || document).querySelector(sel); }
+        function $$(sel, root) { return Array.from((root || document).querySelectorAll(sel)); }
+
+        function readForm() {
+            var out = {};
+            $$('[data-asef-cart-input]').forEach(function (el) {
+                out[el.getAttribute('data-asef-cart-input')] = (el.value || '').trim();
+            });
+            return out;
+        }
+
+        function validateForm(data) {
+            var errors = [];
+            if (!data.fullname || data.fullname.length < 2) errors.push('fullname');
+            // Telefon: en az 10 rakam
+            var phoneDigits = (data.phone || '').replace(/\D/g, '');
+            if (!data.phone || phoneDigits.length < 10) errors.push('phone');
+            return errors;
+        }
+
+        function markInvalid(fieldNames) {
+            $$('[data-asef-cart-input]').forEach(function (el) {
+                el.classList.remove('is-invalid');
+            });
+            fieldNames.forEach(function (name) {
+                var el = $('[data-asef-cart-input="' + name + '"]');
+                if (el) el.classList.add('is-invalid');
+            });
+            var hint = $('[data-asef-cart-form-hint]');
+            if (!hint) return;
+            if (fieldNames.length === 0) {
+                hint.textContent = '';
+            } else {
+                var labels = { fullname: 'Ad Soyad', phone: 'Telefon' };
+                var need = fieldNames.map(function (f) { return labels[f] || f; }).join(', ');
+                hint.textContent = 'Lütfen zorunlu alanları doldurun: ' + need;
+            }
+        }
+
+        function buildEnrichedWaUrl(items, form) {
+            var lines = ['Merhaba Asef Sondaj,', ''];
+
+            lines.push('━ Müşteri ━');
+            lines.push('Ad Soyad: ' + form.fullname);
+            if (form.company) lines.push('Firma: ' + form.company);
+            lines.push('Telefon: ' + form.phone);
+            if (form.email) lines.push('E-posta: ' + form.email);
+            lines.push('');
+
+            lines.push('━ Ürünler ━');
+            items.forEach(function (it, i) {
+                lines.push((i + 1) + '. ' + it.name + ' (' + it.sku + ') — ' + it.qty + ' adet');
+            });
+            lines.push('');
+
+            if (form.note) {
+                lines.push('━ Not ━');
+                lines.push(form.note);
+                lines.push('');
+            }
+
+            lines.push('En uygun teklif ve teslim süresi için geri dönüşünüzü bekliyorum.');
+            return 'https://wa.me/' + WA_PHONE + '?text=' + encodeURIComponent(lines.join('\n'));
+        }
+
+        // Modal
+        function openModal(customMsg) {
+            var backdrop = $('[data-asef-cart-modal]');
+            if (!backdrop) return;
+            var msg = $('[data-asef-cart-modal-msg]');
+            if (msg && customMsg) msg.textContent = customMsg;
+            backdrop.classList.add('on');
+            backdrop.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            var backdrop = $('[data-asef-cart-modal]');
+            if (!backdrop) return;
+            backdrop.classList.remove('on');
+            backdrop.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        // Click delegation — capture:true → v5-cart-js handler'ından ÖNCE çalış
+        document.addEventListener('click', function (ev) {
+            // WhatsApp gönder butonu
+            var waBtn = ev.target.closest('[data-asef-wa-quote]');
+            if (waBtn) {
+                var items = (window.AsefCart && window.AsefCart.get) ? window.AsefCart.get() : [];
+                if (items.length === 0) {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    openModal('Sepetinizde ürün bulunmuyor. Önce ürün ekleyin, sonra teklif gönderin.');
+                    return;
+                }
+                var form = readForm();
+                var errors = validateForm(form);
+                if (errors.length > 0) {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    markInvalid(errors);
+                    openModal();
+                    // İlk boş alanı focus et
+                    var firstErrorEl = $('[data-asef-cart-input="' + errors[0] + '"]');
+                    if (firstErrorEl) setTimeout(function () { firstErrorEl.focus(); }, 400);
+                    return;
+                }
+                // Form OK — v5-cart-js handler'ını atla, zenginleştirilmiş URL ile aç
+                ev.preventDefault();
+                ev.stopPropagation();
+                markInvalid([]);
+                var url = buildEnrichedWaUrl(items, form);
+                window.open(url, '_blank', 'noopener');
+                return;
+            }
+
+            // Modal kapatma
+            var closeBtn = ev.target.closest('[data-asef-cart-modal-close]');
+            if (closeBtn) { ev.preventDefault(); closeModal(); return; }
+
+            // Backdrop tıklaması
+            var backdrop = ev.target.closest('[data-asef-cart-modal]');
+            if (backdrop && ev.target === backdrop) { closeModal(); return; }
+        }, true); // capture:true — v5-cart-js'den önce yakala
+
+        // ESC ile modal kapat
+        document.addEventListener('keydown', function (ev) {
+            if (ev.key === 'Escape') {
+                var backdrop = $('[data-asef-cart-modal]');
+                if (backdrop && backdrop.classList.contains('on')) closeModal();
+            }
+        });
+
+        // Yazdıkça hata işaretini temizle
+        document.addEventListener('input', function (ev) {
+            var el = ev.target.closest('[data-asef-cart-input]');
+            if (el && el.classList.contains('is-invalid')) {
+                el.classList.remove('is-invalid');
+                var hint = $('[data-asef-cart-form-hint]');
+                if (hint) hint.textContent = '';
+            }
+        });
     })();
     </script>
     @endpush
