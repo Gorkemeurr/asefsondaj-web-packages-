@@ -228,7 +228,7 @@
     },
     {
       "code": "PRT",
-      "name": "Portkron",
+      "name": "Pörtkron",
       "slug": "portkron",
       "parent_code": "WLS",
       "description": "",
@@ -388,7 +388,7 @@
     },
     {
       "code": "EPR",
-      "name": "Elmaslı Portkron",
+      "name": "Elmaslı Pörtkron",
       "slug": "elmasli-portkron",
       "parent_code": "ELM",
       "description": "",
@@ -1212,7 +1212,7 @@
     },
     {
       "sku": "AS-PRT-001",
-      "name": "BWL Portkron V/T",
+      "name": "BWL Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -1833,7 +1833,7 @@
     },
     {
       "sku": "AS-PRT-002",
-      "name": "BWLU Portkron V/T",
+      "name": "BWLU Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -2454,7 +2454,7 @@
     },
     {
       "sku": "AS-PRT-003",
-      "name": "NWL Portkron V/T",
+      "name": "NWL Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -3075,7 +3075,7 @@
     },
     {
       "sku": "AS-PRT-004",
-      "name": "NWLU Portkron V/T",
+      "name": "NWLU Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -3696,7 +3696,7 @@
     },
     {
       "sku": "AS-PRT-005",
-      "name": "NWL3 Portkron V/T",
+      "name": "NWL3 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -4317,7 +4317,7 @@
     },
     {
       "sku": "AS-PRT-006",
-      "name": "HWL Portkron V/T",
+      "name": "HWL Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -4938,7 +4938,7 @@
     },
     {
       "sku": "AS-PRT-007",
-      "name": "HWLU Portkron V/T",
+      "name": "HWLU Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -5559,7 +5559,7 @@
     },
     {
       "sku": "AS-PRT-008",
-      "name": "HWL3 Portkron V/T",
+      "name": "HWL3 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -6180,7 +6180,7 @@
     },
     {
       "sku": "AS-PRT-009",
-      "name": "PWL Portkron V/T",
+      "name": "PWL Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -6801,7 +6801,7 @@
     },
     {
       "sku": "AS-PRT-010",
-      "name": "PWL3 Portkron V/T",
+      "name": "PWL3 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -7422,7 +7422,7 @@
     },
     {
       "sku": "AS-PRT-011",
-      "name": "GEOBOR S Portkron V/T",
+      "name": "GEOBOR S Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -7854,7 +7854,7 @@
     },
     {
       "sku": "AS-PRT-012",
-      "name": "B46 Portkron V/T",
+      "name": "B46 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -7962,7 +7962,7 @@
     },
     {
       "sku": "AS-PRT-013",
-      "name": "B56 Portkron V/T",
+      "name": "B56 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -8070,7 +8070,7 @@
     },
     {
       "sku": "AS-PRT-014",
-      "name": "B66 Portkron V/T",
+      "name": "B66 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -8178,7 +8178,7 @@
     },
     {
       "sku": "AS-PRT-015",
-      "name": "B76 Portkron V/T",
+      "name": "B76 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -8286,7 +8286,7 @@
     },
     {
       "sku": "AS-PRT-016",
-      "name": "B86 Portkron V/T",
+      "name": "B86 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -8394,7 +8394,7 @@
     },
     {
       "sku": "AS-PRT-017",
-      "name": "B101 Portkron V/T",
+      "name": "B101 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -8502,7 +8502,7 @@
     },
     {
       "sku": "AS-PRT-018",
-      "name": "B116 Portkron V/T",
+      "name": "B116 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -8610,7 +8610,7 @@
     },
     {
       "sku": "AS-PRT-019",
-      "name": "B131 Portkron V/T",
+      "name": "B131 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -8745,7 +8745,7 @@
     },
     {
       "sku": "AS-PRT-020",
-      "name": "T46 Portkron V/T",
+      "name": "T46 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -8880,7 +8880,7 @@
     },
     {
       "sku": "AS-PRT-021",
-      "name": "T56 Portkron V/T",
+      "name": "T56 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -9015,7 +9015,7 @@
     },
     {
       "sku": "AS-PRT-022",
-      "name": "T66 Portkron V/T",
+      "name": "T66 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -9150,7 +9150,7 @@
     },
     {
       "sku": "AS-PRT-023",
-      "name": "T76 Portkron V/T",
+      "name": "T76 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -9285,7 +9285,7 @@
     },
     {
       "sku": "AS-PRT-024",
-      "name": "T86 Portkron V/T",
+      "name": "T86 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -9420,7 +9420,7 @@
     },
     {
       "sku": "AS-PRT-025",
-      "name": "T101 Portkron V/T",
+      "name": "T101 Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -9960,7 +9960,7 @@
     },
     {
       "sku": "AS-PRT-026",
-      "name": "BWG Portkron V/T",
+      "name": "BWG Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -10068,7 +10068,7 @@
     },
     {
       "sku": "AS-PRT-027",
-      "name": "NWG Portkron V/T",
+      "name": "NWG Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -10176,7 +10176,7 @@
     },
     {
       "sku": "AS-PRT-028",
-      "name": "BWM Portkron V/T",
+      "name": "BWM Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -10284,7 +10284,7 @@
     },
     {
       "sku": "AS-PRT-029",
-      "name": "NWM Portkron V/T",
+      "name": "NWM Pörtkron V/T",
       "brand": "Asef Sondaj",
       "alt_code": "PRT",
       "ana_code": "WLS",
@@ -13065,7 +13065,7 @@
     },
     {
       "sku": "AS-EPR-001",
-      "name": "BWL Emprenye Portkron",
+      "name": "BWL Emprenye Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13092,7 +13092,7 @@
     },
     {
       "sku": "AS-EPR-002",
-      "name": "NWL Emprenye Portkron",
+      "name": "NWL Emprenye Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13119,7 +13119,7 @@
     },
     {
       "sku": "AS-EPR-003",
-      "name": "NWL3 Emprenye Portkron",
+      "name": "NWL3 Emprenye Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13146,7 +13146,7 @@
     },
     {
       "sku": "AS-EPR-004",
-      "name": "HWL Emprenye Portkron",
+      "name": "HWL Emprenye Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13173,7 +13173,7 @@
     },
     {
       "sku": "AS-EPR-005",
-      "name": "HWL3 Emprenye Portkron",
+      "name": "HWL3 Emprenye Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13200,7 +13200,7 @@
     },
     {
       "sku": "AS-EPR-006",
-      "name": "PWL Emprenye Portkron",
+      "name": "PWL Emprenye Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13227,7 +13227,7 @@
     },
     {
       "sku": "AS-EPR-007",
-      "name": "PWL3 Emprenye Portkron",
+      "name": "PWL3 Emprenye Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13254,7 +13254,7 @@
     },
     {
       "sku": "AS-EPR-008",
-      "name": "GEOBOR S Emprenye Portkron",
+      "name": "GEOBOR S Emprenye Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13281,7 +13281,7 @@
     },
     {
       "sku": "AS-EPR-009",
-      "name": "B46 Elmaslı Portkron",
+      "name": "B46 Elmaslı Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13308,7 +13308,7 @@
     },
     {
       "sku": "AS-EPR-010",
-      "name": "B56 Elmaslı Portkron",
+      "name": "B56 Elmaslı Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13335,7 +13335,7 @@
     },
     {
       "sku": "AS-EPR-011",
-      "name": "B66 Elmaslı Portkron",
+      "name": "B66 Elmaslı Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13362,7 +13362,7 @@
     },
     {
       "sku": "AS-EPR-012",
-      "name": "B76 Elmaslı Portkron",
+      "name": "B76 Elmaslı Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13389,7 +13389,7 @@
     },
     {
       "sku": "AS-EPR-013",
-      "name": "B86 Elmaslı Portkron",
+      "name": "B86 Elmaslı Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13416,7 +13416,7 @@
     },
     {
       "sku": "AS-EPR-014",
-      "name": "B101 Elmaslı Portkron",
+      "name": "B101 Elmaslı Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13443,7 +13443,7 @@
     },
     {
       "sku": "AS-EPR-015",
-      "name": "T46 Elmaslı Portkron",
+      "name": "T46 Elmaslı Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13470,7 +13470,7 @@
     },
     {
       "sku": "AS-EPR-016",
-      "name": "T56 Elmaslı Portkron",
+      "name": "T56 Elmaslı Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13497,7 +13497,7 @@
     },
     {
       "sku": "AS-EPR-017",
-      "name": "T66 Elmaslı Portkron",
+      "name": "T66 Elmaslı Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13524,7 +13524,7 @@
     },
     {
       "sku": "AS-EPR-018",
-      "name": "T76 Elmaslı Portkron",
+      "name": "T76 Elmaslı Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13551,7 +13551,7 @@
     },
     {
       "sku": "AS-EPR-019",
-      "name": "T86 Elmaslı Portkron",
+      "name": "T86 Elmaslı Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",
@@ -13578,7 +13578,7 @@
     },
     {
       "sku": "AS-EPR-020",
-      "name": "T101 Elmaslı Portkron",
+      "name": "T101 Elmaslı Pörtkron",
       "brand": "Asef Sondaj",
       "alt_code": "EPR",
       "ana_code": "ELM",

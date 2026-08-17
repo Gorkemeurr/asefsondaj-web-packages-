@@ -391,7 +391,7 @@
                         type="text"
                         name="query"
                         class="asef-search-input"
-                        placeholder="Ürün adı veya stok kodu ara (örn: AS-EMB, portkron, DTH)"
+                        placeholder="Ürün adı veya stok kodu ara (örn: AS-EMB, pörtkron, DTH)"
                         value="{{ e($queryText) }}"
                         autocomplete="off"
                     />

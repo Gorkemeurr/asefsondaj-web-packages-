@@ -638,7 +638,7 @@
             <section id="hakkimizda" class="asef-section asef-brand-block">
                 <div class="asef-label-caps">HAKKIMIZDA</div>
                 <h2>Yirmi yıllık saha, tek bir söz: güven.</h2>
-                <p>Bursa merkezimizden Türkiye'nin 81 ilindeki sondaj operasyonlarına <strong>sondaj ekipmanları</strong>, <strong>sondaj makinesi yedek parça</strong> ve teknik danışmanlık sağlıyoruz. Karotiyer, DTH çekiç, tij, matkap ucu, pörtkron ve kompresör bağlantı elemanları — her ürünün arkasında 20 yıllık saha tecrübesi vardır.</p>
+                <p>Bursa merkezimizden Türkiye'nin 81 ilindeki sondaj operasyonlarına <strong>sondaj ekipmanları</strong>, <strong>sondaj makinesi yedek parça</strong> ve teknik danışmanlık sağlıyoruz. Karotiyer, tij, matkap ucu ve pörtkron — her ürünün arkasında 20 yıllık saha tecrübesi vardır.</p>
                 <a href="{{ url('hakkimizda') }}" class="asef-cta-pill ghost">Firma hikayemiz <span class="asef-cta-arrow">›</span></a>
             </section>
 

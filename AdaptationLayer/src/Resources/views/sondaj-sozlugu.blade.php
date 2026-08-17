@@ -65,7 +65,7 @@
         // P
         ['t' => 'PDC Bit', 'd' => 'Polycrystalline Diamond Compact — sentetik elmas kesicili matkap ucu. Yumuşak ve orta sert formasyonlarda hızlıdır.'],
         ['t' => 'PQ Karotiyer', 'd' => 'Wireline karotiyer standardı — 122.6 mm delik çapı, 85 mm karot çapı. Büyük çaplı jeoteknik ve rezerv sondajı için.'],
-        ['t' => 'Pörtkron / Portkron', 'd' => 'Karot sondajında sondaj takımını (tij + bit) kuyuya indirmek ve kaldırmak için kullanılan taşıyıcı sistem.'],
+        ['t' => 'Pörtkron', 'd' => 'Karot sondajında sondaj takımını (tij + bit) kuyuya indirmek ve kaldırmak için kullanılan taşıyıcı sistem.'],
         // R
         ['t' => 'Rotary Sondaj', 'd' => 'Sondaj tijini döndürerek bit\'in kayayı öğütmesi prensibiyle çalışan yöntem. Su, petrol, jeotermal sondajda yaygın.'],
         // S

@@ -237,7 +237,7 @@
                 ['p', 'Karot verimi = alınan karot uzunluğu / sondaj ilerleme uzunluğu × 100. İdeal karot verimi %90+ olmalı; %70 altında düşen verim ekipman veya teknik sorun işaretidir. Karot sandığında düşük verim tespiti: her run\'da beklenen karot boyu ile fiili boy karşılaştırılır. Sistematik düşük verim varsa iç tüp mekanizması, elmas uç veya sirkülasyon kontrol edilmelidir.'],
                 ['h', 'Sonuç'],
                 ['p', 'Karotiyer iç ve dış tüp uyumu, karot alma operasyonunun temel dinamiğidir. HQ/NQ/PQ standartları arasında geçiş yaparken tüm ekipman uyumu bir bütün olarak planlanmalıdır. Karışık standart parçaları asla birlikte kullanmayın.'],
-                ['p', 'Asef Sondaj olarak karotiyer setleri (dış tüp, iç tüp, iç tüp başlığı, portkron, elmaslı zırh, elmas uçlar) tedariki sağlıyoruz. Projeniz için uygun standart ve set kombinasyonu için WhatsApp\'tan bize yazın — 20 yıllık karot alma tecrübemizden faydalanın.'],
+                ['p', 'Asef Sondaj olarak karotiyer setleri (dış tüp, iç tüp, iç tüp başlığı, pörtkron, elmaslı zırh, elmas uçlar) tedariki sağlıyoruz. Projeniz için uygun standart ve set kombinasyonu için WhatsApp\'tan bize yazın — 20 yıllık karot alma tecrübemizden faydalanın.'],
             ],
         ],
         'yedek-parca-stok' => [

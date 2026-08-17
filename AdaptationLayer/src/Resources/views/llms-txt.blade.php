@@ -141,7 +141,7 @@ Türkiye'nin 81 ilinde sondaj ekipmanı tedariki, teknik danışmanlık ve satı
 
 ## Sık Kullanılan Anahtar Kelimeler
 
-sondaj ekipmanları, karotiyer, DTH çekiç, down-the-hole hammer, sondaj tijleri, sondaj matkap uçları, pörtkron, portkron, sondaj kompresörü, karot alma ekipmanı, HQ karotiyer, NQ karotiyer, PQ karotiyer, BWL karotiyer, API IF, API REG, DCDMA, emprenye elmas matkap, vidye matkap, triplex çamur pompası, sondaj yedek parça, su sondajı ekipmanı, jeotermal sondaj, maden sondajı, karot sondajı, rotary sondaj, Türkiye sondaj tedarikçisi, Bursa sondaj
+sondaj ekipmanları, karotiyer, DTH çekiç, down-the-hole hammer, sondaj tijleri, sondaj matkap uçları, pörtkron, sondaj kompresörü, karot alma ekipmanı, HQ karotiyer, NQ karotiyer, PQ karotiyer, BWL karotiyer, API IF, API REG, DCDMA, emprenye elmas matkap, vidye matkap, triplex çamur pompası, sondaj yedek parça, su sondajı ekipmanı, jeotermal sondaj, maden sondajı, karot sondajı, rotary sondaj, Türkiye sondaj tedarikçisi, Bursa sondaj
 
 ## Optional
 
