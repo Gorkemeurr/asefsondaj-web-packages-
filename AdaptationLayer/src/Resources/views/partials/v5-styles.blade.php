@@ -30,10 +30,11 @@
 @endpush
 
 @push('styles')
+    {{-- Preconnect: sadece kritik olanlar (Google Fonts). Lighthouse uyarısı:
+         "4'ten fazla preconnect az kullanılıp az kullanılan yerlerde tercih edilmeli".
+         GTM/GA/WhatsApp gibi etkileşim-anı origin'ler için preconnect gereksiz. --}}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-    <link rel="dns-prefetch" href="//www.google-analytics.com" />
     {{-- Font CSS: preload as="style" → non-blocking discovery; onload fallback for older browsers.
          display=swap already set on the URL → text renders in system font, swaps to Inter when ready. --}}
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />

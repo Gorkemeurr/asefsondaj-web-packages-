@@ -23,9 +23,8 @@
     {{-- Font preload (Inter 400+600 en kritik) --}}
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" crossorigin />
 
-    {{-- DNS prefetch — WhatsApp / Cloudinary vs. dış origin'ler için --}}
-    <link rel="dns-prefetch" href="https://wa.me" />
-    <link rel="dns-prefetch" href="https://api.whatsapp.com" />
+    {{-- WhatsApp preconnect kaldırıldı — sadece etkileşim anında açılıyor, önden bağlantı gereksiz.
+         Lighthouse: 4'ten fazla preconnect ile sayfa yavaşlar. --}}
 
     {{-- LocalBusiness + Organization + Website JSON-LD (Google Maps + Knowledge Graph) --}}
     @php
