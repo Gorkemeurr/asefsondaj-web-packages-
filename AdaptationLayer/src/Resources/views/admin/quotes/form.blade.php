@@ -321,29 +321,38 @@
         toggleEmpty();
         recalcTotals();
 
-        // BUTTON + ENTER binding — event listener'lar addEventListener ile
-        // (onclick attribute bir sekilde tetiklenmiyor bu ortamda)
-        const btnEl = $('product-lookup-btn');
-        const inputEl = $('product-lookup-input');
-        if (btnEl) {
-            btnEl.addEventListener('click', function(e) {
+        // EVENT DELEGATION — Vue rerender'a karsi bulletproof
+        // document seviyesinde dinle, target'a gore filtrele
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('#product-lookup-btn');
+            if (btn) {
                 e.preventDefault();
-                console.log('[Asef Quote Form] Ekle button clicked');
+                console.log('[Asef Quote Form] Ekle button clicked (delegated)');
                 addProductByLookup();
-            });
-            console.log('[Asef Quote Form] Ekle button listener attached');
-        } else {
-            console.error('[Asef Quote Form] product-lookup-btn NOT FOUND at bind time');
-        }
-        if (inputEl) {
-            inputEl.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    console.log('[Asef Quote Form] Enter pressed');
-                    addProductByLookup();
-                }
-            });
-        }
+                return;
+            }
+        }, true);
+        document.addEventListener('keydown', function(e) {
+            if (e.target && e.target.id === 'product-lookup-input' && e.key === 'Enter') {
+                e.preventDefault();
+                console.log('[Asef Quote Form] Enter pressed (delegated)');
+                addProductByLookup();
+            }
+        }, true);
+        // item row input/remove delegation
+        document.addEventListener('input', function(e) {
+            if (e.target && (e.target.classList.contains('item-qty') || e.target.classList.contains('item-price'))) {
+                recalcTotals();
+            }
+        }, true);
+        document.addEventListener('click', function(e) {
+            const removeBtn = e.target.closest('.item-remove-btn');
+            if (removeBtn) {
+                const row = removeBtn.closest('.item-row');
+                if (row) { row.remove(); toggleEmpty(); recalcTotals(); }
+            }
+        }, true);
+        console.log('[Asef Quote Form] Delegated event listeners bound to document');
 
         window.quoteApp = { addProductByLookup, removeRow, recalcTotals };
     })();
