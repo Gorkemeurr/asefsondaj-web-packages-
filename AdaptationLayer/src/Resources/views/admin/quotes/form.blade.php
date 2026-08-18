@@ -193,27 +193,46 @@
             empty().style.display = list().children.length === 0 ? '' : 'none';
         }
 
+        // ROW HTML — string olarak insa et, <template> tag'ine guvenme
+        // (Vue bazi ortamlarda <template>'i yiyor)
         function addRow(item) {
-            const tpl = document.getElementById('item-row-template').content.cloneNode(true);
-            const row = tpl.querySelector('.item-row');
-            row.querySelector('.item-img').src = item.image_url || '';
-            row.querySelector('.item-name').textContent = item.name || '';
-            row.querySelector('.item-sku').textContent = item.sku || '';
+            const row = document.createElement('div');
+            row.className = 'item-row';
+            row.style.cssText = 'display:flex;align-items:center;gap:12px;padding:10px;background:#F5F5F7;border:1px solid #E8E8ED;border-radius:8px;margin-bottom:8px;';
             row.dataset.sku = item.sku || '';
             row.dataset.name = item.name || '';
             row.dataset.image = item.image || '';
-            const qtyEl = row.querySelector('.item-qty');
-            const priceEl = row.querySelector('.item-price');
-            qtyEl.value = item.quantity || 1;
-            priceEl.value = item.unit_price || 0;
-            // Event listener'lari programlatik bagla (inline oninput calismiyor)
-            qtyEl.addEventListener('input', recalcTotals);
-            priceEl.addEventListener('input', recalcTotals);
-            row.querySelector('.item-remove-btn').addEventListener('click', function() {
-                row.remove();
-                toggleEmpty();
-                recalcTotals();
-            });
+
+            const imgSrc = item.image_url || '';
+            const name = (item.name || '').replace(/</g, '&lt;');
+            const sku = (item.sku || '').replace(/</g, '&lt;');
+            const qty = item.quantity || 1;
+            const price = item.unit_price || 0;
+
+            row.innerHTML = `
+                <img class="item-img" src="${imgSrc}" alt="" style="width:52px;height:52px;object-fit:cover;border-radius:6px;background:#eee;">
+                <div style="flex:1;min-width:0;">
+                    <div class="item-name" style="font-size:14px;font-weight:600;color:#1D1D1F;">${name}</div>
+                    <div class="item-sku" style="font-size:11px;color:#6E6E73;font-family:monospace;margin-top:2px;">${sku}</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <div>
+                        <div style="font-size:10px;color:#6E6E73;margin-bottom:2px;">Adet</div>
+                        <input type="number" min="1" max="999999" value="${qty}" class="item-qty" style="width:70px;padding:6px 8px;border:1px solid #DDDDDD;border-radius:6px;font-size:13px;text-align:right;">
+                    </div>
+                    <div>
+                        <div style="font-size:10px;color:#6E6E73;margin-bottom:2px;">Birim Fiyat (₺)</div>
+                        <input type="number" min="0" step="0.01" value="${price}" class="item-price" style="width:110px;padding:6px 8px;border:1px solid #DDDDDD;border-radius:6px;font-size:13px;text-align:right;">
+                    </div>
+                    <div style="text-align:right;">
+                        <div style="font-size:10px;color:#6E6E73;">Toplam</div>
+                        <div class="item-line-total" style="font-size:14px;font-weight:600;color:#1D1D1F;white-space:nowrap;">0,00 ₺</div>
+                    </div>
+                    <button type="button" class="item-remove-btn" title="Sil"
+                        style="background:transparent;border:0;color:#dc2626;padding:6px 10px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;">Sil</button>
+                </div>
+            `;
+
             list().appendChild(row);
             toggleEmpty();
             recalcTotals();
