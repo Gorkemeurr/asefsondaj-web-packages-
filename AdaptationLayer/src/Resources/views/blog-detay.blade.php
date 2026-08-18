@@ -342,13 +342,34 @@
     @if (! $isPlaceholder)
         {{-- Article + BreadcrumbList JSON-LD (Google rich results) --}}
         @php
+            // Türkçe tarih ("12 Ağustos 2026") parse — strtotime() Türkçe ay adlarını anlamaz
+            // Fallback: bugünün tarihi (asla 1970 epoch olmasın — AI motorları "eski içerik" işaretler)
+            $trMonths = [
+                'ocak' => '01', 'şubat' => '02', 'mart' => '03', 'nisan' => '04',
+                'mayıs' => '05', 'haziran' => '06', 'temmuz' => '07', 'ağustos' => '08',
+                'eylül' => '09', 'ekim' => '10', 'kasım' => '11', 'aralık' => '12',
+            ];
+            $parseTrDate = function ($str) use ($trMonths) {
+                if (empty($str)) return date('c');
+                $parts = preg_split('/\s+/', trim(mb_strtolower($str, 'UTF-8')));
+                if (count($parts) === 3 && ctype_digit($parts[0]) && isset($trMonths[$parts[1]]) && ctype_digit($parts[2])) {
+                    $day = str_pad($parts[0], 2, '0', STR_PAD_LEFT);
+                    return $parts[2] . '-' . $trMonths[$parts[1]] . '-' . $day . 'T09:00:00+03:00';
+                }
+                $ts = strtotime(str_replace('.', '-', $str));
+                return $ts ? date('c', $ts) : date('c');
+            };
+            $publishedIso = $parseTrDate($post['date'] ?? null);
+            $modifiedIso  = $parseTrDate($post['updated'] ?? $post['date'] ?? null);
+
             $articleJsonLd = [
                 '@context'      => 'https://schema.org',
                 '@type'         => 'Article',
                 'headline'      => $post['title'],
                 'description'   => $post['lede'],
                 'image'         => [url('asef/' . $post['img'])],
-                'datePublished' => date('c', strtotime(str_replace('.', '-', $post['date'] ?? '2026-01-01'))),
+                'datePublished' => $publishedIso,
+                'dateModified'  => $modifiedIso,
                 'author'        => [
                     '@type' => 'Organization',
                     'name'  => 'Asef Sondaj',

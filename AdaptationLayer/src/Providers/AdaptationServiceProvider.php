@@ -3,6 +3,7 @@
 namespace AsefSondaj\AdaptationLayer\Providers;
 
 use AsefSondaj\AdaptationLayer\Http\Middleware\BlockDisabledRoutes;
+use AsefSondaj\AdaptationLayer\Http\Middleware\ForceWwwHost;
 use AsefSondaj\AdaptationLayer\Http\Middleware\FreshCacheHeaders;
 use AsefSondaj\AdaptationLayer\Http\Middleware\LegacySearchRedirect;
 use Illuminate\Contracts\Http\Kernel;
@@ -90,6 +91,8 @@ class AdaptationServiceProvider extends ServiceProvider
         //    Admin/API paths are skipped inside the middleware itself.
         try {
             $kernel = $this->app->make(Kernel::class);
+            // ForceWwwHost EN ONCE — 301 redirect diger butun islemlerden onceye
+            $kernel->prependMiddleware(ForceWwwHost::class);
             $kernel->pushMiddleware(BlockDisabledRoutes::class);
             $kernel->pushMiddleware(FreshCacheHeaders::class);
             $kernel->pushMiddleware(LegacySearchRedirect::class);
