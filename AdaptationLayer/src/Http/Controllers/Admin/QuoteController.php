@@ -88,8 +88,8 @@ class QuoteController extends Controller
         $items = $this->normalizeItems($data['items']);
         $totals = AsefQuote::calcTotals($items, (int) $data['kdv_rate']);
 
-        // Plaka: eger daha once atanmadiysa yeni sehirden hesapla; atanmissa dokunma
-        // (musterinin numarasi stabil kalsin, sonradan sehir degisse bile eski numara korunur)
+        // Plaka: sehir degistiyse yeniden hesapla (yeni plaka + yeni seq).
+        // Ayni sehir kaldiysa eski numara korunur.
         $update = [
             'customer_name'     => $data['customer_name'],
             'customer_phone'    => $data['customer_phone'],
@@ -104,12 +104,10 @@ class QuoteController extends Controller
             'kdv_amount'        => $totals['kdv_amount'],
             'grand_total'       => $totals['grand_total'],
         ];
-        if (empty($quote->plate_code) && !empty($data['customer_city'])) {
-            $plateCode = TurkishPlateCodes::codeFor($data['customer_city']);
-            if ($plateCode) {
-                $update['plate_code'] = $plateCode;
-                $update['plate_seq']  = AsefQuote::nextPlateSeq($plateCode);
-            }
+        $newPlateCode = TurkishPlateCodes::codeFor($data['customer_city'] ?? null);
+        if ($newPlateCode !== $quote->plate_code) {
+            $update['plate_code'] = $newPlateCode;
+            $update['plate_seq']  = $newPlateCode ? AsefQuote::nextPlateSeq($newPlateCode) : null;
         }
         $quote->update($update);
 
