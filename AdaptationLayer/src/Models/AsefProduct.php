@@ -82,17 +82,52 @@ class AsefProduct extends Model
         ];
         $hiddenKeys = $hiddenKeysByAna[$this->ana_code] ?? [];
 
+        // Belirli alan-deger kombinasyonlari tum urunlerde gizli.
+        // "Standart celik" gibi generic placeholder degerler kullaniciya
+        // bilgi katmiyor — herhangi bir urunun teknik ozelliklerinde
+        // gorunmesin. Karsilastirma diakritik ve buyuk-kucuk harf duyarsiz.
+        $hiddenValuesByKey = [
+            'malzeme_kaplama' => ['standart celik'],
+        ];
+
         $result = [];
         $attrs = $this->attrs ?? [];
         foreach ($labels as $key => $label) {
             if (in_array($key, $hiddenKeys, true)) continue;
             $v = $attrs[$key] ?? null;
             if ($v === null || $v === '' ) continue;
+
+            // Alan-deger blocklist
+            if (isset($hiddenValuesByKey[$key])) {
+                $normalized = self::normalizeValue((string) $v);
+                if (in_array($normalized, $hiddenValuesByKey[$key], true)) continue;
+            }
+
             $unit = $units[$key] ?? '';
             // Ondalıkta virgül kullan (Türkçe format)
             $val  = str_replace('.', ',', (string) $v);
             $result[] = ['key' => $key, 'label' => $label, 'value' => $val, 'unit' => $unit];
         }
         return $result;
+    }
+
+    /**
+     * Deger karsilastirmasi icin normalize eder: Turkce diakritikleri
+     * ASCII'ye cevirir, kucuk harfe indirir, whitespace'i tekilleştirir.
+     * "Standart Çelik ", "STANDART ÇELİK", "standart  celik" -> "standart celik"
+     */
+    private static function normalizeValue(string $v): string
+    {
+        $s = trim($v);
+        if ($s === '') return '';
+        $map = [
+            'ç'=>'c','Ç'=>'c','ğ'=>'g','Ğ'=>'g','ı'=>'i','İ'=>'i',
+            'ö'=>'o','Ö'=>'o','ş'=>'s','Ş'=>'s','ü'=>'u','Ü'=>'u',
+            'â'=>'a','Â'=>'a','î'=>'i','Î'=>'i','û'=>'u','Û'=>'u',
+        ];
+        $s = strtr($s, $map);
+        $s = mb_strtolower($s, 'UTF-8');
+        $s = preg_replace('/\s+/u', ' ', $s);
+        return trim($s);
     }
 }
