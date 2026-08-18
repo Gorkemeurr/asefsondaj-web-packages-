@@ -4,6 +4,7 @@ namespace AsefSondaj\AdaptationLayer\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\DB;
 
 class AsefQuote extends Model
 {
@@ -31,13 +32,43 @@ class AsefQuote extends Model
     }
 
     /**
-     * Bir sehir icin bir sonraki plate_seq. Silme oldugunda gap birakir,
-     * asla yeniden kullanmaz (forward-only).
+     * Bir sehir icin bir sonraki plate_seq — GERCEK forward-only garantisi.
+     *
+     * Ayri asef_plate_counters tablosunda sayac tutuluyor. Bu tablo, teklif
+     * kayitlarindan bagimsizdir; bir teklif silinse bile sayac geriye dusmez.
+     *
+     * Iki teklifin ayni seq'i almasini engellemek icin transaction icinde
+     * lockForUpdate (SELECT ... FOR UPDATE) kullanilir — race'te ikinci istek
+     * ilk transaction commit olana kadar bekler.
      */
     public static function nextPlateSeq(string $plateCode): int
     {
-        $max = static::where('plate_code', $plateCode)->max('plate_seq');
-        return ((int) $max) + 1;
+        return DB::transaction(function () use ($plateCode) {
+            $row = DB::table('asef_plate_counters')
+                ->where('plate_code', $plateCode)
+                ->lockForUpdate()
+                ->first();
+
+            if ($row === null) {
+                $newSeq = 1;
+                DB::table('asef_plate_counters')->insert([
+                    'plate_code' => $plateCode,
+                    'last_seq'   => $newSeq,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            } else {
+                $newSeq = ((int) $row->last_seq) + 1;
+                DB::table('asef_plate_counters')
+                    ->where('plate_code', $plateCode)
+                    ->update([
+                        'last_seq'   => $newSeq,
+                        'updated_at' => now(),
+                    ]);
+            }
+
+            return $newSeq;
+        });
     }
 
     /**
