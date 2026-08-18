@@ -8,22 +8,19 @@
     <x-slot:title>Asef Sondaj Yönetim Paneli — Giriş</x-slot>
 
     @php
-        $logoBlue = public_path('asef/asef-logo-blue.jpg');
-        $logoDark = public_path('asef/asef-mark-dark.png');
-        $loginLogoUrl = file_exists($logoBlue)
-            ? url('asef/asef-logo-blue.jpg')
-            : (file_exists($logoDark) ? url('asef/asef-mark-dark.png') : url('asef/asef-logo.png'));
-
         $fontStack = "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', 'Inter', Arial, sans-serif";
     @endphp
 
     <div style="min-height:100vh; background:#F5F5F7; display:flex; align-items:center; justify-content:center; padding:20px; font-family:{{ $fontStack }};">
         <div style="width:100%; max-width:400px; display:flex; flex-direction:column; align-items:center; gap:24px;">
 
-            {{-- BRAND --}}
+            {{-- BRAND — mavi logo inline SVG (server file dependency yok, garantili render) --}}
             <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
-                <img src="{{ $loginLogoUrl }}" alt="Asef Sondaj"
-                     style="width:72px; height:72px; border-radius:999px; display:block; object-fit:cover;">
+                <div style="width:72px; height:72px; border-radius:999px; background:#0071E3; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 20px -8px rgba(0,113,227,0.5);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <path d="M20 6 L34 32 L28 32 L25 26 L15 26 L12 32 L6 32 Z M17 21 L23 21 L20 15 Z" fill="#FFFFFF"/>
+                    </svg>
+                </div>
                 <div style="text-align:center;">
                     <div style="font-family:{{ $fontStack }}; font-size:22px; font-weight:700; color:#1D1D1F; letter-spacing:-0.3px; line-height:1.2;">Asef Sondaj</div>
                     <div style="font-family:{{ $fontStack }}; font-size:14px; color:#6E6E73; margin-top:4px;">Yönetim Paneli</div>
