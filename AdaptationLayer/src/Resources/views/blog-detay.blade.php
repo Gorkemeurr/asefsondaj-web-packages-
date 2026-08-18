@@ -371,9 +371,14 @@
                 'datePublished' => $publishedIso,
                 'dateModified'  => $modifiedIso,
                 'author'        => [
-                    '@type' => 'Organization',
-                    'name'  => 'Asef Sondaj',
-                    'url'   => url('/'),
+                    '@type'    => 'Person',
+                    'name'     => $post['author'] ?? 'Asef Teknik Ekip',
+                    'jobTitle' => 'Sondaj Teknik Uzmanı',
+                    'worksFor' => [
+                        '@type' => 'Organization',
+                        'name'  => 'Asef Sondaj',
+                        'url'   => url('/'),
+                    ],
                 ],
                 'publisher'     => [
                     '@type' => 'Organization',

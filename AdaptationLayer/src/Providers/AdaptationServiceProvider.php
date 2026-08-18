@@ -185,6 +185,14 @@ class AdaptationServiceProvider extends ServiceProvider
                 return view('asef-adaptation::hakkimizda');
             })->name('shop.asef.about');
 
+            // /ekip ve /ekip/{id} eski URL'ler artik yok — /hakkimizda'ya 301 (SERP korumasi)
+            Route::get('/ekip', function () {
+                return redirect('/hakkimizda', 301);
+            });
+            Route::get('/ekip/{id}', function () {
+                return redirect('/hakkimizda', 301);
+            })->where('id', '[0-9]+');
+
             Route::get('/kurumsal', function () {
                 return view('asef-adaptation::kurumsal');
             })->name('shop.asef.corporate');
