@@ -87,7 +87,11 @@ class AsefProduct extends Model
         // bilgi katmiyor — herhangi bir urunun teknik ozelliklerinde
         // gorunmesin. Karsilastirma diakritik ve buyuk-kucuk harf duyarsiz.
         $hiddenValuesByKey = [
-            'malzeme_kaplama' => ['standart celik'],
+            'malzeme_kaplama' => [
+                'standart celik',
+                'kromajli cr plated',
+                'kromajli',
+            ],
         ];
 
         $result = [];
@@ -113,8 +117,11 @@ class AsefProduct extends Model
 
     /**
      * Deger karsilastirmasi icin normalize eder: Turkce diakritikleri
-     * ASCII'ye cevirir, kucuk harfe indirir, whitespace'i tekilleştirir.
-     * "Standart Çelik ", "STANDART ÇELİK", "standart  celik" -> "standart celik"
+     * ASCII'ye cevirir, kucuk harfe indirir, noktalama/parantez atar,
+     * whitespace'i tekilleştirir.
+     *
+     * "Standart Çelik ", "STANDART ÇELİK", "standart  celik"        -> "standart celik"
+     * "Kromajli (Cr, Plated)", "KROMAJLI CR PLATED", "kromajli cr"  -> "kromajli cr plated" / "kromajli cr"
      */
     private static function normalizeValue(string $v): string
     {
@@ -127,7 +134,8 @@ class AsefProduct extends Model
         ];
         $s = strtr($s, $map);
         $s = mb_strtolower($s, 'UTF-8');
-        $s = preg_replace('/\s+/u', ' ', $s);
+        // Noktalama/parantez/tire/slash -> bosluk
+        $s = preg_replace('/[^a-z0-9]+/u', ' ', $s);
         return trim($s);
     }
 }
