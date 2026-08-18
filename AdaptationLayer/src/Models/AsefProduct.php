@@ -73,9 +73,19 @@ class AsefProduct extends Model
             'ic_cap_id_mm'   => 'mm',
             'tac_yuksekligi' => '',  // zaten Excel'de "10 mm" olarak yazılı
         ];
+        // Tiji urunlerinde (TIJ kategori) "Malzeme / Kaplama" ve "Teknik Not"
+        // alanlari boilerplate ("Sementasyon / isil islemli" + "Erkek dis
+        // induksiyonla sertlestirilmistir") — kullaniciya deger katmiyor,
+        // teknik bilgi gridini kalabaliklastiriyor. TIJ icin bu iki alan gizli.
+        $hiddenKeysByAna = [
+            'TIJ' => ['malzeme_kaplama', 'teknik_not'],
+        ];
+        $hiddenKeys = $hiddenKeysByAna[$this->ana_code] ?? [];
+
         $result = [];
         $attrs = $this->attrs ?? [];
         foreach ($labels as $key => $label) {
+            if (in_array($key, $hiddenKeys, true)) continue;
             $v = $attrs[$key] ?? null;
             if ($v === null || $v === '' ) continue;
             $unit = $units[$key] ?? '';
