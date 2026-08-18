@@ -572,8 +572,10 @@
     :has-feature="false"
     :has-footer="false"
 >
+    {{-- SEO: Title fixed literal — Bagisto channel'daki eski home_seo.meta_title
+         ("Asef Sondaj - Sondaj Ekipmanları ve Çözümleri") override edilir. --}}
     <x-slot:title>
-        {{ $channel->home_seo['meta_title'] ?? 'Asef Sondaj | Sondaj Ekipmanları İmalatı ve Yedek Parça — Bursa / Türkiye Geneli' }}
+        Asef Sondaj | Sondaj Ekipmanları İmalatı ve Yedek Parça — Bursa / Türkiye Geneli
     </x-slot>
 
     <div class="asef-root">
