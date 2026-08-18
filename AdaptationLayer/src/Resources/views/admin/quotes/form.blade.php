@@ -3,7 +3,7 @@
         {{ $mode === 'edit' ? 'Teklif Duzenle — ' . $quote->quote_no : 'Yeni E-Fatura' }}
     </x-slot>
 
-    <div class="flex items-center justify-between gap-4 mb-6">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
         <div>
             <p class="text-xl font-bold text-gray-800 dark:text-white">
                 {{ $mode === 'edit' ? 'Teklif Duzenle' : 'Yeni E-Fatura Olustur' }}
@@ -12,7 +12,7 @@
                 <p class="text-sm text-gray-500 mt-1 font-mono">{{ $quote->quote_no }}</p>
             @endif
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
             <a href="{{ route('admin.asef.quotes.index') }}"
                class="px-4 py-2 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 rounded-lg text-sm hover:bg-gray-50 dark:hover:bg-gray-800">Vazgec</a>
             @if($mode === 'edit')
@@ -43,8 +43,8 @@
         @csrf
         @if($mode === 'edit') @method('PUT') @endif
 
-        {{-- MUSTERI BILGILERI --}}
-        <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
+        {{-- MUSTERI BILGILERI (mobil uyumlu padding) --}}
+        <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-4 md:p-6">
             <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-4">Musteri Bilgileri</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -95,16 +95,16 @@
             </div>
         </div>
 
-        {{-- URUN EKLE --}}
-        <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
-            <div class="flex items-center justify-between mb-4">
+        {{-- URUN EKLE — mobil uyumlu --}}
+        <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-4 md:p-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
                 <h3 class="text-base font-semibold text-gray-800 dark:text-white">Urun Kalemleri</h3>
-                <div class="flex items-center gap-2">
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                     <input type="text" id="product-lookup-input"
                            placeholder="Urun kodu, link veya isim yapistir…"
-                           class="w-72 px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none">
+                           class="w-full sm:w-72 px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none">
                     <button type="button" id="product-lookup-btn"
-                            style="background:#0071E3;color:#fff;padding:8px 16px;border-radius:8px;font-size:14px;font-weight:600;border:0;cursor:pointer;">Ekle</button>
+                            style="background:#0071E3;color:#fff;padding:10px 16px;border-radius:8px;font-size:14px;font-weight:600;border:0;cursor:pointer;">Ekle</button>
                 </div>
             </div>
 
@@ -121,7 +121,7 @@
 
         {{-- TOPLAM (KDV disi — PDF'te "Fiyatlarimiza KDV dahil degildir" belirtilir) --}}
         <input type="hidden" name="kdv_rate" value="20">
-        <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
+        <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-4 md:p-6">
             <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-4">Toplam</h3>
             <div class="max-w-md ml-auto text-sm">
                 <div class="flex justify-between items-center text-base font-semibold text-gray-900 dark:text-white">
@@ -198,7 +198,8 @@
         function addRow(item) {
             const row = document.createElement('div');
             row.className = 'item-row';
-            row.style.cssText = 'display:flex;align-items:center;gap:12px;padding:10px;background:#F5F5F7;border:1px solid #E8E8ED;border-radius:8px;margin-bottom:8px;';
+            // Mobil uyumlu: flex-wrap ile mobile'da satır sarar
+            row.style.cssText = 'display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px;background:#F5F5F7;border:1px solid #E8E8ED;border-radius:8px;margin-bottom:8px;';
             row.dataset.sku = item.sku || '';
             row.dataset.name = item.name || '';
             row.dataset.image = item.image || '';
@@ -210,26 +211,26 @@
             const price = item.unit_price || 0;
 
             row.innerHTML = `
-                <img class="item-img" src="${imgSrc}" alt="" style="width:52px;height:52px;object-fit:cover;border-radius:6px;background:#eee;">
-                <div style="flex:1;min-width:0;">
+                <img class="item-img" src="${imgSrc}" alt="" style="width:52px;height:52px;object-fit:cover;border-radius:6px;background:#eee;flex-shrink:0;">
+                <div style="flex:1 1 200px;min-width:0;">
                     <div class="item-name" style="font-size:14px;font-weight:600;color:#1D1D1F;">${name}</div>
                     <div class="item-sku" style="font-size:11px;color:#6E6E73;font-family:monospace;margin-top:2px;">${sku}</div>
                 </div>
-                <div style="display:flex;align-items:center;gap:8px;">
+                <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px;width:100%;justify-content:flex-end;" class="asef-item-controls">
                     <div>
                         <div style="font-size:10px;color:#6E6E73;margin-bottom:2px;">Adet</div>
-                        <input type="number" min="1" max="999999" value="${qty}" class="item-qty" style="width:70px;padding:6px 8px;border:1px solid #DDDDDD;border-radius:6px;font-size:13px;text-align:right;">
+                        <input type="number" min="1" max="999999" value="${qty}" class="item-qty" style="width:74px;padding:8px;border:1px solid #DDDDDD;border-radius:6px;font-size:14px;text-align:right;">
                     </div>
                     <div>
                         <div style="font-size:10px;color:#6E6E73;margin-bottom:2px;">Birim Fiyat (₺)</div>
-                        <input type="number" min="0" step="0.01" value="${price}" class="item-price" style="width:110px;padding:6px 8px;border:1px solid #DDDDDD;border-radius:6px;font-size:13px;text-align:right;">
+                        <input type="number" min="0" step="0.01" value="${price}" class="item-price" style="width:110px;padding:8px;border:1px solid #DDDDDD;border-radius:6px;font-size:14px;text-align:right;">
                     </div>
-                    <div style="text-align:right;">
+                    <div style="text-align:right;min-width:100px;">
                         <div style="font-size:10px;color:#6E6E73;">Toplam</div>
                         <div class="item-line-total" style="font-size:14px;font-weight:600;color:#1D1D1F;white-space:nowrap;">0,00 ₺</div>
                     </div>
                     <button type="button" class="item-remove-btn" title="Sil"
-                        style="background:transparent;border:0;color:#dc2626;padding:6px 10px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;">Sil</button>
+                        style="background:transparent;border:1px solid #FEE2E2;color:#dc2626;padding:8px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;">Sil</button>
                 </div>
             `;
 

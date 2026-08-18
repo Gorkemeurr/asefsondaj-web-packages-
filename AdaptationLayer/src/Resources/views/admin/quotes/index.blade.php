@@ -1,7 +1,7 @@
 <x-admin::layouts>
     <x-slot:title>E-Fatura Olustur — Asef Sondaj</x-slot>
 
-    <div class="flex items-center justify-between gap-4 mb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
         <div>
             <p class="text-xl font-bold text-gray-800 dark:text-white">E-Fatura Teklifleri</p>
             <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
@@ -9,7 +9,7 @@
             </p>
         </div>
         <a href="{{ route('admin.asef.quotes.create') }}"
-           style="display:inline-flex;align-items:center;gap:8px;background:#0071E3;color:#fff;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;">
+           style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#0071E3;color:#fff;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;">
             <span style="font-size:18px;line-height:1;">+</span>
             Yeni Teklif
         </a>
@@ -21,56 +21,104 @@
         </div>
     @endif
 
-    <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
-        <table class="w-full text-sm">
-            <thead class="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-800">
-                <tr>
-                    <th class="px-4 py-3 text-left font-medium text-gray-700 dark:text-gray-300">Fatura No</th>
-                    <th class="px-4 py-3 text-left font-medium text-gray-700 dark:text-gray-300">Musteri</th>
-                    <th class="px-4 py-3 text-left font-medium text-gray-700 dark:text-gray-300">Firma</th>
-                    <th class="px-4 py-3 text-left font-medium text-gray-700 dark:text-gray-300">Sehir</th>
-                    <th class="px-4 py-3 text-right font-medium text-gray-700 dark:text-gray-300">Tutar</th>
-                    <th class="px-4 py-3 text-left font-medium text-gray-700 dark:text-gray-300">Tarih</th>
-                    <th class="px-4 py-3 text-right font-medium text-gray-700 dark:text-gray-300">Islemler</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($quotes as $q)
-                    <tr class="border-b border-gray-100 dark:border-gray-800 last:border-0 hover:bg-gray-50 dark:hover:bg-gray-800/50">
-                        <td class="px-4 py-3 text-gray-800 dark:text-white">
-                            <div class="font-mono font-semibold text-blue-600">{{ $q->plateLabel() }}</div>
-                            <div class="text-[10px] text-gray-500 font-mono mt-0.5">{{ $q->quote_no }}</div>
-                        </td>
-                        <td class="px-4 py-3 text-gray-800 dark:text-white">
-                            {{ $q->customer_name }}
-                            <div class="text-xs text-gray-500 mt-0.5">{{ $q->customer_phone }}</div>
-                        </td>
-                        <td class="px-4 py-3 text-gray-600 dark:text-gray-400">{{ $q->customer_company ?: '—' }}</td>
-                        <td class="px-4 py-3 text-gray-600 dark:text-gray-400 text-xs">{{ $q->customer_city ?: '—' }}</td>
-                        <td class="px-4 py-3 text-right font-semibold text-gray-900 dark:text-white">
-                            {{ number_format((float) $q->subtotal, 2, ',', '.') }} ₺
-                        </td>
-                        <td class="px-4 py-3 text-gray-500 text-xs">
-                            {{ $q->created_at->copy()->setTimezone('Europe/Istanbul')->format('d.m.Y H:i') }}
-                        </td>
-                        <td class="px-4 py-3 text-right whitespace-nowrap">
-                            <a href="{{ route('admin.asef.quotes.pdf', $q->id) }}" target="_blank"
-                               class="inline-block px-3 py-1 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded text-xs font-medium">PDF</a>
-                            <a href="{{ route('admin.asef.quotes.edit', $q->id) }}"
-                               class="inline-block px-3 py-1 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded text-xs font-medium">Duzenle</a>
-                            <form action="{{ route('admin.asef.quotes.destroy', $q->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Silmek istediginden emin misin?');">
-                                @csrf @method('DELETE')
-                                <button type="submit" class="px-3 py-1 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded text-xs font-medium">Sil</button>
-                            </form>
-                        </td>
+    {{-- DESKTOP: tablo görünümü (md+) --}}
+    <div class="hidden md:block bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+                <thead class="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-800">
+                    <tr>
+                        <th class="px-4 py-3 text-left font-medium text-gray-700 dark:text-gray-300">Fatura No</th>
+                        <th class="px-4 py-3 text-left font-medium text-gray-700 dark:text-gray-300">Musteri</th>
+                        <th class="px-4 py-3 text-left font-medium text-gray-700 dark:text-gray-300">Firma</th>
+                        <th class="px-4 py-3 text-left font-medium text-gray-700 dark:text-gray-300">Sehir</th>
+                        <th class="px-4 py-3 text-right font-medium text-gray-700 dark:text-gray-300">Tutar</th>
+                        <th class="px-4 py-3 text-left font-medium text-gray-700 dark:text-gray-300">Tarih</th>
+                        <th class="px-4 py-3 text-right font-medium text-gray-700 dark:text-gray-300">Islemler</th>
                     </tr>
-                @empty
-                    <tr><td colspan="7" class="px-4 py-16 text-center text-gray-500">
-                        Henuz teklif olusturulmadi. Sag ustten <b>Yeni Teklif</b> ile ilk teklifi olustur.
-                    </td></tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @forelse($quotes as $q)
+                        <tr class="border-b border-gray-100 dark:border-gray-800 last:border-0 hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                            <td class="px-4 py-3 text-gray-800 dark:text-white">
+                                <div class="font-mono font-semibold text-blue-600">{{ $q->plateLabel() }}</div>
+                                <div class="text-[10px] text-gray-500 font-mono mt-0.5">{{ $q->quote_no }}</div>
+                            </td>
+                            <td class="px-4 py-3 text-gray-800 dark:text-white">
+                                {{ $q->customer_name }}
+                                <div class="text-xs text-gray-500 mt-0.5">{{ $q->customer_phone }}</div>
+                            </td>
+                            <td class="px-4 py-3 text-gray-600 dark:text-gray-400">{{ $q->customer_company ?: '—' }}</td>
+                            <td class="px-4 py-3 text-gray-600 dark:text-gray-400 text-xs">{{ $q->customer_city ?: '—' }}</td>
+                            <td class="px-4 py-3 text-right font-semibold text-gray-900 dark:text-white">
+                                {{ number_format((float) $q->subtotal, 2, ',', '.') }} ₺
+                            </td>
+                            <td class="px-4 py-3 text-gray-500 text-xs">
+                                {{ $q->created_at->copy()->setTimezone('Europe/Istanbul')->format('d.m.Y H:i') }}
+                            </td>
+                            <td class="px-4 py-3 text-right whitespace-nowrap">
+                                <a href="{{ route('admin.asef.quotes.pdf', $q->id) }}" target="_blank"
+                                   class="inline-block px-3 py-1 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded text-xs font-medium">PDF</a>
+                                <a href="{{ route('admin.asef.quotes.edit', $q->id) }}"
+                                   class="inline-block px-3 py-1 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded text-xs font-medium">Duzenle</a>
+                                <form action="{{ route('admin.asef.quotes.destroy', $q->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Silmek istediginden emin misin?');">
+                                    @csrf @method('DELETE')
+                                    <button type="submit" class="px-3 py-1 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded text-xs font-medium">Sil</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr><td colspan="7" class="px-4 py-16 text-center text-gray-500">
+                            Henuz teklif olusturulmadi. Sag ustten <b>Yeni Teklif</b> ile ilk teklifi olustur.
+                        </td></tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {{-- MOBILE: kart görünümü (md altında) --}}
+    <div class="md:hidden space-y-3">
+        @forelse($quotes as $q)
+            <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-4">
+                <div class="flex items-start justify-between mb-3">
+                    <div>
+                        <div class="font-mono font-semibold text-blue-600 text-base">{{ $q->plateLabel() }}</div>
+                        <div class="text-[10px] text-gray-500 font-mono">{{ $q->quote_no }}</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-lg font-bold text-gray-900 dark:text-white">
+                            {{ number_format((float) $q->subtotal, 2, ',', '.') }} ₺
+                        </div>
+                        <div class="text-[10px] text-gray-500">
+                            {{ $q->created_at->copy()->setTimezone('Europe/Istanbul')->format('d.m.Y H:i') }}
+                        </div>
+                    </div>
+                </div>
+                <div class="text-sm text-gray-800 dark:text-white font-medium">{{ $q->customer_name }}</div>
+                <div class="text-xs text-gray-500 mt-0.5">{{ $q->customer_phone }}</div>
+                @if($q->customer_company)
+                    <div class="text-xs text-gray-600 dark:text-gray-400 mt-1">{{ $q->customer_company }}</div>
+                @endif
+                @if($q->customer_city)
+                    <div class="text-xs text-gray-500 mt-1">📍 {{ $q->customer_city }}</div>
+                @endif
+                <div class="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
+                    <a href="{{ route('admin.asef.quotes.pdf', $q->id) }}" target="_blank"
+                       style="flex:1;text-align:center;background:#0071E3;color:#fff;padding:8px 12px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;">PDF</a>
+                    <a href="{{ route('admin.asef.quotes.edit', $q->id) }}"
+                       style="flex:1;text-align:center;background:#F5F5F7;color:#1D1D1F;padding:8px 12px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;">Duzenle</a>
+                    <form action="{{ route('admin.asef.quotes.destroy', $q->id) }}" method="POST" style="flex:0 0 auto;" onsubmit="return confirm('Silmek istediginden emin misin?');">
+                        @csrf @method('DELETE')
+                        <button type="submit"
+                                style="background:#FEF2F2;color:#dc2626;padding:8px 14px;border:0;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;">Sil</button>
+                    </form>
+                </div>
+            </div>
+        @empty
+            <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-8 text-center text-gray-500">
+                Henuz teklif olusturulmadi. Ustteki <b>Yeni Teklif</b> butonundan ilk teklifi olustur.
+            </div>
+        @endforelse
     </div>
 
     @if($quotes->hasPages())
