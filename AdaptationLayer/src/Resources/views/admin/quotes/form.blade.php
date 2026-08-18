@@ -73,9 +73,14 @@
                     </select>
                 </div>
                 <div>
-                    <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Il</label>
-                    <input type="text" name="customer_city" value="{{ old('customer_city', $quote->customer_city) }}"
-                           class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none">
+                    <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">İl</label>
+                    <select name="customer_city"
+                            class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none">
+                        <option value="">Seçiniz</option>
+                        @foreach(\AsefSondaj\AdaptationLayer\Support\TurkishPlateCodes::all() as $ilAdi => $plakaKodu)
+                            <option value="{{ $ilAdi }}" @selected(old('customer_city', $quote->customer_city) === $ilAdi)>{{ $plakaKodu }} — {{ $ilAdi }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div>
                     <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Ilce</label>
