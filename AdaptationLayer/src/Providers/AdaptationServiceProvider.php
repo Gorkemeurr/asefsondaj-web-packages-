@@ -85,6 +85,17 @@ class AdaptationServiceProvider extends ServiceProvider
             $this->app['view']->prependNamespace('shop', $shopOverrides);
         }
 
+        // 2b) Register admin view overrides — Asef marka login sayfası, gelecekte
+        //     admin panelinde başka Asef-özel görseller. Bagisto admin core view'a
+        //     dokunulmadan bu yol ile ezilir.
+        //     Sadece admin/users/sessions/create.blade.php dosyası aktif; diğer admin
+        //     view'ler Bagisto default'unda kalır.
+        $adminOverrides = $this->getPath('Resources/views/admin');
+
+        if (is_dir($adminOverrides)) {
+            $this->app['view']->prependNamespace('admin', $adminOverrides);
+        }
+
         // 3) Register the middleware GLOBALLY via HTTP Kernel so every
         //    request runs it (Bagisto shop routes don't consistently use
         //    the 'web' group, so pushMiddlewareToGroup misses them).
