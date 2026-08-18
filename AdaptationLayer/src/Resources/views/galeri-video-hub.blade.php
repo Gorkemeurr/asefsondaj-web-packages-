@@ -9,7 +9,7 @@
             'url'   => url('blog/urun-tanitim-videolari'),
             'label' => '01',
             'title' => 'Ürün Tanıtım Videoları',
-            'desc'  => 'DTH çekiçler, matkap uçları, tijler ve pompaların yakın çekim tanıtımları.',
+            'desc'  => 'Karotiyer sistemleri, karot bit\'ler, tijler, kaya delgi ekipmanları ve pörtkron sistemlerinin yakın çekim tanıtımları.',
             'count' => 'Yakında',
             'img'   => 'asef-macro-diamond.jpg',
         ],

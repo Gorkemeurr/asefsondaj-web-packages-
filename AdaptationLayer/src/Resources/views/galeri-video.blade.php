@@ -9,7 +9,7 @@
     $galleries = [
         'urun-tanitim-videolari' => [
             'title' => 'Ürün Tanıtım Videoları',
-            'lede'  => 'DTH çekiçler, matkap uçları, tijler ve pompaların yakın çekim tanıtımları.',
+            'lede'  => 'Karotiyer sistemleri, karot bit\'ler, tijler, kaya delgi ekipmanları ve pörtkron sistemlerinin yakın çekim tanıtımları.',
             'crumb' => 'Video Galerisi', 'crumbUrl' => url('blog/video'), 'hub' => 'Video',
         ],
         'saha-uygulamalari' => [

@@ -91,16 +91,16 @@
         $seoH1Sub = $activeAltName . ' — ' . $totalCount . ' model, Türkiye geneli tedarik.';
     } elseif ($activeAnaName) {
         $seoTitle = $activeAnaName . ' — ' . $totalCount . '+ Model | Asef Sondaj Kataloğu';
-        $seoDesc  = $activeAnaName . ' kategorisinde ' . $totalCount . '+ model. Karotiyer, DTH çekiç, tij, matkap ve yedek parça — Türkiye geneli sondaj ekipmanı tedariki. Teklif için WhatsApp.';
+        $seoDesc  = $activeAnaName . ' kategorisinde ' . $totalCount . '+ model. Wireline karotiyer, karot bit, tij, muhafaza borusu, adaptör ve yedek parça — Türkiye geneli sondaj ekipmanı tedariki. Teklif için WhatsApp.';
         $seoH1Sub = $activeAnaName . ' kategorisinde ' . $totalCount . '+ model — Türkiye geneli sondaj ekipmanı tedariki.';
     } elseif ($queryText) {
         $seoTitle = '"' . $queryText . '" Arama Sonuçları — ' . $totalCount . ' Ürün | Asef Sondaj';
         $seoDesc  = '"' . $queryText . '" için ' . $totalCount . ' sondaj ekipmanı bulundu. SKU ve ürün adıyla arama, Türkiye geneli sevkiyat. Teklif: WhatsApp.';
         $seoH1Sub = '"' . $queryText . '" için ' . $totalCount . ' sonuç bulundu.';
     } else {
-        $seoTitle = 'Sondaj Ekipmanları Kataloğu — ' . $totalCount . '+ Ürün | Karotiyer, DTH Çekiç, Tij, Matkap | Asef Sondaj';
-        $seoDesc  = $totalCount . '+ sondaj ekipmanı: karotiyer, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron, kompresör bağlantıları ve yedek parça. Türkiye geneli sevkiyat, teknik danışmanlık. Teklif için WhatsApp.';
-        $seoH1Sub = 'Karotiyer, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve yedek parça — Türkiye genelinde sahaya hazır ekipmanlar. Kategoriye göre filtreleyin, ürün kodu (SKU) ile aratın. Teklif için WhatsApp\'tan yazın.';
+        $seoTitle = 'Sondaj Ekipmanları Kataloğu — ' . $totalCount . '+ Ürün | Wireline Karotiyer, Karot Bit, Tij, Kaya Delgi | Asef Sondaj';
+        $seoDesc  = $totalCount . '+ sondaj ekipmanı: wireline karotiyer, düz takım karotiyer, elmas ve vidye ürünler, karot bit, sondaj tijleri, muhafaza boruları, adaptörler, tahlisiyeler, kaya delgi ekipmanları (pörtkron sistemleri), aksesuarlar ve yedek parça. Türkiye geneli sevkiyat, teknik danışmanlık. Teklif için WhatsApp.';
+        $seoH1Sub = 'Wireline karotiyer, karot bit, sondaj tijleri, muhafaza boruları, kaya delgi ekipmanları ve yedek parça — Türkiye genelinde sahaya hazır ekipmanlar. Kategoriye göre filtreleyin, ürün kodu (SKU) ile aratın. Teklif için WhatsApp\'tan yazın.';
     }
 
     // Canonical: SEO-friendly /urunler/{ana-slug}/{alt-slug} URL'i
@@ -130,7 +130,7 @@
 @push('meta')
     <meta name="title" content="{{ $seoTitle }}" />
     <meta name="description" content="{{ e($seoDesc) }}" />
-    <meta name="keywords" content="sondaj ekipmanları katalog, karotiyer fiyat teklifi, DTH çekiç modelleri, sondaj tijleri, sondaj matkap ucu, pörtkron, sondaj yedek parça{{ $activeAnaName ? ', ' . $activeAnaName : '' }}{{ $activeAltName ? ', ' . $activeAltName : '' }}" />
+    <meta name="keywords" content="sondaj ekipmanları katalog, wireline karotiyer, karot bit, elmas karot bit, sondaj tijleri, muhafaza borusu, kaya delgi ucu, pörtkron sistemleri, adaptör sondaj, tahlisiye, sondaj yedek parça{{ $activeAnaName ? ', ' . $activeAnaName : '' }}{{ $activeAltName ? ', ' . $activeAltName : '' }}" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="canonical" href="{{ $canonicalUrl }}" />
 

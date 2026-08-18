@@ -8,7 +8,7 @@
     $catMap = [
         'ekipman-rehberi'  => [
             'name' => 'Ekipman Rehberi',
-            'desc' => 'Sondaj ekipmanı seçimi, teknik karşılaştırma ve doğru ürünü bulma rehberleri. Karotiyer, DTH çekiç, sondaj tijleri, matkap uçları ve pörtkron için detaylı seçim kılavuzları.',
+            'desc' => 'Sondaj ekipmanı seçimi, teknik karşılaştırma ve doğru ürünü bulma rehberleri. Wireline karotiyer, karot bit, sondaj tijleri, muhafaza boruları, kaya delgi ekipmanları ve pörtkron sistemleri için detaylı seçim kılavuzları.',
             'icon' => '🔧',
         ],
         'vaka-calismalari' => [

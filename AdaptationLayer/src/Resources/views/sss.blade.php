@@ -93,7 +93,7 @@
         ],
         [
             'q' => 'Katalogda hangi kategoriler var?',
-            'a' => '15 ana kategori altında 63 alt kategori ve 813 ürün bulunuyor: Karotiyer komple sistemler (BWL/HQ/NQ/PQ), DTH çekiç ve bitler, sondaj tijleri (API IF, API REG, DCDMA), matkap uçları, elmas ve vidye ürünler, pörtkron sistemleri, kompresör bağlantıları, çamur pompaları ve yedek parçalar.',
+            'a' => '15 ana kategori altında 63 alt kategori ve 900+ ürün bulunuyor: Wireline Karotiyer Sistemi (BWL/HQ/NQ/PQ), Düz Takım Karotiyer Sistemi, Elmas ve Vidye Ürünler, Karot Bit, Sondaj Tijleri ve Muhafaza Boruları (API IF, API REG, DCDMA), Aksesuarlar, Adaptörler, Tahlisiyeler, Numune Alıcılar, Kaya Delgi Ekipmanları (pörtkron sistemleri), Anahtarlar ve El Aletleri, Karot Sandıkları, Sondaj Kimyasalları, Jeoteknik ve Güvenlik Ekipmanları.',
         ],
     ];
 
@@ -102,9 +102,9 @@
 @endphp
 
 @push('meta')
-    <meta name="title" content="Sıkça Sorulan Sorular — Sondaj Ekipmanları, Karotiyer, DTH Çekiç | Asef Sondaj" />
-    <meta name="description" content="Sondaj ekipmanları hakkında {{ count($faqs) }} sıkça sorulan soru: HQ/NQ/PQ karotiyer farkı, DTH çekiç seçimi, API IF/REG/DCDMA bağlantı standartları, çamur pompası kapasitesi, tij dayanıklılığı, fiyat, teslimat, yedek parça." />
-    <meta name="keywords" content="sondaj ekipmanları SSS, karotiyer standartları, DTH çekiç seçimi, API bağlantı standardı, sondaj tiji, matkap ucu seçimi, çamur pompası, sondaj yedek parça" />
+    <meta name="title" content="Sıkça Sorulan Sorular — Sondaj Ekipmanları, Karotiyer, Karot Bit | Asef Sondaj" />
+    <meta name="description" content="Sondaj ekipmanları hakkında {{ count($faqs) }} sıkça sorulan soru: HQ/NQ/PQ karotiyer farkı, karot bit seçimi, API IF/REG/DCDMA bağlantı standartları, çamur pompası kapasitesi, tij dayanıklılığı, fiyat, teslimat, yedek parça." />
+    <meta name="keywords" content="sondaj ekipmanları SSS, karotiyer standartları, karot bit seçimi, API bağlantı standardı, sondaj tiji, kaya delgi ucu, çamur pompası, sondaj yedek parça" />
     <link rel="canonical" href="{{ url('sss') }}" />
     <meta name="theme-color" content="#ffffff" />
 
