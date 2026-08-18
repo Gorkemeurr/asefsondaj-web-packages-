@@ -86,11 +86,16 @@ class AsefProduct extends Model
         // "Standart celik" gibi generic placeholder degerler kullaniciya
         // bilgi katmiyor — herhangi bir urunun teknik ozelliklerinde
         // gorunmesin. Karsilastirma diakritik ve buyuk-kucuk harf duyarsiz.
-        $hiddenValuesByKey = [
+        // Substring match (contains). Normalized deger bu tokenlerden birini
+        // icerirse alan gizlenir. "Kromajlı (Cr, Plated)", "Kromajlı",
+        // "Krom Kapli" gibi tum varyantlar tek "kromajli" veya "krom" ile yakalanir.
+        $hiddenValueSubstringsByKey = [
             'malzeme_kaplama' => [
                 'standart celik',
-                'kromajli cr plated',
                 'kromajli',
+                'cr plated',
+                'krom kapli',
+                'chrome',
             ],
         ];
 
@@ -101,10 +106,17 @@ class AsefProduct extends Model
             $v = $attrs[$key] ?? null;
             if ($v === null || $v === '' ) continue;
 
-            // Alan-deger blocklist
-            if (isset($hiddenValuesByKey[$key])) {
+            // Alan-deger blocklist (substring match)
+            if (isset($hiddenValueSubstringsByKey[$key])) {
                 $normalized = self::normalizeValue((string) $v);
-                if (in_array($normalized, $hiddenValuesByKey[$key], true)) continue;
+                $skip = false;
+                foreach ($hiddenValueSubstringsByKey[$key] as $needle) {
+                    if ($needle !== '' && strpos($normalized, $needle) !== false) {
+                        $skip = true;
+                        break;
+                    }
+                }
+                if ($skip) continue;
             }
 
             $unit = $units[$key] ?? '';
