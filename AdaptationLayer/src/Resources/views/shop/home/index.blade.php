@@ -573,7 +573,7 @@
     :has-footer="false"
 >
     <x-slot:title>
-        {{ $channel->home_seo['meta_title'] ?? 'Asef Sondaj — Sondaj Teknolojisinde Geleceğe Ortak' }}
+        {{ $channel->home_seo['meta_title'] ?? 'Asef Sondaj | Sondaj Ekipmanları İmalatı ve Yedek Parça — Bursa / Türkiye Geneli' }}
     </x-slot>
 
     <div class="asef-root">
@@ -588,7 +588,7 @@
             <section class="asef-hero">
                 <div class="asef-label-caps">SONDAJ EKİPMANLARI TEDARİKÇİSİ · 20 YILLIK TECRÜBE</div>
                 <h1>{!! nl2br(e(asef_setting('hero_title', 'Sondaj Teknolojisinde Geleceğe Ortak.'))) !!}</h1>
-                <p>{!! asef_setting('hero_subtitle', 'Yirmi yılı aşkın saha tecrübemizle Türkiye genelinde <strong>sondaj ekipmanları</strong>, <strong>karotiyer</strong>, <strong>DTH çekiç</strong>, <strong>sondaj tijleri</strong> ve <strong>yedek parça</strong> tedariki sağlıyoruz — hızlı sevkiyat, teknik danışmanlık ve satış sonrası destekle.') !!}</p>
+                <p>{!! asef_setting('hero_subtitle', 'Yirmi yılı aşkın saha tecrübemizle Türkiye genelinde <strong>sondaj ekipmanları</strong>, <strong>wireline karotiyer</strong>, <strong>karot bit</strong>, <strong>sondaj tijleri</strong>, <strong>muhafaza boruları</strong> ve <strong>yedek parça</strong> tedariki sağlıyoruz — hızlı sevkiyat, teknik danışmanlık ve satış sonrası destekle.') !!}</p>
                 <div class="asef-hero-ctas">
                     <a href="{{ $catalogUrl }}" class="asef-cta-pill primary">Ürünleri Keşfet</a>
                     <a href="{{ url('hakkimizda') }}" class="asef-cta-pill ghost">Daha Fazla Bilgi <span class="asef-cta-arrow">›</span></a>
@@ -608,7 +608,7 @@
                     <div class="asef-section-head-left">
                         <span class="asef-label-caps">SONDAJ EKİPMANLARI KATALOĞU</span>
                         <h2>Ürün gruplarımız.</h2>
-                        <p style="font-size:15px; color:var(--secondary); line-height:1.6; margin-top:8px; max-width:600px;">15 ana kategori, 63 alt kategori, 813 ürün — karotiyer, DTH çekiç, sondaj tijleri, matkap uçları, pörtkron ve sondaj makinesi yedek parçaları tek noktadan.</p>
+                        <p style="font-size:15px; color:var(--secondary); line-height:1.6; margin-top:8px; max-width:600px;">15 ana kategori, 63 alt kategori, 900+ ürün — wireline karotiyer, karot bit, elmas ve vidye ürünler, sondaj tijleri, muhafaza boruları, adaptörler, tahlisiyeler, kaya delgi ekipmanları ve pörtkron sistemleri tek noktadan.</p>
                     </div>
                     <a href="{{ $catalogUrl }}" class="asef-section-link">Tümünü gör <span>›</span></a>
                 </div>
