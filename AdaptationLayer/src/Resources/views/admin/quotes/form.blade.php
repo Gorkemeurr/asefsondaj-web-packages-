@@ -299,11 +299,14 @@
             document.getElementById('sum-subtotal').textContent = formatTL(subtotal);
         }
 
-        // Form gonderirken satirlari items[] olarak topla
-        form().addEventListener('submit', function(e) {
+        // Form gonderirken satirlari items[] olarak topla — document DELEGATION
+        document.addEventListener('submit', function(e) {
+            if (!e.target || e.target.id !== 'quote-form') return;
+            const f = e.target;
             // Onceki hidden inputlari temizle
-            form().querySelectorAll('input[name^="items["]').forEach(el => el.remove());
+            f.querySelectorAll('input[name^="items["]').forEach(el => el.remove());
             const rows = list().querySelectorAll('.item-row');
+            console.log('[Asef] Form submit — collecting', rows.length, 'items');
             if (rows.length === 0) {
                 e.preventDefault();
                 err().textContent = 'En az bir urun eklemelisin';
@@ -323,10 +326,10 @@
                     input.type = 'hidden';
                     input.name = `items[${i}][${k}]`;
                     input.value = v ?? '';
-                    form().appendChild(input);
+                    f.appendChild(input);
                 });
             });
-        });
+        }, true);
 
         // Baslangicta mevcut satirlari yukle (edit modu)
         initialItems.forEach(it => addRow({
