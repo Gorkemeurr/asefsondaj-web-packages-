@@ -14,7 +14,7 @@
 @push('meta')
     <meta name="title" content="Asef Sondaj | Sondaj Ekipmanları İmalatı ve Yedek Parça — Bursa / Türkiye Geneli" />
     <meta name="description" content="Türkiye geneli sondaj ekipmanı ve yedek parça tedariki: wireline karotiyer, karot bit, elmas ve vidye ürünler, sondaj tijleri, muhafaza boruları, tahlisiyeler, adaptörler, kaya delgi ekipmanları. 20 yıllık saha tecrübesi, teknik danışmanlık, hızlı sevkiyat. Bursa merkezli, 81 ilde hizmet." />
-    <meta name="keywords" content="sondaj ekipmanları, sondaj yedek parça, karotiyer, wireline karotiyer, NQ karotiyer, HQ karotiyer, PQ karotiyer, BWL karotiyer, karot bit, elmas karot bit, sondaj tiji, muhafaza borusu, kaya delgi, portkron, sondaj makinesi imalatı, Bursa sondaj, sondaj ekipmanı Türkiye, Asef Sondaj" />
+    <meta name="keywords" content="sondaj ekipmanları, sondaj yedek parça, karotiyer, wireline karotiyer, NQ karotiyer, HQ karotiyer, PQ karotiyer, BWL karotiyer, karot bit, elmas karot bit, sondaj tiji, muhafaza borusu, kaya delgi, pörtkron, sondaj makinesi imalatı, Bursa sondaj, sondaj ekipmanı Türkiye, Asef Sondaj" />
     <link rel="canonical" href="{{ url('/') }}" />
 
     {{-- LCP boost: hero image preload --}}
@@ -82,7 +82,7 @@
             '@id'           => url('/') . '#website',
             'url'           => url('/'),
             'name'          => 'Asef Sondaj',
-            'description'   => 'Türkiye geneli sondaj ekipmanları, karotiyer, DTH çekiç, tijler ve yedek parça tedariki.',
+            'description'   => 'Türkiye geneli sondaj ekipmanları, wireline karotiyer, karot bit, sondaj tijleri ve yedek parça tedariki.',
             'inLanguage'    => 'tr-TR',
             'publisher'     => ['@id' => url('/') . '#organization'],
             'potentialAction' => [
